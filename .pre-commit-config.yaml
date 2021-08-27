@@ -33,13 +33,13 @@ repos:
             #D103 - Missing docstring in public function, checked by Pylint
             #D104 - Missing docstring in public package (__init__)
             #D107 - Missing docstring in __init__
-            "--extend-ignore", "D103,D104,D107,E203,E231",
+            "--extend-ignore", "P101,C0114,D205,D100,D101,D102,D103,D104,D107,E203,E231",
             "--docstring-convention", "google",
         ]
 
   - repo: local
     hooks:
-      - id: pylint
+      - id: pylint∑
         name: "Lint code (pylint)"
         entry: pylint
         language: system

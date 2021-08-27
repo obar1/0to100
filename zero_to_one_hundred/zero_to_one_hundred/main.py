@@ -1,16 +1,19 @@
 """Main ingestion execution methods.
 
-Each of the factory methods does create
+Each of the factories methods does create
 its own cloud function functionality.
 
 """
 # pylint: disable=redefined-outer-name,missing-function-docstring,E0401
 
+from factories.factory_provider import FactoryProvider
 
-def main():
-    """Main."""
-    print("Hello World!")
+
+def run_section():
+    """TODO."""
+    factory = FactoryProvider().provide()
+    return factory.create_section_processor().process()
 
 
 if __name__ == "__main__":
-    main()
+    run_section()
