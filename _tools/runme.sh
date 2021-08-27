@@ -18,7 +18,7 @@ function info() { # print small help  [file]
 
 ### prj support
 
-function dir_from_http() { # convert from http to valid local dir name [http_address]
+function dir_from_http() { # get_valid_path from http to valid local dir name [http_address]
     http_address="${1}"
     echo "$http_address"
 
