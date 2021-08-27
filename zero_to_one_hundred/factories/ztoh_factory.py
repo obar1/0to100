@@ -5,17 +5,20 @@
 
 from configs.config import Config
 from processors.section_processor import SectionProcessor
+from repository.repository import Persist
 
 
 class ZTOHFactory:
     """ZTOHFactory class."""
 
-    def __init__(self, config: Config):
+    def __init__(self, config: Config, http_url):
         """Constructor."""
         self.__config = config
 
-        print(self.__config)
+        self.__http_url = http_url
+
+        self.__persist = Persist(config)
 
     def create_section_processor(self):
         """Creates necessary resource for Ingestion CF."""
-        return SectionProcessor(self.__config)
+        return SectionProcessor(self.__config, self.__http_url, self.__persist)

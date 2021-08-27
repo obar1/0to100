@@ -7,6 +7,7 @@ import os
 
 from configs.config_loader import ConfigLoader
 from factories.ztoh_factory import ZTOHFactory
+from validator.validator import is_http
 
 
 class FactoryProvider:
@@ -15,8 +16,10 @@ class FactoryProvider:
     Provides factory implementation.
     """
 
-    @classmethod
-    def provide(cls) -> ZTOHFactory:
+    def __init__(self, args):
+        self.__args = args
+
+    def provide(self) -> ZTOHFactory:
         """The method returns instance of MSEFactory."""
         config_file = os.getenv("CONFIG_FILE")
         assert config_file is not None
@@ -25,4 +28,6 @@ class FactoryProvider:
 
         logging.info("Loading config: config %s.", config_file)
 
-        return ZTOHFactory(config)
+        http = self.__args[1]
+        assert is_http(http)
+        return ZTOHFactory(config, http)
