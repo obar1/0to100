@@ -7,13 +7,16 @@ import pytest
 
 from configs.config_loader import ConfigLoader
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+
+@pytest.fixture(scope="session", autouse=True)
+def get_root():
+    return os.path.dirname(os.path.abspath(__file__))
 
 
 @pytest.fixture(scope="session", autouse=True)
-def map_config_file_path():
+def map_config_file_path(get_root):
     """TODO."""
-    return ROOT + "/resources/map_config.yaml"
+    return get_root + "/resources/map_config.yaml"
 
 
 @pytest.fixture

@@ -2,7 +2,7 @@
 # pylint: disable=redefined-outer-name,missing-function-docstring,E0401
 import pytest
 
-from validator.validator import is_path, is_http
+from validator.validator import is_path, is_valid_http
 
 
 def test_is_path():
@@ -12,6 +12,6 @@ def test_is_path():
 
 
 def test_is_http():
-    assert is_http("https://code.google") == "https://code.google"
+    assert is_valid_http("https://code.google") == "https://code.google"
     with pytest.raises(AssertionError):
-        assert is_http("code.google")
+        assert is_valid_http("code.google")

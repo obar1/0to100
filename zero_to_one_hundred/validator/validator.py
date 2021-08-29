@@ -7,7 +7,7 @@ def is_path(txt: str):
     return txt
 
 
-def is_http(txt: str):
+def is_valid_http(txt: str):
     """TODO."""
     assert "https:/" in txt.strip()
     return txt

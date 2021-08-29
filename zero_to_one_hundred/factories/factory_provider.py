@@ -7,7 +7,7 @@ import os
 
 from configs.config_loader import ConfigLoader
 from factories.ztoh_factory import ZTOHFactory
-from validator.validator import is_http
+from validator.validator import is_valid_http
 
 
 class FactoryProvider:
@@ -29,5 +29,5 @@ class FactoryProvider:
         logging.info("Loading config: config %s.", config_file)
 
         http = self.__args[1]
-        assert is_http(http)
+        assert is_valid_http(http)
         return ZTOHFactory(config, http)

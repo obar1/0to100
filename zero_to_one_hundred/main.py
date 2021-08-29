@@ -5,6 +5,7 @@ its own cloud function functionality.
 
 """
 # pylint: disable=redefined-outer-name,missing-function-docstring,E0401
+import logging
 
 from factories.factory_provider import FactoryProvider
 
@@ -18,6 +19,12 @@ def run_section(args):
 if __name__ == "__main__":
     import sys
 
+    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+
+    logging.info("Started")
+
     for arg in sys.argv[1:]:
         print(arg)
     run_section(args=sys.argv)
+
+    logging.info("Finished")
