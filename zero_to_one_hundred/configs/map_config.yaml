@@ -1,5 +1,5 @@
 config:
   type: map
 repo:
-  path: /Users/mamat/git/obar1/https-cloud.google.com.com.git
+  path: ./repo
   sorted : true

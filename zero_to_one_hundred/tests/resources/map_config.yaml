@@ -1,5 +1,5 @@
 config:
   type: map
 repo:
-  path: /somepath
+  path: ./map.md
   sorted : true

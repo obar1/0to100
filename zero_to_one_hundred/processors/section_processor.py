@@ -28,7 +28,7 @@ class SectionProcessor:
 
         section = Section(self.__http_url)
         logging.info("section")
-        logging.info(section)
+        logging.info(str(section))
 
         # assert section not in sections_in_map
         self.__persist.write(section)

@@ -1,5 +1,6 @@
 """TODO."""
 import logging
+import os
 
 import yaml
 
@@ -21,4 +22,5 @@ class ConfigLoader:
             logging.info("Start loading config file %s", self._config_file)
             config = yaml.safe_load(stream)
             logging.info("Config file %s is loaded successfully.", self._config_file)
-            return Config(config)
+            curr_path = os.path.dirname(os.path.abspath(self._config_file))
+            return Config(config, curr_path)

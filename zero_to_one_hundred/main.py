@@ -6,25 +6,26 @@ its own cloud function functionality.
 """
 # pylint: disable=redefined-outer-name,missing-function-docstring,E0401
 import logging
+import sys
 
+from exceptions.section_value_error import SectionValueError
 from factories.factory_provider import FactoryProvider
 
 
-def run_section(args):
-    """TODO."""
-    factory = FactoryProvider(args).provide()
+def run_section(argv):
+    for arg in argv[1:]:
+        logging.info(arg)
+    factory = FactoryProvider(argv).provide()
     return factory.create_section_processor().process()
 
 
+logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+
 if __name__ == "__main__":
-    import sys
 
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
-
-    logging.info("Started")
-
-    for arg in sys.argv[1:]:
-        print(arg)
-    run_section(args=sys.argv)
-
-    logging.info("Finished")
+    try:
+        run_section(sys.argv)
+    except SectionValueError as e:
+        logging.error(e)
+    except Exception as exp:
+        logging.critical(exp)

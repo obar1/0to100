@@ -2,13 +2,15 @@
 # pylint: disable=redefined-outer-name,missing-function-docstring,E0401
 import pytest
 
-from validator.validator import is_path, is_valid_http
+from validator.validator import get_valid_abs_path, is_valid_http
 
 
-def test_is_path():
-    assert is_path("/somepath") == "/somepath"
-    with pytest.raises(AssertionError):
-        assert is_path("somepath")
+def test_get_valid_abs_path_abs():
+    assert get_valid_abs_path("/somepath", None) == "/somepath"
+
+
+def test_get_valid_abs_path_relative(get_root):
+    assert get_valid_abs_path("./somepath", get_root) == get_root + "/somepath"
 
 
 def test_is_http():

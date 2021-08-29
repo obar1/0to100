@@ -9,6 +9,7 @@ import traceback
 from typing import List
 
 from configs.config import Config
+from exceptions.section_value_error import SectionValueError
 from models.section import Section
 
 
@@ -16,6 +17,7 @@ class Persist:
     """TODO."""
 
     def __init__(self, config: Config):
+
         self.__config = config
 
     def write(self, section: Section):
@@ -26,7 +28,8 @@ class Persist:
             section: section
         """
         path = section.get_valid_path(self.__config.get_repo_path())
-        assert os.path.isdir(path) is False
+        if os.path.isdir(path):
+            raise SectionValueError("SectionValueError {}".format(path), None)
 
         try:
             os.makedirs(path)

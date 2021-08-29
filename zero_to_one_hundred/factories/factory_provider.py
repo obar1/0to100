@@ -5,9 +5,12 @@
 import logging
 import os
 
+from configs.config import Config
 from configs.config_loader import ConfigLoader
 from factories.ztoh_factory import ZTOHFactory
 from validator.validator import is_valid_http
+
+CONFIG_FILE = "CONFIG_FILE"
 
 
 class FactoryProvider:
@@ -21,12 +24,14 @@ class FactoryProvider:
 
     def provide(self) -> ZTOHFactory:
         """The method returns instance of MSEFactory."""
-        config_file = os.getenv("CONFIG_FILE")
+        config_file = os.getenv(CONFIG_FILE)
         assert config_file is not None
 
-        config = ConfigLoader(config_file).load()
-
         logging.info("Loading config: config %s.", config_file)
+        config: Config = ConfigLoader(config_file).load()
+        logging.info(config)
+
+        logging.info("Config: %s.", config)
 
         http = self.__args[1]
         assert is_valid_http(http)

@@ -5,6 +5,11 @@
 class Section:
     """TODO."""
 
+    @classmethod
+    def from_str(cls, txt: str):
+        http_url = txt
+        return Section(http_url)
+
     def __init__(self, http_url: str):
         """
         Init
@@ -12,6 +17,9 @@ class Section:
             http_url: https://cloud.google.com/docs
         """
         self.__http_url = http_url
+
+    def __repr__(self):
+        return "http_url={}".format(self.__http_url)
 
     def get_valid_path(self, repo_path) -> str:
         """
