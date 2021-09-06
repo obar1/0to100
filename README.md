@@ -3,9 +3,7 @@
 > 0 to 100 to learn anything
 
 
-## Usage
-
-## init
+## Setup
 
 * install xpdf
 ```
@@ -21,7 +19,20 @@ brew install --cask visual-studio-code
 * chrome extension to save pages in pdf
 save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/ohlencieiipommannpdfcmfdpjjmeolj/related or https://chrome.google.com/webstore/detail/htmlurl-to-pdf-with-pdfma/dlmgniacaacmbccdegkadebbaphkonpb
 
+## Usage
 
+### using the py scripts
+
+```bash
+% pwd
+/git/obar1/0to100.git/zero_to_one_hundred
+
+% export CONFIG_FILE='./configs/map_config.yaml'
+% http_section=https://cloud.google.com/docs/overview
+% python main.py $http_section
+```
+
+### using the bash sripts
 * init the scripts in cmd line
 
 ```bash
@@ -103,4 +114,17 @@ pre-commit run black
 pre-commit run flake8
 pre-commit run isort
 pre-commit run pylint
+```
+
+## Usage
+
+```bash
+(py38) √ zero_to_one_hundred % export CONFIG_FILE='/Users/mamat/git/obar1/0to100.git/zero_to_one_hundred/configs/repo/map_config.yaml'
+```
+```bash
+(py38) √ zero_to_one_hundred % python ./main.py create_section https://cloud.google.com/docs
+```
+```bash
+(py38) √ zero_to_one_hundred % python ./main.py refresh_sections
+
 ```
