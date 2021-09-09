@@ -1,39 +1,64 @@
-"""TODO."""
+"""Config:
 
-from validator.validator import get_abs_path
+like
 
+config:
+  type: map
+repo:
+  path: ./repo
+  map_md: map.md
+  sorted : true
+
+"""
+# pylint: disable=R0903,W0238
 
 class Config:
-    """TODO."""
+    """Config"""
 
-    def __init__(self, config: dict, curr_path):
-        """Constructor.
+    def __init__(self, map_yaml_path,persist_fs_load_file):
+        """
 
         Args:
-            curr_path:
+            map_yaml_path:
+            persist_fs_load_file: f()  to load file as dict[]
         """
-        self.__dict_config = config
-        self.__curr_path = curr_path
+        self.map_yaml_path =  map_yaml_path
+        self.persist_fs_load_file =persist_fs_load_file
 
     def __repr__(self):
-        """TODO."""
-        return "curr_path:{} dict_config:{}".format(
-            self.__curr_path, self.__dict_config
-        )
+        return f"map_yaml_path:{self.map_yaml_path}"
 
-    def get_config_type(self):
+    @property
+    def load(self):
+        return self.persist_fs_load_file(self.map_yaml_path)
+
+    @property
+    def get_type(self):
         """Returns config type."""
-        return self.__dict_config["config"]["type"]
+        return self.load["type"]
 
 
+    @property
     def get_repo_path(self):
-        """Returns path."""
-        return get_abs_path(self.__dict_config["repo"]["path"], self.__curr_path)
+        """T Returns path."""
+        return self.load["repo"]["path"]
 
+class ConfigMap(Config):
+
+    def __init__(self,map_yaml_path,persist_fs_load_file):
+        super().__init__(map_yaml_path,persist_fs_load_file)
+
+
+
+    @property
+    def get_repo_map_md(self):
+        """T Returns map_md."""
+        return self.load["repo"]["map_md"]
+
+    @property
     def get_repo_sorted(self) -> bool:
-        """Returns sorted."""
-        return bool(self.__dict_config["repo"]["sorted"])
+        """T Returns sorted."""
+        return bool(self.load["repo"]["sorted"])
 
-    def get_curr_path(self):
-        """Returns curr_path."""
-        return self.__curr_path
+
+

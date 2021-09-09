@@ -1,38 +1,55 @@
-"""TODO."""
+"""TODO:
+"""
+# pylint: disable=R0903,E0401,W0703,W1201
+import logging
+import os
+import pathlib
+
+from configs.config import ConfigMap
 
 
-# pylint: disable=R0903,E0401,W0703,W0238
 class Section:
-    """TODO."""
+    """Section."""
 
-    @classmethod
-    def from_str(cls, http_url: str):
-        return Section(http_url)
-
-    def __init__(self, http_url: str):
+    def __init__(self, config_map: ConfigMap, http_url: str, PersistFS):
         """
         Init
         Args:
             http_url: https://cloud.google.com/docs
         """
-        self.__http_url = http_url
+        self.config_map = config_map
+        self.http_url = http_url
+        self.dir_name = self.__from_dir_to_http_url(http_url)
+        self.PersistFS = PersistFS
 
-    def __str__(self):
-        return "Section from {}".format(self.__http_url)
+    def __repr__(self):
+        return  f"Section {self.http_url}, {self.dir_name}"
 
-    def get_valid_path(self, repo_path) -> str:
-        """
-        Convert
-        Returns:
-            str: https:§§cloud.google.com§docs
-        """
-        return repo_path + "/" + self.http_url_as_section()
+    @property
+    def get_http_url(self):
+        return self.http_url
 
-    def http_url_as_section(self):
-        return self.__http_url.replace("/", "§")
+    @property
+    def get_dir_name(self):
+        return self.dir_name
 
-    def get_section(self):
-        return self.http_url_as_section()
+    @classmethod
+    def __from_dir_to_http_url(cls, http_url):
+        return http_url.replace("/", "§")
 
-    def get_http(self):
-        return self.__http_url
+    @classmethod
+    def __from_http_url_to_dir(cls, dir):
+        return dir.replace("§", "/")
+
+    @classmethod
+    def build_from_http(cls, config_map, http_url, PersistFS):
+        return Section(config_map, http_url, PersistFS)
+
+    @classmethod
+    def build_from_dir(cls, config_map, PersistFS, dir_name):
+        logging.warning(f"Section - build_from_dir {dir_name}")
+        return Section(config_map, cls.__from_http_url_to_dir(dir_name), PersistFS)
+
+    def write(self):
+        logging.warning(f"Section - write - {self}")
+        return self.PersistFS.make_dirs(self.config_map.get_repo_path + '/' + self.dir_name)

@@ -1,5 +1,5 @@
-"""SectionValueError."""
-
+"""SectionValueError:
+"""
 # pylint: disable=R0903,E0401,W0703
 class SectionValueError(Exception):
     def __init__(self, message, errors):

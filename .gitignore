@@ -35,5 +35,10 @@ MANIFEST
 # User-specific stuff
 .idea/**
 
-# local
+# vscode
+.vscode/**
+
+# repo
+repo/**
 https:§§**/**
+

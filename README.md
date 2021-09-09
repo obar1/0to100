@@ -21,17 +21,6 @@ save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/
 
 ## Usage
 
-### using the py scripts
-
-```bash
-% pwd
-/git/obar1/0to100.git/zero_to_one_hundred
-
-% export CONFIG_FILE='./configs/map_config.yaml'
-% http_section=https://cloud.google.com/docs/overview
-% python main.py $http_section
-```
-
 ### using the bash sripts
 * init the scripts in cmd line
 
@@ -85,6 +74,43 @@ copy pdf...
 
 1. goto back ;) ... and expand your knowledge :*
 
+
+### using the py scripts
+
+## 1-time (manual) setup 
+
+> example for tag 0.1 
+
+latest at https://github.com/obar1/0to100/tags
+
+
+```bash
+ZEROto100='0to100'
+TAG_0to100='0.1'
+
+cd "$HOME" && mkdir $ZEROto100 && cd $ZEROto100
+# get code and unpack it
+wget https://raw.githubusercontent.com/obar1/0to100/feature/5/zero_to_one_hundred/tests/resources/map.yaml
+#TODO: fix to master 
+wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG_0to100}.tar.gz | tar -xvf -
+mv "${ZEROto100}-${TAG_0to100}" latest
+```
+
+## daily usage
+
+
+-  create new section
+
+```bash
+ZEROto100='0to100'
+
+cd "$HOME/$ZEROto100"
+export CONFIG_FILE="$HOME/$ZEROto100/map.yaml"
+export ZEROto100py="$HOME/$ZEROto100/latest/zero_to_one_hundred/main.py"
+python $ZEROto100py create_section https://cloud.google.com/docs
+ls
+```
+
 ## Development
 
 ### Installation
@@ -116,15 +142,5 @@ pre-commit run isort
 pre-commit run pylint
 ```
 
-## Usage
-
-```bash
-(py38) √ zero_to_one_hundred % export CONFIG_FILE='/Users/mamat/git/obar1/0to100.git/zero_to_one_hundred/configs/repo/map_config.yaml'
-```
-```bash
-(py38) √ zero_to_one_hundred % python ./main.py create_section https://cloud.google.com/docs
-```
-```bash
-(py38) √ zero_to_one_hundred % python ./main.py refresh_sections
 
 ```

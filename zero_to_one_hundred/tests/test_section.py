@@ -1,23 +1,31 @@
-"""Unit tests."""
-# pylint: disable=redefined-outer-name,missing-function-docstring,E0401
-from unittest.mock import Mock
+
+import logging
+from typing import List
+
+from models.map import Map
+from models.section import Section
 
 import pytest
 
-from models.section import Section
-from processors.create_section_processor import CreateSectionProcessor
+from configs.config import ConfigMap
+from tests.conftest import TestPersistFS, http_url
 
 
-@pytest.fixture
-def section_processor() -> CreateSectionProcessor:
-    return Mock()
+# def test_build_from_http():
+#     assert False
+#
+#
+# def test_build_from_dir():
+#     assert False
 
 
-def test_convert():
-    repo_path = "/home/tmp"
-    http_url = "https://cloud.google.com/docs"
-    section = Section(http_url)
-    actual = section.get_valid_path(repo_path)
-    expected = "/home/tmp/https:§§cloud.google.com§docs"
-    assert expected == actual
-    assert True
+
+def test_write(get_config_map ,http_url):
+    actual= Section(get_config_map ,http_url ,TestPersistFS)
+    logging.warning(actual)
+
+
+def test_build_from_dir(get_config_map ,http_url,dir_name):
+    actual = Section.build_from_dir(get_config_map, TestPersistFS, dir_name)
+    logging.warning(actual)
+

@@ -1,6 +1,0 @@
-config:
-  type: map
-repo:
-  path: .
-  map_md: ./map.md
-  sorted : true
