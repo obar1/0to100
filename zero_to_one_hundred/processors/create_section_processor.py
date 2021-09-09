@@ -1,32 +1,27 @@
-"""Section processor.
-
-A section is html address to study and save as md files
+"""TODO:
 """
-# pylint: disable=R0903,W0238
+# pylint: disable=R0903,E0401,W0703,W1201
 import logging
 from pprint import pprint
 from typing import List
 
-from configs.config import Config
+from configs.config import ConfigMap
 from models.section import Section
-from repository.persist_fs import PersistFS
+from repository.readmemd import ReadMeMD
 
 
 class CreateSectionProcessor:
-    """TODO."""
+    """CreateSectionProcessor."""
 
-    def __init__(self, config: Config, http_url, persist: PersistFS):
-        self.__config = config
-        self.__http_url = http_url
-        self.__persist = persist
+    def __init__(self, config_map: ConfigMap, PersistFS, http_url:str):
+        self.http_url = http_url
+        self.PersistFS = PersistFS
+        self.config_map=config_map
 
     def process(self):
         """Process the section."""
-        sections_in_map: List[Section] = self.__persist.load_map()
-
-        section = Section(self.__http_url)
-        logging.info(str(section))
-
-        assert section not in sections_in_map
-        self.__persist.write(section)
-
+        section:Section = Section.build_from_http(self.http_url,self.PersistFS)
+        section.write()
+        readme_md:ReadMeMD = ReadMeMD(self.config_map, section,self.PersistFS)
+        readme_md.write()
+        return True

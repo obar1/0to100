@@ -1,52 +1,35 @@
-"""Section repository.
-
-Handle the persist
+"""TODO:
 """
-# pylint: disable=R0903,W0238,W1201
+# pylint: disable=R0903,E0401,W0703,W1201
 import logging
 import os
-import traceback
 from typing import List
 
-from configs.config import Config
-from exceptions.section_value_error import SectionValueError
+import yaml
+
 from models.section import Section
-
-
-class ReadMe:
-
-    def __init__(self,repo_path, section: Section):
-        self.readme=repo_path+"/readme.md"
-        self.__section=section
-
-
-    def write(self):
-        file1 = open(self.readme, "w")  # write mode
-        # # https:§§cloud.google.com§api-gateway§docs
-        # > https: // cloud.google.com / api - gateway / docs
-        txt = """
-# {}
-        
-> {}
-        """.format(self.__section.get_section(),self.__section.get_http())
-        file1.write(txt)
-        file1.close()
+from repository.readmemd import ReadMeMD
 
 
 class PersistFS:
     """PersistFS."""
+    relative_path_starts_with = './'
 
-    def __init__(self, config: Config):
-        self.__config = config
 
-    def write(self, section: Section):
-        """write section"""
-        repo_path = section.get_valid_path(self.__config.get_repo_path())
-        os.makedirs(repo_path, exist_ok=True)
-        ReadMe(repo_path,section).write()
-        logging.info("PersistFS.write: done " + section.__str__())
+    @classmethod
+    def list_dirs(cls,repo_path) ->List[str]:
+        return os.walk(repo_path)
 
-    def load_map(self) -> List[Section]:
-        """Load section from map."""
-        return []
-        # TODO: tio implement
+    @classmethod
+    def get_dir_name(cls, fn):
+        """return  path dir name of the file"""
+        return os.path.dirname(os.path.abspath(os.path.abspath(fn)))
+
+    @classmethod
+    def load_file(cls, config_file):
+        with open(config_file, "r") as stream:
+            return yaml.safe_load(stream)
+
+    @classmethod
+    def refresh(cls,map):
+        pass

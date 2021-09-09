@@ -1,36 +1,36 @@
-"""Unit tests."""
-# pylint: disable=redefined-outer-name,missing-function-docstring,E0401
-from unittest.mock import Mock
-
 import pytest
-from typing import List
+
+from configs.config import ConfigMap
 from factories.ztoh_factory import ZTOHFactory
 from processors.create_section_processor import CreateSectionProcessor
 from processors.refresh_sections_processor import RefreshSectionsProcessor
-
-
-@pytest.fixture
-def get_create_section_ztoh_factory(config_loader,get_create_section_params) -> ZTOHFactory:
-    return ZTOHFactory(config_loader,get_create_section_params)
-
+from tests.conftest import TestPersistFS
 
 @pytest.fixture
-def get_refresh_sections_ztoh_factory(config_loader,get_refresh_sections_params) -> ZTOHFactory:
-    return ZTOHFactory(config_loader,get_refresh_sections_params)
+def get_config_map(get_map_yaml_path):
+    return ConfigMap(get_map_yaml_path, TestPersistFS.load_file)
 
+@pytest.fixture
+def get_args_get_processor():
+    return  ["something"]
 
-def test_get_processor(get_create_section_ztoh_factory,get_refresh_sections_ztoh_factory):
-   assert(isinstance( get_create_section_ztoh_factory.get_processor(), CreateSectionProcessor))
-   assert(isinstance(get_refresh_sections_ztoh_factory.get_processor(), RefreshSectionsProcessor))
+def test_get_processor(get_config_map,get_args_get_processor):
+    actual = ZTOHFactory(get_config_map, TestPersistFS)
+    with pytest.raises(ValueError):
+        actual.get_processor(get_args_get_processor)
 
+@pytest.fixture
+def get_args_create_section_processor(http_url):
+    return  ["create_section",http_url]
 
-def test_create_section_processor(get_create_section_ztoh_factory):
-    assert get_create_section_ztoh_factory.create_section_processor()
+def test_section_processor(get_config_map,get_args_create_section_processor):
+    actual:CreateSectionProcessor = ZTOHFactory(get_config_map, TestPersistFS).get_processor(get_args_create_section_processor)
+    assert actual.process() is True
 
+@pytest.fixture
+def get_args_refresh_sections_processor():
+    return  ["refresh_sections","config"]
 
-def test_refresh_sections_processor(get_refresh_sections_ztoh_factory):
-    assert get_refresh_sections_ztoh_factory.refresh_sections_processor()
-
-
-
-
+def test_refresh_sections_processor(get_config_map,get_args_refresh_sections_processor):
+    actual :RefreshSectionsProcessor= ZTOHFactory(get_config_map, TestPersistFS).get_processor(get_args_refresh_sections_processor)
+    assert actual.process() is True

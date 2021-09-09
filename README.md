@@ -27,7 +27,7 @@ save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/
 % pwd
 /git/obar1/0to100.git/zero_to_one_hundred
 
-% export CONFIG_FILE='./configs/map_config.yaml'
+% export CONFIG_FILE='./configs/map.yaml'
 % http_section=https://cloud.google.com/docs/overview
 % python main.py $http_section
 ```
@@ -119,7 +119,7 @@ pre-commit run pylint
 ## Usage
 
 ```bash
-(py38) √ zero_to_one_hundred % export CONFIG_FILE='/Users/mamat/git/obar1/0to100.git/zero_to_one_hundred/configs/repo/map_config.yaml'
+(py38) √ zero_to_one_hundred % export CONFIG_FILE='/Users/mamat/git/obar1/0to100.git/zero_to_one_hundred/configs/repo/map.yaml'
 ```
 ```bash
 (py38) √ zero_to_one_hundred % python ./main.py create_section https://cloud.google.com/docs

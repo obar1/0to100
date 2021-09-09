@@ -1,38 +1,41 @@
-"""TODO."""
+"""TODO:
+"""
+# pylint: disable=R0903,E0401,W0703,W1201
+import pathlib
 
 
-# pylint: disable=R0903,E0401,W0703,W0238
 class Section:
-    """TODO."""
+    """Section."""
 
-    @classmethod
-    def from_str(cls, http_url: str):
-        return Section(http_url)
-
-    def __init__(self, http_url: str):
+    def __init__(self, http_url: str,PersistFS):
         """
         Init
         Args:
             http_url: https://cloud.google.com/docs
         """
-        self.__http_url = http_url
+        self.http_url = http_url
+        self.dir_name =self.__from_dir_to_http_url(http_url)
+        self.PersistFS=PersistFS
 
-    def __str__(self):
-        return "Section from {}".format(self.__http_url)
+    def __repr__(self):
+        return f"Section {self.http_url}, {self.dir_name}"
 
-    def get_valid_path(self, repo_path) -> str:
-        """
-        Convert
-        Returns:
-            str: https:§§cloud.google.com§docs
-        """
-        return repo_path + "/" + self.http_url_as_section()
+    @classmethod
+    def __from_dir_to_http_url(cls,http_url):
+        return http_url.replace("/", "§")
 
-    def http_url_as_section(self):
-        return self.__http_url.replace("/", "§")
+    @classmethod
+    def __from_http_url_to_dir(cls, dir):
+        return dir.replace("§", "/")
 
-    def get_section(self):
-        return self.http_url_as_section()
+    @classmethod
+    def build_from_http(cls, http_url,PersistFS):
+        return Section(http_url,PersistFS)
 
-    def get_http(self):
-        return self.__http_url
+    @classmethod
+    def build_from_dir(cls, dir,PersistFS):
+        dir_name = pathlib.PurePath(dir).name
+        return Section(cls.__from_http_url_to_dir(dir_name),PersistFS)
+
+    def write(self):
+        pass
