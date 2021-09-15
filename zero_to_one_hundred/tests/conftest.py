@@ -68,6 +68,13 @@ def get_refresh_sections_params() -> List[str]:
     return ["main.py","refresh_sections", ""]
 
 
+@pytest.fixture
+def get_args_create_section_processor(http_url):
+    return  ["create_section",http_url]
+
+@pytest.fixture
+def get_args_refresh_sections_processor():
+    return  ["refresh_sections","config"]
 
 class TestPersistFS:
     @classmethod

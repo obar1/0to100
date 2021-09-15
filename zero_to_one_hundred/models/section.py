@@ -3,25 +3,28 @@
 # pylint: disable=R0903,E0401,W0703,W1201
 import pathlib
 
+from configs.config import ConfigMap
+
 
 class Section:
     """Section."""
 
-    def __init__(self, http_url: str,PersistFS):
+    def __init__(self, config_map: ConfigMap, http_url: str, PersistFS):
         """
         Init
         Args:
             http_url: https://cloud.google.com/docs
         """
+        self.config_map = config_map
         self.http_url = http_url
-        self.dir_name =self.__from_dir_to_http_url(http_url)
-        self.PersistFS=PersistFS
+        self.dir_name = self.__from_dir_to_http_url(http_url)
+        self.PersistFS = PersistFS
 
     def __repr__(self):
         return f"Section {self.http_url}, {self.dir_name}"
 
     @classmethod
-    def __from_dir_to_http_url(cls,http_url):
+    def __from_dir_to_http_url(cls, http_url):
         return http_url.replace("/", "§")
 
     @classmethod
@@ -29,13 +32,13 @@ class Section:
         return dir.replace("§", "/")
 
     @classmethod
-    def build_from_http(cls, http_url,PersistFS):
-        return Section(http_url,PersistFS)
+    def build_from_http(cls, config_map, http_url, PersistFS):
+        return Section(config_map, http_url, PersistFS)
 
     @classmethod
-    def build_from_dir(cls, dir,PersistFS):
+    def build_from_dir(cls, config_map, dir, PersistFS):
         dir_name = pathlib.PurePath(dir).name
-        return Section(cls.__from_http_url_to_dir(dir_name),PersistFS)
+        return Section(config_map, cls.__from_http_url_to_dir(dir_name), PersistFS)
 
     def write(self):
-        pass
+        return self.PersistFS.make_dirs(self.config_map.get_repo_path + '/' + self.dir_name)

@@ -33,3 +33,13 @@ class PersistFS:
     @classmethod
     def refresh(cls,map):
         pass
+
+    @classmethod
+    def write_file(cls,file_name, txt):
+        with open(file_name, "w") as file1:
+            # Writing data to a file
+            file1.writelines(txt)
+
+    @classmethod
+    def make_dirs(cls, path):
+        os.makedirs(path, 0o755, True)

@@ -8,7 +8,7 @@ from models.section import Section
 class ReadMeMD:
 
     def __init__(self,config_map:ConfigMap, section:Section,PersistFS):
-        self.readme_md=config_map.get_repo_path+"/readme.md"
+        self.readme_md=config_map.get_repo_path+ '/' + section.dir_name +'/readme.md'
         self.section=section
         self.PersistFS=PersistFS
 

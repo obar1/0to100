@@ -20,7 +20,7 @@ class CreateSectionProcessor:
 
     def process(self):
         """Process the section."""
-        section:Section = Section.build_from_http(self.http_url,self.PersistFS)
+        section:Section = Section(self.config_map, self.http_url,self.PersistFS)
         section.write()
         readme_md:ReadMeMD = ReadMeMD(self.config_map, section,self.PersistFS)
         readme_md.write()
