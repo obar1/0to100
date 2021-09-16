@@ -1,32 +1,30 @@
-"""Factory provider."""
-
-
+"""FactoryProvider:
+"""
 # pylint: disable=R0903,E0401,W0703
+
 import logging
 import os
 
-from configs.config import Config
-from configs.config_loader import ConfigLoader
+from configs.config import Config, ConfigMap
 from factories.ztoh_factory import ZTOHFactory
-from validator.validator import is_valid_http
 
 CONFIG_FILE = "CONFIG_FILE"
 
 
 class FactoryProvider:
     """FactoryProvider class.
-
     Provides factory implementation.
     """
 
-    def __init__(self, args):
-        self.__args = args
-        self.__config_file = os.getenv(CONFIG_FILE)
+    def __init__(self, PersistFS):
+        self.config_file = os.getenv(CONFIG_FILE)
+        self.PersistFS=PersistFS
 
     def provide(self) -> ZTOHFactory:
-        """The method returns instance of MSEFactory."""
-        logging.info("Loading config: config %s.", self.__config_file)
-        config: Config = ConfigLoader(self.__config_file).load()
-        logging.info("Config: %s.", config)
-
-        return ZTOHFactory(config, self.__args)
+        """T The method returns instance of MSEFactory."""
+        get_type = Config(self.config_file, self.PersistFS.load_file).get_type
+        if get_type == 'map':
+            config_map = ConfigMap(self.config_file, self.PersistFS.load_file)
+            return ZTOHFactory(config_map, self.PersistFS)
+        else:
+            raise NotImplementedError(f'NotImplementedError {get_type}')

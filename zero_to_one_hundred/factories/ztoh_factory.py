@@ -1,42 +1,33 @@
-"""ZTOHFactory."""
-
-
+"""ZTOHFactory:
+"""
 # pylint: disable=R0903,E0401,W0703,W1201
+
 from typing import List
 
-from configs.config import Config
+from configs.config import Config, ConfigMap
 from processors.refresh_sections_processor import RefreshSectionsProcessor
 from processors.create_section_processor import CreateSectionProcessor
-from repository.persist_fs import PersistFS
 
 
 class ZTOHFactory:
     """ZTOHFactory class."""
 
-    def __init__(self, config: Config, args: List[str]):
-        """Constructor.
+    def __init__(self, config_map: ConfigMap, PersistFS):
+        self.config_map = config_map
+        self.PersistFS=PersistFS
 
-        Args:
-            args: url to prpcess
-            config: yaml path
-        """
-        self.__config = config
-        self.__args = args
-        self.__persist = PersistFS(config)
-
-    def get_processor(self):
+    def get_processor(self,args):
         """get the processor """
-        cmd=self.__args[1]
+        cmd=args[0]
         if cmd=="create_section":
-            return self.create_section_processor()
+            return self.create_section_processor(args[1])
         elif cmd == "refresh_sections":
             return self.refresh_sections_processor()
         else:
-            raise ValueError(self.__args )
+            raise ValueError(args)
 
-    def create_section_processor(self):
-        http_url=self.__args[2]
-        return CreateSectionProcessor(self.__config, http_url, self.__persist)
+    def create_section_processor(self,http_url):
+        return CreateSectionProcessor(self.config_map, self.PersistFS, http_url)
 
     def refresh_sections_processor(self):
-        return RefreshSectionsProcessor(self.__config, self.__persist)
+        return RefreshSectionsProcessor(self.config_map, self.PersistFS)
