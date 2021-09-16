@@ -19,13 +19,9 @@ def test_get_processor(get_config_map,get_args_get_processor):
     with pytest.raises(ValueError):
         actual.get_processor(get_args_get_processor)
 
-
-
 def test_section_processor(get_config_map,get_args_create_section_processor):
     actual = ZTOHFactory(get_config_map, TestPersistFS).get_processor(get_args_create_section_processor)
     assert isinstance(actual,CreateSectionProcessor)
-
-
 
 def test_refresh_sections_processor(get_config_map,get_args_refresh_sections_processor):
     actual :RefreshSectionsProcessor= ZTOHFactory(get_config_map, TestPersistFS).get_processor(get_args_refresh_sections_processor)

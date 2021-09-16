@@ -38,5 +38,7 @@ MANIFEST
 # vscode
 .vscode/**
 
-# local
+# repo
+repo/**
 https:§§**/**
+

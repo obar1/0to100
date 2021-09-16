@@ -15,7 +15,6 @@ class PersistFS:
     """PersistFS."""
     relative_path_starts_with = './'
 
-
     @classmethod
     def list_dirs(cls,repo_path) ->List[str]:
         return os.walk(repo_path)
@@ -29,10 +28,6 @@ class PersistFS:
     def load_file(cls, config_file):
         with open(config_file, "r") as stream:
             return yaml.safe_load(stream)
-
-    @classmethod
-    def refresh(cls,map):
-        pass
 
     @classmethod
     def write_file(cls,file_name, txt):

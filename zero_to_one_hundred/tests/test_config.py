@@ -1,11 +1,12 @@
 import pytest
 
 from configs.config import Config, ConfigMap
-from repository.persist_fs import PersistFS
+from tests.conftest import TestPersistFS
+
 
 @pytest.fixture
 def get_persist_fs_load_file():
-    return PersistFS.load_file
+    return TestPersistFS.load_file
 
 @pytest.fixture
 def get_config(get_map_yaml_path, get_persist_fs_load_file):

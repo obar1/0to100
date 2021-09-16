@@ -77,23 +77,27 @@ def get_args_refresh_sections_processor():
     return  ["refresh_sections","config"]
 
 class TestPersistFS:
-    @classmethod
-    def write_section(cls, section):
-        return "write_section_MOCK"
 
     @classmethod
-    def refresh_sections(cls,map):
-        return "refresh_map_MOCK"
+    def list_dirs(cls, repo_path) -> List[str]:
+        return []
+
+    @classmethod
+    def get_dir_name(cls, fn):
+        return ""
 
     @classmethod
     def load_file(cls,config_file):
-        with open(config_file, "r") as stream:
-            return yaml.safe_load(stream)
-    # TOOD: use hard code
-
+        if 'unsupported_map' in config_file:
+            return {'type': 'not_a_map', 'lib': {'path': './repo'}}
+        return {'type': 'map', 'repo': {'path': './repo', 'map_md': 'map.md', 'sorted': True}}
 
     @classmethod
     def write_file(cls, readme_md, txt):
-        return True
+        return None
+
+    @classmethod
+    def make_dirs(cls, path):
+        return None
 
 
