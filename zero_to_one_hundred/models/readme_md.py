@@ -35,6 +35,7 @@ class ReadMeMD:
             """convert to [http://](http:§§/...readme) or leave as it is"""
             if str(line).strip('\n').startswith('https://'):
                 return "["+str(line).strip('\n')+"](/"+ Section(self.config_map, str(line).strip('\n'), self.PersistFS).dir_readme_md+")\n"
+
             else:
                 return line
         res=[]
