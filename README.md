@@ -90,7 +90,7 @@ TAG_0to100='0.1'
 
 cd "$HOME" && mkdir $ZEROto100 && cd $ZEROto100
 # get code and unpack it
-wget https://raw.githubusercontent.com/obar1/0to100/feature/5/zero_to_one_hundred/tests/resources/map.yaml
+wget https://raw.githubusercontent.com/obar1/0to100/master/zero_to_one_hundred/tests/resources/map.yaml
 #TODO: fix to master 
 wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG_0to100}.tar.gz | tar -xvf -
 mv "${ZEROto100}-${TAG_0to100}" latest

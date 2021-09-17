@@ -32,13 +32,9 @@ class PersistFS:
 
     @classmethod
     def write_file(cls,file_name, txt:List[str]):
-        if os.path.isfile(file_name):
-            logging.info(f"skip {file_name}")
-        else:
-            with open(file_name, "w") as f:
-                # Writing data to a file
-                f.writelines(file_name)
-                logging.info(f"write {file_name}")
+        with open(file_name, "w") as outfile:
+            outfile.write("\n".join(txt))
+            logging.info(f"write_file {file_name} {txt}")
 
     @classmethod
     def make_dirs(cls, path):
@@ -50,9 +46,10 @@ class PersistFS:
 
     @classmethod
     def read_file(cls, filename)-> List[str]:
-        with open(filename, 'r', encoding='UTF-8') as file:
-            while (line := file.readline().rstrip()):
-                yield line
         logging.info(f"read {filename}")
+        with open(filename,'r') as f:
+            lines = f.readlines()
+        return lines
+
 
 

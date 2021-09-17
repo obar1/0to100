@@ -40,10 +40,8 @@ class ReadMeMD:
         res=[]
         for line in txt:
             res.append(f(line))
-
         self.PersistFS.write_file(self.readme_md,res)
 
 
-
     def read(self):
-        return list(self.PersistFS.read_file(self.readme_md))
+        return self.PersistFS.read_file(self.readme_md)

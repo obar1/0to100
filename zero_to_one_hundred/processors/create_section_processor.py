@@ -22,4 +22,3 @@ class CreateSectionProcessor:
         section.write()
         readme_md:ReadMeMD = ReadMeMD(self.config_map, section,self.PersistFS)
         readme_md.write()
-        RefreshSectionsProcessor(self.config_map, self.PersistFS).process()
