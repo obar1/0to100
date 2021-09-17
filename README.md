@@ -103,19 +103,42 @@ mv "${ZEROto100}-${TAG_0to100}" latest
 > unless you have a lot of them just add in the `.bashrc/.zshrc`
 
 ```
+# oto100 setup
+
 export ZEROto100='0to100'
 export h0200="$HOME/$ZEROto100"
 export CONFIG_FILE="$h0200/map.yaml"
 export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
+
 function create_section() {
   cd "$h0200"
   python $ZEROto100py create_section $1
+}
+
+function refresh_sections() {
+  cd "$h0200"
+  python $ZEROto100py refresh_sections
+}
+
+function refresh_links() {
+  cd "$h0200"
+  python $ZEROto100py refresh_links 
 }
 ```
 -  create new section
 
 ```bash
 create_section https://cloud.google.com/docs
+```
+-  refresh sections
+
+```bash
+refresh_sections 
+```
+-  refresh links
+
+```bash
+refresh_links 
 ```
 
 ## Development
