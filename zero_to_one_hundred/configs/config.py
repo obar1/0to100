@@ -45,6 +45,8 @@ class ConfigMap(Config):
 
     def __init__(self,map_yaml_path,PersistFS):
         super().__init__(map_yaml_path,PersistFS)
+        self.get_repo_readme_puml = 'readme.puml'
+        # TODO: put in the yaml
 
     @property
     def get_repo_path(self):
