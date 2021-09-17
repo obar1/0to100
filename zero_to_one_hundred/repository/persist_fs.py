@@ -33,7 +33,7 @@ class PersistFS:
     @classmethod
     def write_file(cls,file_name, txt:List[str]):
         with open(file_name, "w") as outfile:
-            outfile.write("\n".join(txt))
+            outfile.write("".join(txt))
             logging.info(f"write_file {file_name} {txt}")
 
     @classmethod

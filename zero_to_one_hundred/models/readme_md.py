@@ -34,7 +34,7 @@ class ReadMeMD:
         def f(line):
             """convert to [http://](http:§§/...readme) or leave as it is"""
             if str(line).lstrip().startswith('https://'):
-                return f"[{line}]({Section(self.config_map, str(line).lstrip(), self.PersistFS).dir_readme_md})"
+                return f"[{line}](./{Section(self.config_map, str(line).lstrip(), self.PersistFS).dir_readme_md})"
             else:
                 return line
         res=[]
