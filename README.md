@@ -33,7 +33,7 @@ latest at https://github.com/obar1/0to100/tags
 ```bash
 TAG_0to100='0.x' 
 ZEROto100='0to100'
-ZEROto100_HOME="/Users/obar1/git/obar1/https-cloud.google.com.com.git" 
+ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git" 
 
 cd "$ZEROto100_HOME" && mkdir $ZEROto100 && cd $ZEROto100
 # get code and unpack it
@@ -54,25 +54,23 @@ mv "${ZEROto100}-${TAG_0to100}" latest
 # 0to100 setup
 
 export ZEROto100='0to100'
-export ZEROto100_HOME="/Users/obar1/git/obar1/https-cloud.google.com.com.git" 
+export ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git" 
 export h0200="$ZEROto100_HOME/$ZEROto100"
 
 export CONFIG_FILE="$h0200/map.yaml"
 export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
 
 function create_section() {
-  cd "$h0200"
   python $ZEROto100py create_section $1
 }
-
 function refresh_sections() {
-  cd "$h0200"
   python $ZEROto100py refresh_sections
 }
-
 function refresh_links() {
-  cd "$h0200"
   python $ZEROto100py refresh_links 
+}
+function refresh_puml() {
+  python $ZEROto100py refresh_puml
 }
 ```
 -  create new section
