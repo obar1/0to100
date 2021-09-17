@@ -7,7 +7,7 @@ from models.section import Section
 
 class PUML:
     def __init__(self, config_map: ConfigMap, PersistFS, sections: List[Section]):
-        self.config_map=config_map
+        self.config_map = config_map
         self.readme_puml = config_map.get_repo_path + '/' + config_map.get_repo_readme_puml
         self.PersistFS = PersistFS
         self.sections = sections
@@ -38,22 +38,34 @@ class PUML:
     # @endmindmap
 
     def __repr__(self):
-        return  f"Map {self.readme_puml}, {self.sections}"
+        return f"Map {self.readme_puml}, {self.sections}"
 
-    def __repr_flatten(self, sections:List[Section])->str:
+    def __repr_flatten(self, rows: List[Section]) -> str:
         # 1. <https://cloud.google.com/api-gateway/docs/about-ap
         # i-gateway> :ok: [`here`](../https:§§cloud.google.com§api-gateway§docs§about-api-gateway/readme.md)
-        lambda_flatten_section = lambda s: ' *_ ' + s.get_dir_name + os.linesep
-        flattened_sections = list(map(lambda_flatten_section, sections))
-        return  ''.join(sorted(flattened_sections))
+
+        lambda_flatten_section = lambda s: ' * ' + s.get_dir_name
+        rows = sorted(list(map(lambda_flatten_section, rows)))
+
+        for f in range(len(rows)):
+            # print('\n>'+str(f)+rows[f])
+            for b in range(f + 1, len(rows)):
+                # print('='+str(b)+rows[b])
+                if str(rows[b]).startswith(str(rows[f])):
+                    rows[b] = str(rows[b]).replace(str(rows[f]), '  * ')
+                # else:
+                #     print('*'+str(rows[f]))
+
+        for f in range(len(rows)):
+            print(rows[f])
+        return os.linesep.join(rows)
 
     def write(self):
         # init with list of sections found
         txt = []
         txt.append("""
 @startmindmap puml
-
-* https
+* root
 {}
 
 @endmindmap
