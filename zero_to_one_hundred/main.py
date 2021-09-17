@@ -17,7 +17,9 @@ def run_main(argv: List[str]):
     factory: ZTOHFactory = FactoryProvider(PersistFS).provide()
     return factory.get_processor(argv).process()
 
-
 if __name__ == "__main__":
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
-    run_main(sys.argv[1:])
+    try:
+        logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+        run_main(sys.argv[1:])
+    except IndexError:
+        logging.info(f"check the params {sys.argv}")

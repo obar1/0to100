@@ -22,9 +22,9 @@ class FactoryProvider:
 
     def provide(self) -> ZTOHFactory:
         """T The method returns instance of MSEFactory."""
-        get_type = Config(self.config_file, self.PersistFS.load_file).get_type
+        get_type = Config(self.config_file, self.PersistFS).get_type
         if get_type == 'map':
-            config_map = ConfigMap(self.config_file, self.PersistFS.load_file)
+            config_map = ConfigMap(self.config_file, self.PersistFS)
             return ZTOHFactory(config_map, self.PersistFS)
         else:
             raise NotImplementedError(f'NotImplementedError {get_type}')

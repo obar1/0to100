@@ -5,6 +5,7 @@
 from typing import List
 
 from configs.config import Config, ConfigMap
+from processors.refresh_links_processor import RefreshLinksProcessor
 from processors.refresh_sections_processor import RefreshSectionsProcessor
 from processors.create_section_processor import CreateSectionProcessor
 
@@ -23,6 +24,8 @@ class ZTOHFactory:
             return self.create_section_processor(args[1])
         elif cmd == "refresh_sections":
             return self.refresh_sections_processor()
+        elif cmd == "refresh_links":
+            return self.refresh_links_processor()
         else:
             raise ValueError(args)
 
@@ -31,3 +34,7 @@ class ZTOHFactory:
 
     def refresh_sections_processor(self):
         return RefreshSectionsProcessor(self.config_map, self.PersistFS)
+
+    def refresh_links_processor(self):
+        return RefreshLinksProcessor(self.config_map, self.PersistFS)
+

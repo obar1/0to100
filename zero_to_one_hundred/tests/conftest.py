@@ -6,10 +6,10 @@ from typing import List
 from unittest import mock
 
 import pytest
-import yaml
 
 from configs.config import ConfigMap
 from factories.factory_provider import CONFIG_FILE
+from tests.moke.persist_fs import PersistFS
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -35,7 +35,6 @@ def http_url_2():
 @pytest.fixture
 def get_test_path():
     os_path_dirname = os.path.dirname(os.path.abspath(__file__))
-    # logging.debug(os_path_dirname)
     yield os_path_dirname
 
 @pytest.fixture
@@ -47,12 +46,20 @@ def get_resource_path(get_test_path):
     yield get_test_path + '/resources'
 
 @pytest.fixture
-def get_map_yaml_path(get_resource_path):
-    yield get_resource_path + '/map.yaml'
+def get_repo_path(get_resource_path):
+    yield get_resource_path + '/repo'
+
+@pytest.fixture
+def get_map_yaml_path(get_repo_path):
+    yield get_repo_path + '/map.yaml'
 
 @pytest.fixture
 def get_unsupported_map_yaml_path(get_resource_path):
     yield get_resource_path + '/unsupported_map.yaml'
+
+@pytest.fixture
+def get_sample_readme_md_path(get_repo_path):
+    yield get_repo_path + '/https:§§cloud.google.com§docs/readme.md'
 
 @pytest.fixture
 def mock_settings_env_vars(get_map_yaml_path):
@@ -66,11 +73,11 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
 
 @pytest.fixture
 def get_config_map(get_map_yaml_path):
-    return ConfigMap(get_map_yaml_path, TestPersistFS.load_file)
+    return ConfigMap(get_map_yaml_path, PersistFS)
 
 @pytest.fixture
 def dir_name():
-    return 'https:§§cloud.google.com§sec1'
+    return 'https:§§cloud.google.com§docs'
 
 @pytest.fixture
 def get_create_section_params()->List[str]:
@@ -87,33 +94,11 @@ def get_args_create_section_processor(http_url):
 
 @pytest.fixture
 def get_args_refresh_sections_processor():
-    return  ["refresh_sections","config"]
+    return  ["refresh_sections"]
 
-class TestPersistFS:
+@pytest.fixture
+def get_args_refresh_links_processor():
+    return  ["refresh_links"]
 
-    relative_path_starts_with = './'
-    HTTPS_ = 'https:§§'
-
-    @classmethod
-    def list_dirs(cls, repo_path) -> List[str]:
-        return ['https:§§cloud.google.com§sec1', 'https:§§cloud.google.com§sec2']
-
-    @classmethod
-    def get_dir_name(cls, fn):
-        return fn
-
-    @classmethod
-    def load_file(cls,config_file):
-        if 'unsupported_map' in config_file:
-            return {'type': 'not_a_map', 'lib': {'path': './repo'}}
-        return {'type': 'map', 'repo': {'path': './repo', 'map_md': 'map.md', 'sorted': True}}
-
-    @classmethod
-    def write_file(cls, readme_md, txt):
-        return f"\nreadme_md={readme_md} \ntxt={txt}"
-
-    @classmethod
-    def make_dirs(cls, path):
-        return None
 
 

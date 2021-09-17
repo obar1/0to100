@@ -1,11 +1,10 @@
 """TODO:
 """
 # pylint: disable=R0903,E0401,W0703,W1201
-import logging
 
-from configs.config import Config, ConfigMap
+from configs.config import ConfigMap
 from models.map import Map
-from repository.persist_fs import PersistFS
+
 
 class RefreshSectionsProcessor():
 
@@ -17,4 +16,4 @@ class RefreshSectionsProcessor():
         """Scan the repo and for each section add it to  the map,  save the map file."""
         sections=Map.build_from_dirs(self.config_map, self.PersistFS, self.PersistFS.list_dirs(self.config_map.get_repo_path))
         map:Map = Map(self.config_map,self.PersistFS,sections)
-        map.write()
+        map.write(self.config_map.get_repo_sorted)
