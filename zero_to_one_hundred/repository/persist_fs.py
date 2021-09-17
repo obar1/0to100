@@ -16,13 +16,13 @@ class PersistFS:
     HTTPS_ = 'https:§§'
 
     @classmethod
-    def list_dirs(cls,repo_path) ->List[str]:
-        os_walk = list(os.listdir(repo_path))
+    def list_dirs(cls,get_repo_path) ->List[str]:
+        logging.warning(os.path.dirname(os.path.abspath(__file__)))
+        os_walk = list(os.listdir(get_repo_path))
         return list(filter(lambda f : cls.HTTPS_ in str(f), os_walk))
 
     @classmethod
     def get_dir_name(cls, fn):
-        """return  path dir name of the file"""
         return os.path.dirname(os.path.abspath(fn))
 
     @classmethod
@@ -47,3 +47,18 @@ class PersistFS:
         else:
             os.makedirs(path, 0o777, False)
             logging.info(f"create {path}")
+
+    @classmethod
+    def read_file(cls, filename)-> List[str]:
+        with open(filename, 'r', encoding='UTF-8') as file:
+            while (line := file.readline().rstrip()):
+                yield line
+        logging.info(f"read {filename}")
+
+    @classmethod
+    def overwrite_file(cls, file_name, txt:List[str]):
+        with open(file_name, "w") as file1:
+            # Writing data to a file
+            file1.writelines(txt)
+            logging.info(f"overwrite_file {file_name}")
+

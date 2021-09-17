@@ -2,7 +2,7 @@
 # pylint: disable=redefined-outer-name,missing-function-docstring,E0401
 import pytest
 
-from repository.persist_fs import PersistFS
+from tests.moke.persist_fs import PersistFS
 from validator.validator import Validator
 
 def test_build_full_path__pass__fail(get_resource_path):

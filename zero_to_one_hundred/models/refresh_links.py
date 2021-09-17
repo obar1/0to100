@@ -5,11 +5,9 @@ a readme md with http and ref
 from typing import List
 
 from configs.config import ConfigMap
+from models.readme_md import ReadMeMD
 from models.section import Section
 
-
-def collect_links_str(sections:List[Section]):
-    return []
 
 
 class RefreshLinks:
@@ -22,4 +20,8 @@ class RefreshLinks:
         return f"RefreshLinks {self.config_map}, {self.sections}"
 
     def refresh_sections_links(self):
-        links:List[str] = collect_links_str(self.sections)
+        for section in self.sections:
+            readme_md: ReadMeMD = ReadMeMD(self.config_map, section, self.PersistFS)
+            txt = readme_md.read()
+            txt_refreshed= readme_md.refresh_links(txt)
+
