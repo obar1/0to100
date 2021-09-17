@@ -21,7 +21,88 @@ save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/
 
 ## Usage
 
-### using the bash sripts
+### using the py scripts
+
+## 1-time (manual) setup 
+
+> example for tag 0.1 
+
+latest at https://github.com/obar1/0to100/tags
+
+
+```bash
+TAG_0to100='0.x' 
+ZEROto100='0to100'
+ZEROto100_HOME="/Users/obar1/git/obar1/https-cloud.google.com.com.git" 
+
+cd "$ZEROto100_HOME" && mkdir $ZEROto100 && cd $ZEROto100
+# get code and unpack it
+
+wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/repo/map.yaml
+
+wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG_0to100}.tar.gz | tar -xvf -
+mv "${ZEROto100}-${TAG_0to100}" latest
+```
+
+## daily usage
+
+- vars
+  
+> unless you have a lot of them just add in the `.bashrc/.zshrc`
+
+```bash
+# 0to100 setup
+
+export ZEROto100='0to100'
+export ZEROto100_HOME="/Users/obar1/git/obar1/https-cloud.google.com.com.git" 
+export h0200="$ZEROto100_HOME/$ZEROto100"
+
+export CONFIG_FILE="$h0200/map.yaml"
+export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
+
+function create_section() {
+  cd "$h0200"
+  python $ZEROto100py create_section $1
+}
+
+function refresh_sections() {
+  cd "$h0200"
+  python $ZEROto100py refresh_sections
+}
+
+function refresh_links() {
+  cd "$h0200"
+  python $ZEROto100py refresh_links 
+}
+```
+-  create new section
+
+```bash
+create_section https://cloud.google.com/docs
+```
+-  refresh sections
+
+```bash
+refresh_sections 
+```
+-  refresh links
+
+```bash
+refresh_links 
+```
+-  refresh puml
+
+```bash
+refresh_puml
+```
+![](2021-09-18-01-08-45.png)
+
+
+
+### using the bash bash scripts
+
+*OBSOLETE.....................*
+
 * init the scripts in cmd line
 
 ```bash
@@ -74,77 +155,6 @@ copy pdf...
 
 1. goto back ;) ... and expand your knowledge :*
 
-
-### using the py scripts
-
-## 1-time (manual) setup 
-
-> example for tag 0.1 
-
-latest at https://github.com/obar1/0to100/tags
-
-
-```bash
-TAG_0to100='0.x' # https://github.com/obar1/0to100/tags
-ZEROto100='0to100'
-ZEROto100_HOME="$HOME" # or any other folder
-
-cd "$ZEROto100_HOME" && mkdir $ZEROto100 && cd $ZEROto100
-# get code and unpack it
-
-wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/repo/map.yaml
-
-wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG_0to100}.tar.gz | tar -xvf -
-mv "${ZEROto100}-${TAG_0to100}" latest
-```
-
-## daily usage
-
-- vars
-  
-> unless you have a lot of them just add in the `.bashrc/.zshrc`
-
-
-```bash
-# 0to100 setup
-
-export ZEROto100='0to100'
-export ZEROto100_HOME="$HOME" # or any other folder
-export h0200="$ZEROto100_HOME/$ZEROto100"
-
-export CONFIG_FILE="$h0200/map.yaml"
-export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
-
-function create_section() {
-  cd "$h0200"
-  python $ZEROto100py create_section $1
-}
-
-function refresh_sections() {
-  cd "$h0200"
-  python $ZEROto100py refresh_sections
-}
-
-function refresh_links() {
-  cd "$h0200"
-  python $ZEROto100py refresh_links 
-}
-```
--  create new section
-
-```bash
-create_section https://cloud.google.com/docs
-```
--  refresh sections
-
-```bash
-refresh_sections 
-```
--  refresh links
-
-```bash
-refresh_links 
-```
 
 ## Development
 
