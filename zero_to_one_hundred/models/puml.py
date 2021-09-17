@@ -45,7 +45,7 @@ class PUML:
         # i-gateway> :ok: [`here`](../https:§§cloud.google.com§api-gateway§docs§about-api-gateway/readme.md)
         lambda_flatten_section = lambda s: ' *_ ' + s.get_dir_name + os.linesep
         flattened_sections = list(map(lambda_flatten_section, sections))
-        return  ''.join(flattened_sections)
+        return  ''.join(sorted(flattened_sections))
 
     def write(self):
         # init with list of sections found
