@@ -33,8 +33,8 @@ class ReadMeMD:
     def refresh_links(self,txt):
         def f(line):
             """convert to [http://](http:§§/...readme) or leave as it is"""
-            if str(line).lstrip().startswith('https://'):
-                return f"[{line}](/{Section(self.config_map, str(line).lstrip(), self.PersistFS).dir_readme_md})"
+            if str(line).strip('\n').startswith('https://'):
+                return "["+str(line).strip('\n')+"](/"+ Section(self.config_map, str(line).strip('\n'), self.PersistFS).dir_readme_md+")\n"
             else:
                 return line
         res=[]

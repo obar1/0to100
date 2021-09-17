@@ -85,13 +85,13 @@ latest at https://github.com/obar1/0to100/tags
 
 
 ```bash
+TAG_0to100='0.x' # https://github.com/obar1/0to100/tags
 ZEROto100='0to100'
-TAG_0to100='0.1'
+ZEROto100_HOME="$HOME" # or any other folder
 
-cd "$HOME" && mkdir $ZEROto100 && cd $ZEROto100
+cd "$ZEROto100_HOME" && mkdir $ZEROto100 && cd $ZEROto100
 # get code and unpack it
-wget https://raw.githubusercontent.com/obar1/0to100/master/zero_to_one_hundred/tests/resources/map.yaml
-#TODO: fix to master 
+wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/repo/map.yaml
 wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG_0to100}.tar.gz | tar -xvf -
 mv "${ZEROto100}-${TAG_0to100}" latest
 ```
@@ -102,11 +102,12 @@ mv "${ZEROto100}-${TAG_0to100}" latest
   
 > unless you have a lot of them just add in the `.bashrc/.zshrc`
 
-```
-# oto100 setup
+```bash
+# 0to100 setup
 
 export ZEROto100='0to100'
-export h0200="$HOME/$ZEROto100"
+export ZEROto100_HOME="$HOME" # or any other folder
+export h0200="$ZEROto100_HOME/$ZEROto100"
 export CONFIG_FILE="$h0200/map.yaml"
 export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
 
