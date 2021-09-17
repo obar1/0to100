@@ -3,7 +3,6 @@
 # pylint: disable=R0903,E0401,W0703,W1201
 
 from configs.config import ConfigMap
-from models.map import Map
 from models.section import Section
 from models.readme_md import ReadMeMD
 from processors.refresh_sections_processor import RefreshSectionsProcessor

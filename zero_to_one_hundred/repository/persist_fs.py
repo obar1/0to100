@@ -31,13 +31,13 @@ class PersistFS:
             return yaml.safe_load(stream)
 
     @classmethod
-    def write_file(cls,file_name, txt):
+    def write_file(cls,file_name, txt:List[str]):
         if os.path.isfile(file_name):
             logging.info(f"skip {file_name}")
         else:
-            with open(file_name, "w") as file1:
+            with open(file_name, "w") as f:
                 # Writing data to a file
-                file1.writelines(txt)
+                f.writelines(file_name)
                 logging.info(f"write {file_name}")
 
     @classmethod
@@ -55,10 +55,4 @@ class PersistFS:
                 yield line
         logging.info(f"read {filename}")
 
-    @classmethod
-    def overwrite_file(cls, file_name, txt:List[str]):
-        with open(file_name, "w") as file1:
-            # Writing data to a file
-            file1.writelines(txt)
-            logging.info(f"overwrite_file {file_name}")
 

@@ -2,11 +2,10 @@
 a readme md with http and ref
 """
 # pylint: disable=R0903,E0401,W0703,W1201
-import logging
+from typing import List
 
 from configs.config import ConfigMap
 from models.section import Section
-from repository.persist_fs import PersistFS
 
 
 class ReadMeMD:
@@ -24,25 +23,26 @@ class ReadMeMD:
     def write(self):
         # # https:§§cloud.google.com§api-gateway§docs
         # > https://cloud.google.com/api-gateway/docs
-        txt = """
+        txt = []
+        txt.append("""
 # {}
-        
 > {}
-        """.format(self.section.dir_name,self.section.http_url)
+        """.format(self.section.dir_name,self.section.http_url))
         return self.PersistFS.write_file(self.readme_md,txt)
 
     def refresh_links(self,txt):
         def f(line):
+            """convert to [http://](http:§§/...readme) or leave as it is"""
             if str(line).lstrip().startswith('https://'):
-                return Section(self.config_map, str(line).lstrip(), self.PersistFS).dir_readme_md
+                return f"[{line}]({Section(self.config_map, str(line).lstrip(), self.PersistFS).dir_readme_md})"
             else:
                 return line
         res=[]
         for line in txt:
             res.append(f(line))
 
-        self.PersistFS.overwrite_file(self.readme_md,res)
-        return res
+        self.PersistFS.write_file(self.readme_md,res)
+
 
 
     def read(self):

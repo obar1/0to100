@@ -44,7 +44,3 @@ https://cloud.google.com/products\n
         else:
             raise ValueError(f"{filename} not supported")
 
-
-    @classmethod
-    def overwrite_file(cls, file_name, txt:List[str]):
-        return f"overwrite_file {file_name} {txt}"

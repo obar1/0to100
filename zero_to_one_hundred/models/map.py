@@ -34,12 +34,13 @@ class Map:
 
     def write(self):
         # init with list of sections found
-        txt = """
+        txt = []
+        txt.append(
+            """
 # {}
 > sorted:{}
 {}
-        """.format(self.readme_md, self.config_map.get_repo_sorted, self.__repr_flatten(self.sections))
-        logging.warning(f"Map - write {self}")
+        """.format(self.readme_md, self.config_map.get_repo_sorted, self.__repr_flatten(self.sections)))
         return self.PersistFS.write_file(self.readme_md, txt)
 
 
