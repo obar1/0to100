@@ -87,7 +87,11 @@ def get_args_create_section_processor(http_url):
 
 @pytest.fixture
 def get_args_refresh_sections_processor():
-    return  ["refresh_sections","config"]
+    return  ["refresh_sections"]
+
+@pytest.fixture
+def get_args_refresh_links_processor():
+    return  ["refresh_links"]
 
 class TestPersistFS:
 

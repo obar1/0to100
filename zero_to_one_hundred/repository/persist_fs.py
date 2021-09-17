@@ -1,6 +1,7 @@
 """TODO:
 """
 # pylint: disable=R0903,E0401,W0703,W1201
+import logging
 import os
 from typing import List
 
@@ -31,10 +32,18 @@ class PersistFS:
 
     @classmethod
     def write_file(cls,file_name, txt):
-        with open(file_name, "w") as file1:
-            # Writing data to a file
-            file1.writelines(txt)
+        if os.path.isfile(file_name):
+            logging.info(f"skip {file_name}")
+        else:
+            with open(file_name, "w") as file1:
+                # Writing data to a file
+                file1.writelines(txt)
+                logging.info(f"write {file_name}")
 
     @classmethod
     def make_dirs(cls, path):
-        os.makedirs(path, 0o755, True)
+        if os.path.isdir(path):
+            logging.info(f"skip {path}")
+        else:
+            os.makedirs(path, 0o777, False)
+            logging.info(f"create {path}")
