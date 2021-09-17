@@ -98,17 +98,24 @@ mv "${ZEROto100}-${TAG_0to100}" latest
 
 ## daily usage
 
+- vars
+  
+> unless you have a lot of them just add in the `.bashrc/.zshrc`
 
+```
+export ZEROto100='0to100'
+export h0200="$HOME/$ZEROto100"
+export CONFIG_FILE="$h0200/map.yaml"
+export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
+function create_section() {
+  cd "$h0200"
+  python $ZEROto100py create_section $1
+}
+```
 -  create new section
 
 ```bash
-ZEROto100='0to100'
-
-cd "$HOME/$ZEROto100"
-export CONFIG_FILE="$HOME/$ZEROto100/map.yaml"
-export ZEROto100py="$HOME/$ZEROto100/latest/zero_to_one_hundred/main.py"
-python $ZEROto100py create_section https://cloud.google.com/docs
-ls
+create_section https://cloud.google.com/docs
 ```
 
 ## Development
