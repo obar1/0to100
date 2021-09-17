@@ -17,7 +17,7 @@ def test_write(get_config_map, http_url, http_url_2):
     ]
     actual = Map(get_config_map, PersistFS, sections=sections)
     logging.warning(actual)
-    logging.warning(actual.write())
+    logging.warning(actual.write(get_config_map.get_repo_sorted))
 
 
 def test_from_dirs(get_config_map):

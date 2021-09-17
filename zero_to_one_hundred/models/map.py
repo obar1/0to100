@@ -25,14 +25,14 @@ class Map:
     def __repr__(self):
         return  f"Map {self.readme_md}, {self.sections}"
 
-    def __repr_flatten(self, sections:List[Section])->str:
+    def __repr_flatten(self, sections:List[Section],as_sorted:bool)->str:
         # 1. <https://cloud.google.com/api-gateway/docs/about-ap
         # i-gateway> :ok: [`here`](../https:§§cloud.google.com§api-gateway§docs§about-api-gateway/readme.md)
         lambda_flatten_section = lambda s: '1. <' + s.get_http_url + '> :o: [`here`](./' + s.get_dir_name +'/readme.md)'+ os.linesep
         flattened_sections = list(map(lambda_flatten_section, sections))
-        return  ''.join(sorted(flattened_sections)) if self.config_map.get_repo_sorted else ''.join(flattened_sections)
+        return  ''.join(sorted(flattened_sections)) if as_sorted else ''.join(flattened_sections)
 
-    def write(self):
+    def write(self, as_sorted):
         # init with list of sections found
         txt = []
         txt.append(
@@ -40,7 +40,7 @@ class Map:
 # {}
 > sorted:{}
 {}
-        """.format(self.readme_md, self.config_map.get_repo_sorted, self.__repr_flatten(self.sections)))
+        """.format(self.readme_md, self.config_map.get_repo_sorted, self.__repr_flatten(self.sections, as_sorted)))
         return self.PersistFS.write_file(self.readme_md, txt)
 
 

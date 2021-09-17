@@ -16,4 +16,4 @@ class RefreshSectionsProcessor():
         """Scan the repo and for each section add it to  the map,  save the map file."""
         sections=Map.build_from_dirs(self.config_map, self.PersistFS, self.PersistFS.list_dirs(self.config_map.get_repo_path))
         map:Map = Map(self.config_map,self.PersistFS,sections)
-        map.write()
+        map.write(self.config_map.get_repo_sorted)

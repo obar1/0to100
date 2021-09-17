@@ -40,7 +40,7 @@ class PersistFS(_PersistFS):
         > https://cloud.google.com/docs\n
 
 https://cloud.google.com/products\n
-                """.split('')
+                """.split('\n')
         else:
             raise ValueError(f"{filename} not supported")
 

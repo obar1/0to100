@@ -23,7 +23,6 @@ class RefreshLinks:
             try:
                 readme_md: ReadMeMD = ReadMeMD(self.config_map, section, self.PersistFS)
                 txt = readme_md.read()
-                logging.info(f"txt = readme_md.read() {txt}")
                 readme_md.refresh_links(txt)
             except FileNotFoundError as e:
                 logging.warning(f"Check {readme_md}")
