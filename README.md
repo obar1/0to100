@@ -23,17 +23,17 @@ save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/
 
 ### using the py scripts
 
-## 1-time (manual) setup 
+## 1-time (manual) setup
 
-> example for tag 0.1 
+> example for tag 0.1
 
 latest at https://github.com/obar1/0to100/tags
 
 
 ```bash
-TAG_0to100='0.x' 
+TAG_0to100='0.x'
 ZEROto100='0to100'
-ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git" 
+ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git"
 
 cd "$ZEROto100_HOME" && mkdir $ZEROto100 && cd $ZEROto100
 # get code and unpack it
@@ -47,14 +47,14 @@ mv "${ZEROto100}-${TAG_0to100}" latest
 ## daily usage
 
 - vars
-  
+
 > unless you have a lot of them just add in the `.bashrc/.zshrc`
 
 ```bash
 # 0to100 setup
 
 export ZEROto100='0to100'
-export ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git" 
+export ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git"
 export h0200="$ZEROto100_HOME/$ZEROto100"
 
 export CONFIG_FILE="$h0200/map.yaml"
@@ -63,11 +63,11 @@ export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
 function create_section() {
   python $ZEROto100py create_section $1
 }
-function refresh_sections() {
-  python $ZEROto100py refresh_sections
+function refresh_map() {
+  python $ZEROto100py refresh_map
 }
 function refresh_links() {
-  python $ZEROto100py refresh_links 
+  python $ZEROto100py refresh_links
 }
 function refresh_puml() {
   python $ZEROto100py refresh_puml
@@ -81,12 +81,12 @@ create_section https://cloud.google.com/docs
 -  refresh sections
 
 ```bash
-refresh_sections 
+refresh_map
 ```
 -  refresh links
 
 ```bash
-refresh_links 
+refresh_links
 ```
 -  refresh puml
 
