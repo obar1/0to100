@@ -21,7 +21,6 @@ EOF
 }
 get_code(){
   h1 "getting $1 in $2"
-  ZEROto100=0to100
   TAG_0to100="${1}"
   ZEROto100_HOME="${2}"
 
