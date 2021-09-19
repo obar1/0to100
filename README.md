@@ -3,76 +3,20 @@
 > 0 to 100 to learn anything
 
 
-## Setup
-
-* install xpdf
-```
-brew install xpdf
-```
-
-* install vscode
-```
-brew install --cask visual-studio-code
-```
-
-
-* chrome extension to save pages in pdf
-save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/ohlencieiipommannpdfcmfdpjjmeolj/related or https://chrome.google.com/webstore/detail/htmlurl-to-pdf-with-pdfma/dlmgniacaacmbccdegkadebbaphkonpb
-
 ## Usage
 
 ### using the py scripts
 
 ## 1-time (manual) setup
 
-> example for tag 0.1
-
-latest at https://github.com/obar1/0to100/tags
-
+check latest tag val latest at https://github.com/obar1/0to100/tags
 
 ```bash
-TAG_0to100='0.x'
-ZEROto100='0to100'
-ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git"
-
-cd "$ZEROto100_HOME" && mkdir $ZEROto100 && cd $ZEROto100
-# get code and unpack it
-
-wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/repo/map.yaml
-
-wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG_0to100}.tar.gz | tar -xvf -
-mv "${ZEROto100}-${TAG_0to100}" latest
+bash setup.sh tag target_dir
 ```
 
 ## daily usage
 
-- vars
-
-> unless you have a lot of them just add in the `.bashrc/.zshrc`
-
-```bash
-# 0to100 setup
-
-export ZEROto100='0to100'
-export ZEROto100_HOME="/Users/obar1/git/https-cloud.google.com.com.git"
-export h0200="$ZEROto100_HOME/$ZEROto100"
-
-export CONFIG_FILE="$h0200/map.yaml"
-export ZEROto100py="$h0200/latest/zero_to_one_hundred/main.py"
-
-function create_section() {
-  python $ZEROto100py create_section $1
-}
-function refresh_map() {
-  python $ZEROto100py refresh_map
-}
-function refresh_links() {
-  python $ZEROto100py refresh_links
-}
-function refresh_puml() {
-  python $ZEROto100py refresh_puml
-}
-```
 -  create new section
 
 ```bash
@@ -152,6 +96,23 @@ copy pdf...
 ![](2bcf4234-8a4e-4263-be9d-e65210ef696e.png)
 
 1. goto back ;) ... and expand your knowledge :*
+
+
+## Useful tools
+
+* install xpdf
+```
+brew install xpdf
+```
+
+* install vscode
+```
+brew install --cask visual-studio-code
+```
+
+
+* chrome extension to save pages in pdf
+save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/ohlencieiipommannpdfcmfdpjjmeolj/related or https://chrome.google.com/webstore/detail/htmlurl-to-pdf-with-pdfma/dlmgniacaacmbccdegkadebbaphkonpb
 
 
 ## Development

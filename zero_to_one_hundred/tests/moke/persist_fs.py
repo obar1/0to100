@@ -11,7 +11,7 @@ class PersistFS(_PersistFS):
     """persist_fs."""
 
     relative_path_starts_with = "../"
-    HTTPS_ = "https:§§"
+    HTTPS_ = ":§§"
 
     @classmethod
     def list_dirs(cls, get_repo_path) -> List[str]:
