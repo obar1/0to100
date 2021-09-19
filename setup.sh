@@ -46,16 +46,16 @@ cat << EOF
   export ZEROto100py="${ZEROto100py}"
 
   function create_section() {
-    python $ZEROto100py create_section \$1
+    python \$ZEROto100py create_section \$1
   }
   function refresh_map() {
-    python $ZEROto100py refresh_map
+    python \$ZEROto100py refresh_map
   }
   function refresh_links() {
-    python $ZEROto100py refresh_links
+    python \$ZEROto100py refresh_links
   }
   function refresh_puml() {
-    python $ZEROto100py refresh_puml
+    python \$ZEROto100py refresh_puml
   }
 
 
