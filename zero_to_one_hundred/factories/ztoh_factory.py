@@ -1,16 +1,23 @@
 """ZTOHFactory:
 factory with implemented functionality
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 from configs.config import ConfigMap
 from processors.create_section_processor import CreateSectionProcessor
 from processors.refresh_links_processor import RefreshLinksProcessor
-from processors.refresh_puml_processor import RefreshPUMLProcessor
 from processors.refresh_map_processor import RefreshMapProcessor
+from processors.refresh_puml_processor import RefreshPUMLProcessor
 
 
 class ZTOHFactory:
     """ZTOHFactory class."""
+
+    SUPPORTED_PROCESSOR = [
+        "create_section",
+        "refresh_map",
+        "refresh_links",
+        "refresh_puml",
+    ]
 
     def __init__(self, config_map: ConfigMap, persist_fs):
         self.config_map = config_map
@@ -19,6 +26,7 @@ class ZTOHFactory:
     def get_processor(self, args):
         """get the processor"""
         cmd = args[0]
+        assert cmd in self.SUPPORTED_PROCESSOR
         if cmd == "create_section":
             return self.create_section_processor(args[1])
         if cmd == "refresh_map":
@@ -27,7 +35,7 @@ class ZTOHFactory:
             return self.refresh_links_processor()
         if cmd == "refresh_puml":
             return self.refresh_puml_processor()
-        raise ValueError(args)
+        return None
 
     def create_section_processor(self, http_url):
         """create_section_processor"""

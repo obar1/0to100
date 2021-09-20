@@ -1,9 +1,8 @@
 """Conftest module."""
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W0613
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
 
 import logging
 import os
-from typing import List
 from unittest import mock
 
 import pytest
@@ -90,16 +89,6 @@ def dir_name():
 
 
 @pytest.fixture
-def get_create_section_params() -> List[str]:
-    return ["main.py", "create_section", "https://cloud.google.com/docs"]
-
-
-@pytest.fixture
-def get_refresh_map_params() -> List[str]:
-    return ["main.py", "refresh_map", ""]
-
-
-@pytest.fixture
 def get_args_create_section_processor(http_url):
     return ["create_section", http_url]
 
@@ -112,3 +101,8 @@ def get_args_refresh_map_processor():
 @pytest.fixture
 def get_args_refresh_links_processor():
     return ["refresh_links"]
+
+
+@pytest.fixture
+def get_args_refresh_puml_processor():
+    return ["refresh_puml"]

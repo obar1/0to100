@@ -1,7 +1,7 @@
 """Map:
 map md with list of sections as from fs
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import os
 from typing import List
 
@@ -47,15 +47,11 @@ class Map:
         # init with list of sections found
         txt = []
         txt.append(
-            """
-# {}
-> sorted:{}
-{}
-        """.format(
-                self.readme_md,
-                self.config_map.get_repo_sorted,
-                self.__repr_flatten(self.sections, as_sorted),
-            )
+            f"""
+# {self.readme_md}
+> sorted:{self.config_map.get_repo_sorted}
+{self.__repr_flatten(self.sections, as_sorted)}
+        """
         )
         return self.persist_fs.write_file(self.readme_md, txt)
 
