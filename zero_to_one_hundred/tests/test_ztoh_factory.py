@@ -1,4 +1,4 @@
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import pytest
 
 from configs.config import ConfigMap
@@ -20,7 +20,7 @@ def get_args_get_processor():
 
 def test_get_processor(get_config_map, get_args_get_processor):
     actual = ZTOHFactory(get_config_map, persist_fs)
-    with pytest.raises(ValueError):
+    with pytest.raises(AssertionError):
         actual.get_processor(get_args_get_processor)
 
 

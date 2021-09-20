@@ -1,7 +1,7 @@
 """RefreshPUMLProcessor:
 add uml like mind-map of the sections
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 from configs.config import ConfigMap
 from models.map import Map
 from models.puml import PUML

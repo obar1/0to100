@@ -1,7 +1,7 @@
 """ReadMeMD:
 a readme md with http and ref
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 
 from configs.config import ConfigMap
 from models.section import Section
@@ -29,12 +29,10 @@ class ReadMeMD:
         # > https://cloud.google.com/api-gateway/docs
         txt = []
         txt.append(
-            """
-# {}
-> {}
-        """.format(
-                self.section.dir_name, self.section.http_url
-            )
+            f"""
+# {self.section.dir_name}
+> {self.section.http_url}
+        """
         )
         return self.persist_fs.write_file(self.readme_md, txt)
 
