@@ -1,7 +1,7 @@
 """MAIN:
 main
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,C0209,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
 
 import logging
 import sys
@@ -12,8 +12,18 @@ from factories.ztoh_factory import ZTOHFactory
 from repository.persist_fs import PersistFS as persist_fs
 
 
+def get_version():
+    change_log = "changelog.md"
+    with open(change_log, mode="r", encoding="UTF-8") as file_change_log:
+        txt = file_change_log.readlines()
+        version = max(sorted(filter(lambda f: "version" in f, txt)))
+        logging.info("v. " + version)
+        return version
+
+
 def run_main(argv: List[str]):
     """run main section"""
+    get_version()
     factory: ZTOHFactory = FactoryProvider(persist_fs).provide()
     return factory.get_processor(argv).process()
 

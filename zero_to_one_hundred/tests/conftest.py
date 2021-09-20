@@ -1,5 +1,5 @@
 """Conftest module."""
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,C0209,W1203,C0200,C0103,W0613
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W0613
 
 import logging
 import os
@@ -40,11 +40,6 @@ def http_url_2():
 def get_test_path():
     os_path_dirname = os.path.dirname(os.path.abspath(__file__))
     yield os_path_dirname
-
-
-@pytest.fixture
-def get_version(get_test_path):
-    yield get_test_path + "/../../version"
 
 
 @pytest.fixture
