@@ -1,7 +1,7 @@
 """Section:
 section od disk
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,C0209,W1203,C0200,C0103
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103
 
 from configs.config import ConfigMap
 
@@ -38,7 +38,7 @@ class Section:
         return http_url.replace("/", "§")
 
     @classmethod
-    def __from_http_url_to_dir(cls, dir_):
+    def from_http_url_to_dir(cls, dir_):
         return dir_.replace("§", "/")
 
     @classmethod
@@ -47,7 +47,7 @@ class Section:
 
     @classmethod
     def build_from_dir(cls, config_map, persist_fs, dir_name):
-        return Section(config_map, cls.__from_http_url_to_dir(dir_name), persist_fs)
+        return Section(config_map, cls.from_http_url_to_dir(dir_name), persist_fs)
 
     def write(self):
         return self.persist_fs.make_dirs(
