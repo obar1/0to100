@@ -12,7 +12,7 @@ set -o pipefail
 
 function info() { # print small help  [file]
     file="${1}"
-    # grep section ## or function with #
+    # grep new_section ## or function with #
     grep -E '##|function' "$file" | grep "#"
 }
 
@@ -37,10 +37,10 @@ function make_dir_section() { # mkdir and readme [dir_from_http]
     echo "# \`${section}\`" >>"$section"/readme.md
     echo "" >>"$section"/readme.md
     echo "> <${1}>" >>"$section"/readme.md
-    # cp "${BASE_PATH}"/runme.template.sh "$section"/runme.md
+    # cp "${BASE_PATH}"/runme.template.sh "$new_section"/runme.md
 }
 
-function add_section_to_map() { # add is http://  to toc and add section [dir_from_http]
+function add_section_to_map() { # add is http://  to toc and add new_section [dir_from_http]
     dir_from_http "${1}"
     map_rel_path="${2}"
     # 1. <https://cloud.google.com/apis/docs/cloud-client-libraries> :o: [`here`](../https:§§cloud.google.com§apis§docs§cloud-client-libraries/readme.md)
@@ -63,7 +63,7 @@ function convert_pdf_to_txt() { # pdf export [dir_from_http]
     code "$section"
 }
 
-function do_section() { # main do to process a section  [http_address]
+function do_section() { # main do to process a new_section  [http_address]
     http_address="${1}"
     make_dir_section "${http_address}"
     map_rel_path="_core/map.md"

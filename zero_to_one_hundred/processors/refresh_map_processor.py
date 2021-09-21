@@ -16,7 +16,7 @@ class RefreshMapProcessor:
         self.persist_fs = persist_fs
 
     def process(self):
-        """Scan the repo and for each section add it to  the map,  save the map file."""
+        """Scan the repo and for each new_section add it to  the map,  save the map file."""
         sections = Map.build_from_dirs(
             self.config_map,
             self.persist_fs,

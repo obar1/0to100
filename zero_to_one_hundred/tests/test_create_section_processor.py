@@ -4,8 +4,8 @@ from processors.create_section_processor import CreateSectionProcessor
 from tests.moke.persist_fs import PersistFS as persist_fs
 
 
-def test_process(get_config_map, get_args_create_section_processor):
+def test_process(get_config_map, get_args_create_section_processor, http_url):
     actual: CreateSectionProcessor = ZTOHFactory(
         get_config_map, persist_fs
-    ).get_processor(get_args_create_section_processor)
+    ).get_processor(get_args_create_section_processor + [http_url])
     actual.process()
