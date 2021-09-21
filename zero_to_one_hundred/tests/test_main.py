@@ -1,21 +1,22 @@
 """Unit tests."""
 # pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 
-from main import run_main, get_version
+from main import run_main
 
 
-def test_version():
-    expected = "__version__"
-    actual = get_version()
-    assert expected in actual
-
-
-def test_run_main():
+def test_run_main(
+    get_args_create_section_processor,
+    get_args_refresh_links_processor,
+    get_args_refresh_puml_processor,
+    get_args_refresh_map_processor,
+):
     """logical seq"""
-    run_main(["create_section", "http://google.com/docs"])
-    run_main(["create_section", "https://cloud.google.com/docs"])
-    run_main(["create_section", "https://cloud.google.com/docs/overview"])
+    run_main(get_args_create_section_processor + ["http://google.com/docs"])
+    run_main(get_args_create_section_processor + ["https://cloud.google.com/docs"])
+    run_main(
+        get_args_create_section_processor + ["https://cloud.google.com/docs/overview"]
+    )
 
-    run_main(["refresh_map"])
-    run_main(["refresh_links"])
-    run_main(["refresh_puml"])
+    run_main(get_args_refresh_map_processor)
+    run_main(get_args_refresh_links_processor)
+    run_main(get_args_refresh_puml_processor)

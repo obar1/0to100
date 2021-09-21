@@ -10,7 +10,7 @@ from models.section import Section
 
 
 class Map:
-    """Map is a list of section"""
+    """Map is a list of new_section"""
 
     def __init__(self, config_map: ConfigMap, persist_fs, sections: List[Section]):
         """init"""

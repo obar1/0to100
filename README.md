@@ -7,39 +7,48 @@
 
 ### using the py scripts
 
-## 1-time (manual) setup
+#### 1-time (manual) setup
 
 check latest tag val latest at https://github.com/obar1/0to100/tags
 
 ```bash
 bash setup.sh tag target_dir
 ```
+> check contents `runme.sh`
 
-## daily usage
+#### daily usage
 
 -  create new section
 
 ```bash
-create_section https://cloud.google.com/docs
+url=https://cloud.google.com/docs
+bash runme.sh create_section $url
+url=https://cloud.google.com/help
+bash runme.sh create_section $url
+#...etc
 ```
 -  refresh sections
 
 ```bash
-refresh_map
+bash runme.sh refresh_map
 ```
 -  refresh links
 
 ```bash
-refresh_links
+bash runme.sh refresh_links
 ```
 -  refresh puml
 
 ```bash
-refresh_puml
+bash runme.sh refresh_puml
 ```
 ![](2021-09-18-01-08-45.png)
 
+- help
 
+```bash
+bash runme.sh help
+```
 
 ### using the bash bash scripts
 
@@ -110,7 +119,6 @@ brew install xpdf
 brew install --cask visual-studio-code
 ```
 
-
 * chrome extension to save pages in pdf
 save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/ohlencieiipommannpdfcmfdpjjmeolj/related or https://chrome.google.com/webstore/detail/htmlurl-to-pdf-with-pdfma/dlmgniacaacmbccdegkadebbaphkonpb
 
@@ -145,6 +153,11 @@ pre-commit run flake8
 pre-commit run isort
 pre-commit run pylint
 ```
+### local troubleshooting...
 
-
+add to `setup.sh` something like
 ```
+# DEBUG
+cp -r $HOME/git/obar1/0to100.git/ "${DIR_TARGET_LATEST}" || true
+```
+so you can test local fix :)

@@ -36,37 +36,26 @@ get_code(){
 
   cat map.yaml
 
-  wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvf -
-  mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}"
+ wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvf -
+ mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}" || true
+# DEBUG
+cp -r $HOME/git/obar1/0to100.git/ "${DIR_TARGET_LATEST}" || true
 }
 
-echo_add_profile(){
-  h1 "! add this to the ~/ .bashrc or .zshrc"
+create_runme(){
+  h1 "! use this to run"
+
+cat <<EOF>runme.sh
   CONFIG_FILE="${2}/map.yaml"
   ZEROto100py="${2}/${ZEROto100}-latest/zero_to_one_hundred/main.py"
-
-cat << EOF
-  export CONFIG_FILE="${CONFIG_FILE}"
-  export ZEROto100py="${ZEROto100py}"
-
-  function create_section() {
-    python \$ZEROto100py create_section \$1
-  }
-  function refresh_map() {
-    python \$ZEROto100py refresh_map
-  }
-  function refresh_links() {
-    python \$ZEROto100py refresh_links
-  }
-  function refresh_puml() {
-    python \$ZEROto100py refresh_puml
-  }
+  # main at run time
+  python \$ZEROto100py "\$@"
 EOF
+
+ls *.sh
 }
 
 
 help
 get_code "$@"
-echo_add_profile "$@"
-set -x
-ls -1 "${2}"
+create_runme "$@"

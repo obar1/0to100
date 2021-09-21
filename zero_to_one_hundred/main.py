@@ -12,18 +12,8 @@ from factories.ztoh_factory import ZTOHFactory
 from repository.persist_fs import PersistFS as persist_fs
 
 
-def get_version():
-    change_log = "changelog.md"
-    with open(change_log, mode="r", encoding="UTF-8") as file_change_log:
-        txt = file_change_log.readlines()
-        version = max(sorted(filter(lambda f: "version" in f, txt)))
-        logging.info("v. " + version)
-        return version
-
-
 def run_main(argv: List[str]):
-    """run main section"""
-    get_version()
+    """run main new_section"""
     factory: ZTOHFactory = FactoryProvider(persist_fs).provide()
     return factory.get_processor(argv).process()
 
@@ -31,6 +21,6 @@ def run_main(argv: List[str]):
 if __name__ == "__main__":
     try:
         logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
-        run_main(sys.argv[1:])
+        run_main(sys.argv)
     except IndexError:
         logging.info(f"check the params {sys.argv}")

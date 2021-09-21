@@ -89,20 +89,25 @@ def dir_name():
 
 
 @pytest.fixture
-def get_args_create_section_processor(http_url):
-    return ["create_section", http_url]
+def get_args_create_section_processor():
+    return ["runme.sh", "create_section"]
 
 
 @pytest.fixture
 def get_args_refresh_map_processor():
-    return ["refresh_map"]
+    return ["runme.sh", "refresh_map"]
 
 
 @pytest.fixture
 def get_args_refresh_links_processor():
-    return ["refresh_links"]
+    return ["runme.sh", "refresh_links"]
 
 
 @pytest.fixture
 def get_args_refresh_puml_processor():
-    return ["refresh_puml"]
+    return ["runme.sh", "refresh_puml"]
+
+
+@pytest.fixture
+def get_args_help_processor():
+    return ["runme.sh", "help"]
