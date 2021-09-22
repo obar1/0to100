@@ -1,4 +1,6 @@
 # 0to100
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fobar1%2F0to100.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fobar1%2F0to100?ref=badge_shield)
+
 
 > 0 to 100 to learn anything
 
@@ -161,3 +163,7 @@ add to `setup.sh` something like
 cp -r $HOME/git/obar1/0to100.git/ "${DIR_TARGET_LATEST}" || true
 ```
 so you can test local fix :)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fobar1%2F0to100.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fobar1%2F0to100?ref=badge_large)
