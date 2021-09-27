@@ -1,5 +1,5 @@
 """Conftest module."""
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-section,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
 
 import logging
 import os
@@ -22,7 +22,7 @@ def callattr_ahead_of_alltests(get_resource_path, mock_settings_env_vars):
 
 @pytest.fixture
 def wip():
-    logging.warning("~" * 88)
+    logging.info("~" * 88)
 
 
 @pytest.fixture
@@ -84,8 +84,13 @@ def get_config_map(get_map_yaml_path):
 
 
 @pytest.fixture
-def dir_name():
+def simple_dir():
     return "https:§§cloud.google.com§docs"
+
+
+@pytest.fixture
+def dir_tree():
+    return "https:§§cloud.google.com§sections"
 
 
 @pytest.fixture

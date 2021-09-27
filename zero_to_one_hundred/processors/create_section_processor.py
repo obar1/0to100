@@ -1,7 +1,7 @@
 """CreateSectionProcessor:
 create a new new_section on fs from http address
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-section,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 from typing import List
 
 from configs.config import ConfigMap
@@ -35,7 +35,7 @@ class CreateSectionProcessor:
     def get_sections(self, new_section):
         """Get all the sections (sorted) and add the new new_section at the bottom"""
         dirs: List[str] = self.persist_fs.list_dirs(self.config_map.get_repo_path)
-        dirs.remove(new_section.dir_name)
+        dirs.remove(new_section.dir_name) if new_section.dir_name in dirs else None
         if self.config_map.get_repo_sorted:
             sorted(dirs)
         dirs.append(new_section.dir_name)

@@ -9,10 +9,29 @@
 
 #### 1-time (manual) setup
 
-check latest tag val latest at https://github.com/obar1/0to100/tags
+check latest tag val latest at https://github.com/obar1/0to100/tags 
+
+or https://raw.githubusercontent.com/obar1/0to100/main/changelog.md like so
 
 ```bash
-bash setup.sh tag target_dir
+curl https://raw.githubusercontent.com/obar1/0to100/main/changelog.md | grep version | sort -r | head -1
+```
+
+in a any tmp folder get the `setup.sh` like so
+
+```bash
+wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh 
+```
+
+and use it like so
+
+```bash
+# TODO: set vars
+set -u
+tag=
+target_dir=
+
+bash setup.sh $tag $target_dir
 ```
 > check contents `runme.sh`
 
@@ -50,62 +69,6 @@ bash runme.sh refresh_puml
 bash runme.sh help
 ```
 
-### using the bash bash scripts
-
-*OBSOLETE.....................*
-
-* init the scripts in cmd line
-
-```bash
-(py37) √ 0to100.git % source ./_tools/runme.sh
-
-```
-
-* **use it to learn**
-
-> we want to 1 level hierarchy and avoid the deep levels of the pages
-
-- go to the https://cloud.google.com/
-
-- get a section/link
-
-```
-ex
-https://cloud.google.com/docs
-```
-
-- create local folder and some placeholder for the section/link automatically using the tools scripts
-
-```bash
-(py38) √ 0to100.git % do_section https://cloud.google.com/docs
-https://cloud.google.com/docs
-https:§§cloud.google.com§docs
-https://cloud.google.com/docs
-https:§§cloud.google.com§docs
-# map
-## wip
-> flatview
-
-1. <https://cloud.google.com/docs> :ok: [`here`](../https:§§cloud.google.com§api-gateway§docs/readme.md)1. <https://cloud.google.com/docs> :o: [`here`](../https:§§cloud.google.com§docs/readme.md)
-1. <https://cloud.google.com/docs> :o: [`here`](../https:§§cloud.google.com§docs/readme.md)
-https://cloud.google.com/docs
-https:§§cloud.google.com§docs
-copy pdf...
-```
-- go to the page https://cloud.google.com/docs and export as pdf in the folder created automatically
-
-- hit a key
-
-- the pdf is renamed and txt exported and vscode is called
-
-![](1083eacc-b42e-489c-bed4-9e16cf3d64c5.png)
-
-- `map.md` has automatically the section links to the local files and original link added
-
-![](2bcf4234-8a4e-4263-be9d-e65210ef696e.png)
-
-1. goto back ;) ... and expand your knowledge :*
-
 
 ## Useful tools
 
@@ -130,7 +93,7 @@ save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/
 * Install Poetry: <https://python-poetry.org/docs/#installation>
 * Install python env: `pyenv install 3.7.0`
 * Install virtual env: `pyenv virtualenv 3.7.0 pip_mse_ingestion`
-* Activate virtual env: `pyenv activate pip_mse_ingestion`
+* Activate virtual env: `pyenv activate py37`
 * Install package and dependencies: `poetry install`
 * Install pre-commit hooks: `poetry run pre-commit install`
 

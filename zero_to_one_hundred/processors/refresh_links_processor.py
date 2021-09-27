@@ -3,7 +3,7 @@ in each md there are links to http://
 when some of them are added as new_section
 replace them with the location of the new_section ...
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-section,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 from typing import List
 
 from configs.config import ConfigMap

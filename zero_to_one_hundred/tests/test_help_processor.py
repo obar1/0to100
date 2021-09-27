@@ -1,4 +1,4 @@
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
+# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-section,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
 from factories.ztoh_factory import ZTOHFactory
 from processors.help_processor import HelpProcessor, VERSION
 from tests.moke.persist_fs import PersistFS as persist_fs
