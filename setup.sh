@@ -36,18 +36,18 @@ get_code(){
 
   cat map.yaml
 
- wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvf -
- mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}" || true
-# DEBUG
-cp -r $HOME/git/obar1/0to100.git/ "${DIR_TARGET_LATEST}" || true
+  wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvf -
+  mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}" || true
+
+  # DEBUG
 }
 
 create_runme(){
   h1 "! use this to run"
 
-cat <<EOF>runme.sh
-  CONFIG_FILE="${2}/map.yaml"
-  ZEROto100py="${2}/${ZEROto100}-latest/zero_to_one_hundred/main.py"
+cat <<EOF >runme.sh
+  export CONFIG_FILE="${2}/map.yaml"
+  export ZEROto100py="${2}/${ZEROto100}-latest/zero_to_one_hundred/main.py"
   # main at run time
   python \$ZEROto100py "\$@"
 EOF

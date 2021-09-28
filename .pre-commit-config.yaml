@@ -39,7 +39,7 @@ repos:
 
   - repo: local
     hooks:
-      - id: pylint∑
+      - id: pylint
         name: "Lint code (pylint)"
         entry: pylint
         language: system

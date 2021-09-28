@@ -1,7 +1,7 @@
 """MAIN:
 main
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-name,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 
 import logging
 import sys
@@ -24,3 +24,6 @@ if __name__ == "__main__":
         run_main(sys.argv)
     except IndexError:
         logging.info(f"check the params {sys.argv}")
+        run_main(["", "help"])
+    except Exception as e:
+        logging.critical(f"??? check the params {sys.argv} {e}")
