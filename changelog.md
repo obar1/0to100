@@ -28,9 +28,8 @@ __version__ = "1.0.0"
 - https://github.com/obar1/0to100/issues/20
 
 __version__ = "1.0.1"
-- https//github.com/obar1/0to100/issues/22 
+- https//github.com/obar1/0to100/issues/22
 - https//github.com/obar1/0to100/issues/23
 
 __version__ = "1.1"
 - https://github.com/obar1/0to100/issues/19
-

@@ -9,7 +9,7 @@
 
 #### 1-time (manual) setup
 
-check latest tag val latest at https://github.com/obar1/0to100/tags 
+check latest tag val latest at https://github.com/obar1/0to100/tags
 
 or https://raw.githubusercontent.com/obar1/0to100/main/changelog.md like so
 
@@ -20,7 +20,7 @@ curl https://raw.githubusercontent.com/obar1/0to100/main/changelog.md | grep ver
 in a any tmp folder get the `setup.sh` like so
 
 ```bash
-wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh 
+wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh
 ```
 
 and use it like so

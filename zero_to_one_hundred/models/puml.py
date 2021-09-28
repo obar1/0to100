@@ -1,7 +1,7 @@
 """PUML:
 sections rendered as mind map
 """
-# pylint: disable=C0116,R0903,E0401,W0703,W1201,redefined-outer-section,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import os
 from typing import List
 
@@ -13,7 +13,7 @@ class PUML:
     """PUML"""
 
     S = " *"
-    NODE_LEVEL_SYMBOL='+'
+    NODE_LEVEL_SYMBOL = "+"
 
     def __init__(self, config_map: ConfigMap, persist_fs, sections: List[Section]):
         """init"""
@@ -35,7 +35,9 @@ class PUML:
         # i-gateway> :ok: [`here`](../https:§§cloud.google.com§bq/readme.md)
 
         rows_as_tree = PUML.reorganize_as_tree(rows)
-        rows_puml = PUML.render_as_pum_tree(rows_as_tree, PUML.S, PUML.NODE_LEVEL_SYMBOL)
+        rows_puml = PUML.render_as_pum_tree(
+            rows_as_tree, PUML.S, PUML.NODE_LEVEL_SYMBOL
+        )
         return os.linesep.join(list(rows_puml))
 
     def write(self):
@@ -61,26 +63,26 @@ skinparam noteBorderColor black
         )
         return self.persist_fs.write_file(self.readme_puml, txt)
 
-
     @classmethod
     def reorganize_as_tree(cls, rows):
-        l = sorted([r.http_url +PUML.S for r in rows])
-        for i in range(len(l) - 1):
-            for k in range(i, len(l) - 1):
-                if l[i].replace(PUML.S, "") in l[k + 1]:
-                    l[k + 1] = (
-                         l[i].replace(PUML.S, "")
-                        + l[k + 1].replace(l[i].replace(PUML.S, ""), "") +PUML.S
+        http_url_rows = sorted(r.http_url + PUML.S for r in rows)
+        for i in range(len(http_url_rows) - 1):
+            for k in range(i, len(http_url_rows) - 1):
+                if http_url_rows[i].replace(PUML.S, "") in http_url_rows[k + 1]:
+                    http_url_rows[k + 1] = (
+                        http_url_rows[i].replace(PUML.S, "")
+                        + http_url_rows[k + 1].replace(
+                            http_url_rows[i].replace(PUML.S, ""), ""
+                        )
+                        + PUML.S
                     )
-        return l
+        return http_url_rows
 
     @classmethod
-    def render_as_pum_tree(cls, rows_as_tree, S, NODE_LEVEL_SYMBOL):
-        """present in uml fashion
-
-        Args:
-            NODE_LEVEL_SYMBOL:
-        """
+    def render_as_pum_tree(cls, rows_as_tree, symbol_level, node_symbole_level):
+        """present in uml fashion"""
         for row in rows_as_tree:
-            level = row.count(S)
-            yield NODE_LEVEL_SYMBOL * (level + 1) + '_' + ' [[ ' + row.replace(S, '') +' ]]'
+            level = row.count(symbol_level)
+            yield node_symbole_level * (level + 1) + "_" + " [[ " + row.replace(
+                symbol_level, ""
+            ) + " ]]"
