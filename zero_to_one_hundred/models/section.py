@@ -18,9 +18,10 @@ class Section:
     def __init__(self, config_map: ConfigMap, persist_fs, process_fs, http_url: str):
         """init"""
         self.config_map = config_map
+        self.persist_fs = persist_fs
+        self.process_fs = process_fs
         self.http_url = http_url
         self.dir_name = self.__from_dir_to_http_url(http_url)
-        self.persist_fs = persist_fs
         self.dir_readme_md = self.dir_name + "/readme.md"
 
     def __repr__(self):
@@ -44,12 +45,12 @@ class Section:
         return dir_.replace("§", "/")
 
     @classmethod
-    def build_from_http(cls, config_map, http_url, persist_fs):
-        return Section(config_map, http_url, persist_fs)
+    def build_from_http(cls, config_map, http_url, persist_fs,process_fs):
+        return Section(config_map, persist_fs,process_fs,http_url)
 
     @classmethod
-    def build_from_dir(cls, config_map, persist_fs, dir_name):
-        return Section(config_map, cls.from_http_url_to_dir(dir_name), persist_fs)
+    def build_from_dir(cls, config_map, persist_fs, dir_name,process_fs):
+        return Section(config_map, persist_fs,process_fs,cls.from_http_url_to_dir(dir_name))
 
     def write(self):
         return self.persist_fs.make_dirs(

@@ -59,11 +59,11 @@ class ZTOHFactory:
 
     def refresh_links_processor(self):
         """refresh_links_processor"""
-        return RefreshLinksProcessor(self.config_map, self.persist_fs)
+        return RefreshLinksProcessor(self.config_map, self.persist_fs,self.process_fs)
 
     def refresh_puml_processor(self):
         """refresh_puml_processor"""
-        return RefreshPUMLProcessor(self.config_map, self.persist_fs)
+        return RefreshPUMLProcessor(self.config_map, self.persist_fs,self.process_fs)
 
     def help_processor(self):
         """version_processor"""

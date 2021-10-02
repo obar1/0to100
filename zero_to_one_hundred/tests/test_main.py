@@ -11,8 +11,9 @@ def skip_this():
 
 
 @pytest.mark.skipif(skip_this(), reason="skipped")
-def test_run_main(
-    mock_secret_yaml_env_vars,
+def test_run_main(mock_settings_env_vars,
+                  http_url,
+                  http_url_2,
     get_args_create_section_processor,
     get_args_refresh_links_processor,
     get_args_refresh_puml_processor,
@@ -21,10 +22,8 @@ def test_run_main(
 ):
     """logical seq"""
     process_fs.DEBUG_Y_N = True
-    run_main(get_args_create_section_processor + ["https://cloud.google.com/docs"])
-    run_main(
-        get_args_create_section_processor + ["https://cloud.google.com/docs/overview"]
-    )
+    run_main(get_args_create_section_processor + [http_url])
+    run_main(        get_args_create_section_processor + [http_url_2]    )
     run_main(get_args_refresh_map_processor)
     run_main(get_args_refresh_links_processor)
     run_main(get_args_refresh_puml_processor)

@@ -76,11 +76,6 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
         yield
 
 
-@pytest.fixture
-def mock_secret_yaml_env_vars(get_secret_yaml_path):
-    with mock.patch.dict(os.environ, {CONFIG_FILE: get_secret_yaml_path}):
-        yield
-
 
 @pytest.fixture
 def get_config_map(get_map_yaml_path):

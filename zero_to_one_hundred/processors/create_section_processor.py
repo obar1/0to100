@@ -30,7 +30,7 @@ class CreateSectionProcessor:
             self.config_map, self.persist_fs, self.process_fs, self.http_url
         )
         section.write()
-        readme_md: ReadMeMD = ReadMeMD(self.config_map, section, self.persist_fs)
+        readme_md: ReadMeMD = ReadMeMD(self.config_map, section, self.persist_fs,self.process_fs)
         readme_md.write()
         map_: Map = Map(self.config_map, self.persist_fs, self.get_sections(section))
         map_.write(False)
@@ -43,4 +43,6 @@ class CreateSectionProcessor:
         if self.config_map.get_repo_sorted:
             sorted(dirs)
         dirs.append(new_section.dir_name)
-        return Map.build_from_dirs(self.config_map, self.persist_fs, dirs)
+        return Map.build_from_dirs(
+            self.config_map, self.persist_fs, self.process_fs, dirs
+        )

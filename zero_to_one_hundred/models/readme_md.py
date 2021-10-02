@@ -10,7 +10,7 @@ from models.section import Section
 class ReadMeMD:
     """ReadMeMD"""
 
-    def __init__(self, config_map: ConfigMap, section: Section, persist_fs):
+    def __init__(self, config_map: ConfigMap, section: Section, persist_fs,process_fs):
         """init"""
         self.config_map = config_map
         self.readme_md = (
@@ -18,6 +18,7 @@ class ReadMeMD:
         )
         self.section = section
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
 
     def __repr__(self):
         """repr"""
@@ -47,7 +48,7 @@ class ReadMeMD:
                     + str(line).strip("\n")
                     + "](/"
                     + Section(
-                        self.config_map, str(line).strip("\n"), self.persist_fs
+                        self.config_map, self.persist_fs, self.process_fs,str(line).strip("\n")
                     ).dir_readme_md
                     + ")\n"
                 )

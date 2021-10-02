@@ -48,7 +48,7 @@ class ConfigMap(Config):
     @property
     def get_repo_path(self):
         """T Returns path."""
-        return self.load["repo"]["path"]
+        return self.persist_fs.abs_path(self.load["repo"]["path"])
 
     @property
     def get_repo_map_md(self):

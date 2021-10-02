@@ -15,10 +15,11 @@ from models.section import Section
 class RefreshLinksProcessor:
     """RefreshLinksProcessor"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs):
+    def __init__(self, config_map: ConfigMap, persist_fs,process_fs):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
 
     def process(self):
         """Scan sections an update links."""
@@ -28,6 +29,6 @@ class RefreshLinksProcessor:
             self.persist_fs.list_dirs(self.config_map.get_repo_path),
         )
         refresh_links: RefreshLinks = RefreshLinks(
-            self.config_map, self.persist_fs, sections
+            self.config_map, self.persist_fs, sections,self.process_fs
         )
         refresh_links.refresh_map_links()

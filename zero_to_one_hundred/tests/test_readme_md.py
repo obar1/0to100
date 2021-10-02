@@ -5,11 +5,11 @@ from typing import List
 from models.readme_md import ReadMeMD
 from models.section import Section
 from tests.moke.persist_fs import PersistFS as persist_fs
-
+from tests.moke.process_fs import ProcessFS as process_fs
 
 def test_refresh_links(get_config_map, http_url):
-    section = Section(get_config_map, http_url, persist_fs)
-    readmemd = ReadMeMD(get_config_map, section, persist_fs)
+    section = Section(get_config_map, persist_fs,process_fs, http_url)
+    readmemd = ReadMeMD(get_config_map, section, persist_fs,process_fs)
     txt: List[str] = readmemd.read()
     logging.info(txt)
     readmemd.refresh_links(txt)
