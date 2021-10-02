@@ -8,11 +8,10 @@ from tests.moke.process_fs import ProcessFS as process_fs
 
 def test_init(get_config_map, http_url):
     actual = Section(get_config_map, persist_fs, process_fs, http_url)
-    assert actual.isbn == "9780135956977"
-    assert actual.contents_path == "./books/9780135956977"
-    assert actual.dir_pdf == "./books/9780135956977/9780135956977.pdf"
-    assert actual.dir_epub == "./books/9780135956977/9780135956977.epub"
-    assert actual.dir_img == "./books/9780135956977/9780135956977.png"
+    assert actual.http_url == "https://cloud.google.com/docs"
+    assert actual.dir_name == "https:§§cloud.google.com§docs"
+    assert actual.dir_readme_md == "https:§§cloud.google.com§docs/readme.md"
+
 
 
 def test_write(get_config_map, http_url):
@@ -22,6 +21,6 @@ def test_write(get_config_map, http_url):
 
 def test_build_from_dir(get_config_map, simple_dir):
     assert (
-        Section.build_from_dir(get_config_map, persist_fs, process_fs, simple_dir).isbn
-        == simple_dir
+        Section.build_from_dir(get_config_map, persist_fs, process_fs, simple_dir).dir_name
+        == "https:§§cloud.google.com§docs"
     )

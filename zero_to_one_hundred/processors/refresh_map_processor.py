@@ -25,4 +25,4 @@ class RefreshMapProcessor:
             self.config_map, self.persist_fs, self.process_fs, valid_dirs
         )
         map_: Map = Map(self.config_map, self.persist_fs, sections)
-        map_.write()
+        map_.write(self.config_map.get_repo_sorted)

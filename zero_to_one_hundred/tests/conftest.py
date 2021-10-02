@@ -50,8 +50,8 @@ def get_repo_path(get_resource_path):
 
 
 @pytest.fixture
-def get_map_yaml_path(get_repo_path):
-    yield get_repo_path + "/map.yaml"
+def get_map_yaml_path(get_resource_path):
+    yield get_resource_path + "/map.yaml"
 
 
 @pytest.fixture

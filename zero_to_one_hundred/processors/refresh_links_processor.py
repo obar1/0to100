@@ -26,6 +26,7 @@ class RefreshLinksProcessor:
         sections: List[Section] = Map.build_from_dirs(
             self.config_map,
             self.persist_fs,
+            self.process_fs,
             self.persist_fs.list_dirs(self.config_map.get_repo_path),
         )
         refresh_links: RefreshLinks = RefreshLinks(

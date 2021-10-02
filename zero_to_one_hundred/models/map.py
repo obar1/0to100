@@ -58,7 +58,7 @@ class Map:
     def build_from_dirs(cls, config_map, persist_fs, process_fs, dirs: List[str]) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [
-            Section.build_from_dir(config_map, persist_fs,  curr_dir,process_fs)
+            Section.build_from_dir(config_map, persist_fs,process_fs,curr_dir)
             for curr_dir in dirs
             if curr_dir is not None
         ]
