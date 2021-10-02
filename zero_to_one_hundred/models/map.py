@@ -2,7 +2,6 @@
 map md with list of sections as from fs
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import os
 from typing import List
 
 from configs.config import ConfigMap
@@ -34,13 +33,13 @@ class Map:
             + "> :o: [`here`](./"
             + s.get_dir_name
             + "/readme.md)"
-            + os.linesep
+            + "\n"
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
         return (
-            "".join(sorted(flattened_sections))
+            "\n".join(sorted(flattened_sections))
             if as_sorted
-            else "".join(flattened_sections)
+            else "\n".join(flattened_sections)
         )
 
     def write(self, as_sorted):

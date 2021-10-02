@@ -10,6 +10,7 @@ from processors.help_processor import HelpProcessor
 from processors.refresh_links_processor import RefreshLinksProcessor
 from processors.refresh_map_processor import RefreshMapProcessor
 from processors.refresh_puml_processor import RefreshPUMLProcessor
+from processors.unsupported_processor import UnsupportedProcessor
 
 
 class ZTOHFactory:
@@ -23,34 +24,38 @@ class ZTOHFactory:
         "help",
     ]
 
-    def __init__(self, config_map: ConfigMap, persist_fs):
+    def __init__(self, config_map: ConfigMap, persist_fs, process_fs):
+        """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
 
     def get_processor(self, args):
         """get the processor"""
         logging.info(f"args {args}")
         cmd = args[1]
         if cmd == "create_section":
-            return self.create_section_processor(args[2])
-        if cmd == "refresh_map":
-            return self.refresh_map_processor()
-        if cmd == "refresh_links":
-            return self.refresh_links_processor()
-        if cmd == "refresh_puml":
-            return self.refresh_puml_processor()
-        if cmd == "help":
-            return self.help_processor()
-        logging.info(self.SUPPORTED_PROCESSOR)
-        raise ValueError(f"{cmd} not supported")
+            yield self.create_section_processor(args[2])
+        elif cmd == "refresh_map":
+            yield self.refresh_map_processor()
+        elif cmd == "refresh_links":
+            yield self.refresh_links_processor()
+        elif cmd == "refresh_puml":
+            yield self.refresh_puml_processor()
+        elif cmd == "help":
+            yield self.help_processor()
+        else:
+            yield self.unsupported_processor(cmd)
 
     def create_section_processor(self, http_url):
         """create_section_processor"""
-        return CreateSectionProcessor(self.config_map, self.persist_fs, http_url)
+        return CreateSectionProcessor(
+            self.config_map, self.persist_fs, http_url, self.process_fs
+        )
 
     def refresh_map_processor(self):
         """refresh_map_processor"""
-        return RefreshMapProcessor(self.config_map, self.persist_fs)
+        return RefreshMapProcessor(self.config_map, self.persist_fs, self.process_fs)
 
     def refresh_links_processor(self):
         """refresh_links_processor"""
@@ -62,4 +67,8 @@ class ZTOHFactory:
 
     def help_processor(self):
         """version_processor"""
-        return HelpProcessor(self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(self.SUPPORTED_PROCESSOR, self.persist_fs)
+
+    @staticmethod
+    def unsupported_processor(cmd):
+        return UnsupportedProcessor(cmd)

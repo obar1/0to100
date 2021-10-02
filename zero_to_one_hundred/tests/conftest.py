@@ -12,12 +12,10 @@ from factories.factory_provider import CONFIG_FILE
 from tests.moke.persist_fs import PersistFS as persist_fs
 
 
-@pytest.fixture(scope="function", autouse=True)
-def callattr_ahead_of_alltests(get_resource_path, mock_settings_env_vars):
-    logging.info("run_pre_start")
+@pytest.fixture(scope="session", autouse=True)
+def callattr_ahead_of_alltests():
     logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
     yield
-    logging.info("run_after_finish")
 
 
 @pytest.fixture
@@ -75,6 +73,12 @@ def mock_settings_env_vars(get_map_yaml_path):
 @pytest.fixture
 def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_unsupported_map_yaml_path}):
+        yield
+
+
+@pytest.fixture
+def mock_secret_yaml_env_vars(get_secret_yaml_path):
+    with mock.patch.dict(os.environ, {CONFIG_FILE: get_secret_yaml_path}):
         yield
 
 

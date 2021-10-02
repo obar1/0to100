@@ -13,10 +13,11 @@ from models.section import Section
 class CreateSectionProcessor:
     """CreateSectionProcessor."""
 
-    def __init__(self, config_map: ConfigMap, persist_fs, http_url: str):
+    def __init__(self, config_map: ConfigMap, persist_fs, http_url: str, process_fs):
         """init"""
         self.http_url = http_url
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
         self.config_map = config_map
 
     def process(self):
@@ -25,7 +26,9 @@ class CreateSectionProcessor:
         - add def readme_md in new_section
         - add new sections to map at the end
         """
-        section: Section = Section(self.config_map, self.http_url, self.persist_fs)
+        section: Section = Section(
+            self.config_map, self.persist_fs, self.process_fs, self.http_url
+        )
         section.write()
         readme_md: ReadMeMD = ReadMeMD(self.config_map, section, self.persist_fs)
         readme_md.write()

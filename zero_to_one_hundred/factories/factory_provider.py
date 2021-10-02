@@ -18,14 +18,16 @@ class FactoryProvider:
     Provides factory implementation.
     """
 
-    def __init__(self, persist_fs):
+    def __init__(self, persist_fs, process_fs):
+        """init"""
         self.config_file = os.getenv(CONFIG_FILE)
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
 
     def provide(self) -> ZTOHFactory:
         """T The method returns instance of MSEFactory."""
         get_type = Config(self.config_file, self.persist_fs).get_type
         if get_type == MAP:
             config_map = ConfigMap(self.config_file, self.persist_fs)
-            return ZTOHFactory(config_map, self.persist_fs)
+            return ZTOHFactory(config_map, self.persist_fs, self.process_fs)
         raise NotImplementedError(f"NotImplementedError {get_type}")

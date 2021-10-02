@@ -2,6 +2,8 @@
 new_section od disk
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+import json
+import re
 
 from configs.config import ConfigMap
 
@@ -9,12 +11,12 @@ from configs.config import ConfigMap
 class Section:
     """Section."""
 
-    def __init__(self, config_map: ConfigMap, http_url: str, persist_fs):
-        """
-        Init
-        Args:
-            http_url: https://cloud.google.com/docs
-        """
+    epub_suffix = ".epub"
+    HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
+    GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
+
+    def __init__(self, config_map: ConfigMap, persist_fs, process_fs, http_url: str):
+        """init"""
         self.config_map = config_map
         self.http_url = http_url
         self.dir_name = self.__from_dir_to_http_url(http_url)

@@ -2,11 +2,17 @@
 from factories.ztoh_factory import ZTOHFactory
 from processors.help_processor import HelpProcessor, VERSION
 from tests.moke.persist_fs import PersistFS as persist_fs
+from tests.moke.process_fs import ProcessFS as process_fs
+
+CURR_VERSION = "1.1"
 
 
-def test_process(get_config_map, get_args_help_processor):
-    actual: HelpProcessor = ZTOHFactory(get_config_map, persist_fs).get_processor(
-        get_args_help_processor
-    )
-    curr_version = "1.1"
-    assert actual.process() == f'{VERSION}"{curr_version}"'
+def test_process(
+    get_config_map,
+    get_args_help_processor,
+):
+    actual: HelpProcessor = ZTOHFactory(
+        get_config_map, persist_fs, process_fs
+    ).get_processor(get_args_help_processor)
+    for p in actual:
+        assert p.process() == f'{VERSION}"{CURR_VERSION}"'
