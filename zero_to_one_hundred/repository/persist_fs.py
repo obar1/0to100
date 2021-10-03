@@ -5,10 +5,10 @@ mocked in Test
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
 import os
-from pathlib import Path
+from datetime import datetime
 from shutil import copyfile
 from typing import List
-from datetime import datetime
+
 import yaml
 
 
@@ -21,8 +21,7 @@ class PersistFS:
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-        return [ name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name)) ]
-
+        return [name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
 
     @classmethod
     def get_dir_name(cls, filename):

@@ -10,19 +10,15 @@ from models.puml import PUML
 class RefreshPUMLProcessor:
     """RefreshPUMLProcessor"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs,process_fs):
+    def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
-        self.process_fs=process_fs
+        self.process_fs = process_fs
 
     def process(self):
         """Scan the repo and for each new_section add it to the puml, save the map file."""
-        sections = Map.build_from_dirs(
-            self.config_map,
-            self.persist_fs,
-            self.process_fs,
-            self.persist_fs.list_dirs(self.config_map.get_repo_path),
-        )
-        puml: PUML = PUML(self.config_map, self.persist_fs, sections)
+        sections = Map.build_from_dirs(self.persist_fs, self.process_fs, self.config_map,
+                                       self.persist_fs.list_dirs(self.config_map.get_repo_path))
+        puml: PUML = PUML(self.persist_fs, self.config_map, sections)
         puml.write()

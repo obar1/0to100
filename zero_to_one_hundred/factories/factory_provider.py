@@ -28,6 +28,6 @@ class FactoryProvider:
         """T The method returns instance of MSEFactory."""
         get_type = Config(self.config_file, self.persist_fs).get_type
         if get_type == MAP:
-            config_map = ConfigMap(self.config_file, self.persist_fs)
-            return ZTOHFactory(config_map, self.persist_fs, self.process_fs)
+            config_map = ConfigMap(self.persist_fs, self.config_file)
+            return ZTOHFactory(self.persist_fs, self.process_fs, config_map)
         raise NotImplementedError(f"NotImplementedError {get_type}")

@@ -2,9 +2,7 @@
 new_section od disk
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import json
 import logging
-import re
 
 from configs.config import ConfigMap
 
@@ -16,7 +14,7 @@ class Section:
     HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
 
-    def __init__(self, config_map: ConfigMap, persist_fs, process_fs, http_url: str):
+    def __init__(self, persist_fs, process_fs, config_map: ConfigMap, http_url: str):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -46,20 +44,19 @@ class Section:
         return dir_.replace("§", "/")
 
     @classmethod
-    def build_from_http(cls, config_map, http_url, persist_fs,process_fs):
-        return Section(config_map, persist_fs,process_fs,http_url)
+    def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
+        return Section(persist_fs, process_fs, config_map, http_url)
 
     @classmethod
-    def build_from_dir(cls, config_map, persist_fs,process_fs,dir_name):
-        return Section(config_map, persist_fs,process_fs,cls.from_http_url_to_dir(dir_name))
+    def build_from_dir(cls, persist_fs, process_fs, config_map, dir_name):
+        return Section(persist_fs, process_fs, config_map, cls.from_http_url_to_dir(dir_name))
 
     def write(self):
         return self.persist_fs.make_dirs(
             self.config_map.get_repo_path + "/" + self.dir_name
         )
 
-
-
     @classmethod
     def is_valid_dir(cls, curr_dir):
+        logging.info(curr_dir)
         return True

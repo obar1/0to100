@@ -13,7 +13,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))  # This is your Project Ro
 class HelpProcessor:
     """HelpProcessor"""
 
-    def __init__(self, supported_processor, persist_fs):
+    def __init__(self, persist_fs, supported_processor):
         """init"""
         self.supported_processor = supported_processor
         self.persist_fs = persist_fs

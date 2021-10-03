@@ -10,12 +10,10 @@ from models.section import Section
 class ReadMeMD:
     """ReadMeMD"""
 
-    def __init__(self, config_map: ConfigMap, section: Section, persist_fs,process_fs):
+    def __init__(self, persist_fs, process_fs, config_map: ConfigMap, section: Section):
         """init"""
         self.config_map = config_map
-        self.readme_md = (
-            config_map.get_repo_path + "/" + section.dir_name + "/readme.md"
-        )
+        self.readme_md = config_map.get_repo_path + "/" + section.dir_name + "/readme.md"
         self.section = section
         self.persist_fs = persist_fs
         self.process_fs = process_fs
@@ -31,8 +29,8 @@ class ReadMeMD:
         txt = []
         txt.append(
             f"""
-# {self.section.dir_name}
-> {self.section.http_url}
+# <{self.section.dir_name}>
+> <{self.section.http_url}>
         """
         )
         return self.persist_fs.write_file(self.readme_md, txt)
@@ -44,13 +42,11 @@ class ReadMeMD:
             """convert to [http://](http:§§/...readme) or leave as it is"""
             if str(line).strip("\n").startswith("https://"):
                 return (
-                    "["
-                    + str(line).strip("\n")
-                    + "](/"
-                    + Section(
-                        self.config_map, self.persist_fs, self.process_fs,str(line).strip("\n")
-                    ).dir_readme_md
-                    + ")\n"
+                        "["
+                        + str(line).strip("\n")
+                        + "](/"
+                        + Section(self.persist_fs, self.process_fs, self.config_map, str(line).strip("\n")).dir_readme_md
+                        + ")\n"
                 )
 
             return line

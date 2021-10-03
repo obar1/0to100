@@ -32,6 +32,9 @@ def http_url():
 def http_url_2():
     yield "https://cloud.google.com/products"
 
+@pytest.fixture
+def http_url_3():
+    yield "https://cloud.google.com/products/bq"
 
 @pytest.fixture
 def get_test_path():
@@ -76,10 +79,9 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
         yield
 
 
-
 @pytest.fixture
 def get_config_map(get_map_yaml_path):
-    return ConfigMap(get_map_yaml_path, persist_fs)
+    return ConfigMap(persist_fs, get_map_yaml_path)
 
 
 @pytest.fixture

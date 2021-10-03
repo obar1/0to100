@@ -13,5 +13,5 @@ class UnsupportedProcessor:
 
     def process(self):
         """Get version."""
-        logging.exception(f"Unsupported Proecssor {self.cmd}")
+        logging.exception(f"Unsupported Processor {self.cmd}")
         raise ValueError

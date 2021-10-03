@@ -24,7 +24,7 @@ class ZTOHFactory:
         "help",
     ]
 
-    def __init__(self, config_map: ConfigMap, persist_fs, process_fs):
+    def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -49,25 +49,23 @@ class ZTOHFactory:
 
     def create_section_processor(self, http_url):
         """create_section_processor"""
-        return CreateSectionProcessor(
-            self.config_map, self.persist_fs, http_url, self.process_fs
-        )
+        return CreateSectionProcessor(self.persist_fs, self.process_fs, self.config_map, http_url)
 
     def refresh_map_processor(self):
         """refresh_map_processor"""
-        return RefreshMapProcessor(self.config_map, self.persist_fs, self.process_fs)
+        return RefreshMapProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def refresh_links_processor(self):
         """refresh_links_processor"""
-        return RefreshLinksProcessor(self.config_map, self.persist_fs,self.process_fs)
+        return RefreshLinksProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def refresh_puml_processor(self):
         """refresh_puml_processor"""
-        return RefreshPUMLProcessor(self.config_map, self.persist_fs,self.process_fs)
+        return RefreshPUMLProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def help_processor(self):
         """version_processor"""
-        return HelpProcessor(self.SUPPORTED_PROCESSOR, self.persist_fs)
+        return HelpProcessor(self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     @staticmethod
     def unsupported_processor(cmd):

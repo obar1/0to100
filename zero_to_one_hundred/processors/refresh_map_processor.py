@@ -5,13 +5,12 @@ refresh sections in map
 
 from configs.config import ConfigMap
 from models.map import Map
-from models.section import Section
 
 
 class RefreshMapProcessor:
     """RefreshMapProcessor"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs, process_fs):
+    def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -20,8 +19,6 @@ class RefreshMapProcessor:
     def process(self):
         """Scan the repo and for each new_section add it to  the map,  save the map file."""
         dirs = self.persist_fs.list_dirs(self.config_map.get_repo_path)
-        sections = Map.build_from_dirs(
-            self.config_map, self.persist_fs, self.process_fs, dirs
-        )
-        map_: Map = Map(self.config_map, self.persist_fs, sections)
+        sections = Map.build_from_dirs(self.persist_fs, self.process_fs, self.config_map, dirs)
+        map_: Map = Map(self.persist_fs, self.config_map, sections)
         map_.write(self.config_map.get_repo_sorted)

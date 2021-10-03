@@ -8,11 +8,9 @@ CURR_VERSION = "1.1"
 
 
 def test_process(
-    get_config_map,
-    get_args_help_processor,
+        get_config_map,
+        get_args_help_processor,
 ):
-    actual: HelpProcessor = ZTOHFactory(
-        get_config_map, persist_fs, process_fs
-    ).get_processor(get_args_help_processor)
+    actual: HelpProcessor = ZTOHFactory(persist_fs, process_fs, get_config_map).get_processor(get_args_help_processor)
     for p in actual:
         assert p.process() == f'{VERSION}"{CURR_VERSION}"'
