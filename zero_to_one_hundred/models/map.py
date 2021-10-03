@@ -33,7 +33,6 @@ class Map:
                       + "> :o: [`here`](./"
                       + s.get_dir_name
                       + "/readme.md)"
-                      + "\n"
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
         return (
