@@ -60,5 +60,5 @@ class Map:
         return [
             Section.build_from_dir(config_map, persist_fs,process_fs,curr_dir)
             for curr_dir in dirs
-            if curr_dir is not None
+            if Section.is_valid_dir(curr_dir)
         ]

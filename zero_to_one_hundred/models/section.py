@@ -61,7 +61,5 @@ class Section:
 
 
     @classmethod
-    def is_valid_ebook_path(cls, dir_):
-        """is_valid_ebook_path"""
-        logging.info(dir_)
+    def is_valid_dir(cls, curr_dir):
         return True

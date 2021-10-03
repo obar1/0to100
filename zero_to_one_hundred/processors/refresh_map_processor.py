@@ -20,9 +20,8 @@ class RefreshMapProcessor:
     def process(self):
         """Scan the repo and for each new_section add it to  the map,  save the map file."""
         dirs = self.persist_fs.list_dirs(self.config_map.get_repo_path)
-        valid_dirs = [dir_ for dir_ in dirs if Section.is_valid_ebook_path(dir_)]
         sections = Map.build_from_dirs(
-            self.config_map, self.persist_fs, self.process_fs, valid_dirs
+            self.config_map, self.persist_fs, self.process_fs, dirs
         )
         map_: Map = Map(self.config_map, self.persist_fs, sections)
         map_.write(self.config_map.get_repo_sorted)
