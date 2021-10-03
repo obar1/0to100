@@ -2,10 +2,12 @@
 from factories.ztoh_factory import ZTOHFactory
 from processors.create_section_processor import CreateSectionProcessor
 from tests.moke.persist_fs import PersistFS as persist_fs
+from tests.moke.process_fs import ProcessFS as process_fs
 
 
 def test_process(get_config_map, get_args_create_section_processor, http_url):
     actual: CreateSectionProcessor = ZTOHFactory(
-        get_config_map, persist_fs
+        persist_fs, process_fs, get_config_map
     ).get_processor(get_args_create_section_processor + [http_url])
-    actual.process()
+    for p in actual:
+        p.process()

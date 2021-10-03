@@ -12,12 +12,10 @@ from factories.factory_provider import CONFIG_FILE
 from tests.moke.persist_fs import PersistFS as persist_fs
 
 
-@pytest.fixture(scope="function", autouse=True)
-def callattr_ahead_of_alltests(get_resource_path, mock_settings_env_vars):
-    logging.info("run_pre_start")
+@pytest.fixture(scope="session", autouse=True)
+def callattr_ahead_of_alltests():
     logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
     yield
-    logging.info("run_after_finish")
 
 
 @pytest.fixture
@@ -33,6 +31,11 @@ def http_url():
 @pytest.fixture
 def http_url_2():
     yield "https://cloud.google.com/products"
+
+
+@pytest.fixture
+def http_url_3():
+    yield "https://cloud.google.com/products/bq"
 
 
 @pytest.fixture
@@ -52,8 +55,8 @@ def get_repo_path(get_resource_path):
 
 
 @pytest.fixture
-def get_map_yaml_path(get_repo_path):
-    yield get_repo_path + "/map.yaml"
+def get_map_yaml_path(get_resource_path):
+    yield get_resource_path + "/map.yaml"
 
 
 @pytest.fixture
@@ -80,7 +83,7 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
 
 @pytest.fixture
 def get_config_map(get_map_yaml_path):
-    return ConfigMap(get_map_yaml_path, persist_fs)
+    return ConfigMap(persist_fs, get_map_yaml_path)
 
 
 @pytest.fixture

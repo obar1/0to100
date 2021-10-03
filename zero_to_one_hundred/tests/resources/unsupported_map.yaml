@@ -1,3 +1,4 @@
 type: not_a_map
 lib:
-  path: ./repo
+  path: './repo'
+  finalized : true

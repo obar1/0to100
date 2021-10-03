@@ -10,6 +10,8 @@ repo:
   sorted : true
 
 """
+
+
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 
 
@@ -39,7 +41,7 @@ class Config:
 class ConfigMap(Config):
     """ConfigMap specific to  actual impl"""
 
-    def __init__(self, map_yaml_path, persist_fs):
+    def __init__(self, persist_fs, map_yaml_path):
         """init"""
         super().__init__(map_yaml_path, persist_fs)
         self.get_repo_readme_puml = "readme.puml"
@@ -48,7 +50,7 @@ class ConfigMap(Config):
     @property
     def get_repo_path(self):
         """T Returns path."""
-        return self.load["repo"]["path"]
+        return self.persist_fs.abs_path(self.load["repo"]["path"])
 
     @property
     def get_repo_map_md(self):

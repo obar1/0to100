@@ -4,11 +4,12 @@ import pytest
 from factories.factory_provider import FactoryProvider
 from factories.ztoh_factory import ZTOHFactory
 from tests.moke.persist_fs import PersistFS as persist_fs
+from tests.moke.process_fs import ProcessFS as process_fs
 
 
 @pytest.fixture
 def get_factory_provider(mock_settings_env_vars):
-    return FactoryProvider(persist_fs)
+    return FactoryProvider(persist_fs, process_fs)
 
 
 def test_provide__pass(get_factory_provider):
@@ -18,7 +19,7 @@ def test_provide__pass(get_factory_provider):
 
 @pytest.fixture
 def get_unsupported_factory_provider(mock_unsupported_map_yaml_env_vars):
-    return FactoryProvider(persist_fs)
+    return FactoryProvider(persist_fs, process_fs)
 
 
 def test_provide__unsupported(get_unsupported_factory_provider):

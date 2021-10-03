@@ -13,10 +13,13 @@ from models.section import Section
 class RefreshLinks:
     """RefreshLinks"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs, sections: List[Section]):
+    def __init__(
+        self, persist_fs, process_fs, config_map: ConfigMap, sections: List[Section]
+    ):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
         self.sections = sections
 
     def __repr__(self):
@@ -26,10 +29,10 @@ class RefreshLinks:
     def refresh_map_links(self):
         """refresh_map_links"""
         for section in self.sections:
+            readme_md: ReadMeMD = ReadMeMD(
+                self.persist_fs, self.process_fs, self.config_map, section
+            )
             try:
-                readme_md: ReadMeMD = ReadMeMD(
-                    self.config_map, section, self.persist_fs
-                )
                 txt = readme_md.read()
                 readme_md.refresh_links(txt)
             except FileNotFoundError as e:

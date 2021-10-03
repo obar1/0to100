@@ -5,9 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/zero_to_one_hundred" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/zero_to_one_hundred/resources/repo" />
       <excludeFolder url="file://$MODULE_DIR$/zero_to_one_hundred/tests/resources/__repo" />
+      <excludeFolder url="file://$MODULE_DIR$/safari-books-0to100" />
       <excludeFolder url="file://$MODULE_DIR$/zero_to_one_hundred/tests/repo" />
+      <excludeFolder url="file://$MODULE_DIR$/repo" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (py38)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (safari-books-0to100.git)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">

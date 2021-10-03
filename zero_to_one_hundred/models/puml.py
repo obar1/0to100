@@ -15,7 +15,7 @@ class PUML:
     S = " *"
     NODE_LEVEL_SYMBOL = "+"
 
-    def __init__(self, config_map: ConfigMap, persist_fs, sections: List[Section]):
+    def __init__(self, persist_fs, config_map: ConfigMap, sections: List[Section]):
         """init"""
         self.config_map = config_map
         self.readme_puml = (
