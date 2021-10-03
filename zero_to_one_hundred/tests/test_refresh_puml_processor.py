@@ -6,7 +6,8 @@ from tests.moke.persist_fs import PersistFS as persist_fs
 
 
 def test_process(get_config_map, get_args_refresh_puml_processor):
-    actual: RefreshPUMLProcessor = ZTOHFactory(persist_fs, process_fs,
-                                               get_config_map).get_processor(get_args_refresh_puml_processor)
+    actual: RefreshPUMLProcessor = ZTOHFactory(
+        persist_fs, process_fs, get_config_map
+    ).get_processor(get_args_refresh_puml_processor)
     for p in actual:
         p.process()

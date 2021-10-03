@@ -17,6 +17,6 @@ def test_provide__pass(get_factory_provider):
     actual: ConfigMap = get_factory_provider.provide().config_map
     assert actual.get_type == "map"
     assert actual.get_repo_path == "./repo"
-    assert actual.get_repo_sorted == True
+    assert actual.get_repo_sorted is True
     assert actual.get_repo_map_md == "map.md"
     assert actual.get_repo_readme_puml == "readme.puml"

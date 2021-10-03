@@ -33,7 +33,7 @@ repos:
             #D103 - Missing docstring in public function, checked by Pylint
             #D104 - Missing docstring in public package (__init__)
             #D107 - Missing docstring in __init__
-            "--extend-ignore", "W1203,E800,D403,N813,E501,D415,W1201,D212,P101,C0114,D205,D100,D101,D102,D103,D104,D107,E203,E231,W0238",
+            "--extend-ignore", "R0801,W1203,E800,D403,N813,E501,D415,W1201,D212,P101,C0114,D205,D100,D101,D102,D103,D104,D107,E203,E231,W0238",
             "--docstring-convention", "google",
         ]
 

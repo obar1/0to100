@@ -23,7 +23,13 @@ class RefreshLinksProcessor:
 
     def process(self):
         """Scan sections an update links."""
-        sections: List[Section] = Map.build_from_dirs(self.persist_fs, self.process_fs, self.config_map,
-                                                      self.persist_fs.list_dirs(self.config_map.get_repo_path))
-        refresh_links: RefreshLinks = RefreshLinks(self.persist_fs, self.process_fs, self.config_map, sections)
+        sections: List[Section] = Map.build_from_dirs(
+            self.persist_fs,
+            self.process_fs,
+            self.config_map,
+            self.persist_fs.list_dirs(self.config_map.get_repo_path),
+        )
+        refresh_links: RefreshLinks = RefreshLinks(
+            self.persist_fs, self.process_fs, self.config_map, sections
+        )
         refresh_links.refresh_map_links()

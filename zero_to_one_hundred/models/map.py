@@ -29,10 +29,10 @@ class Map:
         # i-gateway> :ok: [`here`](../https:§§cloud.google.com§/readme.md)
         lambda_flatten_section = (
             lambda s: "1. <"
-                      + s.get_http_url
-                      + "> :o: [`here`](./"
-                      + s.get_dir_name
-                      + "/readme.md)"
+            + s.get_http_url
+            + "> :o: [`here`](./"
+            + s.get_dir_name
+            + "/readme.md)"
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
         return (
@@ -54,7 +54,9 @@ class Map:
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod
-    def build_from_dirs(cls, persist_fs, process_fs, config_map, dirs: List[str]) -> List[Section]:
+    def build_from_dirs(
+        cls, persist_fs, process_fs, config_map, dirs: List[str]
+    ) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [
             Section.build_from_dir(persist_fs, process_fs, config_map, curr_dir)

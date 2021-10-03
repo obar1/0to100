@@ -49,7 +49,9 @@ class Section:
 
     @classmethod
     def build_from_dir(cls, persist_fs, process_fs, config_map, dir_name):
-        return Section(persist_fs, process_fs, config_map, cls.from_http_url_to_dir(dir_name))
+        return Section(
+            persist_fs, process_fs, config_map, cls.from_http_url_to_dir(dir_name)
+        )
 
     def write(self):
         return self.persist_fs.make_dirs(

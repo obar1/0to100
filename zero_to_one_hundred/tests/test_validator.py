@@ -7,12 +7,7 @@ from validator.validator import Validator
 
 def test_is_valid_http__pass__fail():
     # pass
-    assert (
-            Validator.is_valid_http(
-                "https://code.google"
-            )
-            is True
-    )
+    assert Validator.is_valid_http("https://code.google") is True
     # fail
     with pytest.raises(AssertionError):
         assert Validator.is_valid_http("code.google")

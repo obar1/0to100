@@ -4,13 +4,15 @@ from processors.help_processor import HelpProcessor, VERSION
 from tests.moke.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
-CURR_VERSION = "1.1"
+CURR_VERSION = "1.5"
 
 
 def test_process(
-        get_config_map,
-        get_args_help_processor,
+    get_config_map,
+    get_args_help_processor,
 ):
-    actual: HelpProcessor = ZTOHFactory(persist_fs, process_fs, get_config_map).get_processor(get_args_help_processor)
+    actual: HelpProcessor = ZTOHFactory(
+        persist_fs, process_fs, get_config_map
+    ).get_processor(get_args_help_processor)
     for p in actual:
         assert p.process() == f'{VERSION}"{CURR_VERSION}"'

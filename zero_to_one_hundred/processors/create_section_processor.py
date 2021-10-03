@@ -26,9 +26,13 @@ class CreateSectionProcessor:
         - add def readme_md in new_section
         - add new sections to map at the end
         """
-        section: Section = Section(self.persist_fs, self.process_fs, self.config_map, self.http_url)
+        section: Section = Section(
+            self.persist_fs, self.process_fs, self.config_map, self.http_url
+        )
         section.write()
-        readme_md: ReadMeMD = ReadMeMD(self.persist_fs, self.process_fs, self.config_map, section)
+        readme_md: ReadMeMD = ReadMeMD(
+            self.persist_fs, self.process_fs, self.config_map, section
+        )
         readme_md.write()
         map_: Map = Map(self.persist_fs, self.config_map, self.get_sections(section))
         map_.write(False)
@@ -41,4 +45,6 @@ class CreateSectionProcessor:
         if self.config_map.get_repo_sorted:
             sorted(dirs)
         dirs.append(new_section.dir_name)
-        return Map.build_from_dirs(self.persist_fs, self.process_fs, self.config_map, dirs)
+        return Map.build_from_dirs(
+            self.persist_fs, self.process_fs, self.config_map, dirs
+        )

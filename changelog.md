@@ -33,3 +33,6 @@ __version__ = "1.0.1"
 
 __version__ = "1.1"
 - https://github.com/obar1/0to100/issues/19
+
+__version__ = "1.5"
+- https://github.com/obar1/0to100/issues/27

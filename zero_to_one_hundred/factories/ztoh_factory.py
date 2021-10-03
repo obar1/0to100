@@ -49,7 +49,9 @@ class ZTOHFactory:
 
     def create_section_processor(self, http_url):
         """create_section_processor"""
-        return CreateSectionProcessor(self.persist_fs, self.process_fs, self.config_map, http_url)
+        return CreateSectionProcessor(
+            self.persist_fs, self.process_fs, self.config_map, http_url
+        )
 
     def refresh_map_processor(self):
         """refresh_map_processor"""

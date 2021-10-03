@@ -11,7 +11,7 @@ from tests.moke.process_fs import ProcessFS as process_fs
 def test_write(get_config_map, http_url, http_url_2):
     sections: List[Section] = [
         Section(persist_fs, process_fs, get_config_map, http_url),
-        Section(persist_fs, process_fs, get_config_map, http_url_2)
+        Section(persist_fs, process_fs, get_config_map, http_url_2),
     ]
     actual = Map(persist_fs, get_config_map, sections=sections)
     logging.info(actual)

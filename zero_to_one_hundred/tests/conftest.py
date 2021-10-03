@@ -32,9 +32,11 @@ def http_url():
 def http_url_2():
     yield "https://cloud.google.com/products"
 
+
 @pytest.fixture
 def http_url_3():
     yield "https://cloud.google.com/products/bq"
+
 
 @pytest.fixture
 def get_test_path():

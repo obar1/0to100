@@ -21,7 +21,9 @@ class PersistFS:
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-        return [name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
+        return [
+            name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))
+        ]
 
     @classmethod
     def get_dir_name(cls, filename):
