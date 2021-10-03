@@ -29,11 +29,9 @@ and use it like so
 
 ```bash
 # TODO: set vars
-set -u
-tag=
-target_dir=
-
 bash setup.sh $tag $target_dir
+ex
+bash setup.sh 0.1  ./repo
 ```
 > check contents `runme.sh`
 

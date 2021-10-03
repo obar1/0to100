@@ -17,7 +17,7 @@ help(){
   cat << EOF
   bash ${0} tag dir_repo
   ex
-  bash ${0} 0.1 /tmp/some_dir/repo
+  bash ${0} 0.1 ./repo
 EOF
 }
 
@@ -31,7 +31,7 @@ get_code(){
   mkdir -p "${DIR_TARGET}"
   cd "${DIR_TARGET}"
 
-  wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/repo/map.yaml
+  wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/map.yaml
   sed -i '' -e "s|./repo|$DIR_TARGET|g" map.yaml
 
   cat map.yaml
