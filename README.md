@@ -31,7 +31,7 @@ and use it like so
 # TODO: set vars
 bash setup.sh $tag $target_dir
 ex
-bash setup.sh 0.1  ./repo
+bash setup.sh 1.5  .
 ```
 > check contents `runme.sh`
 
