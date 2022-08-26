@@ -35,6 +35,18 @@ bash setup.sh 1.5  .
 ```
 > check contents `runme.sh`
 
+ignore it so you can check in only the section in the new repo
+
+```bash
+touch .gitignore
+```
+
+add to it
+```
+0to100-latest/
+```
+
+
 #### daily usage
 
 -  create new section
