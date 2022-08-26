@@ -5,11 +5,7 @@
 > 0 to 100 to learn anything
 
 
-## Usage
-
-### using the py scripts
-
-#### 1-time (manual) setup
+## 1st time (manual) setup
 
 check latest tag val latest at https://github.com/obar1/0to100/tags
 
@@ -46,8 +42,7 @@ add to it
 0to100-latest/
 ```
 
-
-#### daily usage
+## daily usage
 
 -  create new section
 
@@ -82,22 +77,6 @@ bash runme.sh help
 ```
 
 
-## Useful tools
-
-* install xpdf
-```
-brew install xpdf
-```
-
-* install vscode
-```
-brew install --cask visual-studio-code
-```
-
-* chrome extension to save pages in pdf
-save the page with https://chrome.google.com/webstore/detail/print-friendly-pdf/ohlencieiipommannpdfcmfdpjjmeolj/related or https://chrome.google.com/webstore/detail/htmlurl-to-pdf-with-pdfma/dlmgniacaacmbccdegkadebbaphkonpb
-
-
 ## Development
 
 ### Installation
@@ -128,15 +107,5 @@ pre-commit run flake8
 pre-commit run isort
 pre-commit run pylint
 ```
-### local troubleshooting...
-
-add to `setup.sh` something like
-```
-# DEBUG
-cp -r $HOME/git/obar1/0to100.git/ "${DIR_TARGET_LATEST}" || true
-```
-so you can test local fix :)
 
 
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fobar1%2F0to100.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fobar1%2F0to100?ref=badge_large)
