@@ -32,7 +32,9 @@ class HelpProcessor:
                 logging.debug(f"v. {version}")
                 return version.strip()
         except FileNotFoundError:
-            logging.exception(f"skipping {change_log_path}")
+            logging.exception(f"not found {change_log_path}")
+        except:
+            logging.exception(f"check contents {change_log_path}")
         return None
 
     def process(self):

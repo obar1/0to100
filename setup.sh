@@ -37,6 +37,8 @@ get_code() {
   wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvz
   mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}"
 
+  echo "__version__ = ${TAG}" > "${DIR_TARGET_LATEST}/changelog.md"
+
 }
 
 create_runme() {
