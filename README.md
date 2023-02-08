@@ -1,48 +1,40 @@
 # 0to100
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fobar1%2F0to100.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fobar1%2F0to100?ref=badge_shield)
 
+> 0 to 100 ... learn anything from webresources (and not)
 
-> 0 to 100 to learn anything
+## As user:
 
+### 1st time usage: (manual) setup
 
-## 1st time (manual) setup
-
-check latest tag val latest at https://github.com/obar1/0to100/tags
-
-or https://raw.githubusercontent.com/obar1/0to100/main/changelog.md like so
-
-```bash
-curl https://raw.githubusercontent.com/obar1/0to100/main/changelog.md | grep version | sort -r | head -1
-```
-
-in a any tmp folder get the `setup.sh` like so
+- create a new folder and get the `setup.sh` like so
 
 ```bash
 wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh
 ```
 
-and use it like so
+- check latest tag value at https://github.com/obar1/0to100/tags
+
+or if you have [lynx](https://simple.wikipedia.org/wiki/Lynx_(web_browser)) or similar installed
 
 ```bash
-# TODO: set vars
-bash setup.sh $tag $target_dir
-ex
-bash setup.sh 1.5  .
+lynx -dump https://github.com/obar1/0to100/tags | grep tags | uniq | sort
 ```
-> check contents `runme.sh`
 
-ignore it so you can check in only the section in the new repo
+- **install** :bowtie: the tag 
 
 ```bash
-touch .gitignore
+bash setup.sh [tag] [target_dir]
+```
+> [target_dir] can be set to `.` to use the current folder 
+
+
+- check runme.sh
+
+```bash
+bash runme.sh help 
 ```
 
-add to it
-```
-0to100-latest/
-```
-
-## daily usage
+### daily usage:
 
 -  create new section
 
@@ -77,9 +69,9 @@ bash runme.sh help
 ```
 
 
-## Development
+## As developer:
 
-### Installation
+### Installation:
 
 * Install Poetry: <https://python-poetry.org/docs/#installation>
 * Install python env: `pyenv install 3.7.0`
@@ -88,7 +80,7 @@ bash runme.sh help
 * Install package and dependencies: `poetry install`
 * Install pre-commit hooks: `poetry run pre-commit install`
 
-### Run pre-commit hooks manually
+### Run pre-commit hooks manually:
 
 All pre-commit hooks will be run automatically when pushing changes.
 They can also be run on staged files or on all files manually:
