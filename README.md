@@ -6,7 +6,7 @@
 
 ### 1st time usage: (manual) setup
 
-- create a new folder and get the `setup.sh` like so
+- create a new folder and get 
 
 ```bash
 wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh
@@ -32,6 +32,12 @@ bash setup.sh [tag] [target_dir]
 
 ```bash
 bash runme.sh help 
+```
+
+- optional get
+
+```bash
+wget -q https://raw.githubusercontent.com/obar1/0to100/main/test_setup/.gitignore
 ```
 
 ### daily usage:
