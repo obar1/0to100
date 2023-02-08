@@ -11,5 +11,9 @@ __pycache__/
 # local run
 runme.sh
 map.yaml
+map.yaml_
 map.md
 repo/
+
+# test related
+0to100-**/
