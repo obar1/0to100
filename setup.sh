@@ -32,9 +32,7 @@ get_code() {
   cd "${DIR_TARGET}"
 
   wget -O map.yaml_ https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/map.yaml
-  cat map.yaml_ | sed -e "s|./repo|$DIR_TARGET|g" >map.yaml
-
-  cat map.yaml
+  cat map.yaml_ | sed -e "s|./repo|$DIR_TARGET|g" | tee map.yaml
 
   wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvz
   mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}"
