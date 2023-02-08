@@ -1,4 +1,0 @@
-type: not_a_map
-lib:
-  path: './repo'
-  finalized : true

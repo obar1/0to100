@@ -2,7 +2,7 @@
 set -u
 set -o pipefail
 set -e
-set -x
+# set -x
 # v0.1
 
 ###################
@@ -31,15 +31,14 @@ get_code(){
   mkdir -p "${DIR_TARGET}"
   cd "${DIR_TARGET}"
 
-  wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/map.yaml
-  sed -i '' -e "s|./repo|$DIR_TARGET|g" map.yaml
+  wget -O map.yaml_ https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/map.yaml
+  cat map.yaml_ | sed -e "s|./repo|$DIR_TARGET|g"  >  map.yaml
 
   cat map.yaml
 
-  wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvf -
+  wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvz
   mv "${ZEROto100}-${TAG}" "${DIR_TARGET_LATEST}" || true
 
-  # DEBUG
 }
 
 create_runme(){
