@@ -12,7 +12,7 @@
 wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh
 ```
 
-- check latest tag value at https://github.com/obar1/0to100/tags
+- check latest tag values at https://github.com/obar1/0to100/tags
 
 or if you have [lynx](https://simple.wikipedia.org/wiki/Lynx_(web_browser)) or similar installed
 
@@ -20,13 +20,19 @@ or if you have [lynx](https://simple.wikipedia.org/wiki/Lynx_(web_browser)) or s
 lynx -dump https://github.com/obar1/0to100/tags | grep tags | uniq | sort
 ```
 
-- **install** :bowtie: the tag 
+- install :bowtie: the tag
 
 ```bash
 bash setup.sh [tag] [target_dir]
 ```
 > [target_dir] can be set to `.` to use the current folder 
 
+- install req
+> add/set env if you wish
+
+```bash
+pip install -r "0to100-latest/requirements.txt"
+```
 
 - check runme.sh
 
@@ -80,9 +86,9 @@ bash runme.sh help
 ### Installation:
 
 * Install Poetry: <https://python-poetry.org/docs/#installation>
-* Install python env: `pyenv install 3.7.0`
-* Install virtual env: `pyenv virtualenv 3.7.0 pip_mse_ingestion`
-* Activate virtual env: `pyenv activate py37`
+* Install python env: `pyenv install 3.x`
+* Install virtual env: `pyenv virtualenv 3.x zt1`
+* Activate virtual env: `pyenv activate zt1`
 * Install package and dependencies: `poetry install`
 * Install pre-commit hooks: `poetry run pre-commit install`
 
@@ -106,4 +112,10 @@ pre-commit run isort
 pre-commit run pylint
 ```
 
+### Export to pip req
 
+so you can just use pip  to run the thing ...
+
+```bash
+poetry export -f requirements.txt --output requirements.txt --without-hashes  
+```
