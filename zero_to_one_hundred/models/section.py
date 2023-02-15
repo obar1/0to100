@@ -44,6 +44,7 @@ class Section:
             .replace(":", "§")
             .replace("?", "§")
             .replace("*", "§")
+            .replace("\\", "§")
         )
 
     @classmethod
