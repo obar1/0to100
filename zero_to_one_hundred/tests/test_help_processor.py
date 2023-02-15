@@ -5,7 +5,6 @@ from tests.moke.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 
-
 def test_process(
     get_config_map,
     get_args_help_processor,

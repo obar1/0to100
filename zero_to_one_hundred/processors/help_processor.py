@@ -16,7 +16,5 @@ class HelpProcessor:
         self.supported_processor = supported_processor
         self.persist_fs = persist_fs
 
-
     def process(self):
         logging.debug(self.supported_processor)
-        return 
