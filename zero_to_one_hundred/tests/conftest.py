@@ -66,7 +66,7 @@ def get_unsupported_map_yaml_path(get_resource_path):
 
 @pytest.fixture
 def get_sample_readme_md_path(get_repo_path):
-    yield get_repo_path + "/https:§§cloud.google.com§docs/readme.md"
+    yield get_repo_path + "/https§§§cloud.google.com§docs/readme.md"
 
 
 @pytest.fixture
@@ -88,17 +88,17 @@ def get_config_map(get_map_yaml_path):
 
 @pytest.fixture
 def simple_http():
-    return "https://cloud.google.com/docs"
+    return "https://cloud.google.com/docs/<>:?*"
 
 
 @pytest.fixture
 def simple_dir():
-    return "https:§§cloud.google.com§docs"
+    return "https§§§cloud.google.com§docs§§§§§§"
 
 
 @pytest.fixture
 def dir_tree():
-    return "https:§§cloud.google.com§sections"
+    return "https§§§cloud.google.com§sections"
 
 
 @pytest.fixture

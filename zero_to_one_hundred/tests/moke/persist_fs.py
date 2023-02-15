@@ -19,21 +19,21 @@ class PersistFS(_PersistFS):
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-        if path == "https:§§cloud.google.com§sections" or path == "./repo":
+        if path == "https§§§cloud.google.com§sections" or path == "./repo":
             return [
-                "https:§§cloud",
-                "https:§§cloud§1",
-                "https:§§cloud§1§3",
-                "https:§§cloud§1§1",
-                "https:§§cloud§1§2",
-                "https:§§cloud§2",
-                "https:§§cloud§2§1",
-                "https:§§cloud§2§1§1",
+                "https§§§cloud",
+                "https§§§cloud§1",
+                "https§§§cloud§1§3",
+                "https§§§cloud§1§1",
+                "https§§§cloud§1§2",
+                "https§§§cloud§2",
+                "https§§§cloud§2§1",
+                "https§§§cloud§2§1§1",
             ]
-        if path == "https:§§cloud.google.com§docs":
+        if path == "https§§§cloud.google.com§docs":
             return [
-                "https:§§cloud.google.com§docs",
-                "https:§§cloud.google.com§products",
+                "https§§§cloud.google.com§docs",
+                "https§§§cloud.google.com§products",
             ]
         raise ValueError(f"{path} not supported")
 
@@ -71,7 +71,7 @@ class PersistFS(_PersistFS):
         logging.info(f"read {filename}")
         if filename.endswith("readme.md"):
             return """
-        # https:§§cloud.google.com§docs\n
+        # https§§§cloud.google.com§docs\n
                 \n
         > https://cloud.google.com/docs\n
 

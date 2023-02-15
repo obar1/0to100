@@ -37,7 +37,15 @@ class Section:
 
     @classmethod
     def __from_dir_to_http_url(cls, http_url):
-        return http_url.replace("/", "§")
+        return (
+            http_url.replace("/", "§")
+            .replace("<", "§")
+            .replace(">", "§")
+            .replace(":", "§")
+            .replace("?", "§")
+            .replace("*", "§")
+            .replace("\\", "§")
+        )
 
     @classmethod
     def from_http_url_to_dir(cls, dir_):

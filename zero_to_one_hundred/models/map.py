@@ -26,7 +26,7 @@ class Map:
     def __repr_flatten(sections: List[Section], as_sorted: bool) -> str:
         """transf as"""
         # 1. <https://cloud.google.com/api-gateway/docs/about-ap
-        # i-gateway> :ok: [`here`](../https:§§cloud.google.com§/readme.md)
+        # i-gateway> :ok: [`here`](../https§§§cloud.google.com§/readme.md)
         lambda_flatten_section = (
             lambda s: "1. <"
             + s.get_http_url
