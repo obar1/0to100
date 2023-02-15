@@ -1,6 +1,6 @@
 repos:
   - repo: "https://github.com/psf/black"
-    rev: "20.8b1"
+    rev: "22.3.0"
     hooks:
       - id: "black"
         name: "Format code (black)"
@@ -11,31 +11,6 @@ repos:
       - id: "check-toml"
       - id: "end-of-file-fixer"
       - id: "trailing-whitespace"
-
-  - repo: "https://gitlab.com/PyCQA/flake8"
-    rev: "3.8.4"
-    hooks:
-      - id: "flake8"
-        name: "Lint code (flake8)"
-        additional_dependencies:
-          - "flake8==3.8.4"
-          - "flake8-bugbear==20.1.4"
-          - "flake8-builtins==1.5.3"
-          - "flake8-comprehensions==3.2.3"
-          - "flake8-docstrings==1.5.0"
-          - "flake8-eradicate==0.4.0"
-          - "flake8-mutable==1.2.0"
-          - "flake8-pie==0.5.0"
-          - "flake8-quotes==3.2.0"
-          - "flake8-string-format==0.3.0"
-          - "pep8-naming==0.11.1"
-        args: [
-            #D103 - Missing docstring in public function, checked by Pylint
-            #D104 - Missing docstring in public package (__init__)
-            #D107 - Missing docstring in __init__
-            "--extend-ignore", "R0801,W1203,E800,D403,N813,E501,D415,W1201,D212,P101,C0114,D205,D100,D101,D102,D103,D104,D107,E203,E231,W0238",
-            "--docstring-convention", "google",
-        ]
 
   - repo: local
     hooks:

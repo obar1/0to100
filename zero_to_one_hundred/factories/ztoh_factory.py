@@ -66,7 +66,7 @@ class ZTOHFactory:
         return RefreshPUMLProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def help_processor(self):
-        """version_processor"""
+        """help_processor"""
         return HelpProcessor(self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     @staticmethod

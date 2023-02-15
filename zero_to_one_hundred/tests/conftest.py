@@ -87,6 +87,11 @@ def get_config_map(get_map_yaml_path):
 
 
 @pytest.fixture
+def simple_http():
+    return "https://cloud.google.com/docs"
+
+
+@pytest.fixture
 def simple_dir():
     return "https:§§cloud.google.com§docs"
 
