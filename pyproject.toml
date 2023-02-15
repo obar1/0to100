@@ -5,12 +5,13 @@ description = "0to100 to learn anything"
 authors = ["obar1 <obar1@pm.me>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 pyyaml = "^6.0"
+pre-commit = "^3.0.4"
+flake8 = "^6.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
-pre-commit = "^2.11.1"
 black = "^21.7b0"
 pytest-xdist = "^2.3.0"
 pylint = "^2.10.2"
