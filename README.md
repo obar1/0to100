@@ -72,7 +72,7 @@ bash runme.sh refresh_links
 ```bash
 bash runme.sh refresh_puml
 ```
-![](2021-09-18-01-08-45.png)
+![](a0892483-ce6f-4ab1-bbd3-99f5ad7e7e8b.png)
 
 - help
 
