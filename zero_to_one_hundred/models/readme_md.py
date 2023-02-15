@@ -26,7 +26,7 @@ class ReadMeMD:
 
     def write(self):
         """write to fs"""
-        # # https:§§cloud.google.com§api-gateway§docs
+        # # https§§§cloud.google.com§api-gateway§docs
         # > https://cloud.google.com/api-gateway/docs
         txt = []
         txt.append(

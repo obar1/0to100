@@ -32,7 +32,7 @@ class PUML:
     def __repr_flatten(rows: List[Section]) -> str:
         """built the md from sections"""
         # 1. <https://cloud.google.com/api-gateway/docs/about-ap
-        # i-gateway> :ok: [`here`](../https:§§cloud.google.com§bq/readme.md)
+        # i-gateway> :ok: [`here`](../https§§§cloud.google.com§bq/readme.md)
 
         rows_as_tree = PUML.reorganize_as_tree(rows)
         rows_puml = PUML.render_as_pum_tree(
