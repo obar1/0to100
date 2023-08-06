@@ -2,18 +2,20 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache
 
-#idea
-.idea/
 # vscode
 .vscode/
 
+# venv
+venv/
+
 # local run
-runme.sh
-map.yaml
-map.yaml_
 map.md
 repo/
 
 # test related
 0to100-**/
+
+# local tests
+http*

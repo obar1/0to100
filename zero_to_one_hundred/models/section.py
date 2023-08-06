@@ -14,7 +14,14 @@ class Section:
     HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
 
-    def __init__(self, persist_fs, process_fs, config_map: ConfigMap, http_url: str):
+    def __init__(
+        self,
+        persist_fs,
+        process_fs,
+        config_map: ConfigMap,
+        http_url: str,
+        is_done: bool = False,
+    ):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -22,6 +29,7 @@ class Section:
         self.http_url = http_url
         self.dir_name = self.__from_dir_to_http_url(http_url)
         self.dir_readme_md = self.dir_name + "/readme.md"
+        self.is_done = is_done
 
     def __repr__(self):
         """repr"""
@@ -30,6 +38,10 @@ class Section:
     @property
     def get_http_url(self):
         return self.http_url
+
+    @property
+    def get_done(self):
+        return " :green_heart:" if self.is_done else " :footprints:"
 
     @property
     def get_dir_name(self):
@@ -48,8 +60,12 @@ class Section:
         )
 
     @classmethod
-    def from_http_url_to_dir(cls, dir_):
-        return dir_.replace("§", "/")
+    def from_http_url_to_dir(cls, dir_name):
+        return dir_name.replace("§", "/")
+
+    @classmethod
+    def done_section_status(cls, persist_fs, dir_name):
+        return persist_fs.done_section_status(dir_name)
 
     @classmethod
     def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
@@ -58,11 +74,20 @@ class Section:
     @classmethod
     def build_from_dir(cls, persist_fs, process_fs, config_map, dir_name):
         return Section(
-            persist_fs, process_fs, config_map, cls.from_http_url_to_dir(dir_name)
+            persist_fs,
+            process_fs,
+            config_map,
+            cls.from_http_url_to_dir(dir_name),
+            cls.done_section_status(persist_fs, dir_name),
         )
 
     def write(self):
         return self.persist_fs.make_dirs(
+            self.config_map.get_repo_path + "/" + self.dir_name
+        )
+
+    def write_done_section(self):
+        return self.persist_fs.done_section(
             self.config_map.get_repo_path + "/" + self.dir_name
         )
 

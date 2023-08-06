@@ -6,10 +6,11 @@ import logging
 
 from configs.config import ConfigMap
 from processors.create_section_processor import CreateSectionProcessor
-from processors.help_processor import HelpProcessor
+from processors.done_section_processor import DoneSectionProcessor
 from processors.refresh_links_processor import RefreshLinksProcessor
 from processors.refresh_map_processor import RefreshMapProcessor
 from processors.refresh_puml_processor import RefreshPUMLProcessor
+from processors.help_processor import HelpProcessor
 from processors.unsupported_processor import UnsupportedProcessor
 
 
@@ -18,6 +19,7 @@ class ZTOHFactory:
 
     SUPPORTED_PROCESSOR = [
         "create_section",
+        "done_section",
         "refresh_map",
         "refresh_links",
         "refresh_puml",
@@ -36,6 +38,8 @@ class ZTOHFactory:
         cmd = args[1]
         if cmd == "create_section":
             yield self.create_section_processor(args[2])
+        elif cmd == "done_section":
+            yield self.done_section_processor(args[2])
         elif cmd == "refresh_map":
             yield self.refresh_map_processor()
         elif cmd == "refresh_links":
@@ -50,6 +54,12 @@ class ZTOHFactory:
     def create_section_processor(self, http_url):
         """create_section_processor"""
         return CreateSectionProcessor(
+            self.persist_fs, self.process_fs, self.config_map, http_url
+        )
+
+    def done_section_processor(self, http_url):
+        """done_section_processor"""
+        return DoneSectionProcessor(
             self.persist_fs, self.process_fs, self.config_map, http_url
         )
 

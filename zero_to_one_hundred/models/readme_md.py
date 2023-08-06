@@ -30,10 +30,8 @@ class ReadMeMD:
         # > https://cloud.google.com/api-gateway/docs
         txt = []
         txt.append(
-            f"""
-# <{self.section.dir_name}>
-> <{self.section.http_url}>
-        """
+            f"""# <{self.section.dir_name}>
+> <{self.section.http_url}>\n"""
         )
         return self.persist_fs.write_file(self.readme_md, txt)
 

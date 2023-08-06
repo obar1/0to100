@@ -1,17 +1,16 @@
-"""CreateSectionProcessor:
-create a new new_section on fs from http address
+"""DoneSectionProcessor:
+done section on fs from http address
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-from typing import List
 
+from ast import List
 from configs.config import ConfigMap
-from models.map import Map
-from models.readme_md import ReadMeMD
 from models.section import Section
+from models.map import Map
 
 
-class CreateSectionProcessor:
-    """CreateSectionProcessor."""
+class DoneSectionProcessor:
+    """DoneSectionProcessor."""
 
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap, http_url: str):
         """init"""
@@ -21,23 +20,15 @@ class CreateSectionProcessor:
         self.config_map = config_map
 
     def process(self):
-        """Process the new_section.
-        - add new new_section
-        - add def readme_md in new_section
-        - add new sections to map at the end
-        """
+        """Close section"""
         section: Section = Section(
             self.persist_fs,
             self.process_fs,
             self.config_map,
             self.http_url,
-            is_done=False,
+            is_done=True,
         )
-        section.write()
-        readme_md: ReadMeMD = ReadMeMD(
-            self.persist_fs, self.process_fs, self.config_map, section
-        )
-        readme_md.write()
+        section.write_done_section()
         map_: Map = Map(self.persist_fs, self.config_map, self.get_sections(section))
         map_.write(False)
 

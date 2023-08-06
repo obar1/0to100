@@ -93,3 +93,7 @@ https://cloud.google.com/products\n
     def abs_path(cls, path):
         logging.info(f"abs_path {path}")
         return path
+
+    @classmethod
+    def done_section(cls, path):
+        logging.info(f"close_section {path}")
