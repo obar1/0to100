@@ -27,7 +27,11 @@ class CreateSectionProcessor:
         - add new sections to map at the end
         """
         section: Section = Section(
-            self.persist_fs, self.process_fs, self.config_map, self.http_url
+            self.persist_fs,
+            self.process_fs,
+            self.config_map,
+            self.http_url,
+            is_done=False,
         )
         section.write()
         readme_md: ReadMeMD = ReadMeMD(

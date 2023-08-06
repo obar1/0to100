@@ -84,3 +84,26 @@ class PersistFS:
     def get_now(cls):
         now = datetime.now()
         return now.strftime("%Y/%m/%d-%H:%M:%S")
+
+    @classmethod
+    def done_section(cls, path):
+        logging.info(f"done_section {path}")
+        if os.path.isdir(path):
+            path = path + os.sep + ".done"
+            logging.info(f"path {path}")
+            if os.path.exists(path):
+                logging.info(f"skip {path}")
+            else:
+                os.makedirs(path, 0o777, False)
+                logging.info(f"created {path}")
+            return True
+
+    @classmethod
+    def done_section_status(cls, path):
+        logging.info(f"done_section_status {path}")
+        if path := cls.abs_path(path):
+            path = path + os.sep + ".done"
+            logging.info(f"path {path}")
+            exists = os.path.exists(path)
+            logging.info(f"exists {exists}")
+            return exists

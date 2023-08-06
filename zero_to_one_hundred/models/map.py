@@ -30,9 +30,10 @@ class Map:
         lambda_flatten_section = (
             lambda s: "1. <"
             + s.get_http_url
-            + "> :o: [`here`](./"
+            + ">  [`here`](./"
             + s.get_dir_name
             + "/readme.md)"
+            + s.get_done
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
         return (

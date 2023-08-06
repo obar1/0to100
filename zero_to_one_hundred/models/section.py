@@ -20,7 +20,7 @@ class Section:
         process_fs,
         config_map: ConfigMap,
         http_url: str,
-        is_done=False,
+        is_done: bool = False,
     ):
         """init"""
         self.config_map = config_map
@@ -40,6 +40,10 @@ class Section:
         return self.http_url
 
     @property
+    def get_done(self):
+        return " :green_heart:" if self.is_done else " :footprints:"
+
+    @property
     def get_dir_name(self):
         return self.dir_name
 
@@ -56,8 +60,12 @@ class Section:
         )
 
     @classmethod
-    def from_http_url_to_dir(cls, dir_):
-        return dir_.replace("§", "/")
+    def from_http_url_to_dir(cls, dir_name):
+        return dir_name.replace("§", "/")
+
+    @classmethod
+    def done_section_status(cls, persist_fs, dir_name):
+        return persist_fs.done_section_status(dir_name)
 
     @classmethod
     def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
@@ -66,13 +74,20 @@ class Section:
     @classmethod
     def build_from_dir(cls, persist_fs, process_fs, config_map, dir_name):
         return Section(
-            persist_fs, process_fs, config_map, cls.from_http_url_to_dir(dir_name)
+            persist_fs,
+            process_fs,
+            config_map,
+            cls.from_http_url_to_dir(dir_name),
+            cls.done_section_status(persist_fs, dir_name),
         )
 
     def write(self):
         return self.persist_fs.make_dirs(
             self.config_map.get_repo_path + "/" + self.dir_name
-        ) and self.persist_fs.close_section(
+        )
+
+    def write_done_section(self):
+        return self.persist_fs.done_section(
             self.config_map.get_repo_path + "/" + self.dir_name
         )
 

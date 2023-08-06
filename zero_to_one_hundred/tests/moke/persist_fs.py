@@ -95,5 +95,5 @@ https://cloud.google.com/products\n
         return path
 
     @classmethod
-    def close_section(cls, path):
+    def done_section(cls, path):
         logging.info(f"close_section {path}")

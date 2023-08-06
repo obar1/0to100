@@ -86,3 +86,60 @@ bash runme.sh help
 ### Installation:
 
 check Makefile [here](./Makefile) to gets started
+
+### Contributing //vscode
+
+#### Debug
+
+sample of `.vscode/launch.json`
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "CONFIG_FILE": "./map.yaml",
+                "ZEROto100py": "./zero_to_one_hundred/main.py"
+            },
+            "args": [
+                "help"
+            ]
+        }
+    ]
+}
+
+or
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "CONFIG_FILE": "./map.yaml",
+                "ZEROto100py": "./zero_to_one_hundred/main.py"
+            },
+            "args": [
+                "create_section",
+                "https://www.cloudskillsboost.google/games"
+            ]
+        }
+    ]
+}
+```
