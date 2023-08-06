@@ -14,7 +14,14 @@ class Section:
     HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
 
-    def __init__(self, persist_fs, process_fs, config_map: ConfigMap, http_url: str):
+    def __init__(
+        self,
+        persist_fs,
+        process_fs,
+        config_map: ConfigMap,
+        http_url: str,
+        is_done=False,
+    ):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -22,6 +29,7 @@ class Section:
         self.http_url = http_url
         self.dir_name = self.__from_dir_to_http_url(http_url)
         self.dir_readme_md = self.dir_name + "/readme.md"
+        self.is_done = is_done
 
     def __repr__(self):
         """repr"""
@@ -63,6 +71,8 @@ class Section:
 
     def write(self):
         return self.persist_fs.make_dirs(
+            self.config_map.get_repo_path + "/" + self.dir_name
+        ) and self.persist_fs.close_section(
             self.config_map.get_repo_path + "/" + self.dir_name
         )
 
