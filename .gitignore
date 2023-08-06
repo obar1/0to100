@@ -2,11 +2,13 @@
 __pycache__/
 *.py[cod]
 *$py.class
+# .pytest_cache
 
-#idea
-.idea/
 # vscode
 .vscode/
+
+# venv
+venv/
 
 # local run
 runme.sh
