@@ -85,13 +85,4 @@ bash runme.sh help
 
 ### Installation:
 
-* Install python env: <https://github.com/pyenv/pyenv#getting-pyenv>
-* Install Poetry: <https://python-poetry.org/docs/#installation>
-
-### Export to pip req
-
-so you can just use pip  to run the thing ...
-
-```bash
-poetry export -f requirements.txt --output requirements.txt --without-hashes
-```
+check Makefile [here](./Makefile) to gets started

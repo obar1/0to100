@@ -10,9 +10,13 @@ test:
 	python -m pytest zero_to_one_hundred/tests/test_*.py
 
 format:
-	black lib
+	black zero_to_one_hundred
 
 lint:
-	pylint --disable=R,C,W0702,W0621,W1203 lib
+	pylint --disable=R,C,W0702,W0621,W1203 zero_to_one_hundred
 
-refactor: format lint
+wip:
+	git commit .
+	git commit -m 'wip'
+
+commit: format lint wip
