@@ -15,8 +15,4 @@ format:
 lint:
 	pylint --disable=R,C,W0702,W0621,W1203 zero_to_one_hundred
 
-wip:
-	git commit .
-	git commit -m 'wip'
-
-commit: format lint wip
+pcommit: format lint
