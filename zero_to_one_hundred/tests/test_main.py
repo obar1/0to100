@@ -6,11 +6,6 @@ from main import run_main
 from repository.process_fs import ProcessFS as process_fs
 
 
-def skip_this():
-    return False
-
-
-@pytest.mark.skipif(skip_this(), reason="skipped")
 def test_run_main(
     mock_settings_env_vars,
     http_url,
