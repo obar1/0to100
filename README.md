@@ -91,7 +91,7 @@ check Makefile [here](./Makefile) to gets started
 
 #### Debug
 
-sample of `.vscode/launch.json`
+- sample of `.vscode/launch.json`
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
@@ -143,3 +143,5 @@ or
     ]
 }
 ```
+
+- `pytest--log-cli-level=DEBUG --capture=tee-sys`v`
