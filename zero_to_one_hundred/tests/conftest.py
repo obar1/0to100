@@ -25,7 +25,7 @@ def wip():
 
 @pytest.fixture
 def http_url():
-    yield "https://cloud.google.com/docs"
+    yield "http://cloud.google.com/docs"
 
 
 @pytest.fixture
