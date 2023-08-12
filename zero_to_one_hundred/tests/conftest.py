@@ -25,7 +25,7 @@ def wip():
 
 @pytest.fixture
 def http_url():
-    yield "https://cloud.google.com/docs"
+    yield "http://cloud.google.com/docs"
 
 
 @pytest.fixture
@@ -104,6 +104,11 @@ def dir_tree():
 @pytest.fixture
 def get_args_create_section_processor():
     return ["runme.sh", "create_section"]
+
+
+@pytest.fixture
+def get_args_done_section_processor():
+    return ["runme.sh", "done_section"]
 
 
 @pytest.fixture

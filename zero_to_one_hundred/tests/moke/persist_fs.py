@@ -13,9 +13,6 @@ from repository.persist_fs import PersistFS as _PersistFS
 class PersistFS(_PersistFS):
     """persist_fs."""
 
-    relative_path_starts_with = "./"
-    HTTPS_ = ":§§"
-
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")

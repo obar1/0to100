@@ -17,14 +17,15 @@ from processors.unsupported_processor import UnsupportedProcessor
 class ZTOHFactory:
     """ZTOHFactory class."""
 
-    SUPPORTED_PROCESSOR = [
-        "create_section",
-        "done_section",
-        "refresh_map",
-        "refresh_links",
-        "refresh_puml",
-        "help",
-    ]
+    from enum import Enum
+
+    class SUPPORTED_PROCESSOR(Enum):
+        create_section = 1
+        done_section = 2
+        refresh_map = 3
+        refresh_links = 4
+        refresh_puml = 5
+        help = 6
 
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         """init"""
@@ -36,15 +37,15 @@ class ZTOHFactory:
         """get the processor"""
         logging.info(f"args {args}")
         cmd = args[1]
-        if cmd == "create_section":
+        if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(args[2])
-        elif cmd == "done_section":
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.done_section.name:
             yield self.done_section_processor(args[2])
-        elif cmd == "refresh_map":
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_map.name:
             yield self.refresh_map_processor()
-        elif cmd == "refresh_links":
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_links.name:
             yield self.refresh_links_processor()
-        elif cmd == "refresh_puml":
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_puml.name:
             yield self.refresh_puml_processor()
         elif cmd == "help":
             yield self.help_processor()

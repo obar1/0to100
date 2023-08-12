@@ -15,9 +15,6 @@ import yaml
 class PersistFS:
     """persist_fs."""
 
-    relative_path_starts_with = "./"
-    HTTPS_ = ":§§"
-
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
@@ -87,23 +84,23 @@ class PersistFS:
 
     @classmethod
     def done_section(cls, path):
+        path = cls.abs_path(path)
         logging.info(f"done_section {path}")
-        if os.path.isdir(path):
-            path = path + os.sep + ".done"
-            logging.info(f"path {path}")
-            if os.path.exists(path):
-                logging.info(f"skip {path}")
-            else:
-                os.makedirs(path, 0o777, False)
-                logging.info(f"created {path}")
-            return True
+        path = path + os.sep + ".done"
+        logging.info(f"path {path}")
+        if os.path.exists(path):
+            logging.info(f"skip {path}")
+        else:
+            os.makedirs(path, 0o777, False)
+            logging.info(f"created {path}")
 
     @classmethod
-    def done_section_status(cls, path):
+    def done_section_status(cls, abs_repo_path, path):
         logging.info(f"done_section_status {path}")
-        if path := cls.abs_path(path):
-            path = path + os.sep + ".done"
-            logging.info(f"path {path}")
-            exists = os.path.exists(path)
-            logging.info(f"exists {exists}")
-            return exists
+        path = abs_repo_path + os.sep + path + os.sep + ".done"
+        logging.info(f"path {path}")
+        exists = os.path.exists(path)
+        logging.info(f"exists {exists}")
+        if exists:
+            return True
+        return False

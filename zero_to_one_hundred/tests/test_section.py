@@ -8,9 +8,9 @@ from tests.moke.process_fs import ProcessFS as process_fs
 
 def test_init(get_config_map, http_url):
     actual = Section(persist_fs, process_fs, get_config_map, http_url)
-    assert actual.http_url == "https://cloud.google.com/docs"
-    assert actual.dir_name == "https§§§cloud.google.com§docs"
-    assert actual.dir_readme_md == "https§§§cloud.google.com§docs/readme.md"
+    assert actual.http_url == "http://cloud.google.com/docs"
+    assert actual.dir_name == "http§§§cloud.google.com§docs"
+    assert actual.dir_readme_md == "http§§§cloud.google.com§docs/readme.md"
 
 
 def test_write(get_config_map, http_url):
