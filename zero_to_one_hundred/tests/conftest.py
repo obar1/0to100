@@ -107,6 +107,11 @@ def get_args_create_section_processor():
 
 
 @pytest.fixture
+def get_args_done_section_processor():
+    return ["runme.sh", "done_section"]
+
+
+@pytest.fixture
 def get_args_refresh_map_processor():
     return ["runme.sh", "refresh_map"]
 

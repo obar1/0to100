@@ -14,3 +14,7 @@ def get_config_map(get_map_yaml_path):
 
 def test_get_processor(get_config_map):
     ZTOHFactory(persist_fs, process_fs, get_config_map)
+
+
+def test_N_processor():
+    assert len(ZTOHFactory.SUPPORTED_PROCESSOR) == 6

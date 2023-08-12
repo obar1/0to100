@@ -64,21 +64,21 @@ class Section:
         return dir_name.replace("§", "/")
 
     @classmethod
-    def done_section_status(cls, persist_fs, dir_name):
-        return persist_fs.done_section_status(dir_name)
+    def done_section_status(cls, persist_fs, repo_path, dir_name):
+        return persist_fs.done_section_status(repo_path, dir_name)
 
     @classmethod
     def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
         return Section(persist_fs, process_fs, config_map, http_url)
 
     @classmethod
-    def build_from_dir(cls, persist_fs, process_fs, config_map, dir_name):
+    def build_from_dir(cls, persist_fs, process_fs, config_map: ConfigMap, dir_name):
         return Section(
             persist_fs,
             process_fs,
             config_map,
             cls.from_http_url_to_dir(dir_name),
-            cls.done_section_status(persist_fs, dir_name),
+            cls.done_section_status(persist_fs, config_map.get_repo_path, dir_name),
         )
 
     def write(self):
