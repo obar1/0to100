@@ -17,4 +17,4 @@ class HelpProcessor:
         self.persist_fs = persist_fs
 
     def process(self):
-        logging.debug([p.namema for p in self.supported_processor])
+        logging.debug([p.name for p in self.supported_processor])

@@ -15,7 +15,7 @@ class PersistFS(_PersistFS):
 
     @classmethod
     def list_dirs(cls, path) -> List[str]:
-        logging.info(f"list_dirs {path}")
+        logging.debug(f"list_dirs {path}")
         if path == "https§§§cloud.google.com§sections" or path == "./repo":
             return [
                 "https§§§cloud",
@@ -36,11 +36,11 @@ class PersistFS(_PersistFS):
 
     @classmethod
     def get_dir_name(cls, filename):
-        logging.info(f"get_dir_name {filename}")
+        logging.debug(f"get_dir_name {filename}")
 
     @classmethod
     def load_file(cls, config_file):
-        logging.info(f"load_file {config_file}")
+        logging.debug(f"load_file {config_file}")
         if config_file.endswith("unsupported_map.yaml"):
             return {"type": "not_a_map", "lib": {"path": "./repo"}}
         if config_file.endswith("map.yaml"):
@@ -52,20 +52,20 @@ class PersistFS(_PersistFS):
 
     @classmethod
     def write_file(cls, filename, txt):
-        logging.info(f"write_file {filename} {txt}")
+        logging.debug(f"write_file {filename} {txt}")
 
     @classmethod
     def create_file(cls, filename):
-        logging.info(f"create_file {filename}")
+        logging.debug(f"create_file {filename}")
         return cls.write_file(filename, [])
 
     @classmethod
     def make_dirs(cls, path):
-        logging.info(f"make_dirs {path}")
+        logging.debug(f"make_dirs {path}")
 
     @classmethod
     def read_file(cls, filename) -> List[str]:
-        logging.info(f"read {filename}")
+        logging.debug(f"read {filename}")
         if filename.endswith("readme.md"):
             return """
         # https§§§cloud.google.com§docs\n
@@ -80,17 +80,17 @@ https://cloud.google.com/products\n
 
     @classmethod
     def delete_folder(cls, path):
-        logging.info(f"delete_folder {path}")
+        logging.debug(f"delete_folder {path}")
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):
-        logging.info(f"copy_file_to {file_path} {path_to}")
+        logging.debug(f"copy_file_to {file_path} {path_to}")
 
     @classmethod
     def abs_path(cls, path):
-        logging.info(f"abs_path {path}")
+        logging.debug(f"abs_path {path}")
         return path
 
     @classmethod
     def done_section(cls, path):
-        logging.info(f"close_section {path}")
+        logging.debug(f"close_section {path}")

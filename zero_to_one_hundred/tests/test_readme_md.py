@@ -12,5 +12,5 @@ def test_refresh_links(get_config_map, http_url):
     section = Section(persist_fs, process_fs, get_config_map, http_url)
     readmemd = ReadMeMD(persist_fs, process_fs, get_config_map, section)
     txt: List[str] = readmemd.read()
-    logging.info(txt)
+    logging.debug(txt)
     readmemd.refresh_links(txt)

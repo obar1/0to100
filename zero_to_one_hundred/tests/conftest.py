@@ -19,11 +19,6 @@ def callattr_ahead_of_alltests():
 
 
 @pytest.fixture
-def wip():
-    logging.info("~" * 88)
-
-
-@pytest.fixture
 def http_url():
     yield "http://cloud.google.com/docs"
 
