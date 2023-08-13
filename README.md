@@ -89,6 +89,14 @@ check Makefile [here](./Makefile) to gets started
 
 ### Contributing //vscode
 
+look into
+```bash
+cd zero_to_one_hundred/tests
+pytest --log-cli-level=DEBUG --capture=tee-sys ./test_main.py
+```
+
+to start with
+
 #### Debug
 
 - sample of `.vscode/launch.json`
