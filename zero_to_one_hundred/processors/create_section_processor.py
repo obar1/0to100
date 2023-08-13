@@ -35,15 +35,16 @@ class CreateSectionProcessor:
         )
         section.write()
         readme_md: ReadMeMD = ReadMeMD(
-            self.persist_fs, self.process_fs, self.config_map, section
-        )
+            self.persist_fs, self.process_fs, self.config_map, section.dir_name, section.http_url)
         readme_md.write()
-        map_: Map = Map(self.persist_fs, self.config_map, self.get_sections(section))
+        map_: Map = Map(self.persist_fs, self.config_map,
+                        self.get_sections(section))
         map_.write(False)
 
     def get_sections(self, new_section):
         """Get all the sections (sorted) and add the new new_section at the bottom"""
-        dirs: List[str] = self.persist_fs.list_dirs(self.config_map.get_repo_path)
+        dirs: List[str] = self.persist_fs.list_dirs(
+            self.config_map.get_repo_path)
         if new_section.dir_name in dirs:
             dirs.remove(new_section.dir_name)
         if self.config_map.get_repo_sorted:

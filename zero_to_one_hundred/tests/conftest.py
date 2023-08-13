@@ -14,7 +14,8 @@ from tests.moke.persist_fs import PersistFS as persist_fs
 
 @pytest.fixture(scope="session", autouse=True)
 def callattr_ahead_of_alltests():
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+    logging.basicConfig(format="%(levelname)s:%(message)s",
+                        level=logging.debug)
     yield
 
 

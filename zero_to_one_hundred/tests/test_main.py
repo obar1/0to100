@@ -18,7 +18,7 @@ def test_run_main(
     get_args_help_processor,
 ):
     """logical seq"""
-    process_fs.DEBUG_Y_N = True
+    process_fs.debug_Y_N = True
     run_main(get_args_create_section_processor + [http_url])
     run_main(get_args_create_section_processor + [http_url_2])
     run_main(get_args_create_section_processor + [http_url_3])
