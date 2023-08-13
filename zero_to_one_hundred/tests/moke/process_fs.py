@@ -16,5 +16,5 @@ class ProcessFS(_ProcessFS):
         logging.debug(f"write_img  {dir_img} {http_url_img}")
 
     @classmethod
-    def write_epub(cls, config_map, dir_epub, isbn):
+    def write_epub(cls, dir_epub, isbn):
         logging.debug(f"write_epub  {dir_epub} {isbn}")
