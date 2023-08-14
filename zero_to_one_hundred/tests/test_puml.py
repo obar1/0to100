@@ -25,6 +25,5 @@ def test_render_as_pum_tree(get_config_map, get_repo_path):
         if dir_ is not None
     ]
     http_url_rows = PUML.reorganize_as_tree(sections)
-    actual = PUML.render_as_pum_tree(
-        http_url_rows, PUML.S, PUML.NODE_LEVEL_SYMBOL)
+    actual = PUML.render_as_pum_tree(http_url_rows, PUML.S, PUML.NODE_LEVEL_SYMBOL)
     pprint(list(actual))

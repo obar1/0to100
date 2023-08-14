@@ -9,12 +9,12 @@ from configs.config import ConfigMap
 class ReadMeMD:
     """ReadMeMD"""
 
-    def __init__(self, persist_fs, process_fs, config_map: ConfigMap, dir_name, http_url):
+    def __init__(
+        self, persist_fs, process_fs, config_map: ConfigMap, dir_name, http_url
+    ):
         """init"""
         self.config_map = config_map
-        self.readme_md = (
-            config_map.get_repo_path + "/" + dir_name + "/readme.md"
-        )
+        self.readme_md = config_map.get_repo_path + "/" + dir_name + "/readme.md"
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.dir_name = dir_name

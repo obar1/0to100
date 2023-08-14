@@ -62,7 +62,11 @@ class Section:
 
     @classmethod
     def from_http_url_to_dir(cls, dir_name):
-        return dir_name.replace("https///", "https://").replace("http///", "http://").replace("§", "/")
+        return (
+            dir_name.replace("https///", "https://")
+            .replace("http///", "http://")
+            .replace("§", "/")
+        )
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
@@ -79,8 +83,7 @@ class Section:
             process_fs,
             config_map,
             cls.from_http_url_to_dir(dir_name),
-            cls.done_section_status(
-                persist_fs, config_map.get_repo_path, dir_name),
+            cls.done_section_status(persist_fs, config_map.get_repo_path, dir_name),
         )
 
     def write(self):
@@ -120,7 +123,12 @@ class Section:
             return line
 
         readme_md: ReadMeMD = ReadMeMD(
-            self.persist_fs, self.process_fs, self.config_map, self.dir_name, self.http_url)
+            self.persist_fs,
+            self.process_fs,
+            self.config_map,
+            self.dir_name,
+            self.http_url,
+        )
         lines_converted = []
         for line in readme_md.read():
             lines_converted.append(convert(line))
