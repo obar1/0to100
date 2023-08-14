@@ -7,7 +7,7 @@ install:
 	pre-commit install
 
 test:
-	python -m pytest zero_to_one_hundred/tests/test_*.py
+	cd zero_to_one_hundred/tests/resources &&  pytest --log-cli-level=DEBUG --capture=tee-sys  ..
 
 format:
 	black zero_to_one_hundred

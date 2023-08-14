@@ -9,7 +9,7 @@ import pytest
 
 from configs.config import ConfigMap
 from factories.factory_provider import CONFIG_FILE
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 
 
 @pytest.fixture(scope="session", autouse=True)

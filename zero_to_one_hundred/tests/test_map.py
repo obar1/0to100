@@ -4,7 +4,7 @@ from typing import List
 
 from models.map import Map
 from models.section import Section
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 
