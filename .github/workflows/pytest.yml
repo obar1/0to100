@@ -35,7 +35,7 @@ jobs:
     - name: copy file
       uses: canastro/copy-file-action@master
       with:
-        source: "${GITHUB_WORKSPACE}/zero_to_one_hundred/tests/resources/map.yaml"
+        source: "tests/resources/map.yaml"
         target: "map.yaml"
     - name: Run pytest
       run: | 
