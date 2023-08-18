@@ -21,4 +21,4 @@ repo/
 http*
 
 # idea
-.idea
+.idea/**
