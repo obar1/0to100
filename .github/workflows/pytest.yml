@@ -32,11 +32,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt        
     - uses: actions/checkout@master
-    - name: copy file
-      uses: canastro/copy-file-action@master
-      with:
-        source: "zero_to_one_hundred/tests/resources/map.yaml"
-        target: "map.yaml"
     - name: Run pytest
       run: | 
         pytest
