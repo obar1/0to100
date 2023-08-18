@@ -62,10 +62,8 @@ class Section:
 
     @classmethod
     def from_http_url_to_dir(cls, dir_name):
-        return (
-            dir_name.replace(
-                "https///", "https://").replace("http///", "http://").replace("§", "/")
-        )
+        return dir_name.replace("https///", "https://").replace("http///", "http://").replace("§", "/")
+
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
@@ -84,6 +82,7 @@ class Section:
             cls.from_http_url_to_dir(dir_name),
             cls.done_section_status(
                 persist_fs, config_map.get_repo_path, dir_name),
+
         )
 
     def write(self):
