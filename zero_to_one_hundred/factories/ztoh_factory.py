@@ -35,7 +35,7 @@ class ZTOHFactory:
 
     def get_processor(self, args):
         """get the processor"""
-        logging.info(f"args {args}")
+        logging.debug(f"args {args}")
         cmd = args[1]
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(args[2])

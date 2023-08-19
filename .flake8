@@ -1,7 +1,0 @@
-[flake8]
-application-import-names = main,tests
-docstring_style = google
-inline-quotes = double
-extend-ignore = E203,E231
-max-line-length = 88
-multiline-quotes = """

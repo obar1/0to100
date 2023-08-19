@@ -1,4 +1,4 @@
-"""RefreshLinks:
+"""RefreshLinksProcessor:
 in each md there are links to http://
 when some of them are added as new_section
 replace them with the location of the new_section ...
@@ -8,7 +8,6 @@ from typing import List
 
 from configs.config import ConfigMap
 from models.map import Map
-from models.refresh_links import RefreshLinks
 from models.section import Section
 
 
@@ -29,7 +28,5 @@ class RefreshLinksProcessor:
             self.config_map,
             self.persist_fs.list_dirs(self.config_map.get_repo_path),
         )
-        refresh_links: RefreshLinks = RefreshLinks(
-            self.persist_fs, self.process_fs, self.config_map, sections
-        )
-        refresh_links.refresh_map_links()
+        for s in sections:
+            s.refresh_links()

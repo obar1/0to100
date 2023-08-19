@@ -1,5 +1,5 @@
 type: map
 repo:
   path: './repo'
-  map_md: 'map.md'
+  map_md: map.md
   sorted : true

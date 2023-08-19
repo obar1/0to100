@@ -2,7 +2,7 @@
 from factories.ztoh_factory import ZTOHFactory
 from processors.refresh_map_processor import RefreshMapProcessor
 from repository.process_fs import ProcessFS as process_fs
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 
 
 def test_process(get_config_map, get_args_refresh_map_processor):

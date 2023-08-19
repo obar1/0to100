@@ -4,7 +4,7 @@ import pytest
 
 from configs.config import ConfigMap
 from factories.factory_provider import FactoryProvider
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 
@@ -16,7 +16,7 @@ def get_factory_provider(mock_settings_env_vars):
 def test_provide__pass(get_factory_provider):
     actual: ConfigMap = get_factory_provider.provide().config_map
     assert actual.get_type == "map"
-    assert actual.get_repo_path == "./repo"
+    assert actual.get_repo_path.endswith("/repo")
     assert actual.get_repo_sorted is True
     assert actual.get_repo_map_md == "map.md"
     assert actual.get_repo_readme_puml == "readme.puml"

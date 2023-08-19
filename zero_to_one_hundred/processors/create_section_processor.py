@@ -35,7 +35,11 @@ class CreateSectionProcessor:
         )
         section.write()
         readme_md: ReadMeMD = ReadMeMD(
-            self.persist_fs, self.process_fs, self.config_map, section
+            self.persist_fs,
+            self.process_fs,
+            self.config_map,
+            section.dir_name,
+            section.http_url,
         )
         readme_md.write()
         map_: Map = Map(self.persist_fs, self.config_map, self.get_sections(section))

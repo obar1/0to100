@@ -9,18 +9,13 @@ import pytest
 
 from configs.config import ConfigMap
 from factories.factory_provider import CONFIG_FILE
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 
 
 @pytest.fixture(scope="session", autouse=True)
 def callattr_ahead_of_alltests():
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.debug)
     yield
-
-
-@pytest.fixture
-def wip():
-    logging.info("~" * 88)
 
 
 @pytest.fixture

@@ -2,7 +2,7 @@
 import logging
 
 from models.section import Section
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 
@@ -15,7 +15,7 @@ def test_init(get_config_map, http_url):
 
 def test_write(get_config_map, http_url):
     actual = Section(persist_fs, process_fs, get_config_map, http_url)
-    logging.info(actual)
+    logging.debug(actual)
 
 
 def test_build_from_dir(get_config_map, simple_http, simple_dir):

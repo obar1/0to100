@@ -3,7 +3,7 @@ import pytest
 
 from configs.config import ConfigMap
 from factories.ztoh_factory import ZTOHFactory
-from tests.moke.persist_fs import PersistFS as persist_fs
+from repository.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 
