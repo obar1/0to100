@@ -2,6 +2,8 @@
 
 > 0 to 100 ... learn anything from webresources (and not)
 
+![](https://github.com/obar1/0to100/actions/workflows/pytest.yml/badge.svg)
+
 ## As user:
 
 ### 1st time usage: (manual) setup
