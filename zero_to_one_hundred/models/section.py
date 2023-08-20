@@ -152,9 +152,14 @@ class Section:
             self.dir_name,
             self.http_url,
         )
+        res = "TODO:"
         lines_converted = []
-        for line in readme_md.read():
-            lines_converted.append(get_header(line))
-        headers =  lines_converted
-        not_null = list(filter(lambda x: x is not None, headers))
-        return not_null[-1]
+        try:
+            for line in readme_md.read():
+                lines_converted.append(get_header(line))
+            headers =  lines_converted
+            not_null = list(filter(lambda x: x is not None, headers))
+            res = not_null[1] if len(not_null)>=1 else not_null[0]
+        except:
+            logging.debug(readme_md)
+        return res
