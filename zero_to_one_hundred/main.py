@@ -15,7 +15,8 @@ from repository.process_fs import ProcessFS as process_fs
 
 def run_main(argv: List[str]):
     try:
-        factory: ZTOHFactory = FactoryProvider(persist_fs, process_fs).provide()
+        factory: ZTOHFactory = FactoryProvider(
+            persist_fs, process_fs).provide()
         for p in factory.get_processor(argv):
             p.process()
     except IndexError:
@@ -25,5 +26,6 @@ def run_main(argv: List[str]):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.debug)
+    logging.basicConfig(format="%(levelname)s:%(message)s",
+                        level=logging.DEBUG)
     run_main(sys.argv)
