@@ -141,7 +141,7 @@ class Section:
 
         def get_header(line):
             """get header"""
-            if str(line).strip("\n").startswith("#"):
+            if str(line).strip("\n").startswith("# "):
                 return line
             return None
 
