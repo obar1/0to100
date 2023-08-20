@@ -35,7 +35,7 @@ class Section:
 
     def __repr__(self):
         """repr"""
-        return f"Section {self.http_url}, {self.dir_name}, {self.id_name}"
+        return f"Section {self.http_url}, {self.dir_name}"
 
     @property
     def get_http_url(self):
