@@ -3,6 +3,7 @@ new_section od disk
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
+import random
 
 from configs.config import ConfigMap
 from models.readme_md import ReadMeMD
@@ -34,7 +35,7 @@ class Section:
 
     def __repr__(self):
         """repr"""
-        return f"Section {self.http_url}, {self.dir_name}"
+        return f"Section {self.http_url}, {self.dir_name}, {self.id_name}"
 
     @property
     def get_http_url(self):
@@ -48,6 +49,10 @@ class Section:
     def get_dir_name(self):
         return self.dir_name
 
+    @property
+    def get_id_name(self):
+        return self.find_header().strip("\n")
+
     @classmethod
     def __from_dir_to_http_url(cls, http_url):
         return (
@@ -60,10 +65,19 @@ class Section:
             .replace("\\", "§")
         )
 
+    def write(self):
+        return self.persist_fs.make_dirs(
+            self.config_map.get_repo_path + "/" + self.dir_name
+        )
+
+    def write_done_section(self):
+        return self.persist_fs.done_section(
+            self.config_map.get_repo_path + "/" + self.dir_name
+        )
+
     @classmethod
     def from_http_url_to_dir(cls, dir_name):
         return dir_name.replace("https///", "https://").replace("http///", "http://").replace("§", "/")
-
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
@@ -82,23 +96,12 @@ class Section:
             cls.from_http_url_to_dir(dir_name),
             cls.done_section_status(
                 persist_fs, config_map.get_repo_path, dir_name),
-
-        )
-
-    def write(self):
-        return self.persist_fs.make_dirs(
-            self.config_map.get_repo_path + "/" + self.dir_name
-        )
-
-    def write_done_section(self):
-        return self.persist_fs.done_section(
-            self.config_map.get_repo_path + "/" + self.dir_name
         )
 
     @classmethod
-    def is_valid_dir(cls, curr_dir):
+    def is_valid_dir(cls, curr_dir:str):
         logging.debug(curr_dir)
-        return True
+        return True if curr_dir.count('http')>0 else False
 
     def refresh_links(self):
         """refresh_links"""
@@ -132,3 +135,26 @@ class Section:
         for line in readme_md.read():
             lines_converted.append(convert(line))
         return lines_converted
+
+
+    def find_header(self):
+
+        def get_header(line):
+            """get header"""
+            if str(line).strip("\n").startswith("#"):
+                return line
+            return None
+
+        readme_md: ReadMeMD = ReadMeMD(
+            self.persist_fs,
+            self.process_fs,
+            self.config_map,
+            self.dir_name,
+            self.http_url,
+        )
+        lines_converted = []
+        for line in readme_md.read():
+            lines_converted.append(get_header(line))
+        headers =  lines_converted
+        not_null = list(filter(lambda x: x is not None, headers))
+        return not_null[-1]
