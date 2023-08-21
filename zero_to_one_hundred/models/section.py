@@ -152,14 +152,18 @@ class Section:
             self.dir_name,
             self.http_url,
         )
-        res = "TODO:"
+        res = ""
         lines_converted = []
         try:
             for line in readme_md.read():
                 lines_converted.append(get_header(line))
             headers =  lines_converted
             not_null = list(filter(lambda x: x is not None, headers))
-            res = not_null[1] if len(not_null)>=1 else not_null[0]
+            if len(not_null)==1: # take default header
+                res = not_null[0]
+            if len(not_null)>1: # take first one header found
+                res = not_null[1]                
         except:
             logging.debug(readme_md)
+            res = "TODO:"
         return res
