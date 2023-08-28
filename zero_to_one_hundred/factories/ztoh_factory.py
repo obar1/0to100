@@ -9,7 +9,7 @@ from processors.create_section_processor import CreateSectionProcessor
 from processors.done_section_processor import DoneSectionProcessor
 from processors.refresh_links_processor import RefreshLinksProcessor
 from processors.refresh_map_processor import RefreshMapProcessor
-from processors.refresh_puml_processor import RefreshPUMLProcessor
+from processors.refresh_uml_processor import RefreshUMLProcessor
 from processors.help_processor import HelpProcessor
 from processors.unsupported_processor import UnsupportedProcessor
 
@@ -24,7 +24,7 @@ class ZTOHFactory:
         done_section = 2
         refresh_map = 3
         refresh_links = 4
-        refresh_puml = 5
+        refresh_uml = 5
         help = 6
 
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
@@ -45,8 +45,8 @@ class ZTOHFactory:
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_links.name:
             yield self.refresh_links_processor()
-        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_puml.name:
-            yield self.refresh_puml_processor()
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_uml.name:
+            yield self.refresh_uml_processor()
         elif cmd == "help":
             yield self.help_processor()
         else:
@@ -72,9 +72,9 @@ class ZTOHFactory:
         """refresh_links_processor"""
         return RefreshLinksProcessor(self.persist_fs, self.process_fs, self.config_map)
 
-    def refresh_puml_processor(self):
-        """refresh_puml_processor"""
-        return RefreshPUMLProcessor(self.persist_fs, self.process_fs, self.config_map)
+    def refresh_uml_processor(self):
+        """refresh_uml_processor"""
+        return RefreshUMLProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def help_processor(self):
         """help_processor"""
