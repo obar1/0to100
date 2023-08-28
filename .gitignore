@@ -22,3 +22,6 @@ http*
 
 # idea
 .idea/**
+
+readme.sh
+*.yaml
