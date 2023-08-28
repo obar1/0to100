@@ -19,4 +19,4 @@ def test_provide__pass(get_factory_provider):
     assert actual.get_repo_path.endswith("/repo")
     assert actual.get_repo_sorted is True
     assert actual.get_repo_map_md == "map.md"
-    assert actual.get_repo_readme_puml == "readme.puml"
+    assert actual.get_repo_readme_uml == "uml.md"

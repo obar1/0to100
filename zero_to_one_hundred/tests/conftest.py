@@ -117,10 +117,15 @@ def get_args_refresh_links_processor():
 
 
 @pytest.fixture
-def get_args_refresh_puml_processor():
-    return ["runme.sh", "refresh_puml"]
+def get_args_refresh_uml_processor():
+    return ["runme.sh", "refresh_uml"]
 
 
 @pytest.fixture
 def get_args_help_processor():
     return ["runme.sh", "help"]
+
+
+@pytest.fixture
+def get_bad_args():
+    return ["runme.sh", "xyz"]

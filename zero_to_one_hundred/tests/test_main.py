@@ -13,9 +13,10 @@ def test_run_main(
     get_args_create_section_processor,
     get_args_done_section_processor,
     get_args_refresh_links_processor,
-    get_args_refresh_puml_processor,
+    get_args_refresh_uml_processor,
     get_args_refresh_map_processor,
     get_args_help_processor,
+    get_bad_args
 ):
     """logical seq"""
     process_fs.debug_Y_N = True
@@ -25,5 +26,6 @@ def test_run_main(
     run_main(get_args_done_section_processor + [http_url_3])
     run_main(get_args_refresh_links_processor)
     run_main(get_args_refresh_map_processor)
-    run_main(get_args_refresh_puml_processor)
+    run_main(get_args_refresh_uml_processor)
     run_main(get_args_help_processor)
+    run_main(get_bad_args)
