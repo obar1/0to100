@@ -34,6 +34,11 @@ def http_url_3():
 
 
 @pytest.fixture
+def http_url_4():
+    yield "https://www.cloudskillsboost.google/products/labs"
+
+
+@pytest.fixture
 def get_test_path():
     os_path_dirname = os.path.dirname(os.path.abspath(__file__))
     yield os_path_dirname
