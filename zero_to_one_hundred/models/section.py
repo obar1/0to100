@@ -195,3 +195,15 @@ class Section:
              ':snake:' if self.is_game else None,
              ':pushpin:']
         return next(item for item in a if item is not None)
+
+    @classmethod
+    def get_legend_as_md(cls):
+        return """
+:cyclone: if is_quest
+:floppy_disk: if is_lab
+:whale: if is_template
+:snake: if is_game
+:pushpin: else
+
+:green_heart: completed
+:footprints: wip"""

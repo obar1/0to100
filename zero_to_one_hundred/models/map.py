@@ -50,7 +50,11 @@ class Map:
         txt.append(
             f"""
 # {self.readme_md}
+
 > sorted:{self.config_map.get_repo_sorted}
+
+> legend:{Section.get_legend_as_md()}
+
 {self.__repr_flatten(self.sections, as_sorted)}
         """
         )
