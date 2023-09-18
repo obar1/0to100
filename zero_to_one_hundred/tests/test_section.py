@@ -25,3 +25,23 @@ def test_build_from_dir(get_config_map, simple_http, simple_dir):
         ).dir_name
         == simple_dir
     )
+
+def test_section_is_quest(get_config_map):
+    http_url = 'https://www.cloudskillsboost.google/quests/257'
+    actual = Section(persist_fs, process_fs, get_config_map, http_url)
+    assert actual.is_quest
+
+def test_section_is_lab(get_config_map):
+    http_url = 'https://www.cloudskillsboost.google/course_sessions/3062553/labs'
+    actual = Section(persist_fs, process_fs, get_config_map, http_url)
+    assert actual.is_lab
+
+def test_section_is_template(get_config_map):
+    http_url = 'https://www.cloudskillsboost.google/course_templates/536'
+    actual = Section(persist_fs, process_fs, get_config_map, http_url)
+    assert actual.is_template
+
+def test_section_is_gamee(get_config_map):
+    http_url = 'https://www.cloudskillsboost.google/games/4423'
+    actual = Section(persist_fs, process_fs, get_config_map, http_url)
+    assert actual.is_game

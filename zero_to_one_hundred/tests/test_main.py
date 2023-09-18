@@ -10,6 +10,7 @@ def test_run_main(
     http_url,
     http_url_2,
     http_url_3,
+    http_url_4,
     get_args_create_section_processor,
     get_args_done_section_processor,
     get_args_refresh_links_processor,
@@ -24,6 +25,7 @@ def test_run_main(
     run_main(get_args_create_section_processor + [http_url_2])
     run_main(get_args_create_section_processor + [http_url_3])
     run_main(get_args_done_section_processor + [http_url_3])
+    run_main(get_args_create_section_processor + [http_url_4])
     run_main(get_args_refresh_links_processor)
     run_main(get_args_refresh_map_processor)
     run_main(get_args_refresh_uml_processor)

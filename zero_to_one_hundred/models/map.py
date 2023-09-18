@@ -2,7 +2,7 @@
 map md with list of sections as from fs
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,C3001
-from typing import List
+from typing import Callable, List
 
 from configs.config import ConfigMap
 from models.section import Section
@@ -27,13 +27,15 @@ class Map:
         """transf as"""
         # 1. <https://cloud.google.com/api-gateway/docs/about-ap
         # i-gateway> :ok: [`here`](../https§§§cloud.google.com§/readme.md)
-        lambda_flatten_section = (
+        lambda_flatten_section: Callable[[Section], str] = (
             lambda s: "1. "
             + s.get_id_name
             + " [`here`](./"
             + s.get_dir_name
             + "/readme.md)"
-            + s.get_done
+            + s.get_done_as_md
+            + ' '
+            + s.get_format_as_md
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
         return (

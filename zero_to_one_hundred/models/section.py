@@ -12,9 +12,10 @@ from models.readme_md import ReadMeMD
 class Section:
     """Section."""
 
-    epub_suffix = ".epub"
-    HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
-    GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
+    epub_suffix  :str =  ".epub"
+    HTTP_OREILLY :str =  "https://learning.oreilly.com/library/cover"
+    GENERIC_HTTP_OREILLY  :str = "https://learning.oreilly.com/library/"
+    HTTTP_CLOUDSKILLSBOOST :str = "https://www.cloudskillsboost.google"
 
     def __init__(
         self,
@@ -42,7 +43,7 @@ class Section:
         return self.http_url
 
     @property
-    def get_done(self):
+    def get_done_as_md(self):
         return " :green_heart:" if self.is_done else " :footprints:"
 
     @property
@@ -162,8 +163,35 @@ class Section:
             if len(not_null)==1: # take default header
                 res = not_null[0]
             if len(not_null)>1: # take first one header found
-                res = not_null[1]                
+                res = not_null[1]
         except:
             logging.debug(readme_md)
             res = "TODO:"
         return res
+
+
+    @property
+    def is_quest(self):
+        return "/quests"  in self.http_url
+
+    @property
+    def is_lab(self):
+        return '/labs' in self.http_url
+
+    @property
+    def is_template(self):
+        return "/course_templates" in self.http_url
+
+    @property
+    def is_game(self):
+        return "/games" in self.http_url
+
+
+    @property
+    def get_format_as_md(self):
+        a = [':cyclone:' if self.is_quest else None,
+             ':floppy_disk:' if self.is_lab else None,
+             ':whale:' if self.is_template else None,
+             ':snake:' if self.is_game else None,
+             ':pushpin:']
+        return next(item for item in a if item is not None)
