@@ -107,22 +107,12 @@ class Section:
         """refresh_links"""
 
         def convert(line):
-            """convert to [http://](http:§§/...readme) or leave as it is"""
+            """convert to [http://](http:§§/...readme) or leave as it is
+            1 level only -assert """
+            res = line
             if str(line).strip("\n").startswith("https://"):
-                return (
-                    "["
-                    + str(line).strip("\n")
-                    + "](/"
-                    + Section(
-                        self.persist_fs,
-                        self.process_fs,
-                        self.config_map,
-                        str(line).strip("\n"),
-                    ).dir_readme_md
-                    + ")\n"
-                )
-
-            return line
+                res ="["+ str(line).strip("\n")+ "](../"+ Section(self.persist_fs,self.process_fs,self.config_map,str(line).strip("\n"),).dir_readme_md+ ")\n"
+            return res
 
         readme_md: ReadMeMD = ReadMeMD(
             self.persist_fs,
@@ -134,7 +124,7 @@ class Section:
         lines_converted = []
         for line in readme_md.read():
             lines_converted.append(convert(line))
-        return lines_converted
+        readme_md.write(txt = lines_converted)
 
 
     def find_header(self):
@@ -162,7 +152,7 @@ class Section:
             if len(not_null)==1: # take default header
                 res = not_null[0]
             if len(not_null)>1: # take first one header found
-                res = not_null[1]                
+                res = not_null[1]
         except:
             logging.debug(readme_md)
             res = "TODO:"
