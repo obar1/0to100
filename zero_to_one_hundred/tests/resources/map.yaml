@@ -2,5 +2,4 @@ type: map
 repo:
   path: './repo'
   map_md: map.md
-  uml_md: uml.md
   sorted : true

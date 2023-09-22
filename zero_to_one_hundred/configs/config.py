@@ -44,8 +44,6 @@ class ConfigMap(Config):
     def __init__(self, persist_fs, map_yaml_path):
         """init"""
         super().__init__(map_yaml_path, persist_fs)
-        self.get_repo_readme_uml = "uml.md"
-        # TODO: put in the yaml
 
     @property
     def get_repo_path(self):
@@ -61,8 +59,3 @@ class ConfigMap(Config):
     def get_repo_sorted(self) -> bool:
         """T Returns sorted."""
         return bool(self.load["repo"]["sorted"])
-
-    @property
-    def get_repo_uml_md(self):
-        """T Returns map_md."""
-        return self.load["repo"]["uml_md"]

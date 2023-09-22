@@ -14,7 +14,6 @@ def test_run_main(
     get_args_create_section_processor,
     get_args_done_section_processor,
     get_args_refresh_links_processor,
-    get_args_refresh_uml_processor,
     get_args_refresh_map_processor,
     get_args_help_processor,
     get_bad_args
@@ -28,6 +27,5 @@ def test_run_main(
     run_main(get_args_create_section_processor + [http_url_4])
     run_main(get_args_refresh_links_processor)
     run_main(get_args_refresh_map_processor)
-    run_main(get_args_refresh_uml_processor)
     run_main(get_args_help_processor)
     run_main(get_bad_args)

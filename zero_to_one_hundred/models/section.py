@@ -58,9 +58,11 @@ class Section:
         return self.find_header().strip("\n")
 
     @classmethod
-    def __from_dir_to_http_url(cls, http_url):
-        return (
-            http_url.replace("/", "§")
+    def __from_dir_to_http_url(cls, http_url: str):
+        path =  http_url[0: http_url.index('https://')]
+        http=http_url[http_url.index('https://'):]
+        res = (path +
+            http.replace("/", "§")
             .replace("<", "§")
             .replace(">", "§")
             .replace(":", "§")
@@ -68,6 +70,7 @@ class Section:
             .replace("*", "§")
             .replace("\\", "§")
         )
+        return res
 
     def write(self):
         return self.persist_fs.make_dirs(
@@ -81,7 +84,7 @@ class Section:
 
     @classmethod
     def from_dir_to_http_url_to(cls, dir_name):
-        return dir_name.replace("§", "/").replace("https///", "https://").replace("http///", "http://")
+        return dir_name.replace("§", "/").replace("https///", "https://")
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
@@ -112,7 +115,7 @@ class Section:
         """refresh_links"""
 
         def convert(line):
-            """convert to [http://](http:§§/...readme) or leave as it is
+            """convert to [https://](https:§§§...readme) or leave as it is
             1 level only -assert """
             res = line
             if str(line).strip("\n").startswith("https://"):

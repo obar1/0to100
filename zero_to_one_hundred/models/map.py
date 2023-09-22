@@ -30,7 +30,7 @@ class Map:
         lambda_flatten_section: Callable[[Section], str] = (
             lambda s: "1. "
             + s.get_id_name
-            + " [`here`](./"
+            + " [`here`](file://"
             + s.get_dir_name
             + "/readme.md)"
             + s.get_done_as_md
@@ -38,11 +38,7 @@ class Map:
             + s.get_format_as_md
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
-        return (
-            "\n".join(sorted(flattened_sections))
-            if as_sorted
-            else "\n".join(flattened_sections)
-        )
+        return "\n".join(flattened_sections)
 
     def write(self, as_sorted):
         # init with list of sections found
