@@ -61,7 +61,7 @@ class Section:
     def __from_dir_to_http_url(cls, http_url: str):
         path =  http_url[0: http_url.index('https://')]
         http=http_url[http_url.index('https://'):]
-        res = (path +
+        res = (
             http.replace("/", "§")
             .replace("<", "§")
             .replace(">", "§")

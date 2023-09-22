@@ -30,7 +30,7 @@ class Map:
         lambda_flatten_section: Callable[[Section], str] = (
             lambda s: "1. "
             + s.get_id_name
-            + " [`here`](file://"
+            + " [`here`]("
             + s.get_dir_name
             + "/readme.md)"
             + s.get_done_as_md
