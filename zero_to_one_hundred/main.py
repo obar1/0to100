@@ -27,8 +27,6 @@ def run_main(argv: List[str]):
         logging.debug("help")
         return factory.help_processor().process()
 
-
-
 if __name__ == "__main__":
     logging.basicConfig(format="%(levelname)s:%(message)s",
                         level=logging.DEBUG)

@@ -20,22 +20,22 @@ def callattr_ahead_of_alltests():
 
 @pytest.fixture
 def http_url():
-    yield "http://cloud.google.com/docs"
+    yield "https://cloud.google.com/abc"
 
 
 @pytest.fixture
 def http_url_2():
-    yield "https://cloud.google.com/products"
+    yield "https://cloud.google.com/zzz"
 
 
 @pytest.fixture
 def http_url_3():
-    yield "https://cloud.google.com/products/bq"
+    yield "https://cloud.google.com/zzz/123"
 
 
 @pytest.fixture
 def http_url_4():
-    yield "https://www.cloudskillsboost.google/products/labs"
+    yield "https://cloudskillsboost.google/"
 
 
 @pytest.fixture
@@ -119,11 +119,6 @@ def get_args_refresh_map_processor():
 @pytest.fixture
 def get_args_refresh_links_processor():
     return ["runme.sh", "refresh_links"]
-
-
-@pytest.fixture
-def get_args_refresh_uml_processor():
-    return ["runme.sh", "refresh_uml"]
 
 
 @pytest.fixture

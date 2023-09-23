@@ -1,5 +1,5 @@
 """RefreshLinksProcessor:
-in each md there are links to http://
+in each md there are links to https://
 when some of them are added as new_section
 replace them with the location of the new_section ...
 """

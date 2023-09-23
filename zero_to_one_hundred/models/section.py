@@ -3,6 +3,8 @@ new_section od disk
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
+import os
+import datetime
 import random
 
 from configs.config import ConfigMap
@@ -33,6 +35,7 @@ class Section:
         self.dir_name = self.__from_dir_to_http_url(http_url)
         self.dir_readme_md = self.dir_name + "/readme.md"
         self.is_done = is_done
+
 
     def __repr__(self):
         """repr"""
@@ -77,8 +80,8 @@ class Section:
         )
 
     @classmethod
-    def from_http_url_to_dir(cls, dir_name):
-        return dir_name.replace("https///", "https://").replace("http///", "http://").replace("§", "/")
+    def from_dir_to_http_url_to(cls, dir_name):
+        return dir_name.replace("§", "/").replace("https///", "https://")
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
@@ -90,11 +93,12 @@ class Section:
 
     @classmethod
     def build_from_dir(cls, persist_fs, process_fs, config_map: ConfigMap, dir_name):
+        http_url = cls.from_dir_to_http_url_to(dir_name)
         return Section(
             persist_fs,
             process_fs,
             config_map,
-            cls.from_http_url_to_dir(dir_name),
+            http_url,
             cls.done_section_status(
                 persist_fs, config_map.get_repo_path, dir_name),
         )
@@ -108,7 +112,7 @@ class Section:
         """refresh_links"""
 
         def convert(line):
-            """convert to [http://](http:§§/...readme) or leave as it is
+            """convert to [https://](https:§§§...readme) or leave as it is
             1 level only -assert """
             res = line
             if str(line).strip("\n").startswith("https://"):
@@ -197,3 +201,13 @@ class Section:
 
 :green_heart: completed
 :footprints: wip"""
+
+    def __eq__(self, other):
+        if other is self:
+            return True
+
+        if type(other) is not type(self):
+            # delegate to superclass
+            return NotImplemented
+
+        return other.http_url == self.http_url and   other.dir_name==self. dir_name and  other.dir_readme_md == self.dir_readme_md and other.is_done == self.is_done
