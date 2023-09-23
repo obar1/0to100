@@ -58,11 +58,9 @@ class Section:
         return self.find_header().strip("\n")
 
     @classmethod
-    def __from_dir_to_http_url(cls, http_url: str):
-        path =  http_url[0: http_url.index('https://')]
-        http=http_url[http_url.index('https://'):]
-        res = (
-            http.replace("/", "§")
+    def __from_dir_to_http_url(cls, http_url):
+        return (
+            http_url.replace("/", "§")
             .replace("<", "§")
             .replace(">", "§")
             .replace(":", "§")
@@ -70,7 +68,6 @@ class Section:
             .replace("*", "§")
             .replace("\\", "§")
         )
-        return res
 
     def write(self):
         return self.persist_fs.make_dirs(

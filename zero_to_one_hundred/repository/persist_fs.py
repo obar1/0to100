@@ -20,7 +20,7 @@ class PersistFS:
         logging.info(f"list_dirs {path}")
         files = [ os.path.join(path, name)  for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
         files.sort(key=lambda x: os.path.getmtime(x))
-        return files
+        return [f[len(path)+1:] for f in files]
 
     @classmethod
     def get_dir_name(cls, filename):
