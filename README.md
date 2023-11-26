@@ -73,6 +73,12 @@ bash runme.sh refresh_map
 ```bash
 bash runme.sh refresh_links
 ```
+-  refresh puml
+
+```bash
+bash runme.sh refresh_puml
+```
+![](a0892483-ce6f-4ab1-bbd3-99f5ad7e7e8b.png)
 
 - help
 

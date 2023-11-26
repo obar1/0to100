@@ -20,7 +20,7 @@ class PersistFS:
         logging.info(f"list_dirs {path}")
         files = [ os.path.join(path, name)  for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
         files.sort(key=lambda x: os.path.getmtime(x))
-        return [f[len(path)+1:] for f in files]
+        return [f[len(path)+1:] for f in files] 
 
     @classmethod
     def get_dir_name(cls, filename):
@@ -51,7 +51,7 @@ class PersistFS:
             logging.info(f"_skip {path}")
             return None
         logging.info(f"_create {path}")
-        return os.makedirs(path, 0o777, False)
+        return os.makedirs(path, 0o777, True)
 
     @classmethod
     def read_file(cls, filename) -> List[str]:
@@ -89,10 +89,12 @@ class PersistFS:
         path = path + os.sep + ".done"
         logging.info(f"path {path}")
         if os.path.exists(path):
-            logging.info(f"skip {path}")
-        else:
-            os.makedirs(path, 0o777, False)
+            logging.info(f"found {path}")
+            os.makedirs(path, 0o777, True)
+            with open('{}/.gitkeep'.format(path), "a"):
+                os.utime('{}/.gitkeep'.format(path), None)
             logging.info(f"created {path}")
+            
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):

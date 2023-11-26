@@ -25,3 +25,5 @@ http*
 
 readme.sh
 *.yaml
+
+*.attrs
