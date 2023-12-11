@@ -28,3 +28,8 @@ readme.sh
 *.yaml
 
 *.attrs
+
+# demo
+0to100/
+0to100_sb/
+0*/

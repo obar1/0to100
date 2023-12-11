@@ -1,6 +1,4 @@
-# 0to100
-
-> 0 to 100 ... learn anything from webresources (and not)
+# readme
 
 ![](https://github.com/obar1/0to100/actions/workflows/pytest.yml/badge.svg)
 
@@ -8,118 +6,110 @@
 
 ![Obsidian](https://img.shields.io/badge/Obsidian-%23483699.svg?style=for-the-badge&logo=obsidian&logoColor=white)
 
-## 1st time usage:
+## oto100
+
+0 to 100 ... learn anything from webresources (and not)
+
+### 1st time usage:
 
 ```bash
+# env
 python -m venv .venv
-. venv/bin/activate
+. .venv/bin/activate
 pip install -r requirements.txt
+
+# copy sample yaml conf
+cp ./zero_to_one_hundred/tests/resources/map.yaml .
+cat map.yaml
+```
+![](ab67dd2b-7c12-4cdf-a7a5-f773c2b67919.png)
+
+```bash
+export MAP_YAML_PATH='map.yaml' && python ./main.py help
+# tip:  add it to .bash_rc etc or some shell script 
 ```
 
-## daily usage:
+![](50a86373-910b-4a12-85ef-251b6d4f08f0.png)
 
--  create new section
+
+### daily usage:
+
+- create new section
 
 ```bash
+export MAP_YAML_PATH='map.yaml'
+
 url=https://cloud.google.com/docs
-bash runme.sh create_section $url
+python ./main.py create_section $url
+
 url=https://cloud.google.com/help
-bash runme.sh create_section $url
+python ./main.py create_section $url
 #...etc
 ```
--  refresh sections
+![](9b873c30-eccb-4c17-9d36-1c302060f5c3.png)
+
+ 
+## oto100 safari books :construction:
+
+0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
+
+### 0th time usage:
+
+https://github.com/lorenzodifuccia/safaribooks
+
+> just a sample
+![](a1aef2bb-ce75-4288-8051-512ca8865522.png)
+
+### 1st time usage:
 
 ```bash
-bash runme.sh refresh_map
+# env
+python -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+
+# copy sample yaml conf
+cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
+cat map.yaml
+
 ```
--  refresh links
+![](a4b09e11-9f1f-4098-a4e2-77d6df85226a.png)
 
 ```bash
-bash runme.sh refresh_links
+vim map.yaml
+# add your membership details :) 
+
+export MAP_YAML_PATH='map.yaml' && python ./main_sb.py help
+
+# tip:  add it to .bash_rc etc or some shell script 
 ```
--  refresh puml
+
+![](63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
+
+### daily usage:
+
+- create new meta book
 
 ```bash
-bash runme.sh refresh_puml
+export MAP_YAML_PATH='map.yaml'
+
+url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
+python ./main_sb.py create_meta_book $url
+
+
 ```
-![](a0892483-ce6f-4ab1-bbd3-99f5ad7e7e8b.png)
+> add your membership details :) and it will work
 
-- help
+![](c81254c5-058e-419a-b9c3-e967be2e5302.png)
 
-```bash
-bash runme.sh help
-```
+ 
+
+>ex with mine :)
+
+![](image.png)
 
 
-## As developer:
+and you have a `toc.md` for free to use as index
 
-### Installation:
+![](d05502bb-4b90-422f-9624-568d9f02cd08.png)
 
-check Makefile [here](./Makefile) to gets started
-
-### Contributing //vscode
-
-look into
-```bash
-cd zero_to_one_hundred/tests
-pytest --log-cli-level=DEBUG --capture=tee-sys ./test_main.py
-```
-
-to start with
-
-#### Debug
-
-- sample of `.vscode/launch.json`
-```json
-{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "env": {
-                "CONFIG_FILE": "./map.yaml",
-                "ZEROto100py": "./zero_to_one_hundred/main.py"
-            },
-            "args": [
-                "help"
-            ]
-        }
-    ]
-}
-
-or
-{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "env": {
-                "CONFIG_FILE": "./map.yaml",
-                "ZEROto100py": "./zero_to_one_hundred/main.py"
-            },
-            "args": [
-                "create_section",
-                "https://www.cloudskillsboost.google/games"
-            ]
-        }
-    ]
-}
-```
-
-- `pytest--log-cli-level=DEBUG --capture=tee-sys`v`
