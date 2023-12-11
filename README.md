@@ -8,51 +8,15 @@
 
 ![Obsidian](https://img.shields.io/badge/Obsidian-%23483699.svg?style=for-the-badge&logo=obsidian&logoColor=white)
 
-## As user:
-
-### 1st time usage: (manual) setup
-
-- create a new folder and get
+## 1st time usage:
 
 ```bash
-wget -q https://raw.githubusercontent.com/obar1/0to100/main/setup.sh
+python -m venv .venv
+. venv/bin/activate
+pip install -r requirements.txt
 ```
 
-- check latest tag values at https://github.com/obar1/0to100/tags
-
-or if you have [lynx](https://simple.wikipedia.org/wiki/Lynx_(web_browser)) or similar installed
-
-```bash
-lynx -dump https://github.com/obar1/0to100/tags | grep tags | uniq | sort
-```
-
-- install :bowtie: the tag
-
-```bash
-bash setup.sh [tag] [target_dir]
-```
-> [target_dir] can be set to `.` to use the current folder
-
-- install req
-> add/set env if you wish
-
-```bash
-pip install -r "0to100-latest/requirements.txt"
-```
-
-- check runme.sh
-
-```bash
-bash runme.sh help
-```
-
-- optional get
-
-```bash
-wget -q https://raw.githubusercontent.com/obar1/0to100/main/test_setup/.gitignore
-```
-
-### daily usage:
+## daily usage:
 
 -  create new section
 

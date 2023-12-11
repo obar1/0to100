@@ -9,6 +9,7 @@ __pycache__/
 
 # venv
 venv/
+.venv/
 
 # local run
 map.md

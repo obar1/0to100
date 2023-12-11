@@ -2,7 +2,7 @@
 deal with FS
 mocked in Test
 """
-# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0108
 import logging
 import os
 from datetime import datetime
@@ -18,9 +18,13 @@ class PersistFS:
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-        files = [ os.path.join(path, name)  for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
+        files = [
+            os.path.join(path, name)
+            for name in os.listdir(path)
+            if os.path.isdir(os.path.join(path, name))
+        ]
         files.sort(key=lambda x: os.path.getmtime(x))
-        return [f[len(path)+1:] for f in files] 
+        return [f[len(path) + 1 :] for f in files]
 
     @classmethod
     def get_dir_name(cls, filename):
@@ -28,9 +32,9 @@ class PersistFS:
         return os.path.dirname(os.path.abspath(filename))
 
     @classmethod
-    def load_file(cls, config_file):
-        logging.info(f"load_file {config_file}")
-        with open(config_file, mode="r", encoding="UTF-8") as stream:
+    def load_file(cls, MAP_YAML_PATH):
+        logging.info(f"load_file {MAP_YAML_PATH}")
+        with open(MAP_YAML_PATH, mode="r", encoding="UTF-8") as stream:
             return yaml.safe_load(stream)
 
     @classmethod
@@ -91,10 +95,9 @@ class PersistFS:
         if os.path.exists(path):
             logging.info(f"found {path}")
             os.makedirs(path, 0o777, True)
-            with open('{}/.gitkeep'.format(path), "a"):
-                os.utime('{}/.gitkeep'.format(path), None)
+            with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
+                os.utime("{}/.gitkeep".format(path), None)
             logging.info(f"created {path}")
-            
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):

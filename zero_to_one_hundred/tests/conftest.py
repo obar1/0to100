@@ -7,9 +7,9 @@ from unittest import mock
 
 import pytest
 
-from configs.config import ConfigMap
-from factories.factory_provider import CONFIG_FILE
-from repository.persist_fs import PersistFS as persist_fs
+from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.factories.factory_provider import MAP_YAML_PATH
+from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -71,13 +71,13 @@ def get_sample_readme_md_path(get_repo_path):
 
 @pytest.fixture
 def mock_settings_env_vars(get_map_yaml_path):
-    with mock.patch.dict(os.environ, {CONFIG_FILE: get_map_yaml_path}):
+    with mock.patch.dict(os.environ, {MAP_YAML_PATH: get_map_yaml_path}):
         yield
 
 
 @pytest.fixture
 def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
-    with mock.patch.dict(os.environ, {CONFIG_FILE: get_unsupported_map_yaml_path}):
+    with mock.patch.dict(os.environ, {MAP_YAML_PATH: get_unsupported_map_yaml_path}):
         yield
 
 

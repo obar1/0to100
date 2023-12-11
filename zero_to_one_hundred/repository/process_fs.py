@@ -7,7 +7,7 @@ import logging
 import shlex
 import subprocess
 
-from configs.config import ConfigMap
+from zero_to_one_hundred.configs.config_map import ConfigMap
 
 
 class ProcessFS:

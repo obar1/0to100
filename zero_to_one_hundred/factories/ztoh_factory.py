@@ -4,13 +4,15 @@ factory with implemented functionality
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
 
-from configs.config import ConfigMap
-from processors.create_section_processor import CreateSectionProcessor
-from processors.done_section_processor import DoneSectionProcessor
-from processors.refresh_links_processor import RefreshLinksProcessor
-from processors.refresh_map_processor import RefreshMapProcessor
-from processors.help_processor import HelpProcessor
-from processors.unsupported_processor import UnsupportedProcessor
+from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.processors.create_section_processor import (
+    CreateSectionProcessor,
+)
+from zero_to_one_hundred.processors.done_section_processor import DoneSectionProcessor
+from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
+from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
+from zero_to_one_hundred.processors.help_processor import HelpProcessor
+from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
 
 
 class ZTOHFactory:
@@ -43,7 +45,7 @@ class ZTOHFactory:
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_links.name:
             yield self.refresh_links_processor()
-        elif cmd == "help":
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:
             yield self.unsupported_processor(cmd)

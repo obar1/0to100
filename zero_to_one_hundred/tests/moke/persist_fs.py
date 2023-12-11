@@ -39,16 +39,16 @@ class PersistFS(_PersistFS):
         logging.info(f"get_dir_name {filename}")
 
     @classmethod
-    def load_file(cls, config_file):
-        logging.info(f"load_file {config_file}")
-        if config_file.endswith("unsupported_map.yaml"):
+    def load_file(cls, MAP_YAML_PATH):
+        logging.info(f"load_file {MAP_YAML_PATH}")
+        if MAP_YAML_PATH.endswith("unsupported_map.yaml"):
             return {"type": "not_a_map", "lib": {"path": "./repo"}}
-        if config_file.endswith("map.yaml"):
+        if MAP_YAML_PATH.endswith("map.yaml"):
             return {
                 "type": "map",
                 "repo": {"path": "./repo", "map_md": "map.md", "sorted": True},
             }
-        raise ValueError(f"{config_file} not supported")
+        raise ValueError(f"{MAP_YAML_PATH} not supported")
 
     @classmethod
     def write_file(cls, filename, txt):

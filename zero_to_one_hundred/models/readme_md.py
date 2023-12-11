@@ -3,7 +3,7 @@ a readme md with http and ref
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 
-from configs.config import ConfigMap
+from zero_to_one_hundred.configs.config_map import ConfigMap
 
 
 class ReadMeMD:
@@ -30,9 +30,7 @@ class ReadMeMD:
         # > https://cloud.google.com/api-gateway/docs
         if txt is None:
             txt = []
-            txt.append(
-                f"""# <{self.dir_name}>\n> <{self.http_url}>\n"""
-            )
+            txt.append(f"""# <{self.dir_name}>\n> <{self.http_url}>\n""")
         return self.persist_fs.write_file(self.readme_md, txt)
 
     def read(self):
