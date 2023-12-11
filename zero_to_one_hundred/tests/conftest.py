@@ -14,7 +14,7 @@ from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
 
 @pytest.fixture(scope="session", autouse=True)
 def callattr_ahead_of_alltests():
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.debug)
+    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
     yield
 
 
