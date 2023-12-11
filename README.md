@@ -1,10 +1,8 @@
 # readme
 
-![](https://github.com/obar1/0to100/actions/workflows/makefile.yml/badge.svg)
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1)
-
-![Obsidian](https://img.shields.io/badge/Obsidian-%23483699.svg?style=for-the-badge&logo=obsidian&logoColor=white)
+| SQ        | CI     | CodeSpace |
+|--------------|-----------|------------|
+| [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=obar1_0to100)](https://sonarcloud.io/summary/new_code?id=obar1_0to100) | ![](https://github.com/obar1/0to100/actions/workflows/makefile.yml/badge.svg)     | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1)       |
 
 ## oto100
 
