@@ -9,6 +9,7 @@ import pytest
 
 SAFARI_BOOKS = "safari-books"
 MAP_YAML_PATH = "MAP_YAML_PATH"
+RUNME = "RUNME"
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -77,19 +78,19 @@ def mock_secret_map_yaml_env_vars(get_secret_map_yaml_path):
 
 @pytest.fixture
 def get_args_create_meta_book_processor():
-    return ["runme.sh", "create_meta_book"]
+    return [RUNME, "create_meta_book"]
 
 
 @pytest.fixture
 def get_args_refresh_toc_processor():
-    return ["runme.sh", "refresh_toc"]
+    return [RUNME, "refresh_toc"]
 
 
 @pytest.fixture
 def get_args_help_processor():
-    return ["runme.sh", "help"]
+    return [RUNME, "help"]
 
 
 @pytest.fixture
 def get_args_unsupported_processor():
-    return ["runme.sh", "something"]
+    return [RUNME, "something"]

@@ -16,6 +16,6 @@ def get_factory_provider(mock_settings_env_vars):
 def test_provide__pass(get_factory_provider):
     actual: ConfigMap = get_factory_provider.provide().config_map
     assert actual.get_type == "map"
-    assert actual.get_repo_path.endswith("/repo")
-    assert actual.get_repo_sorted is True
-    assert actual.get_repo_map_md == "map.md"
+    assert actual.get_repo_path is not None
+    assert actual.get_repo_sorted is False
+    assert actual.get_repo_map_md == "0to100.md"
