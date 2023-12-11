@@ -2,7 +2,7 @@
 factory with implemented functionality
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import logging
+
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.processors.create_section_processor import (
@@ -35,7 +35,7 @@ class ZTOHFactory:
 
     def get_processor(self, args):
         """get the processor"""
-        logging.debug(f"args {args}")
+        print(f"args {args}")
         cmd = args[1]
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(args[2])

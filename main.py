@@ -2,7 +2,7 @@
 main
 """
 
-import logging
+
 import sys
 from typing import List
 
@@ -19,16 +19,15 @@ def run_main(argv: List[str]):
         [p.process() for p in factory.get_processor(argv) if p]
 
     except AssertionError:
-        logging.error("set env for MAP_YAML_PATH with map.yaml path")
+        print("set env for MAP_YAML_PATH with map.yaml path")
     except IndexError:
-        logging.critical(f"check the params {sys.argv}")
+        print(f"check the params {sys.argv}")
     except ModuleNotFoundError:
-        logging.critical("??? have you installed all the dep")
+        print("??? have you installed all the dep")
     except (ValueError, TypeError):
-        logging.debug("help")
+        print("help")
         return factory.help_processor().process()
 
 
 if __name__ == "__main__":
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
     run_main(sys.argv)

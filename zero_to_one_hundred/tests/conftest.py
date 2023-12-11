@@ -1,7 +1,7 @@
 """Conftest module."""
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
 
-import logging
+
 import os
 from unittest import mock
 
@@ -10,12 +10,6 @@ import pytest
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.factories.factory_provider import MAP_YAML_PATH
 from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
-
-
-@pytest.fixture(scope="session", autouse=True)
-def callattr_ahead_of_alltests():
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
-    yield
 
 
 @pytest.fixture

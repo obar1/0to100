@@ -2,7 +2,7 @@
 new_section od disk
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import logging
+
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
@@ -100,7 +100,7 @@ class Section:
 
     @classmethod
     def is_valid_dir(cls, curr_dir: str):
-        logging.debug(curr_dir)
+        print(curr_dir)
         return True if curr_dir.count("http") > 0 else False
 
     def refresh_links(self):
@@ -163,7 +163,7 @@ class Section:
             if len(not_null) > 1:  # take first one header found
                 res = not_null[1]
         except:
-            logging.debug(readme_md)
+            print(readme_md)
             res = "TODO:"
         return res
 

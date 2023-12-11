@@ -4,7 +4,7 @@ when some of them are added as new_section
 replace them with the location of the new_section ...
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import logging
+
 from typing import List
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap

@@ -1,7 +1,6 @@
 """Conftest module."""
 
 
-import logging
 import os
 from unittest import mock
 
@@ -10,12 +9,6 @@ import pytest
 SAFARI_BOOKS = "safari-books"
 MAP_YAML_PATH = "MAP_YAML_PATH"
 RUNME = "RUNME"
-
-
-@pytest.fixture(scope="session", autouse=True)
-def callattr_ahead_of_alltests():
-    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
-    yield
 
 
 @pytest.fixture

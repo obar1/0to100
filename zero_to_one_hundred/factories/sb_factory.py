@@ -2,7 +2,6 @@
 factory with implemented functionality
 """
 
-import logging
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.processors.create_meta_book_processor import (
@@ -35,7 +34,7 @@ class SBFactory:
 
     def get_processor(self, args):
         """get the processor"""
-        logging.debug(f"args {args}")
+        print(f"args {args}")
         cmd = args[1]
         if cmd == SBFactory.SUPPORTED_PROCESSOR.create_meta_book.name:
             yield self.create_meta_book_processor(args[2])
