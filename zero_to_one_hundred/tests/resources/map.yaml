@@ -1,5 +1,5 @@
 type: map
 repo:
-  path: './repo'
-  map_md: map.md
-  sorted : true
+  path: "./0to100"
+  map_md: "0to100.md"
+  sorted: false

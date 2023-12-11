@@ -4,18 +4,18 @@ when some of them are added as new_section
 replace them with the location of the new_section ...
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import logging
+
 from typing import List
 
-from configs.config import ConfigMap
-from models.map import Map
-from models.section import Section
+from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
+from zero_to_one_hundred.models.map import Map
+from zero_to_one_hundred.models.section import Section
 
 
 class RefreshLinksProcessor:
     """RefreshLinksProcessor"""
 
-    def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
+    def __init__(self, persist_fs, process_fs, config_map: SBConfigMap):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -33,4 +33,4 @@ class RefreshLinksProcessor:
             try:
                 s.refresh_links()
             except:
-                logging.warn(f"issue with {s}")
+                logging.warning(f"issue with {s}")

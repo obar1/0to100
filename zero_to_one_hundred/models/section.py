@@ -2,22 +2,19 @@
 new_section od disk
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import logging
-import os
-import datetime
-import random
 
-from configs.config import ConfigMap
-from models.readme_md import ReadMeMD
+
+from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.models.readme_md import ReadMeMD
 
 
 class Section:
     """Section."""
 
-    epub_suffix  :str =  ".epub"
-    HTTP_OREILLY :str =  "https://learning.oreilly.com/library/cover"
-    GENERIC_HTTP_OREILLY  :str = "https://learning.oreilly.com/library/"
-    HTTTP_CLOUDSKILLSBOOST :str = "https://www.cloudskillsboost.google"
+    epub_suffix: str = ".epub"
+    HTTP_OREILLY: str = "https://learning.oreilly.com/library/cover"
+    GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"
+    HTTTP_CLOUDSKILLSBOOST: str = "https://www.cloudskillsboost.google"
 
     def __init__(
         self,
@@ -35,7 +32,6 @@ class Section:
         self.dir_name = self.__from_dir_to_http_url(http_url)
         self.dir_readme_md = self.dir_name + "/readme.md"
         self.is_done = is_done
-
 
     def __repr__(self):
         """repr"""
@@ -99,24 +95,34 @@ class Section:
             process_fs,
             config_map,
             http_url,
-            cls.done_section_status(
-                persist_fs, config_map.get_repo_path, dir_name),
+            cls.done_section_status(persist_fs, config_map.get_repo_path, dir_name),
         )
 
     @classmethod
-    def is_valid_dir(cls, curr_dir:str):
-        logging.debug(curr_dir)
-        return True if curr_dir.count('http')>0 else False
+    def is_valid_dir(cls, curr_dir: str):
+        print(curr_dir)
+        return True if curr_dir.count("http") > 0 else False
 
     def refresh_links(self):
         """refresh_links"""
 
         def convert(line):
             """convert to [https://](https:§§§...readme) or leave as it is
-            1 level only -assert """
+            1 level only -assert"""
             res = line
             if str(line).strip("\n").startswith("https://"):
-                res ="["+ str(line).strip("\n")+ "](../"+ Section(self.persist_fs,self.process_fs,self.config_map,str(line).strip("\n"),).dir_readme_md+ ")\n"
+                res = (
+                    "["
+                    + str(line).strip("\n")
+                    + "](../"
+                    + Section(
+                        self.persist_fs,
+                        self.process_fs,
+                        self.config_map,
+                        str(line).strip("\n"),
+                    ).dir_readme_md
+                    + ")\n"
+                )
             return res
 
         readme_md: ReadMeMD = ReadMeMD(
@@ -129,11 +135,9 @@ class Section:
         lines_converted = []
         for line in readme_md.read():
             lines_converted.append(convert(line))
-        readme_md.write(txt = lines_converted)
-
+        readme_md.write(txt=lines_converted)
 
     def find_header(self):
-
         def get_header(line):
             """get header"""
             if str(line).strip("\n").startswith("# "):
@@ -152,25 +156,24 @@ class Section:
         try:
             for line in readme_md.read():
                 lines_converted.append(get_header(line))
-            headers =  lines_converted
+            headers = lines_converted
             not_null = list(filter(lambda x: x is not None, headers))
-            if len(not_null)==1: # take default header
+            if len(not_null) == 1:  # take default header
                 res = not_null[0]
-            if len(not_null)>1: # take first one header found
+            if len(not_null) > 1:  # take first one header found
                 res = not_null[1]
         except:
-            logging.debug(readme_md)
+            print(readme_md)
             res = "TODO:"
         return res
 
-
     @property
     def is_quest(self):
-        return "/quests"  in self.http_url
+        return "/quests" in self.http_url
 
     @property
     def is_lab(self):
-        return '/labs' in self.http_url
+        return "/labs" in self.http_url
 
     @property
     def is_template(self):
@@ -180,14 +183,15 @@ class Section:
     def is_game(self):
         return "/games" in self.http_url
 
-
     @property
     def get_format_as_md(self):
-        a = [':cyclone:' if self.is_quest else None,
-             ':floppy_disk:' if self.is_lab else None,
-             ':whale:' if self.is_template else None,
-             ':snake:' if self.is_game else None,
-             ':pushpin:']
+        a = [
+            ":cyclone:" if self.is_quest else None,
+            ":floppy_disk:" if self.is_lab else None,
+            ":whale:" if self.is_template else None,
+            ":snake:" if self.is_game else None,
+            ":pushpin:",
+        ]
         return next(item for item in a if item is not None)
 
     @classmethod
@@ -210,4 +214,9 @@ class Section:
             # delegate to superclass
             return NotImplemented
 
-        return other.http_url == self.http_url and   other.dir_name==self. dir_name and  other.dir_readme_md == self.dir_readme_md and other.is_done == self.is_done
+        return (
+            other.http_url == self.http_url
+            and other.dir_name == self.dir_name
+            and other.dir_readme_md == self.dir_readme_md
+            and other.is_done == self.is_done
+        )
