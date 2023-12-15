@@ -33,4 +33,4 @@ class RefreshLinksProcessor:
             try:
                 s.refresh_links()
             except:
-                logging.warning(f"issue with {s}")
+                print(f"issue with {s}")

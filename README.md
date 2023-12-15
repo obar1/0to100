@@ -19,15 +19,16 @@ pip install -r requirements.txt
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests/resources/map.yaml .
 cat map.yaml
+export MAP_YAML_PATH=$(pwd)/map.yaml
+# tip:  add it to .bash_rc etc or some shell script
+
 ```
 
 ![](ab67dd2b-7c12-4cdf-a7a5-f773c2b67919.png)
 
 ```bash
-# tip:  add it to .bash_rc etc or some shell script
-export MAP_YAML_PATH=$(pwd)/map.yaml
-python ./main.py help
-
+chmod +x *.py
+./main.py help
 ```
 
 ![](50a86373-910b-4a12-85ef-251b6d4f08f0.png)
@@ -37,13 +38,11 @@ python ./main.py help
 - create new section
 
 ```bash
-export MAP_YAML_PATH='map.yaml'
-
 url=https://cloud.google.com/docs
-python ./main.py create_section $url
+./main.py create_section $url
 
 url=https://cloud.google.com/help
-python ./main.py create_section $url
+./main.py create_section $url
 #...etc
 ```
 
@@ -55,10 +54,13 @@ python ./main.py create_section $url
 
 ### 0th time usage:
 
+> use what you prefer to  grab epub/pdf from oreilly 
 https://github.com/lorenzodifuccia/safaribooks
 
-> just a sample
-> ![](a1aef2bb-ce75-4288-8051-512ca8865522.png)
+
+> you can even save pages as you go with 
+https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaellmclnh
+
 
 ### 1st time usage:
 
@@ -71,7 +73,8 @@ pip install -r requirements.txt
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
 cat map.yaml
-
+export MAP_YAML_PATH=$(pwd)/map.yaml
+# tip:  add it to .bash_rc etc or some shell script
 ```
 
 ![](a4b09e11-9f1f-4098-a4e2-77d6df85226a.png)
@@ -79,10 +82,11 @@ cat map.yaml
 ```bash
 vim map.yaml
 # add your membership details :)
+```
 
-export MAP_YAML_PATH='map.yaml' && python ./main_sb.py help
-
-# tip:  add it to .bash_rc etc or some shell script
+```bash
+chmod +x *.py
+./main_sb.py help
 ```
 
 ![](63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
@@ -92,12 +96,8 @@ export MAP_YAML_PATH='map.yaml' && python ./main_sb.py help
 - create new meta book
 
 ```bash
-export MAP_YAML_PATH='map.yaml'
-
 url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
-python ./main_sb.py create_meta_book $url
-
-
+./main_sb.py create_meta_book $url
 ```
 
 > add your membership details :) and it will work
