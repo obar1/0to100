@@ -11,5 +11,5 @@ class UnsupportedProcessor:
         self.cmd = cmd
 
     def process(self):
-        logging.exception(f"Unsupported Processor {self.cmd}")
+        print(f"Unsupported Processor {self.cmd}")
         raise ValueError
