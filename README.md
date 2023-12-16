@@ -2,11 +2,18 @@
 
 | SQ                                                                                                                                                    | CI                                                                            | CodeSpace                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=obar1_0to100)](https://sonarcloud.io/summary/new_code?id=obar1_0to100) | ![](https://github.com/obar1/0to100/actions/workflows/makefile.yml/badge.svg) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1) |
+| [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=obar1_0to100)](https://sonarcloud.io/summary/new_code?id=obar1_0to100) | [![Makefile CI](https://github.com/obar1/0to100/actions/workflows/makefile.yml/badge.svg)](https://github.com/obar1/0to100/actions/workflows/makefile.yml) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1) |
 
 ## oto100
 
 0 to 100 ... learn anything from webresources (and not)
+
+in a nutshell: you read training material from the web and learn from it by doing.
+Given a `url` it creates the entry in a markdown **map** and link that to it, in this way you can easily jump between different sections inside your ide of preference; as you expand the map with new contents you build some reference material you keep it local all the time and you can search on
+
+current commands:
+help:
+['create_section', 'done_section', 'refresh_map', 'refresh_links', 'help']
 
 ### 1st time usage:
 
@@ -51,6 +58,14 @@ url=https://cloud.google.com/help
 ## oto100 safari books :construction:
 
 0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
+
+in a nutshell: you read training material from the oreilly and learn from it by doing.
+Given a `url` it creates the entry in a markdown **map** and link that to it, in this way you can easily jump between different sections inside your ide of preference; as you expand the map with new contents you build some reference material you keep it local all the time and you can search on
+
+current commands:
+
+help:
+['create_meta_book', 'refresh_toc', 'help']
 
 ### 0th time usage:
 
