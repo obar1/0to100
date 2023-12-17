@@ -8,10 +8,7 @@ from zero_to_one_hundred.models.map import Map
 
 
 class RefreshMapProcessor:
-    """RefreshMapProcessor"""
-
     def __init__(self, persist_fs, process_fs, config_map: SBConfigMap):
-        """init"""
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.config_map = config_map

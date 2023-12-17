@@ -13,8 +13,6 @@ PREFIX_RELATIVE_FOLDER = "./"
 
 
 class SBPersistFS:
-    """persist_fs."""
-
     @staticmethod
     def list_dirs(path) -> List[str]:
         return os.listdir(path) if Path(path).is_dir() else []
@@ -73,10 +71,8 @@ class SBPersistFS:
 
     @staticmethod
     def render_json(txt: str):
-        """render_json"""
         return txt.replace('"', ' " ').replace("\n", " <br/> ")
 
     @staticmethod
     def render_path(txt: str):
-        """render_json"""
         return txt.replace(" ", "%20")

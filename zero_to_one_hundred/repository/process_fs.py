@@ -11,8 +11,6 @@ from zero_to_one_hundred.configs.config_map import ConfigMap
 
 
 class ProcessFS:
-    """Process_fs."""
-
     info_ME = "echo"
     info_ME_NOT = ""
     info_Y_N = False

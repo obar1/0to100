@@ -1,8 +1,8 @@
 """ZTOHFactory:
 factory with implemented functionality
 """
-# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-
+# pylint: disable=R0801
+from enum import Enum
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.processors.create_section_processor import (
@@ -18,8 +18,6 @@ from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProc
 class ZTOHFactory:
     """ZTOHFactory class."""
 
-    from enum import Enum
-
     class SUPPORTED_PROCESSOR(Enum):
         create_section = 1
         done_section = 2
@@ -28,13 +26,11 @@ class ZTOHFactory:
         help = 5
 
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
-        """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        """get the processor"""
         print(f"args {args}")
         cmd = args[1]
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
@@ -51,28 +47,23 @@ class ZTOHFactory:
             yield self.unsupported_processor(cmd)
 
     def create_section_processor(self, http_url):
-        """create_section_processor"""
         return CreateSectionProcessor(
             self.persist_fs, self.process_fs, self.config_map, http_url
         )
 
     def done_section_processor(self, http_url):
-        """done_section_processor"""
         return DoneSectionProcessor(
             self.persist_fs, self.process_fs, self.config_map, http_url
         )
 
     def refresh_map_processor(self):
-        """refresh_map_processor"""
         return RefreshMapProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def refresh_links_processor(self):
-        """refresh_links_processor"""
         return RefreshLinksProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def help_processor(self):
-        """help_processor"""
-        return HelpProcessor(self.persist_fs, self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     @staticmethod
     def unsupported_processor(cmd):

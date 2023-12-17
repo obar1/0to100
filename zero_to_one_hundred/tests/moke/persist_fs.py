@@ -11,8 +11,6 @@ from repository.persist_fs import PersistFS as _PersistFS
 
 
 class PersistFS(_PersistFS):
-    """persist_fs."""
-
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         print(f"list_dirs {path}")

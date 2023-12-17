@@ -8,6 +8,6 @@ format:
 	black zero_to_one_hundred
 
 lint:
-	pylint --disable=R,C,W0702,W0621,W1203 zero_to_one_hundred
+	pylint --disable=C0116,C0115,W0702,C0114,C0301,C0103,C0209,R0913,R0902,R0903 zero_to_one_hundred
 
 refactor: format lint

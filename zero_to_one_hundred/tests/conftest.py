@@ -1,5 +1,4 @@
-"""Conftest module."""
-# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0613
+# pylint: disable=W0621,W0613
 
 
 import os
@@ -8,8 +7,8 @@ from unittest import mock
 import pytest
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
-from zero_to_one_hundred.factories.factory_provider import MAP_YAML_PATH
 from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 
 
 @pytest.fixture
@@ -65,13 +64,15 @@ def get_sample_readme_md_path(get_repo_path):
 
 @pytest.fixture
 def mock_settings_env_vars(get_map_yaml_path):
-    with mock.patch.dict(os.environ, {MAP_YAML_PATH: get_map_yaml_path}):
+    with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_yaml_path}):
         yield
 
 
 @pytest.fixture
 def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
-    with mock.patch.dict(os.environ, {MAP_YAML_PATH: get_unsupported_map_yaml_path}):
+    with mock.patch.dict(
+        os.environ, {AConfigMap.MAP_YAML_PATH: get_unsupported_map_yaml_path}
+    ):
         yield
 
 

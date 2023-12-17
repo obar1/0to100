@@ -12,8 +12,6 @@ from zero_to_one_hundred.repository.sb_persist_fs import (
 
 
 class SBPersistFS(_SBPersistFS):
-    """persist_fs."""
-
     @staticmethod
     def list_dirs(path: str) -> List[str]:
         print(f"list_dirs {path}")

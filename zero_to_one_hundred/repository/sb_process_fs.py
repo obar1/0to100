@@ -12,8 +12,6 @@ from zero_to_one_hundred.configs.config_map import ConfigMap
 
 
 class SBProcessFS:
-    """Process_fs."""
-
     DEBUG_ME = "echo"
     DEBUG_ME_NOT = ""
     DEBUG_Y_N = False

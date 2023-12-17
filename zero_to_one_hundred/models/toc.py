@@ -8,8 +8,6 @@ from zero_to_one_hundred.models.meta_book import MetaBook
 
 
 class Toc:
-    """Toc is a list of meta_books"""
-
     def __init__(
         self,
         config_map: SBConfigMap,
@@ -17,7 +15,6 @@ class Toc:
         process_fs,
         meta_books: List[MetaBook],
     ):
-        """init"""
         self.config_map = config_map
         self.readme_md = "toc.md"
         self.persist_fs = persist_fs
@@ -25,7 +22,6 @@ class Toc:
         self.meta_books = meta_books
 
     def __repr__(self):
-        """repr"""
         return f"Toc {self.readme_md}, {self.meta_books}"
 
     def __repr_flatten(self, meta_books: List[MetaBook]) -> str:
