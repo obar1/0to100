@@ -6,7 +6,7 @@ provides the actual factory based on the type value
 
 from zero_to_one_hundred.configs.config import Config
 from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS, SBConfigMap
-from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMap
+from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
 from zero_to_one_hundred.factories.factory_provider import FactoryProvider
 from zero_to_one_hundred.factories.sb_factory import SBFactory
 
@@ -18,4 +18,4 @@ class SBFactoryProvider(FactoryProvider):
         if get_type == SAFARI_BOOKS:
             config_map = SBConfigMap(self.MAP_YAML_PATH, self.persist_fs)
             return SBFactory(config_map, self.persist_fs, self.process_fs)
-        raise UnsupportedConfigMap(get_type)
+        raise UnsupportedConfigMapError(get_type)

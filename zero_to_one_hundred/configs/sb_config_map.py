@@ -1,4 +1,4 @@
-from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMap
+from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
 from zero_to_one_hundred.configs.config import Config
 
 SAFARI_BOOKS = "safari-books"
@@ -40,4 +40,4 @@ class SBConfigMap(Config):
     @staticmethod
     def is_valid_type(type_, safari_books_type):
         if type_ is None or type_ != safari_books_type:
-            raise UnsupportedConfigMap(f"the {type_} should be {SAFARI_BOOKS}")
+            raise UnsupportedConfigMapError(f"the {type_} should be {SAFARI_BOOKS}")

@@ -9,8 +9,8 @@ class NotURLFormatError(Exception):
         super().__init__(message)
 
 
-class UnsupportedConfigMap(Exception):
-    """UnsupportedConfigMap"""
+class UnsupportedConfigMapError(Exception):
+    """UnsupportedConfigMapError"""
 
     def __init__(self, message):
         # Call the base class constructor with the parameters it needs
