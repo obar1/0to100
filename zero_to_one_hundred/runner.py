@@ -1,11 +1,11 @@
-import sys
+# pylint: disable=W0106,R1710
+
 from typing import List
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
+from zero_to_one_hundred.factories.factory_provider import FactoryProvider
 
-from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 
-
-def run_core(argv: List[str], factory_provider: AFactoryProvider):
+def run_core(argv: List[str], factory_provider: FactoryProvider):
     """given params and factory provider it runs the core logic
 
     Args:
@@ -22,12 +22,10 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
         print("check the code")
     except FileNotFoundError:
         print("set env for MAP_YAML_PATH with map.yaml path")
-    except UnsupportedConfigMapError:
-        print("check MAP_YAML_PATH map.yaml contents")
-    except IndexError:
-        print(f"check the params {sys.argv}")
+    except (NotImplementedError, UnsupportedConfigMapError):
+        print("check MAP_YAML_PATH env var contents")
     except ModuleNotFoundError:
         print("??? have you installed all the dep")
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, IndexError):
         print("help")
         return factory.help_processor().process()

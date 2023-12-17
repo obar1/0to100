@@ -31,7 +31,6 @@ class PersistFS:
 
     @classmethod
     def load_file(cls, MAP_YAML_PATH):
-        print(f"load_file {MAP_YAML_PATH}")
         with open(MAP_YAML_PATH, mode="r", encoding="UTF-8") as stream:
             return yaml.safe_load(stream)
 

@@ -1,4 +1,9 @@
-class Config:
+# pylint: disable=W0246
+
+
+class AConfigMap:
+    MAP_YAML_PATH = "MAP_YAML_PATH"
+
     def __init__(self, map_yaml_path, persist_fs):
         """persist_fs_load_file: f()  to load file as dict[]"""
         self.map_yaml_path = map_yaml_path

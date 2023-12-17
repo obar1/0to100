@@ -1,5 +1,3 @@
-
-
 import json
 import re
 
@@ -7,8 +5,6 @@ from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 
 
 class MetaBook:
-    
-
     epub_suffix = ".epub"
     HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
@@ -30,7 +26,6 @@ class MetaBook:
 
     @classmethod
     def build_from_dir(cls, config_map, persist_fs, process_fs, dir_name):
-        "
         return MetaBook(
             config_map,
             persist_fs,
@@ -39,11 +34,9 @@ class MetaBook:
         )
 
     def write_img(self):
-        "
         self.process_fs.write_img(self.dir_img, f"{self.HTTP_OREILLY}/{self.isbn}/")
 
     def write_epub(self):
-        "
         self.process_fs.write_epub(self.config_map, self.dir_epub, self.isbn)
         self.persist_fs.copy_file_to(self.get_epub_path(), self.dir_epub)
 

@@ -1,17 +1,17 @@
-from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
-from zero_to_one_hundred.configs.config import Config
+# pylint: disable=W0246
+
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 
 SAFARI_BOOKS = "safari-books"
-MAP_YAML_PATH = "MAP_YAML_PATH"
 
 
-class SBConfigMap(Config):
+class SBConfigMap(AConfigMap):
     def __init__(self, map_yaml_path, persist_fs):
         super().__init__(map_yaml_path, persist_fs)
-        self.is_valid_type(self.get_type, SAFARI_BOOKS)
 
     @property
     def get_books_path(self):
+        """use relative folder to simplify the usage in browser"""
         return "."
 
     @property
@@ -29,8 +29,3 @@ class SBConfigMap(Config):
     @property
     def get_oreilly_userpassword(self):
         return self.load["configs"]["oreilly_userpassword"]
-
-    @staticmethod
-    def is_valid_type(type_, safari_books_type):
-        if type_ is None or type_ != safari_books_type:
-            raise UnsupportedConfigMapError(f"the {type_} should be {SAFARI_BOOKS}")

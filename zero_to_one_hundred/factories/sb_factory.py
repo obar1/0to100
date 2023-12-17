@@ -1,3 +1,7 @@
+# pylint: disable=R0801
+
+from enum import Enum
+
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.processors.create_meta_book_processor import (
     CreateMetaBookProcessor,
@@ -14,8 +18,6 @@ from zero_to_one_hundred.processors.unsupported_processor import (
 class SBFactory:
     """SBFactory class."""
 
-    from enum import Enum
-
     class SUPPORTED_PROCESSOR(Enum):
         create_meta_book = 1
         refresh_toc = 2
@@ -27,7 +29,6 @@ class SBFactory:
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        "
         print(f"args {args}")
         cmd = args[1]
         if cmd == SBFactory.SUPPORTED_PROCESSOR.create_meta_book.name:
@@ -48,7 +49,7 @@ class SBFactory:
         return RefreshTocProcessor(self.config_map, self.persist_fs, self.process_fs)
 
     def help_processor(self):
-        return HelpProcessor(self.persist_fs, self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     @staticmethod
     def unsupported_processor(cmd):

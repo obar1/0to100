@@ -8,8 +8,6 @@ from zero_to_one_hundred.models.meta_book import MetaBook
 
 
 class Toc:
-    "
-
     def __init__(
         self,
         config_map: SBConfigMap,

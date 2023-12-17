@@ -1,10 +1,9 @@
-from zero_to_one_hundred.configs.config import Config
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 
 MAP = "map"
-MAP_YAML_PATH = "MAP_YAML_PATH"
 
 
-class ConfigMap(Config):
+class ConfigMap(AConfigMap):
     def __init__(self, persist_fs, map_yaml_path):
         super().__init__(map_yaml_path, persist_fs)
 

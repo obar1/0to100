@@ -1,8 +1,8 @@
 """ZTOHFactory:
 factory with implemented functionality
 """
-# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-
+# pylint: disable=R0801
+from enum import Enum
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.processors.create_section_processor import (
@@ -17,8 +17,6 @@ from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProc
 
 class ZTOHFactory:
     """ZTOHFactory class."""
-
-    from enum import Enum
 
     class SUPPORTED_PROCESSOR(Enum):
         create_section = 1
@@ -65,7 +63,7 @@ class ZTOHFactory:
         return RefreshLinksProcessor(self.persist_fs, self.process_fs, self.config_map)
 
     def help_processor(self):
-        return HelpProcessor(self.persist_fs, self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     @staticmethod
     def unsupported_processor(cmd):
