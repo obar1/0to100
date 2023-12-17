@@ -5,8 +5,6 @@ refresh section in map_
 
 
 class UnsupportedProcessor:
-    """UnsupportedProcessor"""
-
     def __init__(self, cmd):
         self.cmd = cmd
 

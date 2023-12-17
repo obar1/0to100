@@ -9,22 +9,17 @@ from zero_to_one_hundred.models.section import Section
 
 
 class Map:
-    """Map is a list of new_section"""
-
     def __init__(self, persist_fs, config_map: ConfigMap, sections: List[Section]):
-        """init"""
         self.config_map = config_map
         self.readme_md = config_map.get_repo_path + "/" + config_map.get_repo_map_md
         self.persist_fs = persist_fs
         self.sections = sections
 
     def __repr__(self):
-        """repr"""
         return f"Map {self.readme_md}, {self.sections}"
 
     @staticmethod
     def __repr_flatten(sections: List[Section], as_sorted: bool) -> str:
-        """transf as"""
         # 1. <https://cloud.google.com/api-gateway/docs/about-ap
         # i-gateway> :ok: [`here`](../https§§§cloud.google.com§/readme.md)
         print(as_sorted)

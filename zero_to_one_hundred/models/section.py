@@ -9,8 +9,6 @@ from zero_to_one_hundred.models.readme_md import ReadMeMD
 
 
 class Section:
-    """Section."""
-
     epub_suffix: str = ".epub"
     HTTP_OREILLY: str = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"
@@ -24,7 +22,6 @@ class Section:
         http_url: str,
         is_done: bool = False,
     ):
-        """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs
@@ -34,7 +31,6 @@ class Section:
         self.is_done = is_done
 
     def __repr__(self):
-        """repr"""
         return f"Section {self.http_url}, {self.dir_name}"
 
     @property
@@ -104,8 +100,6 @@ class Section:
         return True if curr_dir.count("http") > 0 else False
 
     def refresh_links(self):
-        """refresh_links"""
-
         def convert(line):
             """convert to [https://](https:§§§...readme) or leave as it is
             1 level only -assert"""
@@ -139,7 +133,6 @@ class Section:
 
     def find_header(self):
         def get_header(line):
-            """get header"""
             if str(line).strip("\n").startswith("# "):
                 return line
             return None

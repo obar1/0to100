@@ -9,10 +9,7 @@ from zero_to_one_hundred.models.toc import Toc
 
 
 class RefreshTocProcessor:
-    """RefreshMapProcessor"""
-
     def __init__(self, config_map: SBConfigMap, persist_fs, process_fs):
-        """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs

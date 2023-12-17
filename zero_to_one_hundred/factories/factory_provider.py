@@ -1,8 +1,4 @@
-"""FactoryProvider:
-provides the actual factory based on the type value
-"""
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-
 
 import os
 
@@ -21,7 +17,6 @@ class FactoryProvider:
     """
 
     def __init__(self, persist_fs, process_fs):
-        """init"""
         self.MAP_YAML_PATH = os.getenv(MAP_YAML_PATH)
         assert self.MAP_YAML_PATH is not None
         print(f"using MAP_YAML_PATH: {self.MAP_YAML_PATH}")

@@ -9,8 +9,6 @@ from zero_to_one_hundred.repository.process_fs import ProcessFS as _ProcessFS
 
 
 class ProcessFS(_ProcessFS):
-    """Process_fs."""
-
     @classmethod
     def write_img(cls, dir_img, http_url_img):
         print(f"write_img  {dir_img} {http_url_img}")

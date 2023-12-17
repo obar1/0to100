@@ -1,7 +1,3 @@
-"""
-simple runner of the varius factory created
-"""
-
 import sys
 from typing import List
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError

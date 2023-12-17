@@ -10,8 +10,6 @@ from zero_to_one_hundred.repository.sb_process_fs import (
 
 
 class SBProcessFS(_SBProcessFS):
-    """Process_fs."""
-
     @classmethod
     def write_img(cls, dir_img, http_url_img):
         print(f"write_img  {dir_img} {http_url_img}")

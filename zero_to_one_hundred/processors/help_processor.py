@@ -5,10 +5,7 @@ refresh sections in map
 
 
 class HelpProcessor:
-    """HelpProcessor"""
-
     def __init__(self, persist_fs, supported_processor):
-        """init"""
         self.supported_processor = supported_processor
         self.persist_fs = persist_fs
 

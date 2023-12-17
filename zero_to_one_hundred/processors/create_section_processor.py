@@ -11,10 +11,7 @@ from zero_to_one_hundred.models.section import Section
 
 
 class CreateSectionProcessor:
-    """CreateSectionProcessor."""
-
     def __init__(self, persist_fs, process_fs, config_map: SBConfigMap, http_url: str):
-        """init"""
         self.http_url = http_url
         self.persist_fs = persist_fs
         self.process_fs = process_fs
