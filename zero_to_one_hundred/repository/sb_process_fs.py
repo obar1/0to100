@@ -3,10 +3,9 @@ deal with Process
 mocked in Test
 """
 
-from datetime import datetime
-
 import shlex
 import subprocess
+from datetime import datetime
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
 

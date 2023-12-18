@@ -9,9 +9,9 @@ from zero_to_one_hundred.processors.create_section_processor import (
     CreateSectionProcessor,
 )
 from zero_to_one_hundred.processors.done_section_processor import DoneSectionProcessor
+from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
 from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
-from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
 
 
@@ -35,12 +35,15 @@ class ZTOHFactory:
         cmd = args[1]
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(args[2])
+            yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.done_section.name:
             yield self.done_section_processor(args[2])
+            yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_map.name:
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_links.name:
             yield self.refresh_links_processor()
+            yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:

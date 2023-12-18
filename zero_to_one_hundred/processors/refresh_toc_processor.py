@@ -2,7 +2,6 @@
 refresh meta_books in map
 """
 
-
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.models.toc import Toc

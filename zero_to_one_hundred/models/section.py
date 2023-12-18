@@ -2,7 +2,6 @@
 new_section od disk
 """
 
-
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 

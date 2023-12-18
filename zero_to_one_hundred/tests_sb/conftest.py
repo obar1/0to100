@@ -4,6 +4,7 @@ import os
 from unittest import mock
 
 import pytest
+
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 
 SAFARI_BOOKS = "safari-books"

@@ -2,8 +2,8 @@
 deal with FS
 mocked in Test
 """
-# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203,W0108
 
+# pylint: disable=W0108
 import os
 from datetime import datetime
 from shutil import copyfile
@@ -91,10 +91,11 @@ class PersistFS:
         print(f"path {path}")
         if os.path.exists(path):
             print(f"found {path}")
-            os.makedirs(path, 0o777, True)
-            with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
-                os.utime("{}/.gitkeep".format(path), None)
-            print(f"created {path}")
+            return
+        os.makedirs(path, 0o777, True)
+        with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
+            os.utime("{}/.gitkeep".format(path), None)
+        print(f"created {path}")
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):
