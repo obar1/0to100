@@ -88,7 +88,7 @@ class MetaBook:
         it's the last 0123456..9
         """
         http_url = http_url.strip("/")
-        return http_url[http_url.rfind("/") + 1 :]
+        return http_url[http_url.rfind("/") + 1:]
 
     def get_epub_path(self):
         """find the actual path into the path given the isbn
@@ -100,12 +100,12 @@ class MetaBook:
         dirs = self.persist_fs.list_dirs(download_engine_books_path)
         dir_isbn = [dir_ for dir_ in dirs if "(" + isbn + ")" in dir_]
         return (
-            download_engine_books_path
-            + "/"
-            + dir_isbn[0]
-            + "/"
-            + isbn
-            + MetaBook.epub_suffix
+                download_engine_books_path
+                + "/"
+                + dir_isbn[0]
+                + "/"
+                + isbn
+                + MetaBook.epub_suffix
         )
 
     def write_fake_pdf(self):

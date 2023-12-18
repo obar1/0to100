@@ -2,7 +2,6 @@
 new_section od disk
 """
 
-
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 
@@ -14,12 +13,12 @@ class Section:
     HTTTP_CLOUDSKILLSBOOST: str = "https://www.cloudskillsboost.google"
 
     def __init__(
-        self,
-        persist_fs,
-        process_fs,
-        config_map: ConfigMap,
-        http_url: str,
-        is_done: bool = False,
+            self,
+            persist_fs,
+            process_fs,
+            config_map: ConfigMap,
+            http_url: str,
+            is_done: bool = False,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -105,16 +104,16 @@ class Section:
             res = line
             if str(line).strip("\n").startswith("https://"):
                 res = (
-                    "["
-                    + str(line).strip("\n")
-                    + "](../"
-                    + Section(
-                        self.persist_fs,
-                        self.process_fs,
-                        self.config_map,
-                        str(line).strip("\n"),
-                    ).dir_readme_md
-                    + ")\n"
+                        "["
+                        + str(line).strip("\n")
+                        + "](../"
+                        + Section(
+                    self.persist_fs,
+                    self.process_fs,
+                    self.config_map,
+                    str(line).strip("\n"),
+                ).dir_readme_md
+                        + ")\n"
                 )
             return res
 
@@ -207,8 +206,8 @@ class Section:
             return NotImplemented
 
         return (
-            other.http_url == self.http_url
-            and other.dir_name == self.dir_name
-            and other.dir_readme_md == self.dir_readme_md
-            and other.is_done == self.is_done
+                other.http_url == self.http_url
+                and other.dir_name == self.dir_name
+                and other.dir_readme_md == self.dir_readme_md
+                and other.is_done == self.is_done
         )

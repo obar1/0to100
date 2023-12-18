@@ -1,6 +1,7 @@
 # pylint: disable=W0106,R1710
 
 from typing import List
+
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
 from zero_to_one_hundred.factories.factory_provider import FactoryProvider
 

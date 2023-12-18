@@ -3,7 +3,6 @@ PersistFS:
 fs handling ops
 """
 
-
 from typing import List
 
 from zero_to_one_hundred.repository.sb_persist_fs import (

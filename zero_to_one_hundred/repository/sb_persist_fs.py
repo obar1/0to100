@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from shutil import copyfile
 from typing import List
+
 import yaml
 
 PREFIX_RELATIVE_FOLDER = "./"

@@ -2,7 +2,6 @@
 create a new meta_book on fs from http address
 """
 
-
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 

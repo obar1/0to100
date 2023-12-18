@@ -17,10 +17,10 @@ def test_write(get_config_map, http_url):
 
 def test_build_from_dir(get_config_map, simple_http, simple_dir):
     assert (
-        Section.build_from_dir(
-            persist_fs, process_fs, get_config_map, simple_http
-        ).dir_name
-        == simple_dir
+            Section.build_from_dir(
+                persist_fs, process_fs, get_config_map, simple_http
+            ).dir_name
+            == simple_dir
     )
 
 

@@ -31,13 +31,13 @@ def test_write(get_map_yaml_path, http_url):
 
 def test_build_from_dir(get_map_yaml_path):
     assert (
-        MetaBook.build_from_dir(
-            SBConfigMap(get_map_yaml_path, persist_fs),
-            persist_fs,
-            process_fs,
-            "./books/9780135956977",
-        ).isbn
-        == "9780135956977"
+            MetaBook.build_from_dir(
+                SBConfigMap(get_map_yaml_path, persist_fs),
+                persist_fs,
+                process_fs,
+                "./books/9780135956977",
+            ).isbn
+            == "9780135956977"
     )
 
 

@@ -3,7 +3,6 @@ deal with Process
 mocked in Test
 """
 
-
 from zero_to_one_hundred.repository.sb_process_fs import (
     SBProcessFS as _SBProcessFS,
 )

@@ -25,13 +25,13 @@ class Map:
         print(as_sorted)
         lambda_flatten_section: Callable[[Section], str] = (
             lambda s: "1. "
-            + s.get_id_name
-            + " [`here`]("
-            + s.get_dir_name
-            + "/readme.md)"
-            + s.get_done_as_md
-            + " "
-            + s.get_format_as_md
+                      + s.get_id_name
+                      + " [`here`]("
+                      + s.get_dir_name
+                      + "/readme.md)"
+                      + s.get_done_as_md
+                      + " "
+                      + s.get_format_as_md
         )
         flattened_sections = list(map(lambda_flatten_section, sections))
         return "\n".join(flattened_sections)
@@ -54,7 +54,7 @@ class Map:
 
     @classmethod
     def build_from_dirs(
-        cls, persist_fs, process_fs, config_map, dirs: List[str]
+            cls, persist_fs, process_fs, config_map, dirs: List[str]
     ) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [
