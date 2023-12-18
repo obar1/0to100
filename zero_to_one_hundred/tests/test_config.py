@@ -5,7 +5,7 @@ import pytest
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.factories.factory_provider import FactoryProvider
 from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
-from zero_to_one_hundred.tests.moke.process_fs import ProcessFS as process_fs
+from zero_to_one_hundred.tests.moke.process_fs_fake import ProcessFSFake as process_fs
 
 
 @pytest.fixture

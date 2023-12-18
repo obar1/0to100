@@ -3,12 +3,10 @@ deal with Process
 mocked in Test
 """
 
-from zero_to_one_hundred.repository.sb_process_fs import (
-    SBProcessFS as _SBProcessFS,
-)
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 
 
-class SBProcessFS(_SBProcessFS):
+class SBProcessFSFake(SBProcessFS):
     @classmethod
     def write_img(cls, dir_img, http_url_img):
         print(f"write_img  {dir_img} {http_url_img}")

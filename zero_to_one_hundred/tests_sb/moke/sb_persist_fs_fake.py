@@ -5,12 +5,10 @@ fs handling ops
 
 from typing import List
 
-from zero_to_one_hundred.repository.sb_persist_fs import (
-    SBPersistFS as _SBPersistFS,
-)
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 
 
-class SBPersistFS(_SBPersistFS):
+class SBPersistFSFake(SBPersistFS):
     @staticmethod
     def list_dirs(path: str) -> List[str]:
         print(f"list_dirs {path}")
