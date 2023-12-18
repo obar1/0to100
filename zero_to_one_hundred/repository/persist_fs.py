@@ -3,6 +3,7 @@ deal with FS
 mocked in Test
 """
 
+# pylint: disable=W0108
 import os
 from datetime import datetime
 from shutil import copyfile
@@ -21,7 +22,7 @@ class PersistFS:
             if os.path.isdir(os.path.join(path, name))
         ]
         files.sort(key=lambda x: os.path.getmtime(x))
-        return [f[len(path) + 1:] for f in files]
+        return [f[len(path) + 1 :] for f in files]
 
     @classmethod
     def get_dir_name(cls, filename):
@@ -90,10 +91,11 @@ class PersistFS:
         print(f"path {path}")
         if os.path.exists(path):
             print(f"found {path}")
-            os.makedirs(path, 0o777, True)
-            with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
-                os.utime("{}/.gitkeep".format(path), None)
-            print(f"created {path}")
+            return
+        os.makedirs(path, 0o777, True)
+        with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
+            os.utime("{}/.gitkeep".format(path), None)
+        print(f"created {path}")
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):

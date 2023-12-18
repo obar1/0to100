@@ -66,7 +66,7 @@ def mock_map_yaml_env_vars(get_map_yaml_path):
 @pytest.fixture
 def mock_secret_map_yaml_env_vars(get_secret_map_yaml_path):
     with mock.patch.dict(
-            os.environ, {AConfigMap.MAP_YAML_PATH: get_secret_map_yaml_path}
+        os.environ, {AConfigMap.MAP_YAML_PATH: get_secret_map_yaml_path}
     ):
         yield
 

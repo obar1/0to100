@@ -15,6 +15,16 @@ current commands:
 help:
 ['create_section', 'done_section', 'refresh_map', 'refresh_links', 'help']
 
+> tip
+in `create_section` you can override the default toc title adding another `#` hint below th one created automatically 
+ex
+```markdown
+# <https§§§www.cloudskillsboost.google§catalog>
+> <https://www.cloudskillsboost.google/catalog>
+
+# catalog
+```
+
 ### 1st time usage:
 
 ```bash
