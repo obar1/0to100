@@ -8,15 +8,15 @@
 
 0 to 100 ... learn anything from webresources (and not)
 
-in a nutshell: you read training material from the web and learn from it by doing.
-Given a `url` it creates the entry in a markdown **map** and link that to it, in this way you can easily jump between different sections inside your ide of preference; as you expand the map with new contents you build some reference material you keep it local all the time and you can search on
+We read training material from the web and learn from it by doing, but how do we keep that a bit organized? I came up with an idea: this small tool.
+Given a 'url', it creates the entry in a markdown map and a folder and links them; in this way, you can easily jump between different sections inside your preferred ide. As you expand the map with new contents, you build some reference material, keep it local all the time, and searchable all the time on your daily coding.
 
 current commands:
 help:
 ['create_section', 'done_section', 'refresh_map', 'refresh_links', 'help']
 
 > tip
-in `create_section` you can override the default toc title adding another `#` hint below th one created automatically 
+in `create_section` you can override the default toc title adding another `#` hint below the one header created automatically in the section folder
 ex
 ```markdown
 # <https§§§www.cloudskillsboost.google§catalog>
@@ -69,8 +69,7 @@ url=https://cloud.google.com/help
 
 0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
 
-in a nutshell: you read training material from the oreilly and learn from it by doing.
-Given a `url` it creates the entry in a markdown **map** and link that to it, in this way you can easily jump between different sections inside your ide of preference; as you expand the map with new contents you build some reference material you keep it local all the time and you can search on
+some as above but it can uses dome external lib to grab file from oreilly
 
 current commands:
 
@@ -80,10 +79,9 @@ help:
 ### 0th time usage:
 
 > use what you prefer to  grab epub/pdf from oreilly 
-https://github.com/lorenzodifuccia/safaribooks
-
-
-> you can even save pages as you go with 
+check this 
+https://github.com/lorenzodifuccia/safaribooks 
+or just save as pdf section  by section with this 
 https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaellmclnh
 
 
