@@ -147,8 +147,11 @@ and run the
 bash demo.sh 0to100
 ```
 
+![](termtosvg_0oihyn7a.svg)
+
 ```bash
 bash demo.sh 0to100_sb
 ```
 
-![](termtosvg_2mq_kdco.svg)
+![](termtosvg_9evceaqa.svg)
+
