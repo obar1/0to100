@@ -139,9 +139,9 @@ and you have a `toc.md` for free to use as index
 
 > in you want to check this quickly ...
 
-just open this repo in your GitHub Codespace
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1)
-and run the 
+
+just open this repo in your GitHub Codespace and run the demo as:
 
 ```bash
 bash demo.sh 0to100
