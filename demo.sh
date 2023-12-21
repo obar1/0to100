@@ -29,10 +29,15 @@ function 0to100 {
 
 function 0to100_sb {
     cls
+
     # 0to100 safari books
     cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
     ./main_sb.py
 
+    # hack to make it run without installing the actual repo
+    install -Dv /dev/null 'safaribooks.git/safaribooks.py'
+    install -Dv /dev/null 'safaribooks.git/Books/9780135956977.epub'
+    
     url=https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/
     ./main_sb.py create_meta_book "$url"
 
