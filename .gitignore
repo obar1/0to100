@@ -4,36 +4,20 @@ __pycache__/
 *$py.class
 .pytest_cache
 
-# vscode
-.vscode/
-
 # venv
 venv/
 .venv/
 
-# local run
-map.md
-repo/
-
-# test related
-0to100-**/
-
-# local tests
-http*
-
+# vscode
+.vscode/
 # idea
 .idea/**
 
-readme.sh
-*.yaml
-
-*.attrs
-
-# demo
-0to100/
-0to100_sb/
+# test related
+0to100-**/
 0*/
 978*/
-
-# sb
+map.md
+repo/
 toc.md
+*.yaml

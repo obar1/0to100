@@ -6,29 +6,15 @@ from unittest import mock
 import pytest
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
-
-SAFARI_BOOKS = "safari-books"
-RUNME = "RUNME"
+from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
+from zero_to_one_hundred.tests_sb.moke.sb_persist_fs_fake import (
+    SBPersistFSFake as persist_fs_fake,
+)
 
 
 @pytest.fixture
 def http_url():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
-
-
-@pytest.fixture
-def http_url_isbn():
-    yield "9780135956977"
-
-
-@pytest.fixture
-def http_url_2():
-    yield "https://www.oreilly.com/library/view/data-pipelines-pocket/9781492087823/"
-
-
-@pytest.fixture
-def dir_name():
-    return "https:§§cloud.google.com§docs"
 
 
 @pytest.fixture
@@ -53,11 +39,6 @@ def get_unsupported_map_yaml_path(get_resource_path):
 
 
 @pytest.fixture
-def get_secret_map_yaml_path(get_resource_path):
-    yield get_resource_path + "/secret_map.yaml"
-
-
-@pytest.fixture
 def mock_map_yaml_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_yaml_path}):
         yield
@@ -72,20 +53,11 @@ def mock_secret_map_yaml_env_vars(get_secret_map_yaml_path):
 
 
 @pytest.fixture
-def get_args_create_meta_book_processor():
-    return [RUNME, "create_meta_book"]
+def mock_settings_env_vars(get_map_yaml_path):
+    with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_yaml_path}):
+        yield
 
 
 @pytest.fixture
-def get_args_refresh_toc_processor():
-    return [RUNME, "refresh_toc"]
-
-
-@pytest.fixture
-def get_args_help_processor():
-    return [RUNME, "help"]
-
-
-@pytest.fixture
-def get_args_unsupported_processor():
-    return [RUNME, "something"]
+def get_config_map(get_map_yaml_path):
+    return SBConfigMap(get_map_yaml_path, persist_fs_fake)

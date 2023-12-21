@@ -1,6 +1,5 @@
 # pylint: disable=W0621,W0613
 
-
 import os
 from unittest import mock
 
@@ -98,31 +97,3 @@ def dir_tree():
     return "https§§§cloud.google.com§sections"
 
 
-@pytest.fixture
-def get_args_create_section_processor():
-    return ["runme.sh", "create_section"]
-
-
-@pytest.fixture
-def get_args_done_section_processor():
-    return ["runme.sh", "done_section"]
-
-
-@pytest.fixture
-def get_args_refresh_map_processor():
-    return ["runme.sh", "refresh_map"]
-
-
-@pytest.fixture
-def get_args_refresh_links_processor():
-    return ["runme.sh", "refresh_links"]
-
-
-@pytest.fixture
-def get_args_help_processor():
-    return ["runme.sh", "help"]
-
-
-@pytest.fixture
-def get_bad_args():
-    return ["runme.sh", "xyz"]

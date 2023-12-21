@@ -5,6 +5,7 @@ from typing import Callable, List
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.section import Section
+from connect.utils.terminal.markdown import render
 
 
 class Map:
@@ -49,6 +50,7 @@ class Map:
 {self.__repr_flatten(self.sections, as_sorted)}
         """
         )
+        print(render("\n".join(txt)))
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod
