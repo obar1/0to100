@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python -m vevn .venv
+python -m venv .venv
 . ./venv/bin/activate

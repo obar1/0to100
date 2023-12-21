@@ -144,5 +144,5 @@ just open this repo in your GitHub Codespace
 and run the 
 
 ```bash
-demo.sh
+bash demo.sh
 ```
