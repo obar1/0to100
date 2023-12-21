@@ -144,5 +144,9 @@ just open this repo in your GitHub Codespace
 and run the 
 
 ```bash
-bash demo.sh
+bash demo.sh 0to100
+```
+
+```bash
+bash demo.sh 0to100_sb
 ```

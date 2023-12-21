@@ -49,5 +49,4 @@ function 0to100_sb {
 }
 
 setup
-0to100
-0to100_sb
+$1
