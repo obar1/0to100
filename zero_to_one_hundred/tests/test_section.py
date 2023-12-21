@@ -1,10 +1,5 @@
 from zero_to_one_hundred.models.section import Section
-from zero_to_one_hundred.tests.moke.persist_fs_fake import (
-    PersistFSFake as persist_fs_fake,
-)
-from zero_to_one_hundred.tests.moke.process_fs_fake import (
-    ProcessFSFake as process_fs_fake,
-)
+from zero_to_one_hundred.tests.moke import persist_fs_fake, process_fs_fake
 
 
 def test_init(get_config_map, http_url):
@@ -22,7 +17,7 @@ def test_write(get_config_map, http_url):
 def test_build_from_dir(get_config_map, simple_http, simple_dir):
     assert (
         Section.build_from_dir(
-            persist_fs_fake, process_fs_fake, get_config_map, simple_http
+            persist_fs_fake.PersistFSFake, process_fs_fake, get_config_map, simple_http
         ).dir_name
         == simple_dir
     )

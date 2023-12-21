@@ -1,37 +1,7 @@
-"""ProcessFS:
-deal with Process
-mocked in Test
-"""
-
-import shlex
-import subprocess
-
-from zero_to_one_hundred.configs.config_map import ConfigMap
+from datetime import datetime
 
 
 class ProcessFS:
-    info_ME = "echo"
-    info_ME_NOT = ""
-    info_Y_N = False
-
-    @classmethod
-    def info_y_n(cls):
-        return cls.info_ME if cls.info_Y_N else cls.info_ME_NOT
-
-    @classmethod
-    def write_img(cls, dir_img, http_url_img):
-        print(f"write_img  {dir_img} {http_url_img}")
-        cmd = f"{cls.info_y_n()} curl -o  {dir_img}  {http_url_img}"
-        subprocess.call(shlex.split(cmd))
-
-    @classmethod
-    def write_epub(cls, config_map: ConfigMap, dir_epub, isbn):
-        print(f"write_epub {dir_epub} {isbn}")
-        cls.download_epub(config_map, isbn)
-
-    @classmethod
-    def download_epub(cls, config_map, isbn):
-        print(f"download_epub {isbn}")
-        cmd = f"{cls.info_y_n()} python {config_map.get_download_engine_path} --cred {config_map.get_oreilly_username}:{config_map.get_oreilly_userpassword} {isbn}"
-        proc = subprocess.run(cmd.split(), check=True)
-        print(proc.stdout)
+    @staticmethod
+    def get_now():
+        return datetime.now().strftime("%Y/%m/%d-%H:%M:%S")

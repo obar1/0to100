@@ -1,5 +1,6 @@
 # pylint: disable=W0106,R1710
 
+from subprocess import CalledProcessError
 from typing import List
 
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
@@ -23,10 +24,11 @@ def run_core(argv: List[str], factory_provider: FactoryProvider):
         print("check the code")
     except FileNotFoundError:
         print("set env for MAP_YAML_PATH with map.yaml path")
-    except (NotImplementedError, UnsupportedConfigMapError):
+    except (NotImplementedError, UnsupportedConfigMapError, CalledProcessError):
         print("check MAP_YAML_PATH env var contents")
     except ModuleNotFoundError:
         print("??? have you installed all the dep")
-    except (ValueError, TypeError, IndexError):
-        print("help")
+    except IndexError as e:
+        print(e)
+    except (ValueError, TypeError):
         return factory.help_processor().process()

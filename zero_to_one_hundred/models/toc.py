@@ -2,10 +2,12 @@
 toc md with list of meta_book as found in fs
 """
 
+import pprint
 from typing import List
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
+from connect.utils.terminal.markdown import render
 
 
 class Toc:
@@ -84,4 +86,5 @@ class Toc:
 {self.__repr_flatten(self.meta_books)}
         """
         )
+        print(render("\n".join(txt)))
         return self.persist_fs.write_file(self.readme_md, txt)
