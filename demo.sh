@@ -1,9 +1,7 @@
 #!/bin/bash
 function setup {
     # set -x
-    python -m venv .venv || true TODO:
-    . ./venv/bin/activate
-    pip install -r requirements.txt
+    pip install --quiet -r requirements.txt
 
     chmod +x main*.py
 
@@ -11,7 +9,7 @@ function setup {
 
     # safari books from lorenzodifuccia
     git clone https://github.com/lorenzodifuccia/safaribooks.git
-    pip install -r safaribooks/requirements.txt
+    pip install --quiet -r safaribooks/requirements.txt
 }
 
 function 0to100 {
