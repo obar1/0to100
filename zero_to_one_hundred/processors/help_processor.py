@@ -1,8 +1,3 @@
-"""RefreshMapProcessor:
-refresh sections in map
-"""
-
-
 from zero_to_one_hundred.processors.a_processor import AProcessor
 
 

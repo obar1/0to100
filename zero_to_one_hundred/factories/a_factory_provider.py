@@ -1,7 +1,3 @@
-"""
-AFactoryProvider
-"""
-
 from abc import ABC, abstractmethod
 import os
 from zero_to_one_hundred.configs.a_config_map import AConfigMap

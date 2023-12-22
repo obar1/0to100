@@ -95,5 +95,3 @@ def simple_dir():
 @pytest.fixture
 def dir_tree():
     return "https§§§cloud.google.com§sections"
-
-

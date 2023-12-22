@@ -1,6 +1,3 @@
-import pytest
-
-from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.factories.sb_factory import SBFactory
 from zero_to_one_hundred.tests.moke import persist_fs_fake, process_fs_fake
 

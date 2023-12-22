@@ -1,9 +1,3 @@
-"""FactoryProvider:
-provides the actual factory based on the type value
-"""
-
-import os
-
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
@@ -13,9 +7,7 @@ MAP = "map"
 
 
 class FactoryProvider(AFactoryProvider):
-    """FactoryProvider class.
-    Provides factory implementation.
-    """
+    """FactoryProvider class."""
 
     def provide(self) -> ZTOHFactory:
         """T The method returns instance of MSEFactory."""

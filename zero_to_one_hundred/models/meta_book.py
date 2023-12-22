@@ -1,6 +1,5 @@
 import json
 import re
-import sys
 import fitz
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
@@ -17,9 +16,7 @@ class MetaBook:
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.isbn = self.__get_isbn(http_url)
-        self.contents_path = persist_fs.abs_path(
-            f"{config_map.get_download_engine_books_path}/{self.isbn}"
-        )
+        self.contents_path = persist_fs.abs_path(f"{self.isbn}")
         self.path_json = f"{self.contents_path}/{self.isbn}.json"
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
         self.path_pdf = f"{self.contents_path}/{self.isbn}.pdf"
@@ -74,9 +71,10 @@ class MetaBook:
     def write(self):
         self.persist_fs.make_dirs(self.contents_path)
         self.write_json()
-        self.write_epub()
-        self.write_fake_pdf()
         self.write_img()
+        self.write_epub()
+        self.write_pdf()
+        self.write_splitter_pdf()
 
     def read_json(self):
         lines = "{}"
@@ -112,8 +110,12 @@ class MetaBook:
             + MetaBook.epub_suffix
         )
 
-    def write_fake_pdf(self):
-        if not (list(map(int, fitz.VersionBind.split("."))) >= [1, 13, 3]):
+    def write_pdf(self):
+        """
+        sample from
+        https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
+        """
+        if list(map(int, fitz.VersionBind.split("."))) < [1, 13, 3]:
             raise SystemExit("insufficient PyMuPDF version")
 
         fn = self.path_epub
@@ -153,3 +155,22 @@ class MetaBook:
         print(
             "Skipped %i named links of a total of %i in input." % (link_skip, link_cnti)
         )
+
+    def write_splitter_pdf(self):
+        """
+        split pdf in chunks -easier to manager on ipad with markups
+        sample from
+        https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/split-document/split.py
+        """
+        split_pdf_pages = self.config_map.get_split_pdf_pages
+        fn = self.path_pdf
+        fn1 = fn[:-4]
+        src = fitz.open(fn)
+        last_page = len(src)
+        for i in range(1, last_page, split_pdf_pages):
+            doc = fitz.open()
+            from_page = i
+            to_page = i + split_pdf_pages
+            doc.insert_pdf(src, from_page=from_page, to_page=to_page)
+            doc.save("%s_%i-%i.pdf" % (fn1, from_page, to_page))
+            doc.close()

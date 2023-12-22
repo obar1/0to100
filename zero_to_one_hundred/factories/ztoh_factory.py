@@ -1,6 +1,3 @@
-"""ZTOHFactory:
-factory with implemented functionality
-"""
 # pylint: disable=R0801
 from enum import Enum
 
@@ -13,7 +10,6 @@ from zero_to_one_hundred.processors.done_section_processor import DoneSectionPro
 from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
 from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
-from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
 
 
 class ZTOHFactory(AFactory):

@@ -1,8 +1,3 @@
-"""PersistFS:
-deal with FS
-mocked in Test
-"""
-
 # pylint: disable=W0108
 import os
 from datetime import datetime
@@ -13,6 +8,10 @@ import yaml
 
 
 class PersistFS:
+    """PersistFS:
+    deal with FS
+    mocked in Test"""
+
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         print(f"list_dirs {path}")

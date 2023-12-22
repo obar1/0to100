@@ -1,13 +1,12 @@
-"""RefreshMapProcessor:
-refresh sections in map
-"""
-
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.processors.a_processor import AProcessor
 
 
 class RefreshMapProcessor(AProcessor):
+    """RefreshMapProcessor:
+    refresh sections in map"""
+
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         self.persist_fs = persist_fs
         self.process_fs = process_fs

@@ -1,9 +1,3 @@
-"""RefreshLinksProcessor:
-in each md there are links to https://
-when some of them are added as new_section
-replace them with the location of the new_section ...
-"""
-
 from typing import List
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
@@ -13,6 +7,11 @@ from zero_to_one_hundred.processors.a_processor import AProcessor
 
 
 class RefreshLinksProcessor(AProcessor):
+    """RefreshLinksProcessor:
+    in each md there are links to https://
+    when some of them are added as new_section
+    replace them with the location of the new_section ..."""
+
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         self.config_map = config_map
         self.persist_fs = persist_fs

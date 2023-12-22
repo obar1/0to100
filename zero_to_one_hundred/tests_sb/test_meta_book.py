@@ -43,13 +43,3 @@ def test_is_valid_ebook_path():
     dirs = ["0123456789", "books", "ABC"]
     actual = [dir_ for dir_ in dirs if MetaBook.is_valid_ebook_path(dir_)]
     assert actual == ["0123456789"]
-
-
-def test_write_fake_pdf(get_map_yaml_path, http_url):
-    actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-        sb_persist_fs_fake.SBPersistFSFake,
-        sb_process_fs_fake,
-        http_url,
-    )
-    actual.write_fake_pdf()

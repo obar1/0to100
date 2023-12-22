@@ -1,5 +1,3 @@
-# pylint: disable=R0801
-
 from enum import Enum
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
@@ -9,6 +7,8 @@ from zero_to_one_hundred.processors.create_meta_book_processor import (
 )
 from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_toc_processor import RefreshTocProcessor
+
+# pylint: disable=R0801
 
 
 class SBFactory(AFactory):

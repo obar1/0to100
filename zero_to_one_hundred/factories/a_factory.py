@@ -1,14 +1,11 @@
-"""
-AFactory
-"""
-# pylint: disable=R0801
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Any, Generator
+from typing import Generator
 
-from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.processors.a_processor import AProcessor
 from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
+
+# pylint: disable=R0801
 
 
 class AFactory(ABC):
