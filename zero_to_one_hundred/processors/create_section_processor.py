@@ -2,13 +2,14 @@
 create a new new_section on fs from http address
 """
 # pylint: disable=R0801
-from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
+from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.models.section import Section
+from zero_to_one_hundred.processors.a_processor import AProcessor
 
 
-class CreateSectionProcessor:
-    def __init__(self, persist_fs, process_fs, config_map: SBConfigMap, http_url: str):
+class CreateSectionProcessor(AProcessor):
+    def __init__(self, persist_fs, process_fs, config_map: ConfigMap, http_url: str):
         self.http_url = http_url
         self.persist_fs = persist_fs
         self.process_fs = process_fs

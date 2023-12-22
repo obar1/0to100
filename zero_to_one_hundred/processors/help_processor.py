@@ -3,7 +3,10 @@ refresh sections in map
 """
 
 
-class HelpProcessor:
+from zero_to_one_hundred.processors.a_processor import AProcessor
+
+
+class HelpProcessor(AProcessor):
     def __init__(self, config_map, persist_fs, supported_processor):
         self.config_map = config_map
         self.supported_processor = supported_processor

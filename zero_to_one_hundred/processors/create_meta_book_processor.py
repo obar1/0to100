@@ -4,9 +4,10 @@ create a new meta_book on fs from http address
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
+from zero_to_one_hundred.processors.a_processor import AProcessor
 
 
-class CreateMetaBookProcessor:
+class CreateMetaBookProcessor(AProcessor):
     def __init__(self, config_map: SBConfigMap, persist_fs, http_url: str, process_fs):
         self.http_url = http_url
         self.persist_fs = persist_fs

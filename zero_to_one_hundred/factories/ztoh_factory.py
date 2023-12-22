@@ -5,6 +5,7 @@ factory with implemented functionality
 from enum import Enum
 
 from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.processors.create_section_processor import (
     CreateSectionProcessor,
 )
@@ -15,7 +16,7 @@ from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProce
 from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
 
 
-class ZTOHFactory:
+class ZTOHFactory(AFactory):
     """ZTOHFactory class."""
 
     class SUPPORTED_PROCESSOR(Enum):
@@ -67,7 +68,3 @@ class ZTOHFactory:
 
     def help_processor(self):
         return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)
-
-    @staticmethod
-    def unsupported_processor(cmd):
-        return UnsupportedProcessor(cmd)

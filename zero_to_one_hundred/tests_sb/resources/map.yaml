@@ -1,6 +1,7 @@
 type: safari-books
 configs:
-  download_engine_path: "safaribooks/safaribooks.py"
-  download_engine_books_path: "safaribooks/Books"
+  download_engine_path: "zero_to_one_hundred/tests_sb/resources/safaribooks/safaribooks.py"
+  download_engine_books_path: "zero_to_one_hundred/tests_sb/resources/safaribooks/Books"
   oreilly_username: "username"
   oreilly_userpassword: "userpassword"
+  split_pdf_pages: 100

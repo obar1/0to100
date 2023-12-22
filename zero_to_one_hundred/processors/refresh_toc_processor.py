@@ -5,9 +5,10 @@ refresh meta_books in map
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.models.toc import Toc
+from zero_to_one_hundred.processors.a_processor import AProcessor
 
 
-class RefreshTocProcessor:
+class RefreshTocProcessor(AProcessor):
     def __init__(self, config_map: SBConfigMap, persist_fs, process_fs):
         self.config_map = config_map
         self.persist_fs = persist_fs

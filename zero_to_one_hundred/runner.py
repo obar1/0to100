@@ -4,10 +4,10 @@ from subprocess import CalledProcessError
 from typing import List
 
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
-from zero_to_one_hundred.factories.factory_provider import FactoryProvider
+from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 
 
-def run_core(argv: List[str], factory_provider: FactoryProvider):
+def run_core(argv: List[str], factory_provider: AFactoryProvider):
     """given params and factory provider it runs the core logic
 
     Args:
@@ -28,7 +28,5 @@ def run_core(argv: List[str], factory_provider: FactoryProvider):
         print("check MAP_YAML_PATH env var contents")
     except ModuleNotFoundError:
         print("??? have you installed all the dep")
-    except IndexError as e:
+    except (ValueError, TypeError, IndexError) as e:
         print(e)
-    except (ValueError, TypeError):
-        return factory.help_processor().process()

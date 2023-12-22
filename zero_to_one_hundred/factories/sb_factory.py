@@ -3,15 +3,15 @@
 from enum import Enum
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
+from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.processors.create_meta_book_processor import (
     CreateMetaBookProcessor,
 )
 from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_toc_processor import RefreshTocProcessor
-from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
 
 
-class SBFactory:
+class SBFactory(AFactory):
     """SBFactory class."""
 
     class SUPPORTED_PROCESSOR(Enum):
@@ -47,7 +47,3 @@ class SBFactory:
 
     def help_processor(self):
         return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)
-
-    @staticmethod
-    def unsupported_processor(cmd):
-        return UnsupportedProcessor(cmd)
