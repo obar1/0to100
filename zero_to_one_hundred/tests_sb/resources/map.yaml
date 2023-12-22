@@ -4,3 +4,4 @@ configs:
   download_engine_books_path: "safaribooks/Books"
   oreilly_username: "username"
   oreilly_userpassword: "userpassword"
+  split_pdf_pages: 100

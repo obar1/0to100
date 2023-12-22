@@ -1,16 +1,15 @@
-"""Toc:
-toc md with list of meta_book as found in fs
-"""
-
-import pprint
 from typing import List
+from connect.utils.terminal.markdown import render
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
-from connect.utils.terminal.markdown import render
 
 
 class Toc:
+    """Toc:
+    toc md with list of meta_book as found in fs
+    """
+
     def __init__(
         self,
         config_map: SBConfigMap,
@@ -32,7 +31,6 @@ class Toc:
         1. <0596007124> ![`img`](../books/0596007124/0596007124.png) :o: [`pdf`](../books/0596007124/0596007124.pdf) :o: [`epub`](../books/0596007124/0596007124.epub) :o: [`json`](../books/0596007124/0596007124.json)
         """
 
-        @staticmethod
         def flatten_meta_book(s):
             json = self.persist_fs.render_json(s.read_json())
             status = (
@@ -43,9 +41,9 @@ class Toc:
             res = "|".join(
                 [
                     f'<span style="color:blue">**{s.isbn}**</span>',
-                    f"![`img`]({self.persist_fs.render_path(s.dir_img)})",
-                    f"[`epub`]({self.persist_fs.render_path(s.dir_epub)})",
-                    f"[`pdf`]({self.persist_fs.render_path(s.dir_pdf)})",
+                    f"![`img`]({self.persist_fs.render_path(s.path_img)})",
+                    f"[`epub`]({self.persist_fs.render_path(s.path_epub)})",
+                    f"[`pdf`]({self.persist_fs.render_path(s.path_pdf)})",
                     f"{json}",
                     f"{status}",
                 ]

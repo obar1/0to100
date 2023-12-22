@@ -1,12 +1,11 @@
-"""Section:
-new_section od disk
-"""
-
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 
 
 class Section:
+    """Section:
+    new_section od disk"""
+
     epub_suffix: str = ".epub"
     HTTP_OREILLY: str = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"

@@ -1,26 +1,13 @@
-"""FactoryProvider:
-provides the actual factory based on the type value
-"""
-
-import os
-
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
 
 MAP = "map"
 
 
-class FactoryProvider:
-    """FactoryProvider class.
-    Provides factory implementation.
-    """
-
-    def __init__(self, persist_fs, process_fs):
-        self.MAP_YAML_PATH = os.getenv(ConfigMap.MAP_YAML_PATH)
-        assert self.MAP_YAML_PATH is not None
-        self.persist_fs = persist_fs
-        self.process_fs = process_fs
+class FactoryProvider(AFactoryProvider):
+    """FactoryProvider class."""
 
     def provide(self) -> ZTOHFactory:
         """T The method returns instance of MSEFactory."""

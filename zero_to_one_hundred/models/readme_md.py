@@ -1,11 +1,10 @@
-"""ReadMeMD:
-a readme md with http and ref
-"""
-
 from zero_to_one_hundred.configs.config_map import ConfigMap
 
 
 class ReadMeMD:
+    """ReadMeMD:
+    a readme md with http and ref"""
+
     def __init__(
         self, persist_fs, process_fs, config_map: ConfigMap, dir_name, http_url
     ):

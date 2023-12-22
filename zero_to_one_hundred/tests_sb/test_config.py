@@ -21,3 +21,5 @@ def test_provide__pass(get_factory_provider):
     assert actual.get_download_engine_books_path is not None
     assert actual.get_oreilly_username is not None
     assert actual.get_oreilly_userpassword is not None
+    assert actual.get_oreilly_userpassword is not None
+    assert actual.get_split_pdf_pages == 100

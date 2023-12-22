@@ -6,21 +6,21 @@ from zero_to_one_hundred.tests_sb.moke import sb_persist_fs_fake, sb_process_fs_
 
 def test_init(get_map_yaml_path, http_url):
     actual = Toc(
-        SBConfigMap(get_map_yaml_path, sb_process_fs_fake),
-        sb_persist_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
+        sb_persist_fs_fake.SBPersistFSFake,
         sb_persist_fs_fake,
         [],
     )
     assert len(actual.meta_books) == 0
     mb = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake),
-        sb_persist_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
+        sb_persist_fs_fake.SBPersistFSFake,
         sb_process_fs_fake,
         http_url,
     )
     actual = Toc(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake),
-        sb_persist_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
+        sb_persist_fs_fake.SBPersistFSFake,
         sb_process_fs_fake,
         [mb],
     )

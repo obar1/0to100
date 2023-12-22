@@ -6,6 +6,6 @@ from zero_to_one_hundred.tests.moke import persist_fs_fake, process_fs_fake
 def test_process(get_config_map):
     actual: RefreshLinksProcessor = ZTOHFactory(
         persist_fs_fake.PersistFSFake, process_fs_fake, get_config_map
-    ).get_processor([None, 'refresh_links'])
+    ).get_processor([None, "refresh_links"])
     for p in actual:
         p.process()
