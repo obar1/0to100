@@ -30,5 +30,5 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
         print("check MAP_YAML_PATH env var contents")
     except ModuleNotFoundError:
         print("??? have you installed all the dep")
-    except (ValueError, TypeError, IndexError) as e:
+    except (ValueError, TypeError, IndexError):
         return factory.help_processor().process()

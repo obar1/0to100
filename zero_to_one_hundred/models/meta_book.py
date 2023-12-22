@@ -115,19 +115,18 @@ class MetaBook:
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
         """
-        if list(map(int, fitz.VersionBind.split("."))) < [1, 13, 3]:
-            raise SystemExit("insufficient PyMuPDF version")
-
+        if list(map(int, fitz.VersionBind.split("."))) < [1, 14, 0]:
+            raise SystemExit("need PyMuPDF v1.14.0+")
         fn = self.path_epub
-        doc = fitz.open(fn)
 
-        if doc.is_pdf:
-            raise SystemExit("document is PDF already")
+        print("Converting '%s' to '%s.pdf'" % (fn, fn))
+
+        doc = fitz.open(fn)
 
         b = doc.convert_to_pdf()  # convert to pdf
         pdf = fitz.open("pdf", b)  # open as pdf
 
-        toc = doc.get_toc()  # table of contents of input
+        toc = doc.het_toc()  # table of contents of input
         pdf.set_toc(toc)  # simply set it for output
         meta = doc.metadata  # read and set metadata
         if not meta["producer"]:
@@ -135,7 +134,8 @@ class MetaBook:
 
         if not meta["creator"]:
             meta["creator"] = "PyMuPDF PDF converter"
-
+        meta["modDate"] = fitz.get_pdf_now()
+        meta["creationDate"] = meta["modDate"]
         pdf.set_metadata(meta)
 
         # now process the links
@@ -147,14 +147,19 @@ class MetaBook:
             pout = pdf[pinput.number]  # read corresp. output page
             for l in links:  # iterate though the links
                 if l["kind"] == fitz.LINK_NAMED:  # we do not handle named links
+                    print("named link page", pinput.number, l)
                     link_skip += 1  # count them
                     continue
                 pout.insert_link(l)  # simply output the others
 
+        # save the conversion result
         pdf.save(self.path_pdf, garbage=4, deflate=True)
-        print(
-            "Skipped %i named links of a total of %i in input." % (link_skip, link_cnti)
-        )
+        # say how many named links we skipped
+        if link_cnti > 0:
+            print(
+                "Skipped %i named links of a total of %i in input."
+                % (link_skip, link_cnti)
+            )
 
     def write_splitter_pdf(self):
         """
