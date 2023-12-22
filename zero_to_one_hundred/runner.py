@@ -4,6 +4,7 @@ from subprocess import CalledProcessError
 from typing import List
 
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
+from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 
 
@@ -15,6 +16,7 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
         factory_provider (AFactoryProvider): a factory_type
 
     """
+    factory: AFactory = None
     try:
         factory = factory_provider.provide()
         assert factory is not None
@@ -29,4 +31,4 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     except ModuleNotFoundError:
         print("??? have you installed all the dep")
     except (ValueError, TypeError, IndexError) as e:
-        print(e)
+        return factory.help_processor().process()
