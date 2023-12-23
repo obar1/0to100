@@ -12,8 +12,8 @@ with open("README.md", "r") as fh:
 
 setup(
     name="0to100",
-    version="0.2.2",
-    author="mario amatucci",
+    version="0.2.4",
+    author="obar1",
     author_email="obar1+gh@pm.me",
     description="Simple python tool to learn everything and keep all local.",
     long_description=long_description,
