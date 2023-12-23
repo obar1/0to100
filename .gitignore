@@ -22,3 +22,6 @@ repo/
 toc.md
 *.yaml
 safaribooks/
+
+# pip install
+build/
