@@ -4,12 +4,35 @@
 | -- | -- | 
 | [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=obar1_0to100)](https://sonarcloud.io/summary/new_code?id=obar1_0to100) | [![Makefile CI](https://github.com/obar1/0to100/actions/workflows/makefile.yml/badge.svg)](https://github.com/obar1/0to100/actions/workflows/makefile.yml) | 
 
+We read training material from the web and learn from it by doing, but how do we keep that a bit organized? I came up with an idea: this small tool.
+Given a 'url', it creates the entry in a markdown map and a folder and links them; in this way, you can easily jump between different sections inside your preferred ide. As you expand the map with new contents, you build some reference material, keep it local all the time, and searchable all the time on your daily coding.
+
+## quick demo
+
+> in you want to check this quickly ...
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1)
+
+just open this repo in your GitHub Codespace and run the demo as:
+
+```bash
+pip install .
+bash demo.sh 0to100
+```
+
+![](termtosvg_0oihyn7a.svg)
+
+```bash
+bash demo.sh 0to100_sb
+```
+
+![](termtosvg_9evceaqa.svg)
+
+
+
 ## oto100
 
 0 to 100 ... learn anything from webresources (and not)
-
-We read training material from the web and learn from it by doing, but how do we keep that a bit organized? I came up with an idea: this small tool.
-Given a 'url', it creates the entry in a markdown map and a folder and links them; in this way, you can easily jump between different sections inside your preferred ide. As you expand the map with new contents, you build some reference material, keep it local all the time, and searchable all the time on your daily coding.
 
 current commands:
 help:
@@ -31,7 +54,7 @@ ex
 # env
 python -m venv .venv
 . .venv/bin/activate
-pip install -r requirements.txt
+pip install .
 
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests/resources/map.yaml .
@@ -91,7 +114,7 @@ https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaell
 # env
 python -m venv .venv
 . .venv/bin/activate
-pip install -r requirements.txt
+pip install .
 
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
@@ -135,23 +158,4 @@ and you have a `toc.md` for free to use as index
 
 ![](d05502bb-4b90-422f-9624-568d9f02cd08.png)
 
-## quick demo
-
-> in you want to check this quickly ...
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/obar1/0to100?quickstart=1)
-
-just open this repo in your GitHub Codespace and run the demo as:
-
-```bash
-bash demo.sh 0to100
-```
-
-![](termtosvg_0oihyn7a.svg)
-
-```bash
-bash demo.sh 0to100_sb
-```
-
-![](termtosvg_9evceaqa.svg)
 
