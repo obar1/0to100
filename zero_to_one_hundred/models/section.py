@@ -187,14 +187,23 @@ class Section:
     @classmethod
     def get_legend_as_md(cls):
         return """
-:cyclone: if is_quest
-:floppy_disk: if is_lab
-:whale: if is_template
-:snake: if is_game
-:pushpin: else
-
 :green_heart: completed
-:footprints: wip"""
+
+:footprints: wip
+
+> gcp specifig 
+
+:cyclone: quest
+
+:floppy_disk: lab
+
+:whale: template
+
+:snake: game
+
+:pushpin: course
+
+"""
 
     def __eq__(self, other):
         if other is self:
