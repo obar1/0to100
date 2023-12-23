@@ -15,7 +15,6 @@ venv/
 
 # test related
 0to100**/
-0*/
 978*/
 map.md
 repo/
@@ -24,4 +23,6 @@ toc.md
 safaribooks/
 
 # pip install
-build/
+build
+/dist
+*.egg-info
