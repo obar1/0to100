@@ -47,6 +47,16 @@ ex
 
 # catalog
 ```
+> tip
+in `refresh_links` you can expand links from other sections automatically 
+ex
+```markdown
+# <https§§§www.cloudskillsboost.google§catalog>
+> <https://www.cloudskillsboost.google/catalog>
+
+https://www.cloudskillsboost.google/doc
+```
+expand the last link to point to the section for the doc - handy as anchor tecnique 
 
 ### 1st time usage:
 
@@ -92,7 +102,7 @@ url=https://cloud.google.com/help
 
 0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
 
-some as above but it can uses dome external lib to grab file from oreilly
+same as above but it can use some external lib to grab epub from oreilly
 
 current commands:
 
@@ -139,7 +149,7 @@ chmod +x *.py
 
 ### daily usage:
 
-- create new meta book
+- create new meta-book
 
 ```bash
 url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
@@ -154,7 +164,7 @@ url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/0201
 
 ![](f5ac382b-dafe-4ba7-ba82-a3cabc01553e.png)
 
-and you have a `toc.md` for free to use as index
+and you have a `toc.md` for free to use as your index (bookmark it)
 
 ![](d05502bb-4b90-422f-9624-568d9f02cd08.png)
 
