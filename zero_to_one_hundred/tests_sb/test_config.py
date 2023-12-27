@@ -5,13 +5,13 @@ from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
-from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
-from zero_to_one_hundred.tests.moke import process_fs_fake
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persist_fs
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
 
 
 @pytest.fixture
 def get_factory_provider(mock_settings_env_vars):
-    return SBFactoryProvider(persist_fs, process_fs_fake)
+    return SBFactoryProvider(sb_persist_fs, sb_process_fs)
 
 
 def test_provide__pass(get_factory_provider):

@@ -10,6 +10,9 @@ from zero_to_one_hundred.processors.done_section_processor import DoneSectionPro
 from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
 from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
+from zero_to_one_hundred.processors.refresh_metadata_processor import (
+    RefreshMetadataProcessor,
+)
 
 
 class ZTOHFactory(AFactory):
@@ -20,7 +23,8 @@ class ZTOHFactory(AFactory):
         done_section = 2
         refresh_map = 3
         refresh_links = 4
-        help = 5
+        refresh_metadata = 5
+        help = 6
 
     def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
         self.config_map = config_map
@@ -41,6 +45,8 @@ class ZTOHFactory(AFactory):
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_links.name:
             yield self.refresh_links_processor()
             yield self.refresh_map_processor()
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_metadata.name:
+            yield self.refresh_metadata()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:
@@ -61,6 +67,11 @@ class ZTOHFactory(AFactory):
 
     def refresh_links_processor(self):
         return RefreshLinksProcessor(self.persist_fs, self.process_fs, self.config_map)
+
+    def refresh_metadata(self, http_url):
+        return RefreshMetadata(
+            self.persist_fs, self.process_fs, self.config_map, http_url
+        )
 
     def help_processor(self):
         return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)

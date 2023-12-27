@@ -6,6 +6,10 @@ from typing import List
 
 import yaml
 
+import sys
+
+import fitz
+
 
 class PersistFS:
     """PersistFS:
@@ -106,3 +110,75 @@ class PersistFS:
         if exists:
             return True
         return False
+
+    @classmethod
+    def write_pdf(cls, fn):
+        """
+        sample from
+        https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
+        """
+        if list(map(int, fitz.VersionBind.split("."))) < [1, 14, 0]:
+            raise SystemExit("need PyMuPDF v1.14.0+")
+
+        print("Converting '%s' to '%s.pdf'" % (fn, fn))
+
+        doc = fitz.open(fn)
+
+        b = doc.convert_to_pdf()  # convert to pdf
+        pdf = fitz.open("pdf", b)  # open as pdf
+
+        toc = doc.get_toc()  # table of contents of input
+        pdf.set_toc(toc)  # simply set it for output
+        meta = doc.metadata  # read and set metadata
+        if not meta["producer"]:
+            meta["producer"] = "PyMuPDF v" + fitz.VersionBind
+
+        if not meta["creator"]:
+            meta["creator"] = "PyMuPDF PDF converter"
+        meta["modDate"] = fitz.get_pdf_now()
+        meta["creationDate"] = meta["modDate"]
+        pdf.set_metadata(meta)
+
+        # now process the links
+        link_cnti = 0
+        link_skip = 0
+        for pinput in doc:  # iterate through input pages
+            links = pinput.get_links()  # get list of links
+            link_cnti += len(links)  # count how many
+            pout = pdf[pinput.number]  # read corresp. output page
+            for l in links:  # iterate though the links
+                if l["kind"] == fitz.LINK_NAMED:  # we do not handle named links
+                    print("named link page", pinput.number, l)
+                    link_skip += 1  # count them
+                    continue
+                pout.insert_link(l)  # simply output the others
+
+        # save the conversion result
+        pdf.save(self.path_pdf, garbage=4, deflate=True)
+        # say how many named links we skipped
+        if link_cnti > 0:
+            print(
+                "Skipped %i named links of a total of %i in input."
+                % (link_skip, link_cnti)
+            )
+
+    @classmethod
+    def write_splitter_pdf(cls, fn, split_pdf_pages):
+        """
+        split pdf in chunks -easier to manager on ipad with markups
+        sample from
+        https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/split-document/split.py
+        """
+
+        fn1 = fn[:-4]
+        src = fitz.open(fn)
+        last_page = len(src)
+        for i in range(1, last_page, split_pdf_pages):
+            doc = fitz.open()
+            from_page = i
+            to_page = i + split_pdf_pages
+            doc.insert_pdf(src, from_page=from_page, to_page=to_page)
+            doc.save("%s_%i-%i.pdf" % (fn1, from_page, to_page))
+            doc.close()
+
+ 

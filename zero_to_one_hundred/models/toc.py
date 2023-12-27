@@ -31,8 +31,8 @@ class Toc:
         1. <0596007124> ![`img`](../books/0596007124/0596007124.png) :o: [`pdf`](../books/0596007124/0596007124.pdf) :o: [`epub`](../books/0596007124/0596007124.epub) :o: [`json`](../books/0596007124/0596007124.json)
         """
 
-        def flatten_meta_book(s):
-            json = self.persist_fs.render_json(s.read_json())
+        def flatten_meta_book(meta_book: MetaBook):
+            json = meta_book.read_json()
             status = (
                 '<span style="color:green">**DONE**</span>'
                 if "STATUS_DONE" in json
@@ -40,10 +40,10 @@ class Toc:
             )
             res = "|".join(
                 [
-                    f'<span style="color:blue">**{s.isbn}**</span>',
-                    f"![`img`]({self.persist_fs.render_path(s.path_img)})",
-                    f"[`epub`]({self.persist_fs.render_path(s.path_epub)})",
-                    f"[`pdf`]({self.persist_fs.render_path(s.path_pdf)})",
+                    f'<span style="color:blue">**{meta_book.isbn}**</span>',
+                    f"![`img`]({self.persist_fs.render_path(meta_book.path_img)})",
+                    f"[`epub`]({self.persist_fs.render_path(meta_book.path_epub)})",
+                    f"[`pdf`]({self.persist_fs.render_path(meta_book.path_pdf)})",
                     f"{json}",
                     f"{status}",
                 ]
@@ -67,12 +67,6 @@ class Toc:
         ]
 
     def write(self):
-        """write as
-
-        # ./books/toc.md
-
-        table
-        """
         txt = []
         txt.append(
             f"""

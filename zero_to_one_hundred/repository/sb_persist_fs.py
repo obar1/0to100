@@ -21,3 +21,13 @@ class SBPersistFS(PersistFS):
     @classmethod
     def render_path(cls, txt: str):
         return txt.replace(" ", "%20")
+
+    @classmethod
+    def get_epub_path(cls, download_engine_books_path, isbn, epub_suffix):
+        """find the actual path into the path given the isbn
+        dirs are supposed to be like
+        download_engine_books_path/books title (isbn)
+        """
+        dirs = PersistFS.list_dirs(download_engine_books_path)
+        dir_isbn = [dir_ for dir_ in dirs if "(" + isbn + ")" in dir_]
+        return download_engine_books_path + "/" + dir_isbn[0] + "/" + isbn + epub_suffix

@@ -19,12 +19,14 @@ class ReadMeMD:
         return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
     def write(self, txt=None):
-        # # https§§§cloud.google.com§api-gateway§docs
-        # > https://cloud.google.com/api-gateway/docs
         if txt is None:
             txt = []
             txt.append(f"""# <{self.dir_name}>\n> <{self.http_url}>\n""")
         return self.persist_fs.write_file(self.readme_md, txt)
 
     def read(self):
-        return self.persist_fs.read_file(self.readme_md)
+        lines = ""
+        try:
+            return self.persist_fs.read_file(self.readme_md)
+        except:
+            return lines

@@ -7,14 +7,28 @@ import pytest
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
-from zero_to_one_hundred.tests_sb.moke.sb_persist_fs_fake import (
-    SBPersistFSFake as persist_fs_fake,
-)
+from zero_to_one_hundred.repository.process_fs import ProcessFS as process_fs
+from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
 
 
 @pytest.fixture
 def http_url():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
+
+
+@pytest.fixture
+def isbn():
+    yield "9780135956977"
+
+
+@pytest.fixture
+def pages_tot():
+    yield 999
+
+
+@pytest.fixture
+def page_curr():
+    yield 99
 
 
 @pytest.fixture
@@ -60,4 +74,4 @@ def mock_settings_env_vars(get_map_yaml_path):
 
 @pytest.fixture
 def get_config_map(get_map_yaml_path):
-    return SBConfigMap(get_map_yaml_path, persist_fs_fake)
+    return SBConfigMap(get_map_yaml_path, persist_fs)

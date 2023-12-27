@@ -1,27 +1,28 @@
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.models.toc import Toc
-from zero_to_one_hundred.tests_sb.moke import sb_persist_fs_fake, sb_process_fs_fake
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persist_fs
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
 
 
 def test_init(get_map_yaml_path, http_url):
     actual = Toc(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-        sb_persist_fs_fake.SBPersistFSFake,
-        sb_persist_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        sb_persist_fs,
+        sb_persist_fs,
         [],
     )
     assert len(actual.meta_books) == 0
     mb = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-        sb_persist_fs_fake.SBPersistFSFake,
-        sb_process_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        sb_persist_fs,
+        sb_process_fs,
         http_url,
     )
     actual = Toc(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-        sb_persist_fs_fake.SBPersistFSFake,
-        sb_process_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        sb_persist_fs,
+        sb_process_fs,
         [mb],
     )
     assert str(actual.readme_md).endswith("toc.md")
