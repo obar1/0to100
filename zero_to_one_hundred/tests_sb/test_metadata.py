@@ -2,10 +2,10 @@ from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.metadata import Metadata
 
 
-from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persist_fs
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
+
 
 def test_init(get_map_yaml_path, http_url, isbn):
     actual = Metadata(

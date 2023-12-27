@@ -1,16 +1,16 @@
 import json
-import sys
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
-from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as persist_fs
-from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as process_fs
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
+
 
 class Metadata:
     def __init__(
         self,
         get_isbn,
         config_map: SBConfigMap,
-        persist_fs:persist_fs,
-        process_fs:process_fs,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
         http_url: str,
         page_curr=0,
         pages_tot=0,
@@ -38,27 +38,24 @@ class Metadata:
     def write(self):
         self.write_json()
 
-    def read_json(self):
-        lines = "{}"
-        lines = self.persist_fs.read_file(self.path_json)
-        return json.dumps(json.loads("".join(lines)), indent=4)
-
-
     def write_json(self):
-       
-        txt = '''
+        txt = """
         "isbn":"{isbn}",
         "url":"{url}",
         "page_curr":"{page_curr}",
         "pages_tot":"{pages_tot}",
         "page_perc":"{page_perc}"
-        '''.strip()
-        txt = (txt.format(isbn = self.isbn, url = self.http_url, page_curr = self.page_curr,pages_tot = self.pages_tot, page_perc= self.get_page_perc))
+        """.strip()
+        txt = txt.format(
+            isbn=self.isbn,
+            url=self.http_url,
+            page_curr=self.page_curr,
+            pages_tot=self.pages_tot,
+            page_perc=self.get_page_perc,
+        )
         print(txt)
 
-        self.persist_fs.write_json(
-            self.path_json,  "{" + txt + "}"
-        )
+        self.persist_fs.write_json(self.path_json, "{" + txt + "}")
 
     def read_json(self):
         lines = "{}"

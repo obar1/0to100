@@ -26,4 +26,3 @@ class ReadMeMD:
 
     def read(self):
         return self.persist_fs.read_file(self.readme_md)
-

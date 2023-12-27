@@ -1,7 +1,6 @@
 import json
 import fitz
 
-from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.repository.persist_fs import PersistFS
 
 PREFIX_RELATIVE_FOLDER = "./"
@@ -40,7 +39,7 @@ class SBPersistFS(PersistFS):
     @classmethod
     def write_fake_epub(cls, path_epub):
         print(f"write_fake_epub  {path_epub}")
- 
+
         HTML = """
         <p style="font-family: sans-serif;color: blue">Hello World!</p>
         """
@@ -62,6 +61,6 @@ class SBPersistFS(PersistFS):
         writer.close()  # close output file
 
     @classmethod
-    def write_json(cls, path_json: str, txt:str):
+    def write_json(cls, path_json: str, txt: str):
         print(f"write_json {path_json} {txt}")
         PersistFS.write_file(path_json, json.dumps(json.loads("".join(txt)), indent=4))

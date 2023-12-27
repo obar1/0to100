@@ -10,9 +10,6 @@ from zero_to_one_hundred.processors.done_section_processor import DoneSectionPro
 from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
 from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
-from zero_to_one_hundred.processors.refresh_metadata_processor import (
-    RefreshMetadataProcessor,
-)
 
 
 class ZTOHFactory(AFactory):

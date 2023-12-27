@@ -1,12 +1,10 @@
 # pylint: disable=W0108
 import os
-from datetime import datetime
 from shutil import copyfile
 from typing import List
 
 import yaml
 
-import sys
 
 import fitz
 
@@ -164,8 +162,3 @@ class PersistFS:
             doc.insert_pdf(src, from_page=from_page, to_page=to_page)
             doc.save("%s_%i-%i.pdf" % (fn1, from_page, to_page))
             doc.close()
-
- 
-
-
-

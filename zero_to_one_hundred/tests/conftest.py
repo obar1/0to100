@@ -8,7 +8,6 @@ import pytest
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
-from zero_to_one_hundred.repository.process_fs import ProcessFS as process_fs
 
 
 @pytest.fixture

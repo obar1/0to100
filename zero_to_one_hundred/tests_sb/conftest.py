@@ -7,7 +7,6 @@ import pytest
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
-from zero_to_one_hundred.repository.process_fs import ProcessFS as process_fs
 from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
 
 
