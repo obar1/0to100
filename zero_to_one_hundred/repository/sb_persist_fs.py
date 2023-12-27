@@ -38,10 +38,10 @@ class SBPersistFS(PersistFS):
 
     @classmethod
     def write_fake_epub(cls, path_epub):
-        print(f"write_fake_epub  {path_epub}")
+        print(f"write_fake_epub {path_epub}")
 
-        HTML = """
-        <p style="font-family: sans-serif;color: blue">Hello World!</p>
+        HTML = f"""
+        <p style="font-family: sans-serif;color: blue">{path_epub}/p>
         """
 
         MEDIABOX = fitz.paper_rect("letter")  # output page format: Letter
@@ -61,6 +61,88 @@ class SBPersistFS(PersistFS):
         writer.close()  # close output file
 
     @classmethod
+    def write_pdf(cls, fn, path_pdf):
+        """
+        sample from
+        https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
+        """
+        print(f"write_pdf {fn}")
+
+        doc = fitz.open(fn)
+
+        b = doc.convert_to_pdf()  # convert to pdf
+        pdf = fitz.open("pdf", b)  # open as pdf
+
+        toc = doc.get_toc()  # table of contents of input
+        pdf.set_toc(toc)  # simply set it for output
+        meta = doc.metadata  # read and set metadata
+        if not meta["producer"]:
+            meta["producer"] = "PyMuPDF v" + fitz.VersionBind
+
+        if not meta["creator"]:
+            meta["creator"] = "PyMuPDF PDF converter"
+        meta["modDate"] = fitz.get_pdf_now()
+        meta["creationDate"] = meta["modDate"]
+        pdf.set_metadata(meta)
+
+        # now process the links
+        link_cnti = 0
+        link_skip = 0
+        for pinput in doc:  # iterate through input pages
+            links = pinput.get_links()  # get list of links
+            link_cnti += len(links)  # count how many
+            pout = pdf[pinput.number]  # read corresp. output page
+            for l in links:  # iterate though the links
+                if l["kind"] == fitz.LINK_NAMED:  # we do not handle named links
+                    print("named link page", pinput.number, l)
+                    link_skip += 1  # count them
+                    continue
+                pout.insert_link(l)  # simply output the others
+
+        # save the conversion result
+        pdf.save(path_pdf, garbage=4, deflate=True)
+        # say how many named links we skipped
+        if link_cnti > 0:
+            print(
+                "Skipped %i named links of a total of %i in input."
+                % (link_skip, link_cnti)
+            )
+
+    @classmethod
+    def write_splitter_pdf(cls, fn, split_pdf_pages):
+        """
+        split pdf in chunks -easier to manager on ipad with markups
+        sample from
+        https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/split-document/split.py
+        """
+        print(f"write_pdf {fn} {split_pdf_pages}")
+        fn1 = fn[:-4]
+        src = fitz.open(fn)
+        last_page = len(src)
+        for i in range(1, last_page, split_pdf_pages):
+            doc = fitz.open()
+            from_page = i
+            to_page = i + split_pdf_pages
+            doc.insert_pdf(src, from_page=from_page, to_page=to_page)
+            doc.save("%s_%i-%i.pdf" % (fn1, from_page, to_page))
+            doc.close()
+
+    @classmethod
     def write_json(cls, path_json: str, txt: str):
         print(f"write_json {path_json} {txt}")
         PersistFS.write_file(path_json, json.dumps(json.loads("".join(txt)), indent=4))
+
+    @classmethod
+    def read_pages_curr(cls, fn: str) -> int:
+        print(f"read_pages_curr {fn}")
+        with open(fn, "r", encoding="utf-8") as f:
+            json_data = json.loads(f.read())
+            print(json_data)
+            return int(json_data["page_curr"])
+
+    @classmethod
+    def read_pages_tot(cls, fn: str) -> int:
+        print(f"read_pages_tot {fn}")
+        src = fitz.open(fn)
+        print(src)
+        return len(src)

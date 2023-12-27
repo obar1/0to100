@@ -20,9 +20,10 @@ class Metadata:
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.page_curr = page_curr
-        self.pages_tot = pages_tot
         self.isbn = get_isbn(http_url)
         self.contents_path = persist_fs.abs_path(f"{self.isbn}")
+        self.page_curr = page_curr
+        self.pages_tot = pages_tot
         self.path_json = f"{self.contents_path}/{self.isbn}.json"
 
     def __repr__(self):
@@ -39,6 +40,12 @@ class Metadata:
         self.write_json()
 
     def write_json(self):
+        self.page_curr = self.persist_fs.read_pages_curr(
+            f"{self.contents_path}/{self.isbn}.json"
+        )
+        self.pages_tot = self.persist_fs.read_pages_tot(
+            f"{self.contents_path}/{self.isbn}.pdf"
+        )
         txt = """
         "isbn":"{isbn}",
         "url":"{url}",
