@@ -10,4 +10,4 @@ def test_is_valid_http__pass__fail():
     assert Validator.is_valid_http("https://code.google") is None
     # fail
     with pytest.raises(NotURLFormatError):
-        assert Validator.is_valid_http("code.google")
+        Validator.is_valid_http("code.google")
