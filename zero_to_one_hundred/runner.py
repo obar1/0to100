@@ -1,6 +1,7 @@
 # pylint: disable=W0106,R1710
 
 from subprocess import CalledProcessError
+import traceback
 from typing import List
 
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
@@ -31,4 +32,6 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     except ModuleNotFoundError:
         print("DDD have you installed all the dep")
     except (ValueError, TypeError, IndexError):
+        traceback.print_exc()
+    finally:
         return factory.help_processor().process()

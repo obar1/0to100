@@ -58,6 +58,11 @@ function 0to100_sb {
     
     ./main_sb.py refresh_toc
     
+    url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
+    echo 'pretend book was read fully :P'
+    echo '{"page_curr": "1", "pages_tot": "1"}' > 9781119895947/9781119895947.json
+    ./main_sb.py refresh_metadata "$url"
+    
     ls -1R 978*
 }
 

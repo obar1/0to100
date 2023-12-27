@@ -27,15 +27,15 @@ class Toc:
         return f"Toc {self.readme_md}, {self.meta_books}"
 
     def __repr_flatten(self, meta_books: List[MetaBook]) -> str:
-        """transform as
-        1. <0596007124> ![`img`](../books/0596007124/0596007124.png) :o: [`pdf`](../books/0596007124/0596007124.pdf) :o: [`epub`](../books/0596007124/0596007124.epub) :o: [`json`](../books/0596007124/0596007124.json)
-        """
-
         def flatten_meta_book(meta_book: MetaBook):
-            json = meta_book.read_json().replace("\n", " ")
+            print(f"flatten_meta_book {meta_book}")
+            json = meta_book.read_json().replace(
+                "\n", "<br/>"
+            )  # trick to have LF in MD tables :P
+            print(json)
             status = (
                 '<span style="color:green">**DONE**</span>'
-                if "STATUS_DONE" in json
+                if "100.0%" in json
                 else '<span style="color:yellow">**WIP**</span>'
             )
             res = "|".join(
@@ -60,11 +60,13 @@ class Toc:
         """from a list of dirs created return the a MetaBook
         m> org http is lost
         """
-        return [
+        res = [
             MetaBook.build_from_dir(config_map, persist_fs, process_fs, curr_dir)
             for curr_dir in dirs
             if curr_dir is not None
         ]
+        print(res)
+        return res
 
     def write(self):
         txt = []
