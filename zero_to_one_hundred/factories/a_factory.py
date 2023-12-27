@@ -5,8 +5,6 @@ from typing import Generator
 from zero_to_one_hundred.processors.a_processor import AProcessor
 from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
 
-# pylint: disable=R0801
-
 
 class AFactory(ABC):
     """AFactory class."""

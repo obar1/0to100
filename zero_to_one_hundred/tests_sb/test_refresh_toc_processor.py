@@ -1,4 +1,5 @@
 from unittest.mock import patch
+
 from zero_to_one_hundred.factories.sb_factory import SBFactory
 from zero_to_one_hundred.processors.refresh_toc_processor import (
     RefreshTocProcessor,

@@ -4,6 +4,10 @@ install:
 test:
 	python -m pytest zero_to_one_hundred
 
+intest:
+	bash demo.sh 0to100 && bash demo.sh 0to100_sb
+
+
 format:
 	black zero_to_one_hundred
 

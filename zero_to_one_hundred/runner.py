@@ -1,7 +1,7 @@
 # pylint: disable=W0106,R1710
 
-from subprocess import CalledProcessError
 import traceback
+from subprocess import CalledProcessError
 from typing import List
 
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError

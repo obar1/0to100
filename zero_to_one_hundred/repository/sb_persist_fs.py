@@ -1,4 +1,5 @@
 import json
+
 import fitz
 
 from zero_to_one_hundred.repository.persist_fs import PersistFS

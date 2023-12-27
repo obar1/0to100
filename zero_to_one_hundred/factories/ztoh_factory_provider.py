@@ -6,13 +6,13 @@ from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
 MAP = "map"
 
 
-class FactoryProvider(AFactoryProvider):
-    """FactoryProvider class."""
+class ZTOHFactoryProvider(AFactoryProvider):
+    """0to100 FactoryProvider class."""
 
     def provide(self) -> ZTOHFactory:
         """T The method returns instance of MSEFactory."""
         get_type = AConfigMap(self.MAP_YAML_PATH, self.persist_fs).get_type
         if get_type == MAP:
             config_map = ConfigMap(self.persist_fs, self.MAP_YAML_PATH)
-            return ZTOHFactory(self.persist_fs, self.process_fs, config_map)
+            return ZTOHFactory(config_map, self.persist_fs, self.process_fs)
         raise NotImplementedError(f"NotImplementedError {get_type}")
