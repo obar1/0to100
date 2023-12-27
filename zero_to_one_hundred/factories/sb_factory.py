@@ -40,6 +40,7 @@ class SBFactory(AFactory):
         elif cmd == SBFactory.SUPPORTED_PROCESSOR.refresh_metadata.name:
             http_url = args[2]
             yield self.refresh_metadata(http_url)
+            yield self.refresh_toc_processor()
         elif cmd == SBFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:

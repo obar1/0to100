@@ -32,7 +32,7 @@ class Toc:
         """
 
         def flatten_meta_book(meta_book: MetaBook):
-            json = meta_book.read_json()
+            json = meta_book.read_json().replace("\n", " ")
             status = (
                 '<span style="color:green">**DONE**</span>'
                 if "STATUS_DONE" in json

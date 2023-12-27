@@ -44,6 +44,9 @@ class Metadata:
             self.page_curr = self.persist_fs.read_pages_curr(
                 f"{self.contents_path}/{self.isbn}.json"
             )
+        except Exception as e:
+            print(f"DDD issue with {e}")
+        try:
             self.pages_tot = self.persist_fs.read_pages_tot(
                 f"{self.contents_path}/{self.isbn}.pdf"
             )
@@ -69,9 +72,5 @@ class Metadata:
         self.persist_fs.write_json(self.path_json, "{" + txt + "}")
 
     def read_json(self):
-        lines = "{}"
-        try:
-            lines = self.persist_fs.read_file(self.path_json)
-            return json.dumps(json.loads("".join(lines)), indent=4)
-        except:
-            return lines
+        lines = self.persist_fs.read_file(self.path_json)
+        return json.dumps(json.loads("".join(lines)), indent=4)

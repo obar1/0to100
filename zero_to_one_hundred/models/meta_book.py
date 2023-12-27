@@ -89,7 +89,7 @@ class MetaBook:
             print(f"DDD issue with {e}")
 
     def read_json(self):
-        self.metadata.read_json()
+        return self.metadata.read_json()
 
     @classmethod
     def get_isbn(cls, http_url):
