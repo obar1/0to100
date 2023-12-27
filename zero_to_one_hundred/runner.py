@@ -34,4 +34,4 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     except (ValueError, TypeError, IndexError):
         traceback.print_exc()
     finally:
-        return factory.help_processor().process()
+        factory.help_processor().process()
