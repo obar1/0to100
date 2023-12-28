@@ -1,6 +1,5 @@
 # pylint: disable=W0108
 import os
-from datetime import datetime
 from shutil import copyfile
 from typing import List
 
@@ -25,7 +24,6 @@ class PersistFS:
 
     @classmethod
     def get_dir_name(cls, filename):
-        print(f"get_dir_name {filename}")
         return os.path.dirname(os.path.abspath(filename))
 
     @classmethod
@@ -47,15 +45,11 @@ class PersistFS:
     @classmethod
     def make_dirs(cls, path):
         print(f"make_dirs {path}")
-        if os.path.isdir(path):
-            print(f"_skip {path}")
-            return None
-        print(f"_create {path}")
         return os.makedirs(path, 0o777, True)
 
     @classmethod
     def read_file(cls, filename) -> List[str]:
-        print(f"read {filename}")
+        print(f"read_file {filename}")
         with open(filename, mode="r", encoding="UTF-8") as file_:
             lines = file_.readlines()
             return lines
@@ -78,19 +72,11 @@ class PersistFS:
         return abs_path
 
     @classmethod
-    def get_now(cls):
-        now = datetime.now()
-        return now.strftime("%Y/%m/%d-%H:%M:%S")
-
-    @classmethod
     def done_section(cls, path):
         path = cls.abs_path(path)
         print(f"done_section {path}")
         path = path + os.sep + ".done"
         print(f"path {path}")
-        if os.path.exists(path):
-            print(f"found {path}")
-            return
         os.makedirs(path, 0o777, True)
         with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
             os.utime("{}/.gitkeep".format(path), None)

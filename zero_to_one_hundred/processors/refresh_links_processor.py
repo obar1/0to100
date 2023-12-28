@@ -29,4 +29,4 @@ class RefreshLinksProcessor(AProcessor):
             try:
                 s.refresh_links()
             except:
-                print(f"issue with {s}")
+                print(f"DDD issue with {s}")

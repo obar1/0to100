@@ -1,13 +1,14 @@
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
-from zero_to_one_hundred.tests_sb.moke import sb_persist_fs_fake, sb_process_fs_fake
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persist_fs
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
 
 
 def test_init(get_map_yaml_path, http_url):
     actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-        sb_persist_fs_fake.SBPersistFSFake,
-        sb_process_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        sb_persist_fs,
+        sb_process_fs,
         http_url,
     )
     assert str(actual.isbn).endswith("9780135956977")
@@ -19,20 +20,19 @@ def test_init(get_map_yaml_path, http_url):
 
 def test_write(get_map_yaml_path, http_url):
     actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-        sb_persist_fs_fake.SBPersistFSFake,
-        sb_process_fs_fake,
+        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        sb_persist_fs,
+        sb_process_fs,
         http_url,
     )
-    print(actual)
 
 
 def test_build_from_dir(get_map_yaml_path):
     assert (
         MetaBook.build_from_dir(
-            SBConfigMap(get_map_yaml_path, sb_persist_fs_fake.SBPersistFSFake),
-            sb_persist_fs_fake.SBPersistFSFake,
-            sb_process_fs_fake,
+            SBConfigMap(get_map_yaml_path, sb_persist_fs),
+            sb_persist_fs,
+            sb_process_fs,
             "./books/9780135956977",
         ).isbn
         == "9780135956977"

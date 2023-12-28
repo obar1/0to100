@@ -7,9 +7,7 @@ import pytest
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.config_map import ConfigMap
-from zero_to_one_hundred.tests.moke.persist_fs_fake import (
-    PersistFSFake as persist_fs_fake,
-)
+from zero_to_one_hundred.repository.persist_fs import PersistFS as persist_fs
 
 
 @pytest.fixture
@@ -79,7 +77,7 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
 
 @pytest.fixture
 def get_config_map(get_map_yaml_path):
-    return ConfigMap(persist_fs_fake, get_map_yaml_path)
+    return ConfigMap(persist_fs, get_map_yaml_path)
 
 
 @pytest.fixture

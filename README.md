@@ -107,7 +107,7 @@ same as above but it can use some external lib to grab epub from oreilly
 current commands:
 
 help:
-['create_meta_book', 'refresh_toc', 'help']
+['create_meta_book', 'refresh_toc', 'refresh_metadata', 'help']
 
 ### 0th time usage:
 
