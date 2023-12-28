@@ -1,8 +1,8 @@
 # pylint: disable=W0621,W0613
 
 import pytest
-from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS
 
+from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persist_fs

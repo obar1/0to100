@@ -1,6 +1,5 @@
 import re
 
-
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
@@ -23,13 +22,7 @@ class MetaBook:
         self.http_url = http_url
         self.persist_fs = persist_fs
         self.process_fs = process_fs
-        self.metadata = Metadata(
-            MetaBook.get_isbn,
-            self.config_map,
-            self.persist_fs,
-            self.process_fs,
-            self.http_url,
-        )
+        self.metadata = Metadata(self.config_map, self.persist_fs, self.process_fs, MetaBook.get_isbn, self.http_url)
         self.isbn = MetaBook.get_isbn(http_url)
         self.contents_path = persist_fs.abs_path(f"{self.isbn}")
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
@@ -40,7 +33,8 @@ class MetaBook:
         return f"MetaBook {self.http_url}, {self.isbn} {self.contents_path}"
 
     @classmethod
-    def build_from_dir(cls, config_map, persist_fs, process_fs, dir_name):
+    def build_from_dir(cls, config_map: SBConfigMap,         persist_fs: SBPersistFS,
+        process_fs: SBProcessFS, dir_name):
         return MetaBook(
             config_map,
             persist_fs,
@@ -55,7 +49,7 @@ class MetaBook:
         try:
             self.persist_fs.write_fake_epub(self.path_epub)
             self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
-            self.persist_fs.copy_file_to(self.get_epub_path(), self.path_epub)
+            self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
         except Exception as e:
             print(f"DDD issue with {e}")
 
@@ -96,6 +90,7 @@ class MetaBook:
         http_url = http_url.strip("/")
         return http_url[http_url.rfind("/") + 1 :]
 
+    @property
     def get_epub_path(self):
         download_engine_books_path = self.config_map.get_download_engine_books_path
         isbn = self.isbn

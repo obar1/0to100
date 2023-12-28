@@ -1,5 +1,9 @@
 from typing import List
 
+from zero_to_one_hundred.repository.process_fs import ProcessFS
+
+from zero_to_one_hundred.repository.persist_fs import PersistFS
+
 from zero_to_one_hundred.configs.config_map import ConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.models.section import Section
@@ -12,7 +16,7 @@ class RefreshLinksProcessor(AProcessor):
     when some of them are added as new_section
     replace them with the location of the new_section ..."""
 
-    def __init__(self, persist_fs, process_fs, config_map: ConfigMap):
+    def __init__(self, config_map: ConfigMap, persist_fs: PersistFS, process_fs: ProcessFS):
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs
@@ -28,5 +32,5 @@ class RefreshLinksProcessor(AProcessor):
         for s in sections:
             try:
                 s.refresh_links()
-            except:
+            except Exception:
                 print(f"DDD issue with {s}")
