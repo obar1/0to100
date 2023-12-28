@@ -45,20 +45,19 @@ class Metadata:
 
 
     def write_json(self):
-        txt = []
-#         json = f"""
-# {
-#     'isbn': '{self.isbn}',
-#     'url': '{self.http_url}',
-#     'page_curr': '{self.page_curr}',
-#     'pages_tot': '{self.pages_tot}',
-#     'page_perc': '{self.get_page_perc}',
-# }
-# """
-        json = "{}"
-        txt.append(json)
+       
+        txt = '''
+        "isbn":"{isbn}",
+        "url":"{url}",
+        "page_curr":"{page_curr}",
+        "pages_tot":"{pages_tot}",
+        "page_perc":"{page_perc}"
+        '''.strip()
+        txt = (txt.format(isbn = self.isbn, url = self.http_url, page_curr = self.page_curr,pages_tot = self.pages_tot, page_perc= self.get_page_perc))
+        print(txt)
+
         self.persist_fs.write_json(
-            self.path_json, txt
+            self.path_json,  "{" + txt + "}"
         )
 
     def read_json(self):
