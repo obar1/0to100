@@ -32,7 +32,6 @@ class ZTOHFactory(AFactory):
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        print(f"args {args}")
         cmd = args[1]
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(args[2])

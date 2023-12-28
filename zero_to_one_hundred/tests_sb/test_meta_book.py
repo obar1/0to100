@@ -25,7 +25,6 @@ def test_write(get_map_yaml_path, http_url):
         sb_process_fs,
         http_url,
     )
-    print(actual)
 
 
 def test_build_from_dir(get_map_yaml_path):

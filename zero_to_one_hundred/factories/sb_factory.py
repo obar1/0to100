@@ -25,7 +25,6 @@ class SBFactory(AFactory):
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        print(f"args {args}")
         cmd = args[1]
         if cmd == SBFactory.SUPPORTED_PROCESSOR.create_meta_book.name:
             yield self.create_meta_book_processor(args[2])

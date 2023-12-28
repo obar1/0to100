@@ -9,5 +9,5 @@ class UnsupportedProcessor(AProcessor):
         self.cmd = cmd
 
     def process(self):
-        print(f"Unsupported Processor {self.cmd}")
+        print(f"DDD Unsupported Processor {self.cmd}")
         raise ValueError

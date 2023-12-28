@@ -34,6 +34,7 @@ class PersistFS:
 
     @classmethod
     def load_file(cls, MAP_YAML_PATH):
+        print(f"load_file {MAP_YAML_PATH}")
         with open(MAP_YAML_PATH, mode="r", encoding="UTF-8") as stream:
             return yaml.safe_load(stream)
 
@@ -51,15 +52,11 @@ class PersistFS:
     @classmethod
     def make_dirs(cls, path):
         print(f"make_dirs {path}")
-        if os.path.isdir(path):
-            print(f"_skip {path}")
-            return None
-        print(f"_create {path}")
         return os.makedirs(path, 0o777, True)
 
     @classmethod
     def read_file(cls, filename) -> List[str]:
-        print(f"read {filename}")
+        print(f"read_file {filename}")
         with open(filename, mode="r", encoding="UTF-8") as file_:
             lines = file_.readlines()
             return lines
@@ -83,8 +80,7 @@ class PersistFS:
 
     @classmethod
     def get_now(cls):
-        now = datetime.now()
-        return now.strftime("%Y/%m/%d-%H:%M:%S")
+        return datetime.now().strftime("%Y/%m/%d-%H:%M:%S")
 
     @classmethod
     def done_section(cls, path):
@@ -92,9 +88,6 @@ class PersistFS:
         print(f"done_section {path}")
         path = path + os.sep + ".done"
         print(f"path {path}")
-        if os.path.exists(path):
-            print(f"found {path}")
-            return
         os.makedirs(path, 0o777, True)
         with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
             os.utime("{}/.gitkeep".format(path), None)
@@ -112,15 +105,12 @@ class PersistFS:
         return False
 
     @classmethod
-    def write_pdf(cls, fn):
+    def write_pdf(cls, fn, path_pdf):
         """
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
         """
-        if list(map(int, fitz.VersionBind.split("."))) < [1, 14, 0]:
-            raise SystemExit("need PyMuPDF v1.14.0+")
-
-        print("Converting '%s' to '%s.pdf'" % (fn, fn))
+        print(f"write_pdf {fn}")
 
         doc = fitz.open(fn)
 
@@ -154,7 +144,7 @@ class PersistFS:
                 pout.insert_link(l)  # simply output the others
 
         # save the conversion result
-        pdf.save(self.path_pdf, garbage=4, deflate=True)
+        pdf.save(path_pdf, garbage=4, deflate=True)
         # say how many named links we skipped
         if link_cnti > 0:
             print(
@@ -169,7 +159,7 @@ class PersistFS:
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/split-document/split.py
         """
-
+        print(f"write_pdf {fn} {split_pdf_pages}")
         fn1 = fn[:-4]
         src = fitz.open(fn)
         last_page = len(src)
@@ -182,3 +172,6 @@ class PersistFS:
             doc.close()
 
  
+
+
+

@@ -3,14 +3,15 @@ import re
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.metadata import Metadata
-
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as persist_fs
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as process_fs
 
 class MetaBook:
     epub_suffix = ".epub"
     HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
 
-    def __init__(self, config_map: SBConfigMap, persist_fs, process_fs, http_url: str):
+    def __init__(self, config_map: SBConfigMap, persist_fs:persist_fs, process_fs:process_fs, http_url: str):
         self.config_map = config_map
         self.http_url = http_url
         self.persist_fs = persist_fs
@@ -44,8 +45,12 @@ class MetaBook:
         self.process_fs.write_img(self.path_img, f"{self.HTTP_OREILLY}/{self.isbn}/")
 
     def write_epub(self):
-        self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
-        self.persist_fs.copy_file_to(self.get_epub_path(), self.path_epub)
+        try:
+            self.persist_fs.write_fake_epub(self.path_epub)
+            self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
+            self.persist_fs.copy_file_to(self.get_epub_path(), self.path_epub)
+        except Exception as e:
+            print(f"DDD issue with {e}")
 
     def write_json(self):
         self.metadata.write_json()
@@ -56,12 +61,14 @@ class MetaBook:
         return re.match(r"^[0-9]+", ebook_folder)
 
     def write(self):
+        self.persist_fs.make_dirs(self.config_map.get_download_engine_books_path)
         self.persist_fs.make_dirs(self.contents_path)
-        self.metadata.write_json()
         self.write_img()
         self.write_epub()
         self.write_pdf(self.path_epub)
         self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
+        self.metadata.write_json()
+
 
     def read_json(self):
         self.metadata.read_json()
@@ -80,7 +87,7 @@ class MetaBook:
         )
 
     def write_pdf(self, fn):
-        self.persist_fs(fn)
+        self.persist_fs.write_pdf(fn, self.path_pdf)
 
     def write_splitter_pdf(self, fn, split_pdf_pages):
-        self.write_splitter_pdf(fn, split_pdf_pages)
+        self.persist_fs.write_splitter_pdf(fn, split_pdf_pages)

@@ -53,13 +53,10 @@ function 0to100_sb {
     url=https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/
     ./main_sb.py create_meta_book "$url"
 
-    url=https://learning.oreilly.com/library/view/head-first-design/9781492077992/
-    ./main_sb.py create_meta_book "$url"
 
-    ./main_sb.py refresh_toc
 
     ls -1R 978*
 }
 
-setup
+# setup
 $1

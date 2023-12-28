@@ -12,7 +12,6 @@ def test_init(get_config_map, http_url):
 
 def test_write(get_config_map, http_url):
     actual = Section(persist_fs, process_fs, get_config_map, http_url)
-    print(actual)
 
 
 def test_build_from_dir(get_config_map, simple_http, simple_dir):

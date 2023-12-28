@@ -1,15 +1,16 @@
 import json
 import sys
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
-
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as persist_fs
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as process_fs
 
 class Metadata:
     def __init__(
         self,
         get_isbn,
         config_map: SBConfigMap,
-        persist_fs,
-        process_fs,
+        persist_fs:persist_fs,
+        process_fs:process_fs,
         http_url: str,
         page_curr=0,
         pages_tot=0,
@@ -35,12 +36,8 @@ class Metadata:
         return str(round(perc, 1)) + "%"
 
     def write(self):
-        if hasattr(sys, "_called_from_test"):
-            pass
-        # called from within a test run
-        else:
-            self.persist_fs.make_dirs(self.contents_path)
-            self.write_json()
+        self.persist_fs.make_dirs(self.contents_path)
+        self.write_json()
 
     def read_json(self):
         lines = "{}"

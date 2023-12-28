@@ -93,7 +93,6 @@ class Section:
 
     @classmethod
     def is_valid_dir(cls, curr_dir: str):
-        print(curr_dir)
         return curr_dir.count("http") > 0
 
     def refresh_links(self):
@@ -153,8 +152,8 @@ class Section:
             if len(not_null) > 1:  # take first one header found
                 res = not_null[1]
         except:
-            print(readme_md)
-            res = "TODO:"
+            print(f"DDD issue with {readme_md}")
+            res = "FIXME: "
         return res
 
     @property
