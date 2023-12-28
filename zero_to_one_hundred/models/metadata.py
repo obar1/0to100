@@ -36,37 +36,29 @@ class Metadata:
         return str(round(perc, 1)) + "%"
 
     def write(self):
-        self.persist_fs.make_dirs(self.contents_path)
         self.write_json()
 
     def read_json(self):
         lines = "{}"
-        try:
-            lines = self.persist_fs.read_file(self.path_json)
-            return json.dumps(json.loads("".join(lines)), indent=4)
-        except:
-            return lines
+        lines = self.persist_fs.read_file(self.path_json)
+        return json.dumps(json.loads("".join(lines)), indent=4)
+
 
     def write_json(self):
-        """write json
-        {
-            "isbn": "0596007124",
-            "http_url": "https://learning.oreilly.com/library/view/head-first-design/0596007124/"
-        }
-        """
         txt = []
-        txt.append(
-            "{"
-            + ' "isbn" : "'
-            + self.isbn
-            + '" '
-            + ' ,"url" : "'
-            + self.http_url
-            + '" '
-            + "}"
-        )
-        self.persist_fs.write_file(
-            self.path_json, json.dumps(json.loads("".join(txt)), indent=4)
+#         json = f"""
+# {
+#     'isbn': '{self.isbn}',
+#     'url': '{self.http_url}',
+#     'page_curr': '{self.page_curr}',
+#     'pages_tot': '{self.pages_tot}',
+#     'page_perc': '{self.get_page_perc}',
+# }
+# """
+        json = "{}"
+        txt.append(json)
+        self.persist_fs.write_json(
+            self.path_json, txt
         )
 
     def read_json(self):

@@ -61,13 +61,26 @@ class MetaBook:
         return re.match(r"^[0-9]+", ebook_folder)
 
     def write(self):
-        self.persist_fs.make_dirs(self.config_map.get_download_engine_books_path)
-        self.persist_fs.make_dirs(self.contents_path)
-        self.write_img()
-        self.write_epub()
-        self.write_pdf(self.path_epub)
-        self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
-        self.metadata.write_json()
+        try:
+            self.persist_fs.make_dirs(self.config_map.get_download_engine_books_path)
+            self.persist_fs.make_dirs(self.contents_path)
+        except Exception as e:
+            print(f"DDD issue with {e}")
+        try:
+            self.write_img()
+        except Exception as e:
+            print(f"DDD issue with {e}")
+        try:
+            self.write_epub()
+            self.metadata.write_json()
+        except Exception as e:
+            print(f"DDD issue with {e}")
+        try:
+            self.write_pdf(self.path_epub)
+            self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
+        except Exception as e:
+            print(f"DDD issue with {e}")
+
 
 
     def read_json(self):

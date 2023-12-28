@@ -29,12 +29,10 @@ class PersistFS:
 
     @classmethod
     def get_dir_name(cls, filename):
-        print(f"get_dir_name {filename}")
         return os.path.dirname(os.path.abspath(filename))
 
     @classmethod
     def load_file(cls, MAP_YAML_PATH):
-        print(f"load_file {MAP_YAML_PATH}")
         with open(MAP_YAML_PATH, mode="r", encoding="UTF-8") as stream:
             return yaml.safe_load(stream)
 
@@ -77,10 +75,6 @@ class PersistFS:
         assert abs_path is not None
         print(f"abs_path {abs_path}")
         return abs_path
-
-    @classmethod
-    def get_now(cls):
-        return datetime.now().strftime("%Y/%m/%d-%H:%M:%S")
 
     @classmethod
     def done_section(cls, path):

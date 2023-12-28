@@ -1,3 +1,4 @@
+import json
 import fitz
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
@@ -59,3 +60,8 @@ class SBPersistFS(PersistFS):
             writer.end_page()  # finish page
 
         writer.close()  # close output file
+
+    @classmethod
+    def write_json(cls, path_json: str, txt:str):
+        print(f"write_json {path_json} {txt}")
+        PersistFS.write_file(path_json, json.dumps(json.loads("".join(txt)), indent=4))

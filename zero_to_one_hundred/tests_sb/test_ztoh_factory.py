@@ -10,4 +10,4 @@ def test_get_processor(get_config_map):
 
 
 def test_N_processor():
-    assert len(SBFactory.SUPPORTED_PROCESSOR) == 3
+    assert len(SBFactory.SUPPORTED_PROCESSOR) == 4

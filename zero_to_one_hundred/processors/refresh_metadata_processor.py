@@ -17,5 +17,5 @@ class RefreshMetadataProcessor(AProcessor):
         self.config_map = config_map
 
     def process(self):
-        metadata: Metadata = Metadata(self.config_map, self.persist_fs, self.process_fs, self.http_url, )
+        metadata: Metadata = Metadata(self.config_map, self.persist_fs, self.process_fs, self.http_url )
         metadata.write()

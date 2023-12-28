@@ -25,8 +25,5 @@ class ReadMeMD:
         return self.persist_fs.write_file(self.readme_md, txt)
 
     def read(self):
-        lines = ""
-        try:
-            return self.persist_fs.read_file(self.readme_md)
-        except:
-            return lines
+        return self.persist_fs.read_file(self.readme_md)
+
