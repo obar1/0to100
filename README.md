@@ -16,7 +16,6 @@ Given a 'url', it creates the entry in a markdown map and a folder and links the
 just open this repo in your GitHub Codespace and run the demo as:
 
 ```bash
-pip install .
 bash demo.sh 0to100
 ```
 
@@ -35,8 +34,10 @@ bash demo.sh 0to100_sb
 0 to 100 ... learn anything from webresources (and not)
 
 current commands:
-help:
+
+```
 ['create_section', 'done_section', 'refresh_map', 'refresh_links', 'help']
+```
 
 > tip
 in `create_section` you can override the default toc title adding another `#` hint below the one header created automatically in the section folder
@@ -69,7 +70,7 @@ pip install .
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests/resources/map.yaml .
 cat map.yaml
-export MAP_YAML_PATH=$(pwd)/map.yaml
+export MAP_YAML_PATH=map.yaml
 # tip:  add it to .bash_rc etc or some shell script
 
 ```
@@ -106,8 +107,9 @@ same as above but it can use some external lib to grab epub from oreilly
 
 current commands:
 
-help:
+```
 ['snatch_book', 'refresh_toc', 'refresh_metadata', 'help']
+```
 
 ### 0th time usage:
 
@@ -129,7 +131,7 @@ pip install .
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
 cat map.yaml
-export MAP_YAML_PATH=$(pwd)/map.yaml
+export MAP_YAML_PATH=map.yaml
 # tip:  add it to .bash_rc etc or some shell script
 ```
 
@@ -139,6 +141,14 @@ export MAP_YAML_PATH=$(pwd)/map.yaml
 vim map.yaml
 # add your membership details :)
 ```
+
+> add your membership details :) and it will work
+
+![](c81254c5-058e-419a-b9c3-e967be2e5302.png)
+
+> ex with mine :)
+
+![](f5ac382b-dafe-4ba7-ba82-a3cabc01553e.png)
 
 ```bash
 chmod +x *.py
@@ -156,16 +166,9 @@ url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/0201
 ./main_sb.py snatch_book $url
 ```
 
-> add your membership details :) and it will work
-
-![](c81254c5-058e-419a-b9c3-e967be2e5302.png)
-
-> ex with mine :)
-
-![](f5ac382b-dafe-4ba7-ba82-a3cabc01553e.png)
-
 and you have a `toc.md` for free to use as your index (bookmark it)
 
 ![](d05502bb-4b90-422f-9624-568d9f02cd08.png)
 
+> as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call it  ** learning by doing ** 🖖🏻
 
