@@ -107,7 +107,7 @@ same as above but it can use some external lib to grab epub from oreilly
 current commands:
 
 help:
-['create_meta_book', 'refresh_toc', 'refresh_metadata', 'help']
+['snatch_book', 'refresh_toc', 'refresh_metadata', 'help']
 
 ### 0th time usage:
 
@@ -153,7 +153,7 @@ chmod +x *.py
 
 ```bash
 url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
-./main_sb.py create_meta_book $url
+./main_sb.py snatch_book $url
 ```
 
 > add your membership details :) and it will work

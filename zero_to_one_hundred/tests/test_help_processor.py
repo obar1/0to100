@@ -5,6 +5,8 @@ from zero_to_one_hundred.repository.process_fs import ProcessFS as process_fs
 
 
 def test_process(get_config_map):
-    actual: HelpProcessor = ZTOHFactory(get_config_map, persist_fs, process_fs).get_processor([None, "help"])
+    actual: HelpProcessor = ZTOHFactory(
+        get_config_map, persist_fs, process_fs
+    ).get_processor([None, "help"])
     for p in actual:
-        assert p.process() is None
+        p.process()

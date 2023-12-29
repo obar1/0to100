@@ -33,5 +33,4 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
         print("DDD have you installed all the dep")
     except (ValueError, TypeError, IndexError):
         traceback.print_exc()
-    finally:
         factory.help_processor().process()

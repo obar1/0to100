@@ -7,20 +7,20 @@ from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_proce
 
 def test_init(get_map_yaml_path, http_url):
     actual = Toc(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        SBConfigMap(sb_persist_fs),
         sb_persist_fs,
         sb_persist_fs,
         [],
     )
     assert len(actual.meta_books) == 0
     mb = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        SBConfigMap(sb_persist_fs),
         sb_persist_fs,
         sb_process_fs,
         http_url,
     )
     actual = Toc(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        SBConfigMap(sb_persist_fs),
         sb_persist_fs,
         sb_process_fs,
         [mb],

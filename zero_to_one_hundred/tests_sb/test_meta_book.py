@@ -6,7 +6,7 @@ from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_proce
 
 def test_init(get_map_yaml_path, http_url):
     actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        SBConfigMap(sb_persist_fs),
         sb_persist_fs,
         sb_process_fs,
         http_url,
@@ -20,7 +20,7 @@ def test_init(get_map_yaml_path, http_url):
 
 def test_write(get_map_yaml_path, http_url):
     actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        SBConfigMap(sb_persist_fs),
         sb_persist_fs,
         sb_process_fs,
         http_url,
@@ -30,7 +30,7 @@ def test_write(get_map_yaml_path, http_url):
 def test_build_from_dir(get_map_yaml_path):
     assert (
         MetaBook.build_from_dir(
-            SBConfigMap(get_map_yaml_path, sb_persist_fs),
+            SBConfigMap(sb_persist_fs),
             sb_persist_fs,
             sb_process_fs,
             "./books/9780135956977",

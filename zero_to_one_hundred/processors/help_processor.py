@@ -9,5 +9,5 @@ class HelpProcessor(AProcessor):
         self.supported_processor = supported_processor
 
     def process(self):
-        print(f"using env var: {self.config_map.MAP_YAML_PATH}")
+        print(f"{self.config_map.__repr__()}")
         print([p.name for p in self.supported_processor])

@@ -2,14 +2,14 @@ from zero_to_one_hundred.repository.persist_fs import PersistFS
 
 from zero_to_one_hundred.repository.process_fs import ProcessFS
 
-from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 
 
 class ReadMeMD:
     """ReadMeMD:
     a readme md with http and ref"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs: PersistFS, process_fs: ProcessFS, from_dir_to_http_url, http_url: str):
+    def __init__(self, config_map: ZTOHConfigMap, persist_fs: PersistFS, process_fs: ProcessFS, from_dir_to_http_url, http_url: str):
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs

@@ -1,11 +1,12 @@
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
+from zero_to_one_hundred.repository.persist_fs import PersistFS
 
-MAP = "map"
+ZTOH_MAP = "ztoh-map"
 
 
-class ConfigMap(AConfigMap):
-    def __init__(self, persist_fs, map_yaml_path):
-        super().__init__(map_yaml_path, persist_fs)
+class ZTOHConfigMap(AConfigMap):
+    def __init__(self, persist_fs: PersistFS):
+        super().__init__(persist_fs)
 
     @property
     def get_repo_path(self):

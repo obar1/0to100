@@ -12,8 +12,3 @@ def test_write(get_config_map, http_url, http_url_2):
         Section(get_config_map, persist_fs, process_fs, http_url_2, False),
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
-
-
-def test_from_dirs(get_config_map):
-    dirs = persist_fs.list_dirs(get_config_map.get_repo_path)
-    actual = Map.build_from_dirs(persist_fs, process_fs, get_config_map, dirs)

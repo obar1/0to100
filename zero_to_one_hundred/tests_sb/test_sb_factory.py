@@ -7,7 +7,7 @@ from zero_to_one_hundred.repository.process_fs import ProcessFS as process_fs
 
 
 def test_get_processor(get_config_map):
-    SBFactory(persist_fs, process_fs, get_config_map)
+    SBFactory(get_config_map, persist_fs, process_fs)
 
 
 def test_N_processor():

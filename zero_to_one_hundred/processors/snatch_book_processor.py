@@ -6,8 +6,8 @@ from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 from zero_to_one_hundred.validator.validator import Validator
 
 
-class CreateMetaBookProcessor(AProcessor):
-    """CreateMetaBookProcessor:
+class SnatchBookProcessor(AProcessor):
+    """SnatchBookProcessor:
     create a new meta_book on fs from http address"""
 
     def __init__(self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS, http_url: str):

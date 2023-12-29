@@ -1,6 +1,8 @@
 import json
+from shutil import copyfile
 
 import fitz
+from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 from zero_to_one_hundred.repository.persist_fs import PersistFS
 
@@ -9,8 +11,14 @@ PREFIX_RELATIVE_FOLDER = "./"
 
 class SBPersistFS(PersistFS):
     """SBPersistFS:
-    deal with FS
-    mocked in Test"""
+    deal with FS 
+    """
+
+    @classmethod
+    def copy_file_to(cls, file_path, path_to):
+        print(f"copy_file_to {file_path} {path_to}")
+        return copyfile(file_path, path_to)
+
 
     @classmethod
     def is_relative_path(cls, path):

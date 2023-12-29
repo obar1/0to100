@@ -2,7 +2,7 @@ from zero_to_one_hundred.repository.process_fs import ProcessFS
 
 from zero_to_one_hundred.repository.persist_fs import PersistFS
 
-from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.processors.a_processor import AProcessor
 
@@ -11,7 +11,7 @@ class RefreshMapProcessor(AProcessor):
     """RefreshMapProcessor:
     refresh sections in map"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs: PersistFS, process_fs: ProcessFS):
+    def __init__(self, config_map: ZTOHConfigMap, persist_fs: PersistFS, process_fs: ProcessFS):
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.config_map = config_map

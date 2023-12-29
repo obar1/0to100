@@ -51,10 +51,10 @@ function 0to100_sb {
     ./main_sb.py help
     
     url=https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/
-    ./main_sb.py create_meta_book "$url"
+    ./main_sb.py snatch_book "$url"
     
     url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
-    ./main_sb.py create_meta_book "$url"
+    ./main_sb.py snatch_book "$url"
     
     ./main_sb.py refresh_toc
     

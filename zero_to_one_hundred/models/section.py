@@ -1,4 +1,4 @@
-from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 
 
@@ -11,7 +11,7 @@ class Section:
     GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"
     HTTTP_CLOUDSKILLSBOOST: str = "https://www.cloudskillsboost.google"
 
-    def __init__(self, config_map: ConfigMap, persist_fs, process_fs, http_url: str, is_done: bool = False):
+    def __init__(self, config_map: ZTOHConfigMap, persist_fs, process_fs, http_url: str, is_done: bool = False):
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs
@@ -74,7 +74,7 @@ class Section:
         return Section(config_map, persist_fs, process_fs, http_url)
 
     @classmethod
-    def build_from_dir(cls, persist_fs, process_fs, config_map: ConfigMap, dir_name):
+    def build_from_dir(cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name):
         http_url = cls.from_dir_to_http_url_to(dir_name)
         return Section(config_map, persist_fs, process_fs, http_url,
                        cls.done_section_status(persist_fs, config_map.get_repo_path, dir_name))
