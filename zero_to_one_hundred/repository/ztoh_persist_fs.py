@@ -1,8 +1,6 @@
 # pylint: disable=W0108
 import os
-from typing import List
 
-import yaml
 
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 

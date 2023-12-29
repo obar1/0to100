@@ -23,7 +23,7 @@ class RefreshMapProcessor(AProcessor):
 
     def process(self):
         """Scan the repo and for each new_section add it to  the map,  save the map file."""
-        map: Map = Map(
+        actual: Map = Map(
             self.config_map,
             self.persist_fs,
             Map.build_from_dirs(
@@ -33,4 +33,4 @@ class RefreshMapProcessor(AProcessor):
                 self.persist_fs.list_dirs(self.config_map.get_repo_path),
             ),
         )
-        map.write(self.config_map.get_repo_sorted)
+        actual.write(self.config_map.get_repo_sorted)

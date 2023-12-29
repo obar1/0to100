@@ -2,7 +2,6 @@ import json
 from shutil import copyfile
 
 import fitz
-from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 

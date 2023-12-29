@@ -9,11 +9,13 @@ from zero_to_one_hundred.factories.sb_factory import SBFactory
 
 
 class SBFactoryProvider(AFactoryProvider):
+    """SBFactoryProvider"""
+
     def __init__(self, persist_fs: SBPersistFS, process_fs: SBProcessFS):
         super().__init__(persist_fs, process_fs)
         self.persist_fs = persist_fs
         self.process_fs = process_fs
-    """SBFactoryProvider"""
+
     def provide(self) -> SBFactory:
         config_map = SBConfigMap(self.persist_fs)
         config_map_type = config_map.get_type

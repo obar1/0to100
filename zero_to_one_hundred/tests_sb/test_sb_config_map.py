@@ -1,7 +1,6 @@
+from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS_MAP
+
 # pylint: disable=W0621,W0613
-
-
-from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS_MAP, SBConfigMap
 
 
 def test_provide__pass(get_config_map):
@@ -18,6 +17,6 @@ def test_provide__pass(get_config_map):
 def test__repr__(get_config_map, get_map_yaml_path):
     actual = get_config_map
     assert (
-        actual.__repr__()
+        repr(actual)
         == f"MAP_YAML_PATH from {get_map_yaml_path} type {get_config_map.get_type}"
     )

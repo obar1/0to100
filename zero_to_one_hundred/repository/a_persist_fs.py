@@ -43,7 +43,7 @@ class APersistFS(ABC):
         return os.makedirs(path, 0o777, True)
 
     @classmethod
-    def read_file(cls, filename) -> List[str]:
+    def read_file(cls, filename) -> List[str] | None:
         print(f"read_file {filename}")
         lines = None
         try:

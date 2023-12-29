@@ -6,8 +6,16 @@ from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 
 
 class Metadata:
-    def __init__(self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS, get_isbn,
-                 http_url: str, page_curr=0, pages_tot=0):
+    def __init__(
+        self,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
+        get_isbn,
+        http_url: str,
+        page_curr=0,
+        pages_tot=0,
+    ):
         self.config_map = config_map
         self.http_url = http_url
         self.persist_fs = persist_fs
@@ -65,5 +73,5 @@ class Metadata:
 
     def read_json(self):
         json_data = self.persist_fs.read_file(self.path_json)
-        lines = '{}' if json_data is None else json_data
+        lines = "{}" if json_data is None else json_data
         return json.dumps(json.loads("".join(lines)), indent=4)

@@ -13,7 +13,13 @@ class RefreshMetadataProcessor(AProcessor):
     """RefreshMetadataProcessor:
     create a new meta_book on fs from http address"""
 
-    def __init__(self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS, http_url: str):
+    def __init__(
+        self,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
+        http_url: str,
+    ):
         Validator.is_valid_http(http_url)
         self.http_url = http_url
         self.persist_fs = persist_fs
@@ -21,6 +27,11 @@ class RefreshMetadataProcessor(AProcessor):
         self.config_map = config_map
 
     def process(self):
-        metadata: Metadata = Metadata(self.config_map, self.persist_fs, self.process_fs, MetaBook.get_isbn,
-                                      self.http_url)
+        metadata: Metadata = Metadata(
+            self.config_map,
+            self.persist_fs,
+            self.process_fs,
+            MetaBook.get_isbn,
+            self.http_url,
+        )
         metadata.write()
