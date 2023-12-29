@@ -3,15 +3,15 @@ import pytest
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
 from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider
-from zero_to_one_hundred.repository.persist_fs import PersistFS
-from zero_to_one_hundred.repository.process_fs import ProcessFS
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
 # pylint: disable=W0621
 
 
 def test_pass(get_config_map):
-    actual = ZTOHFactoryProvider(PersistFS, ProcessFS)
+    actual = ZTOHFactoryProvider(ZTOHPersistFS, ZTOHProcessFS)
     assert isinstance(actual.provide(), ZTOHFactory)
 
 

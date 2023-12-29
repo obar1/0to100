@@ -8,8 +8,8 @@ import pytest
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider
-from zero_to_one_hundred.repository.persist_fs import PersistFS
-from zero_to_one_hundred.repository.process_fs import ProcessFS
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
 @pytest.fixture
@@ -79,17 +79,17 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
 
 @pytest.fixture
 def get_unsupported_factory_provider(mock_unsupported_map_yaml_env_vars):
-    return ZTOHFactoryProvider(PersistFS, ProcessFS)
+    return ZTOHFactoryProvider(ZTOHPersistFS, ZTOHProcessFS)
 
 
 @pytest.fixture
 def get_config_map(mock_settings_env_vars, get_map_yaml_path):
-    return ZTOHConfigMap(PersistFS)
+    return ZTOHConfigMap(ZTOHPersistFS)
 
 
 @pytest.fixture
 def get_factory_provider(mock_settings_env_vars):
-    return ZTOHFactoryProvider(PersistFS, ProcessFS)
+    return ZTOHFactoryProvider(ZTOHPersistFS, ZTOHProcessFS)
 
 
 @pytest.fixture

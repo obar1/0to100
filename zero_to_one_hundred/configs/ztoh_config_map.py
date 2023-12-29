@@ -1,11 +1,11 @@
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
-from zero_to_one_hundred.repository.persist_fs import PersistFS
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
 ZTOH_MAP = "ztoh-map"
 
 
 class ZTOHConfigMap(AConfigMap):
-    def __init__(self, persist_fs: PersistFS):
+    def __init__(self, persist_fs: ZTOHPersistFS):
         super().__init__(persist_fs)
 
     @property

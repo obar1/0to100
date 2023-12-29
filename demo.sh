@@ -2,24 +2,25 @@
 # simple demo - it use param from cmd line to run the actual section
 
 function setup {
-    # set -x
+    set -x
+    export MAP_YAML_PATH=map.yaml
+    
     rm -rf safaribooks/
     
     pip install .
-    rm -rf build/
     
     chmod +x main*.py
 }
 function setup0to100 {
+    rm -rf 0to100/
+    
     cp ./zero_to_one_hundred/tests/resources/map.yaml .
-    export MAP_YAML_PATH=$(pwd)/map.yaml
 }
 
 function setup0to100_sb {
-    rm -rf 0to100*/
+    rm -rf 978*/
     
     cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
-    export MAP_YAML_PATH=$(pwd)/map.yaml
     
     # safari books from lorenzodifuccia
     git clone https://github.com/lorenzodifuccia/safaribooks.git
@@ -56,12 +57,12 @@ function 0to100_sb {
     url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
     ./main_sb.py snatch_book "$url"
     
-    ./main_sb.py refresh_toc
-    
     url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
     echo 'pretend book was read fully :P'
     echo '{"page_curr": "1", "pages_tot": "1"}' > 9781119895947/9781119895947.json
     ./main_sb.py refresh_metadata "$url"
+    
+    ./main_sb.py refresh_toc
     
     ls -1R 978*
 }

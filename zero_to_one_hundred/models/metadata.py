@@ -64,5 +64,6 @@ class Metadata:
         self.persist_fs.write_json(self.path_json, "{" + txt + "}")
 
     def read_json(self):
-        lines = self.persist_fs.read_file(self.path_json)
+        json_data = self.persist_fs.read_file(self.path_json)
+        lines = '{}' if json_data is None else json_data
         return json.dumps(json.loads("".join(lines)), indent=4)

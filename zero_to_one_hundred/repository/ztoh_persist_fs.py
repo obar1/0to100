@@ -7,8 +7,8 @@ import yaml
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 
-class PersistFS(APersistFS):
-    """PersistFS:
+class ZTOHPersistFS(APersistFS):
+    """ZTOHPersistFS:
     deal with FS
     """
 

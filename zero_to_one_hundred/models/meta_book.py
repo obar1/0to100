@@ -59,7 +59,8 @@ class MetaBook:
     @classmethod
     def is_valid_ebook_path(cls, ebook_folder):
         """check folder is 0123..9 like ISBN"""
-        return re.match(r"^[0-9]+", ebook_folder)
+        # https: // www.isbn.org / about_ISBN_standard
+        return re.match(r"^[0-9]{13}", ebook_folder)
 
     def write(self):
         try:

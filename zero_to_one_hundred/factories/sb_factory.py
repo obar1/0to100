@@ -57,7 +57,7 @@ class SBFactory(AFactory):
         return RefreshTocProcessor(self.config_map, self.persist_fs, self.process_fs)
 
     def help_processor(self):
-        return HelpProcessor(self.config_map, self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     def refresh_metadata(self, http_url):
         return RefreshMetadataProcessor(

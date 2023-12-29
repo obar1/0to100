@@ -33,8 +33,8 @@ class APersistFS(ABC):
             return outfile.write("".join(txt))
 
     @classmethod
-    def create_file(cls, filename):
-        print(f"create_file {filename}")
+    def create_empty_file(cls, filename):
+        print(f"create_empty_file {filename}")
         return cls.write_file(filename, [])
 
     @classmethod
@@ -45,8 +45,11 @@ class APersistFS(ABC):
     @classmethod
     def read_file(cls, filename) -> List[str]:
         print(f"read_file {filename}")
-        with open(filename, mode="r", encoding="UTF-8") as file_:
-            lines = file_.readlines()
+        lines = None
+        try:
+            with open(filename, mode="r", encoding="UTF-8") as f:
+                lines = f.readlines()
+        finally:
             return lines
 
     @classmethod
@@ -56,7 +59,13 @@ class APersistFS(ABC):
 
     @classmethod
     def abs_path(cls, path):
-        abs_path = os.path.abspath(path)
-        assert abs_path is not None
-        print(f"abs_path {abs_path}")
-        return abs_path
+        return os.path.abspath(path)
+
+    @classmethod
+    def get_pkg_info(cls):
+        res: str = "--"
+        try:
+            res = " ".join(cls.read_file("0to100.egg-info/PKG-INFO")[:4])
+        except:
+            pass  # we dont care
+        return res

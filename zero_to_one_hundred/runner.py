@@ -23,14 +23,12 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
         assert factory is not None
         [processor.process() for processor in factory.get_processor(argv) if processor]
 
-    except AssertionError:
-        print("please, check the code")
-    except FileNotFoundError:
-        print("please, set env for MAP_YAML_PATH with map.yaml path")
-    except (NotImplementedError, UnsupportedConfigMapError, CalledProcessError):
-        print("please, check MAP_YAML_PATH env var contents")
     except ModuleNotFoundError:
         print("DDD have you installed all the dep")
+    except (NotImplementedError, UnsupportedConfigMapError, CalledProcessError):
+        print("please, check MAP_YAML_PATH env var contents")
+    except AssertionError:
+        print("please, check the code")
     except (ValueError, TypeError, IndexError):
         traceback.print_exc()
         factory.help_processor().process()

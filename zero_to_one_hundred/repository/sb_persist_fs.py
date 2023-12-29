@@ -4,21 +4,20 @@ from shutil import copyfile
 import fitz
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
-from zero_to_one_hundred.repository.persist_fs import PersistFS
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
 PREFIX_RELATIVE_FOLDER = "./"
 
 
-class SBPersistFS(PersistFS):
+class SBPersistFS(ZTOHPersistFS):
     """SBPersistFS:
-    deal with FS 
+    deal with FS
     """
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):
         print(f"copy_file_to {file_path} {path_to}")
         return copyfile(file_path, path_to)
-
 
     @classmethod
     def is_relative_path(cls, path):
@@ -41,8 +40,8 @@ class SBPersistFS(PersistFS):
         download_engine_books_path/books title (isbn)
         """
         print(f"get_epub_path  {download_engine_books_path} {isbn} {epub_suffix}")
-        dirs = PersistFS.list_dirs(download_engine_books_path)
-        dir_isbn = [dir_ for dir_ in dirs if "(" + isbn + ")" in dir_]
+        dirs = cls.list_dirs(download_engine_books_path)
+        dir_isbn = [d for d in dirs if "(" + isbn + ")" in d]
         return download_engine_books_path + "/" + dir_isbn[0] + "/" + isbn + epub_suffix
 
     @classmethod
@@ -139,7 +138,9 @@ class SBPersistFS(PersistFS):
     @classmethod
     def write_json(cls, path_json: str, txt: str):
         print(f"write_json {path_json} {txt}")
-        PersistFS.write_file(path_json, json.dumps(json.loads("".join(txt)), indent=4))
+        ZTOHPersistFS.write_file(
+            path_json, json.dumps(json.loads("".join(txt)), indent=4)
+        )
 
     @classmethod
     def read_pages_curr(cls, fn: str) -> int:
