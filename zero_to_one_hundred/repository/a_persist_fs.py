@@ -49,8 +49,9 @@ class APersistFS(ABC):
         try:
             with open(filename, mode="r", encoding="UTF-8") as f:
                 lines = f.readlines()
-        finally:
-            return lines
+        except:
+            pass  # we dont care
+        return lines
 
     @classmethod
     def delete_folder(cls, path):
