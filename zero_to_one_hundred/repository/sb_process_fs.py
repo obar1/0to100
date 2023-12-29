@@ -2,10 +2,10 @@ import shlex
 import subprocess
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
-from zero_to_one_hundred.repository.process_fs import ProcessFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
-class SBProcessFS(ProcessFS):
+class SBProcessFS(ZTOHProcessFS):
     @classmethod
     def write_img(cls, path_img, http_url_img):
         print(f"write_img  {path_img} {http_url_img}")

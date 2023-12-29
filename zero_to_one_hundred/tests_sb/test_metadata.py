@@ -5,16 +5,28 @@ from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persi
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
 
 
-def test_init(get_map_yaml_path, http_url, isbn):
-    actual = Metadata(SBConfigMap(get_map_yaml_path, sb_persist_fs), sb_persist_fs, sb_process_fs, MetaBook.get_isbn,
-                      http_url)
+def test_init(get_config_map, http_url, isbn):
+    actual = Metadata(
+        SBConfigMap(sb_persist_fs),
+        sb_persist_fs,
+        sb_process_fs,
+        MetaBook.get_isbn,
+        http_url,
+    )
     assert str(actual.isbn).endswith(isbn)
     assert str(actual.http_url) == http_url
     assert actual.pages_tot == 0
     assert actual.page_curr == 0
 
 
-def test_get_page_perc(get_map_yaml_path, http_url):
-    actual = Metadata(SBConfigMap(get_map_yaml_path, sb_persist_fs), sb_persist_fs, sb_process_fs, MetaBook.get_isbn,
-                      http_url, 99, 999)
+def test_get_page_perc(get_config_map, http_url):
+    actual = Metadata(
+        SBConfigMap(sb_persist_fs),
+        sb_persist_fs,
+        sb_process_fs,
+        MetaBook.get_isbn,
+        http_url,
+        99,
+        999,
+    )
     assert actual.get_page_perc == "9.9%"

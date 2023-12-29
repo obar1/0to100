@@ -1,13 +1,14 @@
 # pylint: disable=W0246
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 
-SAFARI_BOOKS = "safari-books"
+SAFARI_BOOKS_MAP = "safari-books-map"
 
 
 class SBConfigMap(AConfigMap):
-    def __init__(self, map_yaml_path, persist_fs):
-        super().__init__(map_yaml_path, persist_fs)
+    def __init__(self, persist_fs: SBPersistFS):
+        super().__init__(persist_fs)
 
     @property
     def get_books_path(self):

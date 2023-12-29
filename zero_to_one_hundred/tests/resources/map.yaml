@@ -1,4 +1,4 @@
-type: map
+type: ztoh-map
 repo:
   path: "./0to100"
   map_md: "0to100.md"

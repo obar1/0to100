@@ -22,7 +22,13 @@ class MetaBook:
         self.http_url = http_url
         self.persist_fs = persist_fs
         self.process_fs = process_fs
-        self.metadata = Metadata(self.config_map, self.persist_fs, self.process_fs, MetaBook.get_isbn, self.http_url)
+        self.metadata = Metadata(
+            self.config_map,
+            self.persist_fs,
+            self.process_fs,
+            MetaBook.get_isbn,
+            self.http_url,
+        )
         self.isbn = MetaBook.get_isbn(http_url)
         self.contents_path = persist_fs.abs_path(f"{self.isbn}")
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
@@ -33,8 +39,13 @@ class MetaBook:
         return f"MetaBook {self.http_url}, {self.isbn} {self.contents_path}"
 
     @classmethod
-    def build_from_dir(cls, config_map: SBConfigMap,         persist_fs: SBPersistFS,
-        process_fs: SBProcessFS, dir_name):
+    def build_from_dir(
+        cls,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
+        dir_name,
+    ):
         return MetaBook(
             config_map,
             persist_fs,
@@ -59,7 +70,8 @@ class MetaBook:
     @classmethod
     def is_valid_ebook_path(cls, ebook_folder):
         """check folder is 0123..9 like ISBN"""
-        return re.match(r"^[0-9]+", ebook_folder)
+        # https: // www.isbn.org / about_ISBN_standard
+        return re.match(r"^[0-9]{13}", ebook_folder)
 
     def write(self):
         try:

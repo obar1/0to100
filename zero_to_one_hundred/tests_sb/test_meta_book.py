@@ -4,9 +4,10 @@ from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persi
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
 
 
-def test_init(get_map_yaml_path, http_url):
+# pylint: disable=W0613
+def test_init(get_config_map, http_url):
     actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
+        SBConfigMap(sb_persist_fs),
         sb_persist_fs,
         sb_process_fs,
         http_url,
@@ -18,19 +19,10 @@ def test_init(get_map_yaml_path, http_url):
     assert str(actual.path_img).endswith("9780135956977/9780135956977.png")
 
 
-def test_write(get_map_yaml_path, http_url):
-    actual = MetaBook(
-        SBConfigMap(get_map_yaml_path, sb_persist_fs),
-        sb_persist_fs,
-        sb_process_fs,
-        http_url,
-    )
-
-
-def test_build_from_dir(get_map_yaml_path):
+def test_build_from_dir(get_config_map):
     assert (
         MetaBook.build_from_dir(
-            SBConfigMap(get_map_yaml_path, sb_persist_fs),
+            SBConfigMap(sb_persist_fs),
             sb_persist_fs,
             sb_process_fs,
             "./books/9780135956977",
@@ -40,6 +32,6 @@ def test_build_from_dir(get_map_yaml_path):
 
 
 def test_is_valid_ebook_path():
-    dirs = ["0123456789", "books", "ABC"]
-    actual = [dir_ for dir_ in dirs if MetaBook.is_valid_ebook_path(dir_)]
-    assert actual == ["0123456789"]
+    dirs = ["0123456789", "1234567890123", "books", "ABC"]
+    actual = [d for d in dirs if MetaBook.is_valid_ebook_path(d)]
+    assert actual == ["1234567890123"]

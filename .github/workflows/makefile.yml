@@ -15,5 +15,5 @@ jobs:
       run: make format
     - name: test
       run: make test
-    - name: intest
-      run: make intest
+    - name: testint
+      run: make testint

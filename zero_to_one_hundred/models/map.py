@@ -1,9 +1,9 @@
 from typing import Callable, List
 
 from connect.utils.terminal.markdown import render
-from zero_to_one_hundred.repository.persist_fs import PersistFS
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
-from zero_to_one_hundred.configs.config_map import ConfigMap
+from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.section import Section
 
 
@@ -11,7 +11,12 @@ class Map:
     """Map:
     map md with list of sections as from fs"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs: PersistFS, sections: List[Section]):
+    def __init__(
+        self,
+        config_map: ZTOHConfigMap,
+        persist_fs: ZTOHPersistFS,
+        sections: List[Section],
+    ):
         self.config_map = config_map
         self.readme_md = config_map.get_repo_path + "/" + config_map.get_repo_map_md
         self.persist_fs = persist_fs

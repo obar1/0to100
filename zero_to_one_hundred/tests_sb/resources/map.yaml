@@ -1,4 +1,4 @@
-type: safari-books
+type: safari-books-map
 configs:
   download_engine_path: "safaribooks/safaribooks.py"
   download_engine_books_path: "safaribooks/Books"
