@@ -5,7 +5,7 @@ from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as sb_persi
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as sb_process_fs
 
 
-def test_init(get_map_yaml_path, http_url, isbn):
+def test_init(get_config_map, http_url, isbn):
     actual = Metadata(
         SBConfigMap(sb_persist_fs),
         sb_persist_fs,
@@ -19,7 +19,7 @@ def test_init(get_map_yaml_path, http_url, isbn):
     assert actual.page_curr == 0
 
 
-def test_get_page_perc(get_map_yaml_path, http_url):
+def test_get_page_perc(get_config_map, http_url):
     actual = Metadata(
         SBConfigMap(sb_persist_fs),
         sb_persist_fs,
