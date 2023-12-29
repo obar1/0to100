@@ -170,5 +170,5 @@ and you have a `toc.md` for free to use as your index (bookmark it)
 
 ![](d05502bb-4b90-422f-9624-568d9f02cd08.png)
 
-> as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call it  ** learning by doing ** 🖖🏻
+> as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call that **learning by doing** 🖖🏻
 
