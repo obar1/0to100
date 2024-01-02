@@ -1,14 +1,45 @@
 from typing import List
 
+
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.models.section import Section
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS as persist_fs
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS as process_fs
 
 
-def test_write(get_config_map, http_url, http_url_2):
+
+def test_write(get_config_map, persist_fs, process_fs,http_url, http_url_2):
     sections: List[Section] = [
         Section(get_config_map, persist_fs, process_fs, http_url, False),
         Section(get_config_map, persist_fs, process_fs, http_url_2, False),
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
+    assert  actual is not None
+
+def test_as_md(get_config_map, persist_fs, process_fs,http_url, http_url_2):
+    sections: List[Section] = [
+        Section(get_config_map, persist_fs, process_fs, http_url, False),
+        Section(get_config_map, persist_fs, process_fs, http_url_2, False),
+    ]
+    actual = Map(get_config_map, persist_fs, sections=sections)
+    assert actual.asMarkDown().strip('\n').replace(' ', '') == """
+# /home/xsazcd/git/obar1/0to100.git/0to100/0to100.md
+
+## sorted:
+False
+
+
+## legend:
+
+| footprints | completed |
+|---|---|
+| :footprints: | :green_heart: |
+
+> extra
+>
+| quest | lab | template | game | course |
+|---|---|---|----|---|
+| :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |
+
+
+1.  [`here`](https§§§cloud.google.com§abc/readme.md) :footprints: :pushpin:
+1.  [`here`](https§§§cloud.google.com§zzz/readme.md) :footprints: :pushpin:
+""".strip('\n').replace(' ', '')

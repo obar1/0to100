@@ -72,10 +72,16 @@ def mock_settings_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_yaml_path}):
         yield
 
+@pytest.fixture
+def persist_fs()->SBPersistFS:
+    yield SBPersistFS()
+@pytest.fixture
+def process_fs() ->SBProcessFS:
+    yield SBProcessFS()
 
 @pytest.fixture
-def get_config_map(mock_settings_env_vars, get_map_yaml_path):
-    return SBConfigMap(SBPersistFS)
+def get_config_map(mock_settings_env_vars, get_map_yaml_path,persist_fs):
+    return SBConfigMap(persist_fs)
 
 
 @pytest.fixture
