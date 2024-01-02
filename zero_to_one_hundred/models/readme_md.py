@@ -3,9 +3,10 @@ from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
+from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
-class ReadMeMD:
+class ReadMeMD(MarkdownRenderer):
     """ReadMeMD:
     a readme md with http and ref"""
 
@@ -24,7 +25,7 @@ class ReadMeMD:
         self.dir_name = from_dir_to_http_url(http_url)
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
 
-    def __repr__(self):
+    def asMarkDown(self):
         return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
     def write(self, txt=None):

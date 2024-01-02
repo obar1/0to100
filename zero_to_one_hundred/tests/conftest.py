@@ -12,6 +12,7 @@ from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
+
 @pytest.fixture
 def http_url():
     yield "https://cloud.google.com/abc"
@@ -78,18 +79,25 @@ def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
 
 
 @pytest.fixture
-def get_unsupported_factory_provider(mock_unsupported_map_yaml_env_vars):
-    return ZTOHFactoryProvider(ZTOHPersistFS, ZTOHProcessFS)
+def get_unsupported_factory_provider(mock_unsupported_map_yaml_env_vars,persist_fs,process_fs):
+    return ZTOHFactoryProvider(persist_fs, process_fs)
 
 
 @pytest.fixture
-def get_config_map(mock_settings_env_vars, get_map_yaml_path):
-    return ZTOHConfigMap(ZTOHPersistFS)
+def persist_fs()->ZTOHPersistFS:
+    yield ZTOHPersistFS()
+@pytest.fixture
+def process_fs() ->ZTOHProcessFS:
+    yield ZTOHProcessFS()
+
+@pytest.fixture
+def get_config_map(mock_settings_env_vars, get_map_yaml_path,persist_fs):
+    return ZTOHConfigMap(persist_fs)
 
 
 @pytest.fixture
-def get_factory_provider(mock_settings_env_vars):
-    return ZTOHFactoryProvider(ZTOHPersistFS, ZTOHProcessFS)
+def get_factory_provider(mock_settings_env_vars,persist_fs,process_fs):
+    return ZTOHFactoryProvider(persist_fs, process_fs)
 
 
 @pytest.fixture
