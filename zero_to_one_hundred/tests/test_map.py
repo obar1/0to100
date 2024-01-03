@@ -1,5 +1,6 @@
 from typing import List
 
+
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.models.section import Section
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS as persist_fs

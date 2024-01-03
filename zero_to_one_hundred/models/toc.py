@@ -81,5 +81,4 @@ class Toc:
 {self.__repr_flatten(self.meta_books)}
         """
         )
-        print(render("\n".join(txt)))
         return self.persist_fs.write_file(self.readme_md, txt)
