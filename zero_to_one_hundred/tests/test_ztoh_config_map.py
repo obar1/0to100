@@ -8,7 +8,7 @@ def test_pass(get_config_map: ZTOHConfigMap):
     assert actual.get_type == ZTOH_MAP
     assert actual.get_repo_path is not None
     assert actual.get_repo_sorted is False
-    assert actual.get_repo_map_md == "0to100.md"
+    assert actual.get_repo_map_md == "toc.md"
     assert actual.get_repo_legend_type == "gcp"
 
 

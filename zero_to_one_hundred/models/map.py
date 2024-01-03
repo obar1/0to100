@@ -28,21 +28,19 @@ class Map(MarkdownRenderer):
 
         def get_legend_as_md(self):
             txt: str = """
-                ## legend:
+## legend:
 
-                | footprints | completed | 
-                |---|---|
-                | :footprints: | :green_heart: |
-                """.strip()
+| footprints | completed | 
+|---|---|
+| :footprints: | :green_heart: |""".strip()
             if self.config_map.get_repo_legend_type == "gcp":
                 txt += lf_char
                 txt += """
-                    > extra
-                    >
-                    | quest | lab | template | game | course |
-                    |---|---|---|----|---|
-                    | :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |
-                    """.strip()
+> extra
+>
+| quest | lab | template | game | course |
+|---|---|---|----|---|
+| :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |""".strip()
             return txt
 
         txt = f"""
@@ -59,7 +57,6 @@ class Map(MarkdownRenderer):
     def write(self, as_sorted: bool):
         # init with list of sections found
         txt = self.asMarkDown()
-        print(render("\n".join(txt)))
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod
