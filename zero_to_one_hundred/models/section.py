@@ -2,6 +2,10 @@ from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
+
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
@@ -190,14 +194,31 @@ class Section(MarkdownRenderer):
         ]
         return next(item for item in a if item is not None)
 
-    def asMarkDown(self) -> str:
+    @classmethod
+    def get_legend_as_md(cls):
+        return """
+| footprints | completed | 
+|---|---|
+| :footprints: | :green_heart: |
+
+> extra
+>
+| quest | lab | template | game | course |
+|---|---|---|----|---|
+| :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |
+"""
+
+    def __eq__(self, other):
+        if other is self:
+            return True
+
+        if type(other) is not type(self):
+            # delegate to superclass
+            return NotImplemented
+
         return (
-            "1. "
-            + self.get_id_name
-            + " [`here`]("
-            + self.get_dir_name
-            + "/readme.md)"
-            + self.get_done_as_md
-            + " "
-            + self.get_format_as_md
+            other.http_url == self.http_url
+            and other.dir_name == self.dir_name
+            and other.dir_readme_md == self.dir_readme_md
+            and other.is_done == self.is_done
         )
