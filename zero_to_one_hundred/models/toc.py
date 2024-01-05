@@ -1,6 +1,5 @@
 from typing import List
 
-from connect.utils.terminal.markdown import render
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook

@@ -1,6 +1,5 @@
-from typing import Callable, List
-
-from connect.utils.terminal.markdown import render
+from typing import List
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
@@ -28,23 +27,34 @@ class Map(MarkdownRenderer):
 
         def get_legend_as_md(self):
             txt: str = """
-## legend:
+            ## legend:
 
-| footprints | completed | 
-|---|---|
-| :footprints: | :green_heart: |""".strip()
-            if self.config_map.get_repo_legend_type == "gcp":
-                txt += lf_char
-                txt += """
-> extra
->
-| quest | lab | template | game | course |
-|---|---|---|----|---|
-| :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |""".strip()
+            | footprints | completed | 
+            |---|---|
+            | :footprints: | :green_heart: |
+            """
+            txt += lf_char
+
+            match self.config_map.get_repo_legend_type:
+                case AConfigMap.SUPPORTED_EXTRA_MAP.gcp.name:
+                    txt += """
+                    > extra
+                    >
+                    | quest | lab | template | game | course |
+                    |---|---|---|----|---|
+                    | :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |""".strip()
+                case AConfigMap.SUPPORTED_EXTRA_MAP.datacamp.name:
+                    txt += """
+                    > extra
+                    >
+                    | projects | tutorial | course |
+                    |---|---|---|
+                    | :cyclone: | :floppy_disk: | :whale: |""".strip()
+                case _:
+                    txt += lf_char
             return txt
 
-        txt = f"""
-{f"# map {self.readme_md}, {len(self.sections)}"}
+        txt = f"""{f"# map {self.readme_md}, {len(self.sections)}"}
 
 {f"## sorted: {self.config_map.get_repo_sorted}"}
 
@@ -52,7 +62,7 @@ class Map(MarkdownRenderer):
 
 {lf_char.join((section.asMarkDown() for section in self.sections))}
 """
-        return txt
+        return txt.replace("  ", "")
 
     def write(self, as_sorted: bool):
         # init with list of sections found

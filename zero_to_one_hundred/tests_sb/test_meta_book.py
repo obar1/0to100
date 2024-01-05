@@ -20,7 +20,9 @@ def test_init(get_config_map, persist_fs, process_fs, http_url):
 def test_build_from_dir(get_config_map, persist_fs, process_fs):
     assert (
         MetaBook.build_from_dir(
-            SBConfigMap(persist_fs), persist_fs, process_fs,
+            SBConfigMap(persist_fs),
+            persist_fs,
+            process_fs,
             "./books/9780135956977",
         ).isbn
         == "9780135956977"

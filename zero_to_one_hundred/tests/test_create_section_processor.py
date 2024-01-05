@@ -6,7 +6,7 @@ from zero_to_one_hundred.processors.create_section_processor import (
 
 
 @patch("zero_to_one_hundred.factories.ztoh_factory.ZTOHFactory.get_processor")
-def test_process(get_config_map,persist_fs, process_fs, http_url) :
+def test_process(get_config_map, persist_fs, process_fs, http_url):
     actual: CreateSectionProcessor = ZTOHFactory(
         get_config_map, persist_fs, process_fs
     ).get_processor([None, "create_section", http_url])
