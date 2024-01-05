@@ -1,11 +1,8 @@
+# pylint: disable= R0904
+
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
@@ -32,12 +29,23 @@ class Section(MarkdownRenderer):
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.http_url = http_url
-        self.dir_name = Section.from_dir_to_http_url(http_url)
-        self.dir_readme_md = self.dir_name + "/readme.md"
+        self.dir_name = Section.from_http_url_to_dir(http_url)
+        self.dir_readme_md = (
+            config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
+        )
+
         self.is_done = is_done
 
     def asMarkDown(self):
-        return f"Section {self.http_url}, {self.dir_name}"
+        return (
+            "1. "
+            + self.get_id_name
+            + " [`here`]("
+            + self.dir_readme_md
+            + ")"
+            + self.get_done_as_md
+            + self.get_format_as_md
+        )
 
     @property
     def get_http_url(self):
@@ -56,7 +64,7 @@ class Section(MarkdownRenderer):
         return self.find_header().strip("\n")
 
     @classmethod
-    def from_dir_to_http_url(cls, http_url):
+    def from_http_url_to_dir(cls, http_url):
         return (
             http_url.replace("/", "§")
             .replace("<", "§")
@@ -78,7 +86,7 @@ class Section(MarkdownRenderer):
         )
 
     @classmethod
-    def from_dir_to_http_url_to(cls, dir_name):
+    def from_http_url_to_dir_to(cls, dir_name):
         return dir_name.replace("§", "/").replace("https///", "https://")
 
     @classmethod
@@ -93,7 +101,7 @@ class Section(MarkdownRenderer):
     def build_from_dir(
         cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
     ):
-        http_url = cls.from_dir_to_http_url_to(dir_name)
+        http_url = cls.from_http_url_to_dir_to(dir_name)
         return Section(
             config_map,
             persist_fs,
@@ -130,7 +138,7 @@ class Section(MarkdownRenderer):
             self.config_map,
             self.persist_fs,
             self.process_fs,
-            Section.from_dir_to_http_url,
+            Section.from_http_url_to_dir,
             self.http_url,
         )
         lines_converted = []
@@ -148,7 +156,7 @@ class Section(MarkdownRenderer):
             self.config_map,
             self.persist_fs,
             self.process_fs,
-            Section.from_dir_to_http_url,
+            Section.from_http_url_to_dir,
             self.http_url,
         )
         res = ""
@@ -168,45 +176,58 @@ class Section(MarkdownRenderer):
         return res
 
     @property
-    def is_quest(self):
-        return "/quests" in self.http_url
+    def is_gcp_quest(self):
+        return "quests" in self.http_url and "cloudskillsboost.google" in self.http_url
 
     @property
-    def is_lab(self):
-        return "/labs" in self.http_url
+    def is_gcp_lab(self):
+        return "labs" in self.http_url and "cloudskillsboost.google" in self.http_url
 
     @property
-    def is_template(self):
-        return "/course_templates" in self.http_url
+    def is_gcp_template(self):
+        return (
+            "course_templates" in self.http_url
+            and "cloudskillsboost.google" in self.http_url
+        )
 
     @property
-    def is_game(self):
-        return "/games" in self.http_url
+    def is_gcp_game(self):
+        return "games" in self.http_url and "cloudskillsboost.google" in self.http_url
+
+    @property
+    def is_datacamp_project(self):
+        return "projects" in self.http_url and "app.datacamp.com" in self.http_url
+
+    @property
+    def is_datacamp_tutorial(self):
+        return "tutorials" in self.http_url and "app.datacamp.com" in self.http_url
+
+    @property
+    def is_datacamp_course(self):
+        return "courses" in self.http_url and "app.datacamp.com" in self.http_url
 
     @property
     def get_format_as_md(self):
-        a = [
-            ":cyclone:" if self.is_quest else None,
-            ":floppy_disk:" if self.is_lab else None,
-            ":whale:" if self.is_template else None,
-            ":snake:" if self.is_game else None,
-            ":pushpin:",
-        ]
+        a = []
+        match self.config_map.get_repo_legend_type:
+            case AConfigMap.SUPPORTED_EXTRA_MAP.gcp.name:
+                a = [
+                    ":cyclone:" if self.is_gcp_quest else None,
+                    ":floppy_disk:" if self.is_gcp_lab else None,
+                    ":whale:" if self.is_gcp_template else None,
+                    ":snake:" if self.is_gcp_game else None,
+                    ":pushpin:",
+                ]
+            case AConfigMap.SUPPORTED_EXTRA_MAP.datacamp.name:
+                a = [
+                    ":cyclone:" if self.is_datacamp_project else None,
+                    ":floppy_disk:" if self.is_datacamp_tutorial else None,
+                    ":whale:" if self.is_datacamp_course else None,
+                    ":pushpin:",
+                ]
+            case _:
+                a = []
         return next(item for item in a if item is not None)
-
-    @classmethod
-    def get_legend_as_md(cls):
-        return """
-| footprints | completed | 
-|---|---|
-| :footprints: | :green_heart: |
-
-> extra
->
-| quest | lab | template | game | course |
-|---|---|---|----|---|
-| :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |
-"""
 
     def __eq__(self, other):
         if other is self:

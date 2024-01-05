@@ -4,7 +4,7 @@ from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksP
 
 
 @patch("zero_to_one_hundred.factories.ztoh_factory.ZTOHFactory.get_processor")
-def test_process(get_config_map,persist_fs, process_fs):
+def test_process(get_config_map, persist_fs, process_fs):
     actual: RefreshLinksProcessor = ZTOHFactory(
         get_config_map, persist_fs, process_fs
     ).get_processor([None, "refresh_links"])

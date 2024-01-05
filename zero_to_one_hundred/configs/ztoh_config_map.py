@@ -10,7 +10,7 @@ class ZTOHConfigMap(AConfigMap):
 
     @property
     def get_repo_path(self):
-        return self.persist_fs.abs_path(self.load["repo"]["path"])
+        return self.load["repo"]["path"]
 
     @property
     def get_repo_map_md(self):
@@ -21,5 +21,5 @@ class ZTOHConfigMap(AConfigMap):
         return bool(self.load["repo"]["sorted"])
 
     @property
-    def get_repo_legend_type(self) -> str:
-        return self.load["repo"]["legend_type"]
+    def get_repo_legend_type(self) -> str | None:
+        return self.load["repo"].get("legend_type")

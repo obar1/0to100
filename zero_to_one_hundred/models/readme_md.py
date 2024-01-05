@@ -15,14 +15,14 @@ class ReadMeMD(MarkdownRenderer):
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
         process_fs: ZTOHProcessFS,
-        from_dir_to_http_url,
+        from_http_url_to_dir,
         http_url: str,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.http_url = http_url
-        self.dir_name = from_dir_to_http_url(http_url)
+        self.dir_name = from_http_url_to_dir(http_url)
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
 
     def asMarkDown(self):

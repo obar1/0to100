@@ -1,5 +1,6 @@
 # pylint: disable=W0246
 from abc import ABC
+from enum import Enum
 import os
 
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
@@ -7,6 +8,10 @@ from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 class AConfigMap(ABC):
     MAP_YAML_PATH = "MAP_YAML_PATH"
+
+    class SUPPORTED_EXTRA_MAP(Enum):
+        gcp = 1
+        datacamp = 2
 
     def __init__(self, persist_fs: APersistFS):
         self.map_yaml_path = os.getenv(AConfigMap.MAP_YAML_PATH)

@@ -3,9 +3,11 @@ from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.models.metadata import Metadata
 
 
-def test_init(get_config_map, persist_fs, process_fs,http_url, isbn):
+def test_init(get_config_map, persist_fs, process_fs, http_url, isbn):
     actual = Metadata(
-        SBConfigMap(persist_fs), persist_fs, process_fs,
+        SBConfigMap(persist_fs),
+        persist_fs,
+        process_fs,
         MetaBook.get_isbn,
         http_url,
     )
@@ -17,7 +19,9 @@ def test_init(get_config_map, persist_fs, process_fs,http_url, isbn):
 
 def test_get_page_perc(get_config_map, persist_fs, process_fs, http_url):
     actual = Metadata(
-        SBConfigMap(persist_fs), persist_fs, process_fs,
+        SBConfigMap(persist_fs),
+        persist_fs,
+        process_fs,
         MetaBook.get_isbn,
         http_url,
         99,

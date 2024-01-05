@@ -14,7 +14,7 @@ function setup {
 function setup0to100 {
     rm -rf 0to100/
     
-    cp ./zero_to_one_hundred/tests/resources/map.yaml .
+    cp ./zero_to_one_hundred/tests/resources/gcp_map.yaml map.yaml
 }
 
 function setup0to100_sb {
