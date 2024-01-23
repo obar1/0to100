@@ -1,9 +1,11 @@
 import re
 
+
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
+from zero_to_one_hundred.validator.validator import Validator
 
 
 class MetaBook:
@@ -69,7 +71,7 @@ class MetaBook:
                     f"DDD skipping get_download_books {self.config_map.get_download_books}"
                 )
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
 
     def write_json(self):
         self.metadata.write_json()
@@ -85,24 +87,24 @@ class MetaBook:
             self.persist_fs.make_dirs(self.config_map.get_download_engine_books_path)
             self.persist_fs.make_dirs(self.contents_path)
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.write_img()
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.write_epub()
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.metadata.write_json()
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.write_pdf(self.path_epub)
             self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
 
     def read_json(self):
         return self.metadata.read_json()

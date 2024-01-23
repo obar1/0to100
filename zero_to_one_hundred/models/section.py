@@ -5,6 +5,7 @@ from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
+from zero_to_one_hundred.validator.validator import Validator
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
@@ -173,8 +174,8 @@ class Section(MarkdownRenderer):
                 res = not_null[0]
             if len(not_null) > 1:  # take first one header found
                 res = not_null[1]
-        except:
-            print(f"DDD issue with {readme_md}")
+        except Exception as e:
+            Validator.print_DDD(e)
             res = "FIXME: "
         return res
 
