@@ -58,8 +58,8 @@ class MetaBook:
 
     def write_epub(self):
         try:
-            self.persist_fs.write_fake_epub(self.path_epub)
             if self.config_map.get_download_books:
+                self.persist_fs.write_fake_epub(self.path_epub)
                 self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
                 self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
             else:
