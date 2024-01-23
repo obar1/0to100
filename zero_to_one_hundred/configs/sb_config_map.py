@@ -34,3 +34,7 @@ class SBConfigMap(AConfigMap):
     @property
     def get_split_pdf_pages(self):
         return int(self.load["configs"]["split_pdf_pages"])
+
+    @property
+    def get_download_books(self):
+        return bool(self.load["configs"]["download_books"])

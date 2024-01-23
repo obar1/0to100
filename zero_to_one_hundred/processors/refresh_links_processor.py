@@ -8,6 +8,7 @@ from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.models.section import Section
 from zero_to_one_hundred.processors.a_processor import AProcessor
+from zero_to_one_hundred.validator.validator import Validator
 
 
 class RefreshLinksProcessor(AProcessor):
@@ -37,5 +38,5 @@ class RefreshLinksProcessor(AProcessor):
         for s in sections:
             try:
                 s.refresh_links()
-            except Exception:
-                print(f"DDD issue with {s}")
+            except Exception as e:
+                Validator.print_DDD(e)

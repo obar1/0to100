@@ -1,15 +1,17 @@
 import re
 
+
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
+from zero_to_one_hundred.validator.validator import Validator
 
 
 class MetaBook:
     epub_suffix = ".epub"
-    HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
-    GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
+    HTTP_OREILLY_COVER = "https://learning.oreilly.com/library/cover"
+    HTTP_OREILLY_LIBRARY = "https://learning.oreilly.com/library/"
 
     def __init__(
         self,
@@ -50,19 +52,26 @@ class MetaBook:
             config_map,
             persist_fs,
             process_fs,
-            http_url=cls.GENERIC_HTTP_OREILLY + "/" + dir_name,
+            http_url=cls.HTTP_OREILLY_LIBRARY + "/" + dir_name,
         )
 
     def write_img(self):
-        self.process_fs.write_img(self.path_img, f"{self.HTTP_OREILLY}/{self.isbn}/")
+        self.process_fs.write_img(
+            self.path_img, f"{self.HTTP_OREILLY_COVER}/{self.isbn}/"
+        )
 
     def write_epub(self):
         try:
-            self.persist_fs.write_fake_epub(self.path_epub)
-            self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
-            self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
+            if self.config_map.get_download_books:
+                self.persist_fs.write_fake_epub(self.path_epub)
+                self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
+                self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
+            else:
+                print(
+                    f"DDD skipping get_download_books {self.config_map.get_download_books}"
+                )
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
 
     def write_json(self):
         self.metadata.write_json()
@@ -78,21 +87,24 @@ class MetaBook:
             self.persist_fs.make_dirs(self.config_map.get_download_engine_books_path)
             self.persist_fs.make_dirs(self.contents_path)
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.write_img()
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.write_epub()
+        except Exception as e:
+            Validator.print_DDD(e)
+        try:
             self.metadata.write_json()
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
         try:
             self.write_pdf(self.path_epub)
             self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
         except Exception as e:
-            print(f"DDD issue with {e}")
+            Validator.print_DDD(e)
 
     def read_json(self):
         return self.metadata.read_json()
