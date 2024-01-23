@@ -15,7 +15,6 @@ class Section(MarkdownRenderer):
     epub_suffix: str = ".epub"
     HTTP_OREILLY: str = "https://learning.oreilly.com/library/cover"
     GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"
-    HTTTP_CLOUDSKILLSBOOST: str = "https://www.cloudskillsboost.google"
 
     def __init__(
         self,
@@ -147,6 +146,10 @@ class Section(MarkdownRenderer):
         readme_md.write(txt=lines_converted)
 
     def find_header(self):
+        """
+        take default header created by code or take first one # header found added by user
+        """
+
         def get_header(line):
             if str(line).strip("\n").startswith("# "):
                 return line

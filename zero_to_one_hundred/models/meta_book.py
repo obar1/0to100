@@ -8,8 +8,8 @@ from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 
 class MetaBook:
     epub_suffix = ".epub"
-    HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
-    GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
+    HTTP_OREILLY_COVER = "https://learning.oreilly.com/library/cover"
+    HTTP_OREILLY_LIBRARY = "https://learning.oreilly.com/library/"
 
     def __init__(
         self,
@@ -50,11 +50,13 @@ class MetaBook:
             config_map,
             persist_fs,
             process_fs,
-            http_url=cls.GENERIC_HTTP_OREILLY + "/" + dir_name,
+            http_url=cls.HTTP_OREILLY_LIBRARY + "/" + dir_name,
         )
 
     def write_img(self):
-        self.process_fs.write_img(self.path_img, f"{self.HTTP_OREILLY}/{self.isbn}/")
+        self.process_fs.write_img(
+            self.path_img, f"{self.HTTP_OREILLY_COVER}/{self.isbn}/"
+        )
 
     def write_epub(self):
         try:
@@ -90,6 +92,9 @@ class MetaBook:
             print(f"DDD issue with {e}")
         try:
             self.write_epub()
+        except Exception as e:
+            print(f"DDD issue with {e}")
+        try:
             self.metadata.write_json()
         except Exception as e:
             print(f"DDD issue with {e}")
