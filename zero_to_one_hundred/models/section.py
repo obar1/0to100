@@ -231,7 +231,11 @@ class Section(MarkdownRenderer):
                 ]
             case _:
                 a = []
-        return next(item for item in a if item is not None)
+        try:
+            res = next(item for item in a if item is not None)
+        except StopIteration:
+            return ""
+        return res  
 
     def __eq__(self, other):
         if other is self:
