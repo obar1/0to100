@@ -3,9 +3,10 @@ from typing import List
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
+from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
-class Toc:
+class Toc(MarkdownRenderer):
     """Toc:
     toc md with list of meta_book as found in fs
     """
@@ -68,7 +69,7 @@ class Toc:
         print(res)
         return res
 
-    def write(self):
+    def asMarkDown(self):
         txt = []
         txt.append(
             f"""
@@ -80,4 +81,8 @@ class Toc:
 {self.__repr_flatten(self.meta_books)}
         """
         )
-        return self.persist_fs.write_file(self.readme_md, txt)
+        return  "\n".join(txt)
+    
+    def write(self):
+        md = self.asMarkDown()
+        return self.persist_fs.write_file(self.readme_md, md)

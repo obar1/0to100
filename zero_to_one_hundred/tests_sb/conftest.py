@@ -9,12 +9,15 @@ from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
-from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
-
+from zero_to_one_hundred.tests_sb.repository.sb_process_fs import SBProcessFS
 
 @pytest.fixture
 def http_url():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
+
+@pytest.fixture
+def http_url2():
+    yield "https://learning.oreilly.com/library/view/clean-code-in/9781800560215/"
 
 
 @pytest.fixture
