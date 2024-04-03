@@ -96,6 +96,4 @@ def get_factory_provider(env_map_yaml):
 
 @pytest.fixture
 def get_factory(env_map_yaml, persist_fs, process_fs):
-    return SBFactory(
-            env_map_yaml, persist_fs, process_fs
-        )
+    return SBFactory(env_map_yaml, persist_fs, process_fs)

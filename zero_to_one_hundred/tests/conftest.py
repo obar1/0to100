@@ -130,11 +130,13 @@ def get_datacamp_config_map(
     env_datacamp_map_yaml, get_datacamp_map_yaml_path, persist_fs
 ):
     return ZTOHConfigMap(persist_fs)
+
+
 @pytest.fixture
 def get_factory(env_map_yaml, persist_fs, process_fs):
-    return ZTOHFactory(
-            get_config_map, persist_fs, process_fs
-        )
+    return ZTOHFactory(get_config_map, persist_fs, process_fs)
+
+
 @pytest.fixture
 def get_factory_provider(env_map_yaml, persist_fs, process_fs):
     return ZTOHFactoryProvider(persist_fs, process_fs)
@@ -159,8 +161,3 @@ def str_relaxed(s1):
     remove = string.whitespace
     mapping = {ord(c): None for c in remove}
     return s1.translate(mapping)
-
-
-@pytest.fixture
-def get_factory_provider(env_map_yaml, persist_fs, process_fs):
-    return ZTOHFactoryProvider(persist_fs, process_fs)

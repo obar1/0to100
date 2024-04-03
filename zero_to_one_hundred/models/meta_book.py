@@ -37,6 +37,9 @@ class MetaBook(MarkdownRenderer):
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
         self.path_pdf = f"{self.contents_path}/{self.isbn}.pdf"
         self.path_img = f"{self.contents_path}/{self.isbn}.png"
+        self.path_epub_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.epub")
+        self.path_pdf_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.pdf")
+        self.path_img_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.png")
 
     def asMarkDown(self):
         return f"MetaBook {self.http_url}, {self.isbn} {self.contents_path}"
@@ -129,3 +132,9 @@ class MetaBook(MarkdownRenderer):
 
     def write_splitter_pdf(self, fn, split_pdf_pages):
         self.persist_fs.write_splitter_pdf(fn, split_pdf_pages)
+
+    def path_as_md(self, a_path):
+        """
+        use relative path and convert " " to %20
+        """
+        return a_path.replace(" ", "%20")

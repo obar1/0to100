@@ -28,7 +28,6 @@ class Toc(MarkdownRenderer):
     def __repr__(self):
         return f"Toc {self.readme_md}, {self.meta_books}"
 
-
     @classmethod
     def build_from_dirs(
         cls, config_map, persist_fs, process_fs, dirs: List[str]
@@ -45,7 +44,6 @@ class Toc(MarkdownRenderer):
         return res
 
     def asMarkDown(self):
-
         def flatten_meta_book(meta_book: MetaBook):
             print(f"flatten_meta_book {meta_book}")
             json = meta_book.read_json().replace(
@@ -60,17 +58,18 @@ class Toc(MarkdownRenderer):
             res = "|".join(
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',
-                    f"![`img`]({MarkdownRenderer.render_path(meta_book.path_img, meta_book.contents_path)})",
-                    f"[`epub`]({MarkdownRenderer.render_path(meta_book.path_epub, meta_book.contents_path)})",
-                    f"[`pdf`]({MarkdownRenderer.render_path(meta_book.path_pdf, meta_book.contents_path)})",
+                    f"![`img`]({meta_book.path_img_as_md})",
+                    f"[`epub`]({meta_book.path_epub_as_md})",
+                    f"[`pdf`]({meta_book.path_pdf_as_md})",
                     f"{json}",
                     f"{status}",
                 ]
             )
-            return res
+
+            return "|" + res + "|" + " "
 
         flattened_meta_book = [flatten_meta_book(mb) for mb in self.meta_books]
-        backslash_n_char = "\\n"
+        backslash_n_char = "\n"
 
         md = []
         md.append(
@@ -78,12 +77,12 @@ class Toc(MarkdownRenderer):
 # TOC
 ## `{len(self.meta_books)}` books
 ### {self.process_fs.get_now()}
-|  ISBN 	|   	|   	|   	|  `json-contents` 	| `status` |
+|  ISBN 	|   img	|  epub 	|  pdf 	|  `json-contents` 	| `status` |
 |---	|---	|---	|---	|---	|---	|
 {backslash_n_char.join(flattened_meta_book)}
         """
         )
-        return backslash_n_char.join(md)
+        return md
 
     def write(self):
         md = self.asMarkDown()
