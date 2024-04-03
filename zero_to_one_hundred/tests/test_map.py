@@ -14,7 +14,8 @@ def test_write(get_config_map, http_url, http_url_2):
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, http_url_2):
+
+def test_asMarkDown(get_config_map, http_url, http_url_2):
     sections: List[Section] = [
         Section(get_config_map, persist_fs, process_fs, http_url, False),
         Section(get_config_map, persist_fs, process_fs, http_url_2, False),
@@ -39,4 +40,4 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, http_url_2
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:
 1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) :footprints:
 """
-    assert current.strip() ==expected.strip()
+    assert current.strip() == expected.strip()

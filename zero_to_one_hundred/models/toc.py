@@ -81,8 +81,8 @@ class Toc(MarkdownRenderer):
 {self.__repr_flatten(self.meta_books)}
         """
         )
-        return  "\n".join(txt)
-    
+        return "\n".join(txt)
+
     def write(self):
         md = self.asMarkDown()
         return self.persist_fs.write_file(self.readme_md, md)

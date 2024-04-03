@@ -75,7 +75,11 @@ def test_gcp_get_format_as_md(get_gcp_config_map, persist_fs, process_fs):
     )
     assert actual.get_format_as_md == """:snake:"""
 
+
 def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url):
     actual = Section(get_config_map, persist_fs, process_fs, http_url)
     current = actual.asMarkDown()
-    assert current =="1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:"
+    assert (
+        current
+        == "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:"
+    )
