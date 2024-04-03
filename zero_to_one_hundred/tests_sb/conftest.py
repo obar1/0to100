@@ -7,14 +7,20 @@ import pytest
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
+from zero_to_one_hundred.factories.sb_factory import SBFactory
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
-from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
+from zero_to_one_hundred.tests_sb.repository.sb_process_fs import SBProcessFS
 
 
 @pytest.fixture
 def http_url():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
+
+
+@pytest.fixture
+def http_url2():
+    yield "https://learning.oreilly.com/library/view/clean-code-in/9781800560215/"
 
 
 @pytest.fixture
@@ -69,12 +75,12 @@ def env_map_yaml(get_map_yaml_path):
 
 
 @pytest.fixture
-def persist_fs() -> SBPersistFS:
+def persist_fs():
     yield SBPersistFS()
 
 
 @pytest.fixture
-def process_fs() -> SBProcessFS:
+def process_fs():
     yield SBProcessFS()
 
 
@@ -86,3 +92,8 @@ def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
 @pytest.fixture
 def get_factory_provider(env_map_yaml):
     return SBFactoryProvider(SBPersistFS, SBProcessFS)
+
+
+@pytest.fixture
+def get_factory(env_map_yaml, persist_fs, process_fs):
+    return SBFactory(env_map_yaml, persist_fs, process_fs)

@@ -6,9 +6,10 @@ from zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 from zero_to_one_hundred.validator.validator import Validator
+from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
-class MetaBook:
+class MetaBook(MarkdownRenderer):
     epub_suffix = ".epub"
     HTTP_OREILLY_COVER = "https://learning.oreilly.com/library/cover"
     HTTP_OREILLY_LIBRARY = "https://learning.oreilly.com/library/"
@@ -36,8 +37,11 @@ class MetaBook:
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
         self.path_pdf = f"{self.contents_path}/{self.isbn}.pdf"
         self.path_img = f"{self.contents_path}/{self.isbn}.png"
+        self.path_epub_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.epub")
+        self.path_pdf_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.pdf")
+        self.path_img_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.png")
 
-    def __repr__(self):
+    def asMarkDown(self):
         return f"MetaBook {self.http_url}, {self.isbn} {self.contents_path}"
 
     @classmethod
@@ -128,3 +132,9 @@ class MetaBook:
 
     def write_splitter_pdf(self, fn, split_pdf_pages):
         self.persist_fs.write_splitter_pdf(fn, split_pdf_pages)
+
+    def path_as_md(self, a_path):
+        """
+        use relative path and convert " " to %20
+        """
+        return a_path.replace(" ", "%20")

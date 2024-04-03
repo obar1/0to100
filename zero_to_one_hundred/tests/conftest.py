@@ -1,15 +1,17 @@
 # pylint: disable=W0621,W0613
 
 import os
+import string
 from unittest import mock
 
 import pytest
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
+from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
 from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
+from zero_to_one_hundred.tests.repository.ztoh_process_fs import ZTOHProcessFS
 
 
 @pytest.fixture
@@ -97,12 +99,12 @@ def env_datacamp_map_yaml(get_datacamp_map_yaml_path):
 
 
 @pytest.fixture
-def persist_fs() -> ZTOHPersistFS:
+def persist_fs():
     yield ZTOHPersistFS()
 
 
 @pytest.fixture
-def process_fs() -> ZTOHProcessFS:
+def process_fs():
     yield ZTOHProcessFS()
 
 
@@ -131,6 +133,11 @@ def get_datacamp_config_map(
 
 
 @pytest.fixture
+def get_factory(env_map_yaml, persist_fs, process_fs):
+    return ZTOHFactory(get_config_map, persist_fs, process_fs)
+
+
+@pytest.fixture
 def get_factory_provider(env_map_yaml, persist_fs, process_fs):
     return ZTOHFactoryProvider(persist_fs, process_fs)
 
@@ -148,3 +155,9 @@ def simple_dir():
 @pytest.fixture
 def dir_tree():
     return "https§§§cloud.google.com§sections"
+
+
+def str_relaxed(s1):
+    remove = string.whitespace
+    mapping = {ord(c): None for c in remove}
+    return s1.translate(mapping)
