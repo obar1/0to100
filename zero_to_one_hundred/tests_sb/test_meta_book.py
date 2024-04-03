@@ -1,11 +1,10 @@
-from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 
 
 # pylint: disable=W0613
 def test_init(get_config_map, persist_fs, process_fs, http_url):
     actual = MetaBook(
-        SBConfigMap(persist_fs),
+        get_config_map,
         persist_fs,
         process_fs,
         http_url,
@@ -20,7 +19,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_url):
 def test_build_from_dir(get_config_map, persist_fs, process_fs):
     assert (
         MetaBook.build_from_dir(
-            SBConfigMap(persist_fs),
+            get_config_map,
             persist_fs,
             process_fs,
             "./books/9780135956977",
