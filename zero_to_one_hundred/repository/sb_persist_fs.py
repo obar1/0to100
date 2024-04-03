@@ -29,10 +29,6 @@ class SBPersistFS(ZTOHPersistFS):
         return txt.replace('"', ' " ').replace("\n", " <br/> ")
 
     @classmethod
-    def render_path(cls, txt: str):
-        return txt.replace(" ", "%20")
-
-    @classmethod
     def get_epub_path(cls, download_engine_books_path, isbn, epub_suffix):
         """find the actual path into the path given the isbn
         dirs are supposed to be like
