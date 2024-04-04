@@ -9,4 +9,4 @@ def test_get_processor(get_config_map, persist_fs, process_fs):
 
 
 def test_N_processor():
-    assert len(SBFactory.SUPPORTED_PROCESSOR) == 4
+    assert len(SBFactory.SUPPORTED_PROCESSOR) == 3

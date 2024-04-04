@@ -108,7 +108,7 @@ same as above but it can use some external lib to grab epub from oreilly
 current commands:
 
 ```
-['snatch_book', 'refresh_toc', 'refresh_metadata', 'help']
+['snatch_book', 'refresh_toc',  'help']
 ```
 
 ### 0th time usage:

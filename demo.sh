@@ -50,21 +50,15 @@ function 0to100_sb {
     setup0to100_sb
     
     ./main_sb.py help
-    
-    url=https://learning.oreilly.com/course/clean-code-fundamentals/9780134661742/
-    ./main_sb.py snatch_book "$url"
+
+    ./main_sb.py snatch_book https://learning.oreilly.com/course/clean-code-fundamentals/9780134661742
     echo 'add any metadata you like'
     echo '{"title": "Clean Code Fundamentals"}'> 9780134661742/9780134661742.json
-    ./main_sb.py refresh_metadata "$url"
-    
-    url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
-    ./main_sb.py snatch_book "$url"
-    
-    url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
-    echo 'pretend book was read fully :P'
-    echo '{"page_curr": "1", "page_tot": "1"}' > 9781119895947/9781119895947.json
-    ./main_sb.py refresh_metadata "$url"
-    
+    ./main_sb.py refresh_toc
+
+    ./main_sb.py snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
+    echo 'pretend book was read fully and get % calc for free :P'
+    echo '{"page_curr": "100", "page_tot": "100", "url":"https://www.oreilly.com/library/view/rewire-your-brain/9781119895947"}' > 9781119895947/9781119895947.json
     ./main_sb.py refresh_toc
     
     ls -1R 978*

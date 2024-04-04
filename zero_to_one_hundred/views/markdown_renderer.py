@@ -12,4 +12,4 @@ class MarkdownRenderer(ABC):
 
     @staticmethod
     def text_lf_as_br(txt):
-        return txt.replace("\n", "<br/>")  # trick to have LF in MD tables :P
+        return txt.replace(",", ",<br/>")  # trick to have LF in MD tables :P

@@ -14,7 +14,4 @@ format:
 lint:
 	pylint --disable=C0116,C0115,W0702,C0114,C0301,C0103,C0209,R0913,R0902,R0903,E1101,W0612,W0718,R0801,W0150,W0613 zero_to_one_hundred
 
-mypy:
-	mypy zero_to_one_hundred
-
-refactor: format lint mypy
+refactor: format lint

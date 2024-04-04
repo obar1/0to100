@@ -25,6 +25,9 @@ class ReadMeMD(MarkdownRenderer):
         self.dir_name = from_http_url_to_dir(http_url)
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
 
+    def __repr__(self):
+        return f"ReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
+
     def asMarkDown(self):
         return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 

@@ -40,8 +40,8 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
     assert str_relaxed(actual.asMarkDown()) == str_relaxed(
         """
     {
-        "isbn":"9780135956977",
-        "pages_perc":"n/a",
+        "isbn":"9780135956977",<br/>
+        "pages_perc":"n/a",<br/>
         "url":"https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
     }
     """
@@ -54,9 +54,10 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
     assert str_relaxed(actual.asMarkDown()) == str_relaxed(
         """
     {
-        "abc": "123",    "def": "456",
-        "isbn":"9780135956977",
-        "pages_perc":"n/a",
+        "abc": "123",<br/>
+        "def": "456",<br/>
+        "isbn":"9780135956977",<br/>
+        "pages_perc":"n/a",<br/>
         "url":"https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
     }
     """
@@ -75,11 +76,11 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
     assert str_relaxed(actual.asMarkDown()) == str_relaxed(
         """
     {
-        "abc": "123",  
-        "isbn":"9780135956977",
-        "page_curr": 10,
-        "page_tot": 100,
-        "pages_perc":"10.0%",
+        "abc": "123",  <br/>
+        "isbn":"9780135956977",<br/>
+        "page_curr": 10,<br/>
+        "page_tot": 100,<br/>
+        "pages_perc":"10.0%",<br/>
         "url":"https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
     }
     """

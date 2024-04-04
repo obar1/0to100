@@ -11,7 +11,7 @@ from zero_to_one_hundred.validator.validator import Validator
 class MetaBook:
     epub_suffix = ".epub"
     HTTP_OREILLY_COVER = "https://learning.oreilly.com/library/cover"
-    HTTP_OREILLY_LIBRARY = "https://learning.oreilly.com/library/"
+    HTTP_OREILLY_LIBRARY = "https://learning.oreilly.com/library"
 
     def __init__(
         self,
@@ -39,6 +39,9 @@ class MetaBook:
             MetaBook.get_isbn,
             self.http_url,
         )
+
+    def __repr__(self):
+        return f"MetaBook {self.isbn} {self.http_url} {self.contents_path}"
 
     @classmethod
     def build_from_dir(
