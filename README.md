@@ -179,4 +179,5 @@ https://github.com/obar1/zero2hero
 
 https://github.com/obar1/0to100.oreilly
 
-![](d05502bb-4b90-422f-9624-568d9f02cd08.png)
+example:
+![](z05502bb-4b90-422f-9624-568d9f02cd08.png)

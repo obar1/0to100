@@ -46,27 +46,18 @@ class Toc(MarkdownRenderer):
     def asMarkDown(self):
         def flatten_meta_book(meta_book: MetaBook):
             print(f"flatten_meta_book {meta_book}")
-            json = meta_book.read_json().replace(
-                "\n", "<br/>"
-            )  # trick to have LF in MD tables :P
-            print(json)
-            status = (
-                '<span style="color:green">**DONE**</span>'
-                if "100.0%" in json
-                else '<span style="color:yellow">**WIP**</span>'
-            )
-            res = "|".join(
+            txt = "|".join(
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',
                     f"![`img`]({meta_book.path_img_as_md})",
                     f"[`epub`]({meta_book.path_epub_as_md})",
                     f"[`pdf`]({meta_book.path_pdf_as_md})",
-                    f"{json}",
-                    f"{status}",
+                    f"{meta_book.metadata.asMarkDown()}",
+                    f"{meta_book.metadata.status}",
                 ]
             )
 
-            return "|" + res + "|" + " "
+            return "|" + txt + "|"
 
         flattened_meta_book = [flatten_meta_book(mb) for mb in self.meta_books]
         backslash_n_char = "\n"

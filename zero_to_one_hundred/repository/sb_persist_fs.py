@@ -131,11 +131,9 @@ class SBPersistFS(ZTOHPersistFS):
             doc.close()
 
     @classmethod
-    def write_json(cls, path_json: str, txt: str):
+    def write_json(cls, path_json: str, txt: dict):
         print(f"write_json {path_json} {txt}")
-        ZTOHPersistFS.write_file(
-            path_json, json.dumps(json.loads("".join(txt)), indent=4)
-        )
+        ZTOHPersistFS.write_file_json(path_json, txt)
 
     @classmethod
     def read_pages_curr(cls, fn: str) -> int:

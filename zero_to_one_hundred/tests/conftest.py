@@ -158,6 +158,6 @@ def dir_tree():
 
 
 def str_relaxed(s1):
-    remove = string.whitespace
+    remove = string.whitespace + string.punctuation
     mapping = {ord(c): None for c in remove}
     return s1.translate(mapping)

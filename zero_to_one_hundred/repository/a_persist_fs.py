@@ -1,4 +1,5 @@
 # pylint: disable=W0108
+import json
 from abc import ABC
 from typing import List
 import os
@@ -31,6 +32,13 @@ class APersistFS(ABC):
         print(f"write_file {filename}")
         with open(filename, mode="w", encoding="UTF-8") as outfile:
             return outfile.write("".join(txt))
+
+    @classmethod
+    def write_file_json(cls, filename, json_dict):
+        json_txt = json.dumps(json_dict, indent=4)
+        print(f"write_file {filename}")
+        with open(filename, mode="w", encoding="UTF-8") as outfile:
+            return outfile.write(json_txt)
 
     @classmethod
     def create_empty_file(cls, filename):
