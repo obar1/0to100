@@ -51,10 +51,10 @@ function 0to100_sb {
     
     ./main_sb.py help
     
-    url=https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/
+    url=https://learning.oreilly.com/course/clean-code-fundamentals/9780134661742/
     ./main_sb.py snatch_book "$url"
     echo 'add any metadata you like'
-    echo '{"title": "The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition"}'> 9780135956977/9780135956977.json
+    echo '{"title": "Clean Code Fundamentals"}'> 9780134661742/9780134661742.json
     ./main_sb.py refresh_metadata "$url"
     
     url=https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947/
