@@ -7,7 +7,7 @@ from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
 class Metadata(MarkdownRenderer):
-    ONE_HUN_PER_TXT = '100.0%'
+    ONE_HUN_PER_TXT = "100.0%"
 
     DONE_TXT_AS_MD = '<span style="color:green">**DONE**</span>'
     WIP_TXT_AS_MD = '<span style="color:yellow">**WIP**</span>'
@@ -59,7 +59,7 @@ class Metadata(MarkdownRenderer):
 
         return (
             Metadata.DONE_TXT_AS_MD
-            if self.get_metadata().get('pages_perc',None) == Metadata.ONE_HUN_PER_TXT
+            if self.get_metadata().get("pages_perc", None) == Metadata.ONE_HUN_PER_TXT
             else Metadata.WIP_TXT_AS_MD
         )
 
