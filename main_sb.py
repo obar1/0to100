@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import sys
-from typing import List
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as persist_fs
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as process_fs

@@ -6,7 +6,6 @@ from zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 from zero_to_one_hundred.validator.validator import Validator
-from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
 class MetaBook:
@@ -25,13 +24,6 @@ class MetaBook:
         self.http_url = http_url
         self.persist_fs = persist_fs
         self.process_fs = process_fs
-        self.metadata = Metadata(
-            self.config_map,
-            self.persist_fs,
-            self.process_fs,
-            MetaBook.get_isbn,
-            self.http_url,
-        )
         self.isbn = MetaBook.get_isbn(http_url)
         self.contents_path = persist_fs.abs_path(f"{self.isbn}")
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
@@ -40,8 +32,13 @@ class MetaBook:
         self.path_epub_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.epub")
         self.path_pdf_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.pdf")
         self.path_img_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.png")
-
-
+        self.metadata = Metadata(
+            self.config_map,
+            self.persist_fs,
+            self.process_fs,
+            MetaBook.get_isbn,
+            self.http_url,
+        )
     @classmethod
     def build_from_dir(
         cls,
@@ -63,17 +60,17 @@ class MetaBook:
         )
 
     def write_epub(self):
-            if self.config_map.get_download_books:
-                self.persist_fs.write_fake_epub(self.path_epub)
-                self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
-                self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
-            else:
-                print(
-                    f"DDD skipping get_download_books {self.config_map.get_download_books}"
-                )
+        if self.config_map.get_download_books:
+            self.persist_fs.write_fake_epub(self.path_epub)
+            self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
+            self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
+        else:
+            print(
+                f"DDD skipping get_download_books {self.config_map.get_download_books}"
+            )
 
     def write_metadata(self):
-        self.metadata.write_json()
+        self.metadata.write()
 
     @classmethod
     def is_valid_ebook_path(cls, ebook_folder):
@@ -102,7 +99,7 @@ class MetaBook:
         try:
             self.write_pdf(self.path_epub)
         except Exception as e:
-            Validator.print_DDD(e) 
+            Validator.print_DDD(e)
         try:
             self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
         except Exception as e:
@@ -133,4 +130,3 @@ class MetaBook:
         use relative path and convert " " to %20
         """
         return a_path.replace(" ", "%20")
-

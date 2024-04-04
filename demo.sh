@@ -23,8 +23,8 @@ function setup0to100_sb {
     cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
     
     # safari books from lorenzodifuccia
-    # git clone https://github.com/lorenzodifuccia/safaribooks.git
-    # pip install --quiet -r safaribooks/requirements.txt
+    git clone https://github.com/lorenzodifuccia/safaribooks.git
+    pip install --quiet -r safaribooks/requirements.txt
 }
 
 function 0to100 {
@@ -53,7 +53,7 @@ function 0to100_sb {
     
     url=https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/
     ./main_sb.py snatch_book "$url"
-    
+    exit 0
     echo 'add any metadata you like'
     echo '{"title": "The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition"}'> 9780135956977/9780135956977.json
     ./main_sb.py refresh_metadata "$url"

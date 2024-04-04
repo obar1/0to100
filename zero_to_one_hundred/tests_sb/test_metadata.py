@@ -16,31 +16,15 @@ def test_init(get_config_map, persist_fs, process_fs, http_url, isbn):
     assert str(actual.http_url) == http_url
 
 
-
 def test_get_page_perc(get_config_map, persist_fs, process_fs, http_url):
-    actual = Metadata.get_page_perc(
-        { 
-        'page_curr' : 99,
-        'page_tot': 999
-        }
-    )
+    actual = Metadata.get_page_perc({"page_curr": 99, "page_tot": 999})
     assert actual == "9.9%"
 
-    actual = Metadata.get_page_perc(
-        
-        { 
-        'page_curr' : 0,
-        'page_tot': 999
-        }
-    )
+    actual = Metadata.get_page_perc({"page_curr": 0, "page_tot": 999})
     assert actual == "0.0%"
-    actual = Metadata.get_page_perc(
-         { 
-        'page_curr' : 1,
-        'page_tot': 0
-        }
-    )
+    actual = Metadata.get_page_perc({"page_curr": 1, "page_tot": 0})
     assert actual == "n/a"
+
 
 def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
     actual = Metadata(
@@ -50,38 +34,44 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
         MetaBook.get_isbn,
         http_url,
     )
-    
-    assert str_relaxed(actual.asMarkDown()) == str_relaxed('''
+
+    assert str_relaxed(actual.asMarkDown()) == str_relaxed(
+        """
     {
         "isbn":"9780135956977",
         "pages_perc":"n/a",
         "url":"https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
     }
-    ''')    
+    """
+    )
     # some rand values from json
 
     data = '{ "abc": "123", "def": "456"}'
-    actual.metadata= json.loads(data)
-    
-    assert str_relaxed(actual.asMarkDown()) == str_relaxed("""
+    actual.metadata = json.loads(data)
+
+    assert str_relaxed(actual.asMarkDown()) == str_relaxed(
+        """
     {
         "abc": "123",    "def": "456",
         "isbn":"9780135956977",
         "pages_perc":"n/a",
         "url":"https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
     }
-    """)    
-    
+    """
+    )
+
     # calculate pages
-    data = ''' {
+    data = """ 
+    {
         "abc": "123",
         "page_curr": 10,
         "page_tot": 100
     }
-    '''
-    actual.metadata= json.loads(data)
+    """
+    actual.metadata = json.loads(data)
     print(actual.asMarkDown())
-    assert str_relaxed(actual.asMarkDown()) == str_relaxed("""
+    assert str_relaxed(actual.asMarkDown()) == str_relaxed(
+        """
     {
         "abc": "123",  
         "isbn":"9780135956977",
@@ -90,7 +80,5 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
         "pages_perc":"10.0%",
         "url":"https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
     }
-    """)    
-    
-  
-
+    """
+    )

@@ -57,7 +57,7 @@ class Toc(MarkdownRenderer):
                 ]
             )
 
-            return "|" + txt + "|" 
+            return "|" + txt + "|"
 
         flattened_meta_book = [flatten_meta_book(mb) for mb in self.meta_books]
         backslash_n_char = "\n"
