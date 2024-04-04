@@ -72,14 +72,16 @@ class Metadata(MarkdownRenderer):
         """
         metadata_dict = self.metadata
         metadata_dict["isbn"] = self.isbn
-        metadata_dict["url"] = self.http_url if metadata_dict.get("url") is None else metadata_dict["url"] # keep it if found
+        metadata_dict["url"] = (
+            self.http_url if metadata_dict.get("url") is None else metadata_dict["url"]
+        )  # keep it if found
         metadata_dict["pages_perc"] = self.get_page_perc(metadata_dict)
         sorted_dict = dict(sorted(metadata_dict.items()))
         return sorted_dict
 
     def asMarkDown(self) -> str:
         # handle nasty URL in MD
-        m : dict = self.get_metadata()
+        m: dict = self.get_metadata()
         url = m.get("url")
         url = url.removeprefix("> ").removesuffix(" <")
         url = "> " + url + " <"
