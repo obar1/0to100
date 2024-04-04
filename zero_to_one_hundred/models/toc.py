@@ -26,7 +26,7 @@ class Toc(MarkdownRenderer):
         self.meta_books = meta_books
 
     def __repr__(self):
-        return f"Toc {self.readme_md}, {self.meta_books}"
+        return f"Toc {self.readme_md}, {str(self.meta_books)}"
 
     @classmethod
     def build_from_dirs(

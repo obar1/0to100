@@ -22,6 +22,9 @@ class Map(MarkdownRenderer):
         self.persist_fs = persist_fs
         self.sections = sections
 
+    def __repr__(self):
+        return f"Map {str(self.sections)}"
+
     def asMarkDown(self) -> str:
         lf_char = "\n"
 
