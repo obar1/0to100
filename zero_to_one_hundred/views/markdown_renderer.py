@@ -9,3 +9,9 @@ class MarkdownRenderer(ABC):
     @abstractmethod
     def asMarkDown(self) -> str:
         pass
+
+    @staticmethod
+    def text_lf_as_br(txt):
+        return txt.replace(
+                "\n", "<br/>"
+            )  # trick to have LF in MD tables :P

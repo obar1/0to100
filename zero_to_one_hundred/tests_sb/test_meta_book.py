@@ -32,3 +32,4 @@ def test_is_valid_ebook_path():
     dirs = ["0123456789", "1234567890123", "books", "ABC"]
     actual = [d for d in dirs if MetaBook.is_valid_ebook_path(d)]
     assert actual == ["1234567890123"]
+
