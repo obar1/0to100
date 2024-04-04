@@ -1,5 +1,4 @@
 import json
-from typing import OrderedDict
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
@@ -44,16 +43,15 @@ class Metadata(MarkdownRenderer):
         return "n/a"
 
     def write(self):
-        self.persist_fs.write_json(self.path_json,self.get_metadata())
+        self.persist_fs.write_json(self.path_json, self.get_metadata())
 
     def read(self):
         try:
             json_data = self.persist_fs.read_file(self.path_json)
-            lines = dict() if json_data is None else json_data
+            lines = {} if json_data is None else json_data
             return json.loads("".join(lines))
         except:
-            return dict()
-        
+            return {}
 
     @property
     def status(self):
@@ -64,7 +62,7 @@ class Metadata(MarkdownRenderer):
             else Metadata.WIP_TXT_AS_MD
         )
 
-    def get_metadata(self) -> str:
+    def get_metadata(self):
         """
         refresh info for the final dict(), keys are orderered so it looks better :)
         """
@@ -76,4 +74,4 @@ class Metadata(MarkdownRenderer):
         return sorted_dict
 
     def asMarkDown(self) -> str:
-        return  MarkdownRenderer.text_lf_as_br(str( self.get_metadata()))
+        return MarkdownRenderer.text_lf_as_br(str(self.get_metadata()))

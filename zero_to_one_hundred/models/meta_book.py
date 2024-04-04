@@ -39,6 +39,7 @@ class MetaBook:
             MetaBook.get_isbn,
             self.http_url,
         )
+
     @classmethod
     def build_from_dir(
         cls,

@@ -3,6 +3,8 @@ from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.tests.conftest import str_relaxed
 
+# pylint: disable=C0303
+
 
 def test_init(get_config_map, persist_fs, process_fs, http_url, isbn):
     actual = Metadata(

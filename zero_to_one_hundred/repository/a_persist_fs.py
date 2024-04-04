@@ -40,7 +40,6 @@ class APersistFS(ABC):
         with open(filename, mode="w", encoding="UTF-8") as outfile:
             return outfile.write(json_txt)
 
-
     @classmethod
     def create_empty_file(cls, filename):
         print(f"create_empty_file {filename}")
