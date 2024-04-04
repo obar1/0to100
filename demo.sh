@@ -53,7 +53,6 @@ function 0to100_sb {
     
     url=https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/
     ./main_sb.py snatch_book "$url"
-    exit 0
     echo 'add any metadata you like'
     echo '{"title": "The Pragmatic Programmer: your journey to mastery, 20th Anniversary Edition, 2nd Edition"}'> 9780135956977/9780135956977.json
     ./main_sb.py refresh_metadata "$url"
