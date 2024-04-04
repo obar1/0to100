@@ -7,7 +7,7 @@ from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
 class Metadata(MarkdownRenderer):
-    ONE_HUN_PER_TXT = '"pages_perc": "100.0%"'
+    ONE_HUN_PER_TXT = '100.0%'
 
     DONE_TXT_AS_MD = '<span style="color:green">**DONE**</span>'
     WIP_TXT_AS_MD = '<span style="color:yellow">**WIP**</span>'
@@ -56,9 +56,10 @@ class Metadata(MarkdownRenderer):
     @property
     def status(self):
         """use relative folder to simplify the usage in browser"""
+
         return (
             Metadata.DONE_TXT_AS_MD
-            if Metadata.ONE_HUN_PER_TXT in self.get_metadata()
+            if self.get_metadata().get('pages_perc',None) == Metadata.ONE_HUN_PER_TXT
             else Metadata.WIP_TXT_AS_MD
         )
 
