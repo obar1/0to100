@@ -174,7 +174,11 @@ example:
 ![](z05502bb-4b90-422f-9624-568d9f02cd08.png)
 
 ### tools
+> when you start to have a a few 0to100 based folders
+>
+
 [gist to sync multiple 0to100 based repos](https://gist.github.com/obar1/771b1992368262737d9f25fcf17ce1c1)
+[gist venv auto activate for 0to100 folders](https://gist.github.com/obar1/212e4c778548f8bcdc6e9c1b05856f3f)
 
 ## online example 
 
