@@ -65,7 +65,7 @@ class Toc(MarkdownRenderer):
         md.append(
             f"""
 # TOC
-## `{len(self.meta_books)}` meta{'book' if len(self.meta_books)>=1 else 'books'}
+## `{len(self.meta_books)}` metabook
 ### {self.process_fs.get_now()}
 |  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` |
 |---	|---	|---	|---		|---	|

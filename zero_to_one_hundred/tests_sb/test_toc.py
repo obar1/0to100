@@ -51,7 +51,7 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, http_url2)
     current = actual.asMarkDown()
     expected = """
 # TOC
-## `0` metabooks
+## `0` metabook
 ### 2099/01/01 - 00:00:00
 |  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` |
 |---        |---    |---    |---    |---    |
