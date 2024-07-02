@@ -50,8 +50,7 @@ class Toc(MarkdownRenderer):
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',
                     f"![`img`]({meta_book.path_img_as_md})",
-                    f"[`epub`]({meta_book.path_epub_as_md})",
-                    f"[`pdf`]({meta_book.path_pdf_as_md})",
+                    f"[`xyz`]({meta_book.contents_path_as_md})",
                     f"{meta_book.metadata.asMarkDown()}",
                     f"{meta_book.metadata.status}",
                 ]
@@ -66,10 +65,10 @@ class Toc(MarkdownRenderer):
         md.append(
             f"""
 # TOC
-## `{len(self.meta_books)}` books
+## `{len(self.meta_books)}` metabook
 ### {self.process_fs.get_now()}
-|  ISBN 	|   img	|  epub 	|  pdf 	|  `json-contents` 	| `status` |
-|---	|---	|---	|---	|---	|---	|
+|  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` |
+|---	|---	|---	|---		|---	|
 {backslash_n_char.join(flattened_meta_book)}
         """
         )

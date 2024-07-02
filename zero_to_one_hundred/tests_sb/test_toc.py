@@ -51,9 +51,9 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, http_url2)
     current = actual.asMarkDown()
     expected = """
 # TOC
-## `0` books
+## `0` metabook
 ### 2099/01/01 - 00:00:00
-|  ISBN     |     img  |  epub     |   pdf    |  `json-contents`      | `status` |
-|---        |---    |---    |---    |---    |---    |
+|  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` |
+|---        |---    |---    |---    |---    |
   """
     assert str_relaxed("".join(current)) == str_relaxed("".join(expected))
