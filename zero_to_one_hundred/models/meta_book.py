@@ -29,6 +29,7 @@ class MetaBook:
         self.path_epub = f"{self.contents_path}/{self.isbn}.epub"
         self.path_pdf = f"{self.contents_path}/{self.isbn}.pdf"
         self.path_img = f"{self.contents_path}/{self.isbn}.png"
+        self.contents_path_as_md = self.path_as_md(f"./{self.isbn}/")
         self.path_epub_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.epub")
         self.path_pdf_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.pdf")
         self.path_img_as_md = self.path_as_md(f"./{self.isbn}/{self.isbn}.png")
