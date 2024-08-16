@@ -59,8 +59,6 @@ class Map(MarkdownRenderer):
 
         txt = f"""{f"# map {self.readme_md}, {len(self.sections)}"}
 
-{f"## sorted: {self.config_map.get_repo_sorted}"}
-
 {get_legend_as_md(self)}
 
 {lf_char.join((section.asMarkDown() for section in self.sections))}

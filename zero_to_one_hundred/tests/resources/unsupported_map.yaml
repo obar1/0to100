@@ -1,4 +1,4 @@
 type: not-a-map
 configs:
   path: "./repo"
-  finalized: true
+  some_field: true

@@ -49,6 +49,10 @@ def get_resource_path(get_test_path):
 def get_map_yaml_path(get_resource_path):
     yield get_resource_path + "/map.yaml"
 
+@pytest.fixture
+def get_map_sorted_0_yaml_path(get_resource_path):
+    yield get_resource_path + "/map_sorted_0.yaml"
+
 
 @pytest.fixture
 def get_unsupported_map_yaml_path(get_resource_path):
@@ -110,6 +114,10 @@ def process_fs():
 
 @pytest.fixture
 def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
+    return ZTOHConfigMap(persist_fs)
+
+@pytest.fixture
+def get_config_map_sorted_0(env_map_yaml, get_map_sorted_0_yaml_path, persist_fs):
     return ZTOHConfigMap(persist_fs)
 
 
