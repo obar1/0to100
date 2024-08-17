@@ -1,5 +1,5 @@
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
-from zero_to_one_hundred.tests.repository.ztoh_process_fs import ZTOHProcessFS
+from zero_to_one_hundred.tests.test_ztoh.ztoh_process_fs import ZTOHProcessFS
 
 
 class SBProcessFS(ZTOHProcessFS):

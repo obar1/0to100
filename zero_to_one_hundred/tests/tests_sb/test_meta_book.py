@@ -2,12 +2,12 @@ from zero_to_one_hundred.models.meta_book import MetaBook
 
 
 # pylint: disable=W0613
-def test_init(get_config_map, persist_fs, process_fs, http_url):
+def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
     actual = MetaBook(
         get_config_map,
         persist_fs,
         process_fs,
-        http_url,
+        http_oreilly_1,
     )
     assert str(actual.isbn).endswith("9780135956977")
     assert str(actual.contents_path).endswith("9780135956977")

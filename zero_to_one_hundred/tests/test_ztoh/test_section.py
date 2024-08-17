@@ -16,13 +16,19 @@ def test_write(get_config_map, persist_fs, process_fs, http_url):
 
 
 def test_build_from_dir(
-    get_config_map, persist_fs, process_fs, simple_http, simple_dir
+    get_config_map, persist_fs, process_fs
 ):
+    def simple_http():
+        return "https://cloud.google.com/docs/<>:?*"
+
+    def simple_dir():
+        return "https§§§cloud.google.com§docs§§§§§§"
+
     assert (
         Section.build_from_dir(
-            persist_fs, process_fs, get_config_map, simple_http
+            persist_fs, process_fs, get_config_map, simple_http()
         ).dir_name
-        == simple_dir
+        == simple_dir()
     )
 
 

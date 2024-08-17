@@ -249,8 +249,8 @@ class Section(MarkdownRenderer):
             return NotImplemented
 
         return (
-            other.http_url == self.http_url
-            and other.dir_name == self.dir_name
-            and other.dir_readme_md == self.dir_readme_md
-            and other.is_done == self.is_done
+                other.http_oreilly_1 == self.http_url
+                and other.dir_name == self.dir_name
+                and other.dir_readme_md == self.dir_readme_md
+                and other.is_done == self.is_done
         )

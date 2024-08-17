@@ -6,19 +6,19 @@ from zero_to_one_hundred.tests.conftest import str_relaxed
 # pylint: disable=C0303
 
 
-def test_init(get_config_map, persist_fs, process_fs, http_url, isbn):
+def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, isbn):
     actual = Metadata(
         get_config_map,
         persist_fs,
         process_fs,
         MetaBook.get_isbn,
-        http_url,
+        http_oreilly_1,
     )
     assert str(actual.isbn).endswith(isbn)
-    assert str(actual.http_url) == http_url
+    assert str(actual.http_url) == http_oreilly_1
 
 
-def test_get_page_perc(get_config_map, persist_fs, process_fs, http_url):
+def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
     actual = Metadata.get_page_perc({"page_curr": 99, "page_tot": 999})
     assert actual == "9.9%"
 
@@ -28,13 +28,13 @@ def test_get_page_perc(get_config_map, persist_fs, process_fs, http_url):
     assert actual == "n/a"
 
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url, isbn):
+def test_asMarkDown(get_config_map, persist_fs, process_fs, http_oreilly_1, isbn):
     actual = Metadata(
         get_config_map,
         persist_fs,
         process_fs,
         MetaBook.get_isbn,
-        http_url,
+        http_oreilly_1,
     )
 
     assert str_relaxed(actual.asMarkDown()) == str_relaxed(
