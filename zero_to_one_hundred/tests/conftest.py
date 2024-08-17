@@ -59,7 +59,7 @@ from unittest.mock import patch
 
 @pytest.fixture(scope="session")
 def mock_time():
-    with patch("time.time", return_value=1629168000):  # Example timestamp
+    with patch("zero_to_one_hundred.repository.ztoh_process_fs.ZTOHProcessFS.get_now", return_value=20990101000000):  # Example timestamp
         yield
 
 
