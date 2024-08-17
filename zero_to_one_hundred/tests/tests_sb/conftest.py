@@ -8,22 +8,20 @@ from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.factories.sb_factory import SBFactory
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
-from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
-from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 
 @pytest.fixture
 def http_oreilly_1():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
-
+@pytest.fixture
+def oreilly_isbn_1():
+    yield "9780135956977"
 
 @pytest.fixture
 def http_oreilly_2():
     yield "https://learning.oreilly.com/library/view/clean-code-in/9781800560215/"
 
 
-@pytest.fixture
-def oreilly_isbn_1():
-    yield "9780135956977"
+
 
 
 @pytest.fixture
@@ -66,16 +64,6 @@ def mock_secret_map_yaml_env_vars(get_secret_map_yaml_path):
 def env_map_yaml(get_map_yaml_path):
     with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_yaml_path}):
         yield
-
-
-@pytest.fixture
-def persist_fs():
-    yield SBPersistFS()
-
-
-@pytest.fixture
-def process_fs():
-    yield SBProcessFS()
 
 
 @pytest.fixture

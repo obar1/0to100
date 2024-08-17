@@ -1,8 +1,11 @@
 import string
 import pytest
 import os
+
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-from zero_to_one_hundred.tests.test_ztoh.ztoh_process_fs import ZTOHProcessFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 def str_relaxed(s1):
     remove = string.whitespace + string.punctuation
@@ -48,3 +51,25 @@ def persist_fs():
 @pytest.fixture(scope="session")
 def process_fs():
     yield ZTOHProcessFS()
+
+
+
+import pytest
+from unittest.mock import patch
+
+@pytest.fixture(scope="session")
+def mock_time():
+    with patch("time.time", return_value=1629168000):  # Example timestamp
+        yield
+
+
+
+@pytest.fixture
+def persist_fs():
+    yield SBPersistFS()
+
+
+@pytest.fixture
+def process_fs():
+    yield SBProcessFS()
+
