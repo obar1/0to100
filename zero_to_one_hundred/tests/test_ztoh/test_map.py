@@ -8,9 +8,9 @@ from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.tests.test_ztoh.ztoh_process_fs import ZTOHProcessFS
 
 
-def test_write(get_config_map: ZTOHConfigMap, persist_fs: ZTOHPersistFS, process_fs: ZTOHProcessFS, http_url: Literal['https://cloud.google.com/abc'], http_url_2: Literal['https://cloud.google.com/zzz']):
+def test_write(get_config_map: ZTOHConfigMap, persist_fs: ZTOHPersistFS, process_fs: ZTOHProcessFS, http_url_1, http_url_2: Literal['https://cloud.google.com/zzz']):
     sections: List[Section] = [
-        Section(get_config_map, persist_fs, process_fs, http_url, False),
+        Section(get_config_map, persist_fs, process_fs, http_url_1, False),
         Section(get_config_map, persist_fs, process_fs, http_url_2, False),
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)

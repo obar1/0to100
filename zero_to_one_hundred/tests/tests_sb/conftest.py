@@ -1,5 +1,4 @@
 # pylint: disable=W0621,W0613
-
 import os
 from unittest import mock
 
@@ -23,7 +22,7 @@ def http_oreilly_2():
 
 
 @pytest.fixture
-def isbn():
+def oreilly_isbn_1():
     yield "9780135956977"
 
 
@@ -37,19 +36,15 @@ def page_curr():
     yield 99
 
 
-@pytest.fixture
-def get_test_path():
-    os_path_dirname = os.path.dirname(os.path.abspath(__file__))
-    yield os_path_dirname
+
+from pathlib import Path
+
+
+get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r'/resources'
 
 
 @pytest.fixture
-def get_resource_path(get_test_path):
-    yield get_test_path + "/resources"
-
-
-@pytest.fixture
-def get_map_yaml_path(get_resource_path):
+def get_map_yaml_path():
     yield get_resource_path + "/map.yaml"
 
 

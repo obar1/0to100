@@ -6,7 +6,7 @@ from zero_to_one_hundred.tests.conftest import str_relaxed
 # pylint: disable=C0303
 
 
-def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, isbn):
+def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1):
     actual = Metadata(
         get_config_map,
         persist_fs,
@@ -14,7 +14,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, isbn):
         MetaBook.get_isbn,
         http_oreilly_1,
     )
-    assert str(actual.isbn).endswith(isbn)
+    assert str(actual.isbn).endswith(oreilly_isbn_1)
     assert str(actual.http_url) == http_oreilly_1
 
 
@@ -28,7 +28,7 @@ def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
     assert actual == "n/a"
 
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_oreilly_1, isbn):
+def test_asMarkDown(get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1):
     actual = Metadata(
         get_config_map,
         persist_fs,

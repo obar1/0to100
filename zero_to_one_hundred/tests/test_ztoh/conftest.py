@@ -2,6 +2,7 @@
 
 import os
 import string
+from pathlib import Path
 from unittest import mock
 
 import pytest
@@ -14,38 +15,29 @@ from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvi
 
 
 
-@pytest.fixture
-def get_test_path():
-    os_path_dirname = os.path.dirname(os.path.abspath(__file__))
-    yield os_path_dirname
-
+get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r'/resources'
 
 @pytest.fixture
-def get_resource_path(get_test_path):
-    yield get_test_path + "/resources"
-
-
-@pytest.fixture
-def get_map_yaml_path(get_resource_path):
+def get_map_yaml_path():
     yield get_resource_path + "/map.yaml"
 
 @pytest.fixture
-def get_map_sorted_0_yaml_path(get_resource_path):
+def get_map_sorted_0_yaml_path():
     yield get_resource_path + "/map_sorted_0.yaml"
 
 
 @pytest.fixture
-def get_unsupported_map_yaml_path(get_resource_path):
+def get_unsupported_map_yaml_path():
     yield get_resource_path + "/unsupported_map.yaml"
 
 
 @pytest.fixture
-def get_gcp_map_yaml_path(get_resource_path):
+def get_gcp_map_yaml_path():
     yield get_resource_path + "/gcp_map.yaml"
 
 
 @pytest.fixture
-def get_datacamp_map_yaml_path(get_resource_path):
+def get_datacamp_map_yaml_path():
     yield get_resource_path + "/datacamp_map.yaml"
 
 
@@ -115,7 +107,7 @@ def get_datacamp_config_map(
 
 @pytest.fixture
 def get_factory(env_map_yaml, persist_fs, process_fs):
-    return ZTOHFactory(get_config_map, persist_fs, process_fs)
+    return ZTOHFactory(env_map_yaml, persist_fs, process_fs)
 
 
 @pytest.fixture

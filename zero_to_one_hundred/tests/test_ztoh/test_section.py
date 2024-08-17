@@ -1,8 +1,8 @@
 from zero_to_one_hundred.models.section import Section
 
 
-def test_init(get_config_map, persist_fs, process_fs, http_url):
-    actual = Section(get_config_map, persist_fs, process_fs, http_url)
+def test_init(get_config_map, persist_fs, process_fs, http_url_1):
+    actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
     assert actual.http_url == "https://cloud.google.com/abc"
     assert actual.dir_name == "https§§§cloud.google.com§abc"
     assert (
@@ -11,8 +11,8 @@ def test_init(get_config_map, persist_fs, process_fs, http_url):
     )
 
 
-def test_write(get_config_map, persist_fs, process_fs, http_url):
-    actual = Section(get_config_map, persist_fs, process_fs, http_url)
+def test_write(get_config_map, persist_fs, process_fs, http_url_1):
+    actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
 
 
 def test_build_from_dir(
@@ -82,8 +82,8 @@ def test_gcp_get_format_as_md(get_gcp_config_map, persist_fs, process_fs):
     assert actual.get_format_as_md == """:snake:"""
 
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url):
-    actual = Section(get_config_map, persist_fs, process_fs, http_url)
+def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
+    actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
     current = actual.asMarkDown()
     assert (
         current
