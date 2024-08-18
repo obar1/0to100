@@ -33,4 +33,4 @@ class RefreshMapProcessor(AProcessor):
                 self.persist_fs.list_dirs(self.config_map.get_repo_path),
             ),
         )
-        actual.write(self.config_map.get_repo_sorted)
+        actual.write(actual.asMarkDown())

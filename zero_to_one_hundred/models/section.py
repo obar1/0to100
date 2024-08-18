@@ -1,5 +1,6 @@
 # pylint: disable= R0904
 
+from datetime import datetime
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
@@ -33,6 +34,7 @@ class Section(MarkdownRenderer):
         self.dir_readme_md = (
             config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
         )
+        self.dir_readme_md_ts =datetime.utcnow()
 
         self.is_done = is_done
 

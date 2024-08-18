@@ -1,3 +1,4 @@
+import datetime
 from typing import List
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
@@ -24,6 +25,17 @@ class Map(MarkdownRenderer):
 
     def __repr__(self):
         return f"Map {str(self.sections)}"
+
+    def get_sections(self):
+
+        def order_by_date(sections):
+            return sorted(sections, key=lambda s: s.dir_readme_md_ts)
+
+        if self.config_map.get_repo_sorted == 'abc':
+            return sorted(self.sections, key=str)
+        if self.config_map.get_repo_sorted == '00:00:00':
+            return order_by_date(self.sections)
+        return self.sections
 
     def asMarkDown(self) -> str:
         lf_char = "\n"
@@ -61,13 +73,11 @@ class Map(MarkdownRenderer):
 
 {get_legend_as_md(self)}
 
-{lf_char.join((section.asMarkDown() for section in self.sections))}
+{lf_char.join((section.asMarkDown() for section in self.get_sections()))}
 """
         return txt.replace("  ", "")
 
-    def write(self, as_sorted: bool):
-        # init with list of sections found
-        txt = self.asMarkDown()
+    def write(self,txt:str):
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod

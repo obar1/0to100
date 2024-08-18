@@ -16,6 +16,14 @@ def str_relaxed(s1):
 
 import pytest
 
+
+@pytest.fixture
+def fake_filesystem(fs):  # pylint:disable=invalid-name
+    """Variable name 'fs' causes a pylint warning. Provide a longer name
+    acceptable to pylint for use in tests.
+    """
+    yield fs
+    
 @pytest.fixture(scope="session")
 def http_url_1():
     yield "https://cloud.google.com/abc"

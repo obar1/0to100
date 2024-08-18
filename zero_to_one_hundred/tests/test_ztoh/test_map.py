@@ -1,20 +1,18 @@
+import os
 from typing import List, Literal
 import re
-
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.models.section import Section
+from pyfakefs.fake_filesystem_unittest import Patcher
+
+from zero_to_one_hundred.tests.conftest import str_relaxed
 
 
-def test_write(get_config_map: ZTOHConfigMap, persist_fs, process_fs, http_url_1, http_url_2: Literal['https://cloud.google.com/zzz']):
-    sections: List[Section] = [
-        Section(get_config_map, persist_fs, process_fs, http_url_1, False),
-        Section(get_config_map, persist_fs, process_fs, http_url_2, False),
-    ]
-    actual = Map(get_config_map, persist_fs, sections=sections)
+ 
 
 
-def test_asMarkDown(get_config_map: ZTOHConfigMap, persist_fs, process_fs, http_urls =['https://cloud.google.com/abc','https://cloud.google.com/zzz']):
+def test_asMarkDown(get_config_map: ZTOHConfigMap, persist_fs, process_fs, http_urls =['https://cloud.google.com/zzz','https://cloud.google.com/abc']):
     sections = [Section(get_config_map, persist_fs, process_fs, http_url, False) for http_url in http_urls]
     actual = Map(get_config_map, persist_fs, sections=sections)
     current = actual.asMarkDown()
@@ -26,10 +24,10 @@ def test_asMarkDown(get_config_map: ZTOHConfigMap, persist_fs, process_fs, http_
 |---|---|
 | :footprints: | :green_heart: |
 
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:
 1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) :footprints:
+1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:
 """
-    assert  re.sub(r'\s', '', current) == re.sub(r'\s', '', expected)
+    assert  str_relaxed(current) == str_relaxed(expected)
 
 
 def test_asMarkDown_0(get_config_map_sorted_0: ZTOHConfigMap, persist_fs, process_fs, http_urls =['https://cloud.google.com/abc','https://cloud.google.com/zzz', 'https://cloud.google.com/efg']):
@@ -49,4 +47,15 @@ def test_asMarkDown_0(get_config_map_sorted_0: ZTOHConfigMap, persist_fs, proces
 1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) :footprints:
 
 """
-    assert  re.sub(r'\s', '', current) == re.sub(r'\s', '', expected)
+    assert  str_relaxed(current) == str_relaxed(expected)
+
+
+
+def test_write( get_config_map: ZTOHConfigMap, persist_fs, process_fs, http_urls =['https://cloud.google.com/abc','https://cloud.google.com/zzz']):
+    sections = [Section(get_config_map, persist_fs, process_fs, http_url, False) for http_url in http_urls]
+    actual = Map(get_config_map, persist_fs, sections=sections)
+    txt = actual.asMarkDown()
+    with Patcher(allow_root_user=False) as patcher:
+        res= actual.write(txt)
+        assert res>0
+        assert os.path.exists(actual.readme_md)

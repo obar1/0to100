@@ -47,10 +47,14 @@ def get_sample_readme_md_path(get_repo_path):
 
 
 @pytest.fixture
+def env_map_sorted_0_yaml(get_map_sorted_0_yaml_path):
+    with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_sorted_0_yaml_path}):
+        yield
+
+@pytest.fixture
 def env_map_yaml(get_map_yaml_path):
     with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_yaml_path}):
         yield
-
 
 @pytest.fixture
 def env_unsupported_map_yaml(get_unsupported_map_yaml_path):
@@ -82,7 +86,7 @@ def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
     return ZTOHConfigMap(persist_fs)
 
 @pytest.fixture
-def get_config_map_sorted_0(env_map_yaml, get_map_sorted_0_yaml_path, persist_fs):
+def get_config_map_sorted_0(env_map_sorted_0_yaml, get_map_sorted_0_yaml_path, persist_fs):
     return ZTOHConfigMap(persist_fs)
 
 

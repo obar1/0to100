@@ -27,3 +27,8 @@ safaribooks/
 build
 /dist
 *.egg-info
+pip-wheel-metadata/
+
+
+# logs
+logs/
