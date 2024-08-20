@@ -27,13 +27,10 @@ class Map(MarkdownRenderer):
 
     def get_sections(self):
 
-        def order_by_date(sections):
-            return sorted(sections, key=lambda s: s.get_readme_md_time())
-
         if self.config_map.get_repo_sorted == 'abc':
             return sorted(self.sections, key=str)
         if self.config_map.get_repo_sorted == '00:00:00':
-            return order_by_date(self.sections)
+            return sorted(self.sections, key=lambda s: s.get_readme_md_time())
         return self.sections
 
     def asMarkDown(self) -> str:
