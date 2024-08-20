@@ -87,7 +87,7 @@ class Section(MarkdownRenderer):
 
     def get_readme_md_time(self):
         return self.persist_fs.get_biz_ts(
-            self.config_map.get_repo_path + "/" + self.dir_name
+            self.dir_readme_md
         )
 
     @classmethod
