@@ -20,7 +20,8 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     factory: AFactory = None
     try:
         factory = factory_provider.provide()
-        assert factory is not None
+        if factory is None:
+            raise SomeError("factory is not defined")
         [processor.process() for processor in factory.get_processor(argv) if processor]
 
     except ModuleNotFoundError:

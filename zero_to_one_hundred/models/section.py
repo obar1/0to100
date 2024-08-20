@@ -121,8 +121,7 @@ class Section(MarkdownRenderer):
 
     def refresh_links(self):
         def convert(line):
-            """convert to [https://](https:§§§...readme) or leave as it is
-            1 level only -assert"""
+            """convert to [https://](https:§§§...readme) or leave as it is"""
             res = line
             if str(line).strip("\n").startswith("https://"):
                 res = (

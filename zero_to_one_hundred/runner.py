@@ -4,7 +4,7 @@ import traceback
 from subprocess import CalledProcessError
 from typing import List
 
-from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
+from zero_to_one_hundred.exceptions.errors import SomeError, UnsupportedConfigMapError
 from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 
@@ -24,11 +24,11 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
         [processor.process() for processor in factory.get_processor(argv) if processor]
 
     except ModuleNotFoundError:
-        print("DDD have you installed all the dep")
+        print("please, check if have you installed all the deps")
     except (NotImplementedError, UnsupportedConfigMapError, CalledProcessError):
         print("please, check MAP_YAML_PATH env var contents")
-    except AssertionError:
-        print("please, check the code")
+    except SomeError as e:
+        print(e)
     except (ValueError, TypeError, IndexError):
         traceback.print_exc()
         factory.help_processor().process()

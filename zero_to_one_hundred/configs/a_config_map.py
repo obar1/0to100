@@ -3,6 +3,7 @@ import os
 from abc import ABC
 from enum import Enum
 
+from zero_to_one_hundred.exceptions.errors import SomeError
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 
@@ -15,7 +16,8 @@ class AConfigMap(ABC):
 
     def __init__(self, persist_fs: APersistFS):
         self.map_yaml_path = os.getenv(AConfigMap.MAP_YAML_PATH)
-        assert self.map_yaml_path is not None
+        if self.map_yaml_path is  None:
+            raise SomeError("map_yaml_path is not defined")
         self.persist_fs = persist_fs
 
     def __repr__(self):
