@@ -1,4 +1,5 @@
 # pylint: disable=W0108
+from datetime import datetime
 import os
 
 
@@ -31,3 +32,39 @@ class ZTOHPersistFS(APersistFS):
         if exists:
             return True
         return False
+
+    def get_biz_ts(cls, path):
+        print(f"path {path}")
+        exists = os.path.exists(path)
+        print(f"exists {exists}")
+        ts_format = '%Y-%m-%d %H:%M:%S'
+        if exists:
+                modification_time = os.path.getmtime(path)
+                modification_time_date = datetime.fromtimestamp(modification_time)
+
+                return modification_time_date.strftime(ts_format
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       )
+        return datetime.now().strftime(ts_format)
+
+

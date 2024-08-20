@@ -34,8 +34,6 @@ class Section(MarkdownRenderer):
         self.dir_readme_md = (
             config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
         )
-        self.dir_readme_md_ts =datetime.utcnow()
-
         self.is_done = is_done
 
     def __repr__(self):
@@ -80,15 +78,18 @@ class Section(MarkdownRenderer):
             .replace("\\", "§")
         )
 
-    def write(self):
+    def write(self,txt:str):
         return self.persist_fs.make_dirs(
-            self.config_map.get_repo_path + "/" + self.dir_name
+            txt
         )
 
     def write_done_section(self):
         return self.persist_fs.done_section(
             self.config_map.get_repo_path + "/" + self.dir_name
         )
+
+    def get_readme_md_time(self):
+        return self.persist_fs.get_biz_ts( self.config_map.get_repo_path + "/" + self.dir_name)
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
@@ -97,6 +98,9 @@ class Section(MarkdownRenderer):
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
         return persist_fs.done_section_status(repo_path, dir_name)
+
+
+
 
     @classmethod
     def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
@@ -256,3 +260,4 @@ class Section(MarkdownRenderer):
                 and other.dir_readme_md == self.dir_readme_md
                 and other.is_done == self.is_done
         )
+

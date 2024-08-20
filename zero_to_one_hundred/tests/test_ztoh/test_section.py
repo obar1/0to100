@@ -1,4 +1,6 @@
 from zero_to_one_hundred.models.section import Section
+from pyfakefs.fake_filesystem_unittest import Patcher
+import os
 
 
 def test_init(get_config_map, persist_fs, process_fs, http_url_1):
@@ -9,11 +11,17 @@ def test_init(get_config_map, persist_fs, process_fs, http_url_1):
         actual.dir_readme_md
         == get_config_map.get_repo_path + "/" + "https§§§cloud.google.com§abc/readme.md"
     )
-
+    res =   actual.get_readme_md_time(persist_fs, actual.dir_readme_md)
+    assert res is not None
 
 def test_write(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
-
+    txt = get_config_map.get_repo_path + r"/" + actual.dir_name
+    txt = os.path.abspath(txt)
+    with Patcher(allow_root_user=False) as patcher:
+        res= actual.write(txt)
+        assert res is True
+        assert os.path.exists(txt)
 
 def test_build_from_dir(
     get_config_map, persist_fs, process_fs

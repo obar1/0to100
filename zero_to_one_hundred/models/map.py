@@ -29,7 +29,7 @@ class Map(MarkdownRenderer):
     def get_sections(self):
 
         def order_by_date(sections):
-            return sorted(sections, key=lambda s: s.dir_readme_md_ts)
+            return sorted(sections, key=lambda s: s.get_readme_md_time())
 
         if self.config_map.get_repo_sorted == 'abc':
             return sorted(self.sections, key=str)

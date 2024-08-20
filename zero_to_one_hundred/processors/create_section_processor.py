@@ -39,7 +39,8 @@ class CreateSectionProcessor(AProcessor):
             self.http_url,
             is_done=False,
         )
-        section.write()
+        txt = self.config_map.get_repo_path + "/" + self.dir_name
+        section.write(txt)
         readme_md: ReadMeMD = ReadMeMD(
             self.config_map,
             self.persist_fs,
