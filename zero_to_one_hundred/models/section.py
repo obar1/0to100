@@ -1,10 +1,10 @@
 # pylint: disable= R0904
 
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 from zero_to_one_hundred.validator.validator import Validator
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
@@ -33,11 +33,10 @@ class Section(MarkdownRenderer):
         self.dir_readme_md = (
             config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
         )
-
         self.is_done = is_done
 
     def __repr__(self):
-        return f"Section {self.http_url}  {self.dir_readme_md } {self.is_done } {self.dir_name }"
+        return f"Section {self.http_url}  {self.dir_readme_md} {self.is_done} {self.dir_name}"
 
     def asMarkDown(self):
         return (
@@ -78,13 +77,16 @@ class Section(MarkdownRenderer):
             .replace("\\", "§")
         )
 
-    def write(self):
-        return self.persist_fs.make_dirs(
-            self.config_map.get_repo_path + "/" + self.dir_name
-        )
+    def write(self, txt: str):
+        return self.persist_fs.make_dirs(txt)
 
     def write_done_section(self):
         return self.persist_fs.done_section(
+            self.config_map.get_repo_path + "/" + self.dir_name
+        )
+
+    def get_readme_md_time(self):
+        return self.persist_fs.get_biz_ts(
             self.config_map.get_repo_path + "/" + self.dir_name
         )
 
@@ -119,8 +121,7 @@ class Section(MarkdownRenderer):
 
     def refresh_links(self):
         def convert(line):
-            """convert to [https://](https:§§§...readme) or leave as it is
-            1 level only -assert"""
+            """convert to [https://](https:§§§...readme) or leave as it is"""
             res = line
             if str(line).strip("\n").startswith("https://"):
                 res = (
@@ -249,7 +250,7 @@ class Section(MarkdownRenderer):
             return NotImplemented
 
         return (
-            other.http_url == self.http_url
+            other.http_oreilly_1 == self.http_url
             and other.dir_name == self.dir_name
             and other.dir_readme_md == self.dir_readme_md
             and other.is_done == self.is_done

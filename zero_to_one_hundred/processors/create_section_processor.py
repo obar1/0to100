@@ -1,11 +1,9 @@
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.models.section import Section
 from zero_to_one_hundred.processors.a_processor import AProcessor
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 from zero_to_one_hundred.validator.validator import Validator
 
 
@@ -39,7 +37,8 @@ class CreateSectionProcessor(AProcessor):
             self.http_url,
             is_done=False,
         )
-        section.write()
+        txt = self.config_map.get_repo_path + "/" + section.dir_name
+        section.write(txt)
         readme_md: ReadMeMD = ReadMeMD(
             self.config_map,
             self.persist_fs,

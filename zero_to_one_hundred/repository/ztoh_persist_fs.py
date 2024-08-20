@@ -1,6 +1,6 @@
 # pylint: disable=W0108
 import os
-
+import time
 
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
@@ -31,3 +31,14 @@ class ZTOHPersistFS(APersistFS):
         if exists:
             return True
         return False
+
+    @classmethod
+    def get_biz_ts(cls, path):
+
+        print(f"path {path}")
+        exists = os.path.exists(path)
+        print(f"exists {exists}")
+
+        if exists:
+            return os.path.getatime(path)
+        return time.time()

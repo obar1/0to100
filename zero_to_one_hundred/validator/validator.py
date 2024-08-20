@@ -1,4 +1,5 @@
 import traceback
+
 from zero_to_one_hundred.exceptions.errors import NotURLFormatError
 
 

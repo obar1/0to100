@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 from zero_to_one_hundred.factories.a_factory import AFactory
+from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 
 class AFactoryProvider(ABC):
@@ -12,5 +12,5 @@ class AFactoryProvider(ABC):
         pass
 
     @abstractmethod
-    def provide(self) -> AFactory:
+    def provide(self) -> None | AFactory:
         pass

@@ -1,6 +1,5 @@
 from typing import List
 
-
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.models.meta_book import MetaBook
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS

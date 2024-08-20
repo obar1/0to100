@@ -1,8 +1,6 @@
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
@@ -41,3 +39,6 @@ class ReadMeMD(MarkdownRenderer):
         data = self.persist_fs.read_file(self.readme_md)
         lines = "FIXME:" if data is None else data
         return lines
+
+    def get_latest_ts(self):
+        pass

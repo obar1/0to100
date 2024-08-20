@@ -1,10 +1,9 @@
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-
+# pylint: disable=W0622
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.processors.a_processor import AProcessor
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
 class RefreshMapProcessor(AProcessor):
@@ -23,7 +22,7 @@ class RefreshMapProcessor(AProcessor):
 
     def process(self):
         """Scan the repo and for each new_section add it to  the map,  save the map file."""
-        actual: Map = Map(
+        map: Map = Map(
             self.config_map,
             self.persist_fs,
             Map.build_from_dirs(
@@ -33,4 +32,4 @@ class RefreshMapProcessor(AProcessor):
                 self.persist_fs.list_dirs(self.config_map.get_repo_path),
             ),
         )
-        actual.write(self.config_map.get_repo_sorted)
+        map.write(map.asMarkDown())

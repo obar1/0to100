@@ -1,8 +1,9 @@
 # pylint: disable=W0108
 import json
+import os
 from abc import ABC
 from typing import List
-import os
+
 import yaml
 
 
@@ -48,7 +49,11 @@ class APersistFS(ABC):
     @classmethod
     def make_dirs(cls, path):
         print(f"make_dirs {path}")
-        return os.makedirs(path, 0o777, True)
+        try:
+            os.makedirs(path, 0o777, True)
+            return True
+        except FileExistsError:
+            return False
 
     @classmethod
     def read_file(cls, filename) -> List[str] | None:
@@ -57,8 +62,8 @@ class APersistFS(ABC):
         try:
             with open(filename, mode="r", encoding="UTF-8") as f:
                 lines = f.readlines()
-        except:
-            pass  # we dont care
+        except Exception as e:
+            print(e)  # we dont care
         return lines
 
     @classmethod

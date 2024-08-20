@@ -18,7 +18,7 @@ class ZTOHConfigMap(AConfigMap):
 
     @property
     def get_repo_sorted(self) -> bool:
-        return bool(self.load["repo"]["sorted"])
+        return self.load["repo"].get("sorted")
 
     @property
     def get_repo_legend_type(self) -> str | None:

@@ -1,11 +1,9 @@
-from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
-
-from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
-
 from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS_MAP, SBConfigMap
 from zero_to_one_hundred.exceptions.errors import UnsupportedConfigMapError
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 from zero_to_one_hundred.factories.sb_factory import SBFactory
+from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
+from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
 
 
 class SBFactoryProvider(AFactoryProvider):
