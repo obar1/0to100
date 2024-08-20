@@ -12,10 +12,10 @@ class Map(MarkdownRenderer):
     map md with list of sections as from fs"""
 
     def __init__(
-            self,
-            config_map: ZTOHConfigMap,
-            persist_fs: ZTOHPersistFS,
-            sections: List[Section],
+        self,
+        config_map: ZTOHConfigMap,
+        persist_fs: ZTOHPersistFS,
+        sections: List[Section],
     ):
         self.config_map = config_map
         self.readme_md = config_map.get_repo_map_md
@@ -27,9 +27,9 @@ class Map(MarkdownRenderer):
 
     def get_sections(self):
 
-        if self.config_map.get_repo_sorted == 'abc':
+        if self.config_map.get_repo_sorted == "abc":
             return sorted(self.sections, key=str)
-        if self.config_map.get_repo_sorted == '00:00:00':
+        if self.config_map.get_repo_sorted == "00:00:00":
             return sorted(self.sections, key=lambda s: s.get_readme_md_time())
         return self.sections
 
@@ -78,7 +78,7 @@ class Map(MarkdownRenderer):
 
     @classmethod
     def build_from_dirs(
-            cls, persist_fs, process_fs, config_map, dirs: List[str]
+        cls, persist_fs, process_fs, config_map, dirs: List[str]
     ) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [

@@ -9,8 +9,20 @@ from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
 from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
-get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r'/resources'
+get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
+
+
+@pytest.fixture(scope="session")
+def persist_fs():
+    yield ZTOHPersistFS()
+
+
+@pytest.fixture(scope="session")
+def process_fs():
+    yield ZTOHProcessFS()
 
 
 @pytest.fixture
@@ -50,13 +62,17 @@ def get_sample_readme_md_path(get_repo_path):
 
 @pytest.fixture
 def env_map_sorted_0_yaml(get_map_sorted_0_yaml_path):
-    with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_sorted_0_yaml_path}):
+    with mock.patch.dict(
+        os.environ, {AConfigMap.MAP_YAML_PATH: get_map_sorted_0_yaml_path}
+    ):
         yield
 
 
 @pytest.fixture
 def env_map_sorted_1_yaml(get_map_sorted_1_yaml_path):
-    with mock.patch.dict(os.environ, {AConfigMap.MAP_YAML_PATH: get_map_sorted_1_yaml_path}):
+    with mock.patch.dict(
+        os.environ, {AConfigMap.MAP_YAML_PATH: get_map_sorted_1_yaml_path}
+    ):
         yield
 
 
@@ -69,7 +85,7 @@ def env_map_yaml(get_map_yaml_path):
 @pytest.fixture
 def env_unsupported_map_yaml(get_unsupported_map_yaml_path):
     with mock.patch.dict(
-            os.environ, {AConfigMap.MAP_YAML_PATH: get_unsupported_map_yaml_path}
+        os.environ, {AConfigMap.MAP_YAML_PATH: get_unsupported_map_yaml_path}
     ):
         yield
 
@@ -83,7 +99,7 @@ def env_gcp_map_yaml(get_gcp_map_yaml_path):
 @pytest.fixture
 def env_datacamp_map_yaml(get_datacamp_map_yaml_path):
     with mock.patch.dict(
-            os.environ, {AConfigMap.MAP_YAML_PATH: get_datacamp_map_yaml_path}
+        os.environ, {AConfigMap.MAP_YAML_PATH: get_datacamp_map_yaml_path}
     ):
         yield
 
@@ -94,18 +110,22 @@ def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
 
 
 @pytest.fixture
-def get_config_map_sorted_0(env_map_sorted_0_yaml, get_map_sorted_0_yaml_path, persist_fs):
+def get_config_map_sorted_0(
+    env_map_sorted_0_yaml, get_map_sorted_0_yaml_path, persist_fs
+):
     return ZTOHConfigMap(persist_fs)
 
 
 @pytest.fixture
-def get_config_map_sorted_1(env_map_sorted_1_yaml, get_map_sorted_1_yaml_path, persist_fs):
+def get_config_map_sorted_1(
+    env_map_sorted_1_yaml, get_map_sorted_1_yaml_path, persist_fs
+):
     return ZTOHConfigMap(persist_fs)
 
 
 @pytest.fixture
 def get_unsupported_config_map(
-        env_unsupported_map_yaml, get_unsupported_map_yaml_path, persist_fs
+    env_unsupported_map_yaml, get_unsupported_map_yaml_path, persist_fs
 ):
     return ZTOHConfigMap(persist_fs)
 
@@ -117,7 +137,7 @@ def get_gcp_config_map(env_gcp_map_yaml, get_gcp_map_yaml_path, persist_fs):
 
 @pytest.fixture
 def get_datacamp_config_map(
-        env_datacamp_map_yaml, get_datacamp_map_yaml_path, persist_fs
+    env_datacamp_map_yaml, get_datacamp_map_yaml_path, persist_fs
 ):
     return ZTOHConfigMap(persist_fs)
 

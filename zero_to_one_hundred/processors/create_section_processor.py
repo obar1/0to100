@@ -12,11 +12,11 @@ class CreateSectionProcessor(AProcessor):
     create a new new_section on fs from http address"""
 
     def __init__(
-            self,
-            config_map: ZTOHConfigMap,
-            persist_fs: ZTOHPersistFS,
-            process_fs: ZTOHProcessFS,
-            http_url: str,
+        self,
+        config_map: ZTOHConfigMap,
+        persist_fs: ZTOHPersistFS,
+        process_fs: ZTOHProcessFS,
+        http_url: str,
     ):
         Validator.is_valid_http(http_url)
         self.http_url = http_url

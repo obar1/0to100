@@ -5,7 +5,7 @@ from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 class HelpProcessor(AProcessor):
     def __init__(
-            self, config_map: AConfigMap, persist_fs: APersistFS, supported_processor
+        self, config_map: AConfigMap, persist_fs: APersistFS, supported_processor
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs

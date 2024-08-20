@@ -30,7 +30,9 @@ def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
     assert actual == "n/a"
 
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1):
+def test_asMarkDown(
+    get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1
+):
     actual = Metadata(
         get_config_map,
         persist_fs,

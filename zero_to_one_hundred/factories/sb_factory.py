@@ -20,7 +20,7 @@ class SBFactory(AFactory):
         help = 3
 
     def __init__(
-            self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS
+        self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs

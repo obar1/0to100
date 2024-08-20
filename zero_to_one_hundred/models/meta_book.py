@@ -13,11 +13,11 @@ class MetaBook:
     HTTP_OREILLY_LIBRARY = "https://learning.oreilly.com/library"
 
     def __init__(
-            self,
-            config_map: SBConfigMap,
-            persist_fs: SBPersistFS,
-            process_fs: SBProcessFS,
-            http_url: str,
+        self,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
+        http_url: str,
     ):
         self.config_map = config_map
         self.http_url = http_url
@@ -45,11 +45,11 @@ class MetaBook:
 
     @classmethod
     def build_from_dir(
-            cls,
-            config_map: SBConfigMap,
-            persist_fs: SBPersistFS,
-            process_fs: SBProcessFS,
-            dir_name,
+        cls,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
+        dir_name,
     ):
         return MetaBook(
             config_map,
@@ -112,7 +112,7 @@ class MetaBook:
     @classmethod
     def get_isbn(cls, http_url):
         http_url = http_url.strip("/")
-        return http_url[http_url.rfind("/") + 1:]
+        return http_url[http_url.rfind("/") + 1 :]
 
     @property
     def get_epub_path(self):

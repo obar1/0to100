@@ -12,11 +12,11 @@ class Toc(MarkdownRenderer):
     """
 
     def __init__(
-            self,
-            config_map: SBConfigMap,
-            persist_fs: SBPersistFS,
-            process_fs,
-            meta_books: List[MetaBook],
+        self,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs,
+        meta_books: List[MetaBook],
     ):
         self.config_map = config_map
         self.readme_md = "toc.md"
@@ -29,7 +29,7 @@ class Toc(MarkdownRenderer):
 
     @classmethod
     def build_from_dirs(
-            cls, config_map, persist_fs, process_fs, dirs: List[str]
+        cls, config_map, persist_fs, process_fs, dirs: List[str]
     ) -> List[MetaBook]:
         """from a list of dirs created return the a MetaBook
         m> org http is lost

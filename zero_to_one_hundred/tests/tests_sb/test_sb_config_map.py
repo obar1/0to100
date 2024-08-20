@@ -19,6 +19,6 @@ def test_provide__pass(get_config_map: SBConfigMap):
 def test__repr__(get_config_map: SBConfigMap, get_map_yaml_path: str):
     actual = get_config_map
     assert (
-            repr(actual)
-            == f"MAP_YAML_PATH from {get_map_yaml_path} type {get_config_map.get_type}"
+        repr(actual)
+        == f"MAP_YAML_PATH from {get_map_yaml_path} type {get_config_map.get_type}"
     )

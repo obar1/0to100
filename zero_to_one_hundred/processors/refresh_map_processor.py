@@ -1,3 +1,4 @@
+# pylint: disable=W0622
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.processors.a_processor import AProcessor
@@ -10,10 +11,10 @@ class RefreshMapProcessor(AProcessor):
     refresh sections in map"""
 
     def __init__(
-            self,
-            config_map: ZTOHConfigMap,
-            persist_fs: ZTOHPersistFS,
-            process_fs: ZTOHProcessFS,
+        self,
+        config_map: ZTOHConfigMap,
+        persist_fs: ZTOHPersistFS,
+        process_fs: ZTOHProcessFS,
     ):
         self.persist_fs = persist_fs
         self.process_fs = process_fs

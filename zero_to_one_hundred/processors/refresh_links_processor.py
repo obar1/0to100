@@ -16,10 +16,10 @@ class RefreshLinksProcessor(AProcessor):
     replace them with the location of the new_section ..."""
 
     def __init__(
-            self,
-            config_map: ZTOHConfigMap,
-            persist_fs: ZTOHPersistFS,
-            process_fs: ZTOHProcessFS,
+        self,
+        config_map: ZTOHConfigMap,
+        persist_fs: ZTOHPersistFS,
+        process_fs: ZTOHProcessFS,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs

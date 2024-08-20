@@ -22,6 +22,6 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
     )
     current = actual.asMarkDown()
     assert (
-            current
-            == "ReadMeMD ./0to100/https§§§cloud.google.com§abc/readme.md, https§§§cloud.google.com§abc https://cloud.google.com/abc"
+        current
+        == "ReadMeMD ./0to100/https§§§cloud.google.com§abc/readme.md, https§§§cloud.google.com§abc https://cloud.google.com/abc"
     )

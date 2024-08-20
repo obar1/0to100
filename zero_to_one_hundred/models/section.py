@@ -18,12 +18,12 @@ class Section(MarkdownRenderer):
     GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"
 
     def __init__(
-            self,
-            config_map: ZTOHConfigMap,
-            persist_fs: ZTOHPersistFS,
-            process_fs: ZTOHProcessFS,
-            http_url: str,
-            is_done: bool = False,
+        self,
+        config_map: ZTOHConfigMap,
+        persist_fs: ZTOHPersistFS,
+        process_fs: ZTOHProcessFS,
+        http_url: str,
+        is_done: bool = False,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -31,7 +31,7 @@ class Section(MarkdownRenderer):
         self.http_url = http_url
         self.dir_name = Section.from_http_url_to_dir(http_url)
         self.dir_readme_md = (
-                config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
+            config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
         )
         self.is_done = is_done
 
@@ -40,13 +40,13 @@ class Section(MarkdownRenderer):
 
     def asMarkDown(self):
         return (
-                "1. "
-                + self.get_id_name
-                + " [`here`]("
-                + self.dir_readme_md
-                + ")"
-                + self.get_done_as_md
-                + self.get_format_as_md
+            "1. "
+            + self.get_id_name
+            + " [`here`]("
+            + self.dir_readme_md
+            + ")"
+            + self.get_done_as_md
+            + self.get_format_as_md
         )
 
     @property
@@ -78,9 +78,7 @@ class Section(MarkdownRenderer):
         )
 
     def write(self, txt: str):
-        return self.persist_fs.make_dirs(
-            txt
-        )
+        return self.persist_fs.make_dirs(txt)
 
     def write_done_section(self):
         return self.persist_fs.done_section(
@@ -89,7 +87,8 @@ class Section(MarkdownRenderer):
 
     def get_readme_md_time(self):
         return self.persist_fs.get_biz_ts(
-            self.config_map.get_repo_path + "/" + self.dir_name)
+            self.config_map.get_repo_path + "/" + self.dir_name
+        )
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
@@ -105,7 +104,7 @@ class Section(MarkdownRenderer):
 
     @classmethod
     def build_from_dir(
-            cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
+        cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
     ):
         http_url = cls.from_http_url_to_dir_to(dir_name)
         return Section(
@@ -126,16 +125,16 @@ class Section(MarkdownRenderer):
             res = line
             if str(line).strip("\n").startswith("https://"):
                 res = (
-                        "["
-                        + str(line).strip("\n")
-                        + "](../"
-                        + Section(
-                    self.config_map,
-                    self.persist_fs,
-                    self.process_fs,
-                    str(line).strip("\n"),
-                ).dir_readme_md
-                        + ")\n"
+                    "["
+                    + str(line).strip("\n")
+                    + "](../"
+                    + Section(
+                        self.config_map,
+                        self.persist_fs,
+                        self.process_fs,
+                        str(line).strip("\n"),
+                    ).dir_readme_md
+                    + ")\n"
                 )
             return res
 
@@ -195,8 +194,8 @@ class Section(MarkdownRenderer):
     @property
     def is_gcp_template(self):
         return (
-                "course_templates" in self.http_url
-                and "cloudskillsboost.google" in self.http_url
+            "course_templates" in self.http_url
+            and "cloudskillsboost.google" in self.http_url
         )
 
     @property
@@ -251,8 +250,8 @@ class Section(MarkdownRenderer):
             return NotImplemented
 
         return (
-                other.http_oreilly_1 == self.http_url
-                and other.dir_name == self.dir_name
-                and other.dir_readme_md == self.dir_readme_md
-                and other.is_done == self.is_done
+            other.http_oreilly_1 == self.http_url
+            and other.dir_name == self.dir_name
+            and other.dir_readme_md == self.dir_readme_md
+            and other.is_done == self.is_done
         )

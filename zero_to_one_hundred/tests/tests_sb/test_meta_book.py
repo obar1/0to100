@@ -18,13 +18,13 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
 
 def test_build_from_dir(get_config_map, persist_fs, process_fs):
     assert (
-            MetaBook.build_from_dir(
-                get_config_map,
-                persist_fs,
-                process_fs,
-                "./books/9780135956977",
-            ).isbn
-            == "9780135956977"
+        MetaBook.build_from_dir(
+            get_config_map,
+            persist_fs,
+            process_fs,
+            "./books/9780135956977",
+        ).isbn
+        == "9780135956977"
     )
 
 

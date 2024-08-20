@@ -11,11 +11,11 @@ class SnatchBookProcessor(AProcessor):
     create a new meta_book on fs from http address"""
 
     def __init__(
-            self,
-            config_map: SBConfigMap,
-            persist_fs: SBPersistFS,
-            process_fs: SBProcessFS,
-            http_url: str,
+        self,
+        config_map: SBConfigMap,
+        persist_fs: SBPersistFS,
+        process_fs: SBProcessFS,
+        http_url: str,
     ):
         Validator.is_valid_http(http_url)
         self.http_url = http_url

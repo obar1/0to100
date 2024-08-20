@@ -1,10 +1,8 @@
 # pylint: disable=W0106,R1710
 
 import traceback
-from subprocess import CalledProcessError
 from typing import List
 
-from zero_to_one_hundred.exceptions.errors import SomeError, UnsupportedConfigMapError
 from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 
