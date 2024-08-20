@@ -1,7 +1,7 @@
 # pylint: disable=W0246
+import os
 from abc import ABC
 from enum import Enum
-import os
 
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 

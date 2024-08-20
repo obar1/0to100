@@ -1,10 +1,9 @@
-import datetime
 from typing import List
-from zero_to_one_hundred.configs.a_config_map import AConfigMap
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.section import Section
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
 
@@ -13,10 +12,10 @@ class Map(MarkdownRenderer):
     map md with list of sections as from fs"""
 
     def __init__(
-        self,
-        config_map: ZTOHConfigMap,
-        persist_fs: ZTOHPersistFS,
-        sections: List[Section],
+            self,
+            config_map: ZTOHConfigMap,
+            persist_fs: ZTOHPersistFS,
+            sections: List[Section],
     ):
         self.config_map = config_map
         self.readme_md = config_map.get_repo_map_md
@@ -77,12 +76,12 @@ class Map(MarkdownRenderer):
 """
         return txt.replace("  ", "")
 
-    def write(self,txt:str):
+    def write(self, txt: str):
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod
     def build_from_dirs(
-        cls, persist_fs, process_fs, config_map, dirs: List[str]
+            cls, persist_fs, process_fs, config_map, dirs: List[str]
     ) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [

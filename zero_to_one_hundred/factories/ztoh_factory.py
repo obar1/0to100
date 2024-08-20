@@ -1,9 +1,5 @@
 from enum import Enum
 
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.processors.create_section_processor import (
@@ -13,6 +9,8 @@ from zero_to_one_hundred.processors.done_section_processor import DoneSectionPro
 from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
 from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
 class ZTOHFactory(AFactory):
@@ -26,10 +24,10 @@ class ZTOHFactory(AFactory):
         help = 5
 
     def __init__(
-        self,
-        config_map: ZTOHConfigMap,
-        persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
+            self,
+            config_map: ZTOHConfigMap,
+            persist_fs: ZTOHPersistFS,
+            process_fs: ZTOHProcessFS,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs

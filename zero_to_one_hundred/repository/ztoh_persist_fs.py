@@ -1,7 +1,6 @@
 # pylint: disable=W0108
-from datetime import datetime
 import os
-
+from datetime import datetime
 
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
@@ -39,32 +38,10 @@ class ZTOHPersistFS(APersistFS):
         print(f"exists {exists}")
         ts_format = '%Y-%m-%d %H:%M:%S'
         if exists:
-                modification_time = os.path.getmtime(path)
-                modification_time_date = datetime.fromtimestamp(modification_time)
+            modification_time = os.path.getmtime(path)
+            modification_time_date = datetime.fromtimestamp(modification_time)
 
-                return modification_time_date.strftime(ts_format
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       )
+            return modification_time_date.strftime(ts_format
+
+                                                   )
         return datetime.now().strftime(ts_format)
-
-

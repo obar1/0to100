@@ -1,8 +1,9 @@
 # pylint: disable=W0108
 import json
+import os
 from abc import ABC
 from typing import List
-import os
+
 import yaml
 
 
@@ -16,7 +17,7 @@ class APersistFS(ABC):
             if os.path.isdir(os.path.join(path, name))
         ]
         files.sort(key=lambda x: os.path.getmtime(x))
-        return [f[len(path) + 1 :] for f in files]
+        return [f[len(path) + 1:] for f in files]
 
     @classmethod
     def get_dir_name(cls, filename):

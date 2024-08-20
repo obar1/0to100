@@ -1,6 +1,8 @@
-from zero_to_one_hundred.models.section import Section
-from pyfakefs.fake_filesystem_unittest import Patcher
 import os
+
+from pyfakefs.fake_filesystem_unittest import Patcher
+
+from zero_to_one_hundred.models.section import Section
 
 
 def test_init(get_config_map, persist_fs, process_fs, http_url_1):
@@ -8,23 +10,25 @@ def test_init(get_config_map, persist_fs, process_fs, http_url_1):
     assert actual.http_url == "https://cloud.google.com/abc"
     assert actual.dir_name == "https§§§cloud.google.com§abc"
     assert (
-        actual.dir_readme_md
-        == get_config_map.get_repo_path + "/" + "https§§§cloud.google.com§abc/readme.md"
+            actual.dir_readme_md
+            == get_config_map.get_repo_path + "/" + "https§§§cloud.google.com§abc/readme.md"
     )
-    res =   actual.get_readme_md_time(persist_fs, actual.dir_readme_md)
+    res = actual.get_readme_md_time()
     assert res is not None
+
 
 def test_write(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
     txt = get_config_map.get_repo_path + r"/" + actual.dir_name
     txt = os.path.abspath(txt)
     with Patcher(allow_root_user=False) as patcher:
-        res= actual.write(txt)
+        res = actual.write(txt)
         assert res is True
         assert os.path.exists(txt)
 
+
 def test_build_from_dir(
-    get_config_map, persist_fs, process_fs
+        get_config_map, persist_fs, process_fs
 ):
     def simple_http():
         return "https://cloud.google.com/docs/<>:?*"
@@ -33,10 +37,10 @@ def test_build_from_dir(
         return "https§§§cloud.google.com§docs§§§§§§"
 
     assert (
-        Section.build_from_dir(
-            persist_fs, process_fs, get_config_map, simple_http()
-        ).dir_name
-        == simple_dir()
+            Section.build_from_dir(
+                persist_fs, process_fs, get_config_map, simple_http()
+            ).dir_name
+            == simple_dir()
     )
 
 
@@ -94,6 +98,6 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
     current = actual.asMarkDown()
     assert (
-        current
-        == "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:"
+            current
+            == "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:"
     )

@@ -28,6 +28,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
     assert str(actual.readme_md).endswith("toc.md")
     assert len(actual.meta_books) == 1
 
+
 @pytest.mark.usefixtures("mock_time")
 def test_asMarkDown(get_config_map, persist_fs, process_fs, http_oreilly_1, http_oreilly_2):
     metabooks = [

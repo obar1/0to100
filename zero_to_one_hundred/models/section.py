@@ -1,11 +1,10 @@
 # pylint: disable= R0904
 
-from datetime import datetime
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 from zero_to_one_hundred.validator.validator import Validator
 from zero_to_one_hundred.views.markdown_renderer import MarkdownRenderer
 
@@ -19,12 +18,12 @@ class Section(MarkdownRenderer):
     GENERIC_HTTP_OREILLY: str = "https://learning.oreilly.com/library/"
 
     def __init__(
-        self,
-        config_map: ZTOHConfigMap,
-        persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
-        http_url: str,
-        is_done: bool = False,
+            self,
+            config_map: ZTOHConfigMap,
+            persist_fs: ZTOHPersistFS,
+            process_fs: ZTOHProcessFS,
+            http_url: str,
+            is_done: bool = False,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
@@ -32,22 +31,22 @@ class Section(MarkdownRenderer):
         self.http_url = http_url
         self.dir_name = Section.from_http_url_to_dir(http_url)
         self.dir_readme_md = (
-            config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
+                config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
         )
         self.is_done = is_done
 
     def __repr__(self):
-        return f"Section {self.http_url}  {self.dir_readme_md } {self.is_done } {self.dir_name }"
+        return f"Section {self.http_url}  {self.dir_readme_md} {self.is_done} {self.dir_name}"
 
     def asMarkDown(self):
         return (
-            "1. "
-            + self.get_id_name
-            + " [`here`]("
-            + self.dir_readme_md
-            + ")"
-            + self.get_done_as_md
-            + self.get_format_as_md
+                "1. "
+                + self.get_id_name
+                + " [`here`]("
+                + self.dir_readme_md
+                + ")"
+                + self.get_done_as_md
+                + self.get_format_as_md
         )
 
     @property
@@ -78,7 +77,7 @@ class Section(MarkdownRenderer):
             .replace("\\", "§")
         )
 
-    def write(self,txt:str):
+    def write(self, txt: str):
         return self.persist_fs.make_dirs(
             txt
         )
@@ -89,7 +88,7 @@ class Section(MarkdownRenderer):
         )
 
     def get_readme_md_time(self):
-        return self.persist_fs.get_biz_ts( self.config_map.get_repo_path + "/" + self.dir_name)
+        return self.persist_fs.get_biz_ts(self.config_map.get_repo_path + "/" + self.dir_name)
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
@@ -99,16 +98,13 @@ class Section(MarkdownRenderer):
     def done_section_status(cls, persist_fs, repo_path, dir_name):
         return persist_fs.done_section_status(repo_path, dir_name)
 
-
-
-
     @classmethod
     def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
         return Section(config_map, persist_fs, process_fs, http_url)
 
     @classmethod
     def build_from_dir(
-        cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
+            cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
     ):
         http_url = cls.from_http_url_to_dir_to(dir_name)
         return Section(
@@ -130,16 +126,16 @@ class Section(MarkdownRenderer):
             res = line
             if str(line).strip("\n").startswith("https://"):
                 res = (
-                    "["
-                    + str(line).strip("\n")
-                    + "](../"
-                    + Section(
-                        self.config_map,
-                        self.persist_fs,
-                        self.process_fs,
-                        str(line).strip("\n"),
-                    ).dir_readme_md
-                    + ")\n"
+                        "["
+                        + str(line).strip("\n")
+                        + "](../"
+                        + Section(
+                    self.config_map,
+                    self.persist_fs,
+                    self.process_fs,
+                    str(line).strip("\n"),
+                ).dir_readme_md
+                        + ")\n"
                 )
             return res
 
@@ -199,8 +195,8 @@ class Section(MarkdownRenderer):
     @property
     def is_gcp_template(self):
         return (
-            "course_templates" in self.http_url
-            and "cloudskillsboost.google" in self.http_url
+                "course_templates" in self.http_url
+                and "cloudskillsboost.google" in self.http_url
         )
 
     @property
@@ -260,4 +256,3 @@ class Section(MarkdownRenderer):
                 and other.dir_readme_md == self.dir_readme_md
                 and other.is_done == self.is_done
         )
-

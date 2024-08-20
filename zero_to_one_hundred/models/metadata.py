@@ -13,12 +13,12 @@ class Metadata(MarkdownRenderer):
     WIP_TXT_AS_MD = '<span style="color:yellow">**WIP**</span>'
 
     def __init__(
-        self,
-        config_map: SBConfigMap,
-        persist_fs: SBPersistFS,
-        process_fs: SBProcessFS,
-        get_isbn,
-        http_url: str,
+            self,
+            config_map: SBConfigMap,
+            persist_fs: SBPersistFS,
+            process_fs: SBProcessFS,
+            get_isbn,
+            http_url: str,
     ):
         self.config_map = config_map
         self.http_url = http_url

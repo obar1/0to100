@@ -9,19 +9,20 @@ from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
 from zero_to_one_hundred.factories.sb_factory import SBFactory
 from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
 
+
 @pytest.fixture
 def http_oreilly_1():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
+
+
 @pytest.fixture
 def oreilly_isbn_1():
     yield "9780135956977"
 
+
 @pytest.fixture
 def http_oreilly_2():
     yield "https://learning.oreilly.com/library/view/clean-code-in/9781800560215/"
-
-
-
 
 
 @pytest.fixture
@@ -32,10 +33,6 @@ def pages_tot():
 @pytest.fixture
 def page_curr():
     yield 99
-
-
-
-from pathlib import Path
 
 
 get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r'/resources'
@@ -55,7 +52,7 @@ def mock_map_yaml_env_vars(get_map_yaml_path):
 @pytest.fixture
 def mock_secret_map_yaml_env_vars(get_secret_map_yaml_path):
     with mock.patch.dict(
-        os.environ, {AConfigMap.MAP_YAML_PATH: get_secret_map_yaml_path}
+            os.environ, {AConfigMap.MAP_YAML_PATH: get_secret_map_yaml_path}
     ):
         yield
 

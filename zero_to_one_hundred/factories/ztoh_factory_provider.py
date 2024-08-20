@@ -1,8 +1,8 @@
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
+from zero_to_one_hundred.configs.ztoh_config_map import ZTOH_MAP, ZTOHConfigMap
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
-from zero_to_one_hundred.configs.ztoh_config_map import ZTOH_MAP, ZTOHConfigMap
+from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
+from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
 
 
 class ZTOHFactoryProvider(AFactoryProvider):
