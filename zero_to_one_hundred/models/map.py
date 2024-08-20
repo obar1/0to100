@@ -27,11 +27,14 @@ class Map(MarkdownRenderer):
 
     def get_sections(self):
 
+        res :List[Section] = self.sections    
         if self.config_map.get_repo_sorted == "abc":
-            return sorted(self.sections, key=str)
+            print('*** abc')
+            res= sorted(self.sections, key=lambda s: s.dir_name)
         if self.config_map.get_repo_sorted == "00:00:00":
-            return sorted(self.sections, key=lambda s: s.get_readme_md_time())
-        return self.sections
+            print('*** 00:00:00')
+            res =  sorted(self.sections, key=lambda s: s.get_readme_md_time())
+        return res
 
     def asMarkDown(self) -> str:
         lf_char = "\n"

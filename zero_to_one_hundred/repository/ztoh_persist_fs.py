@@ -15,7 +15,7 @@ class ZTOHPersistFS(APersistFS):
         path = cls.abs_path(path)
         print(f"done_section {path}")
         path = path + os.sep + ".done"
-        print(f"path {path}")
+        # print(f"path {path}")
         os.makedirs(path, 0o777, True)
         with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
             os.utime("{}/.gitkeep".format(path), None)
@@ -23,11 +23,11 @@ class ZTOHPersistFS(APersistFS):
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):
-        print(f"done_section_status {path}")
+        # print(f"done_section_status {path}")
         path = abs_repo_path + os.sep + path + os.sep + ".done"
-        print(f"path {path}")
+        # print(f"path {path}")
         exists = os.path.exists(path)
-        print(f"exists {exists}")
+        # print(f"exists {exists}")
         if exists:
             return True
         return False
@@ -35,10 +35,12 @@ class ZTOHPersistFS(APersistFS):
     @classmethod
     def get_biz_ts(cls, path):
 
-        print(f"path {path}")
+        # print(f"path {path}")
         exists = os.path.exists(path)
-        print(f"exists {exists}")
+        # print(f"exists {exists}")
 
         if exists:
-            return os.path.getatime(path)
+            res = os.path.getmtime(path)
+            # print(f"time {path} {res}")
+            return res
         return time.time()

@@ -57,7 +57,7 @@ class APersistFS(ABC):
 
     @classmethod
     def read_file(cls, filename) -> List[str] | None:
-        print(f"read_file {filename}")
+        # print(f"read_file {filename}")
         lines = None
         try:
             with open(filename, mode="r", encoding="UTF-8") as f:
