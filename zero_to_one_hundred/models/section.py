@@ -88,7 +88,8 @@ class Section(MarkdownRenderer):
         )
 
     def get_readme_md_time(self):
-        return self.persist_fs.get_biz_ts(self.config_map.get_repo_path + "/" + self.dir_name)
+        return self.persist_fs.get_biz_ts(
+            self.config_map.get_repo_path + "/" + self.dir_name)
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):

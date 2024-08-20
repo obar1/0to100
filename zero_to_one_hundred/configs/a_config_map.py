@@ -17,7 +17,7 @@ class AConfigMap(ABC):
     def __init__(self, persist_fs: APersistFS):
         self.map_yaml_path = os.getenv(AConfigMap.MAP_YAML_PATH)
         if self.map_yaml_path is  None:
-            raise SomeError("map_yaml_path is not defined")
+            raise SomeError(f"map_yaml_path {self.map_yaml_path} is not valid")
         self.persist_fs = persist_fs
 
     def __repr__(self):

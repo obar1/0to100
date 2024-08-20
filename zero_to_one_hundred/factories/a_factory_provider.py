@@ -12,5 +12,5 @@ class AFactoryProvider(ABC):
         pass
 
     @abstractmethod
-    def provide(self) -> AFactory:
+    def provide(self) -> None| AFactory:
         pass

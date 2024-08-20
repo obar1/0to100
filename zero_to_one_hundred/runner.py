@@ -20,15 +20,9 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     factory: AFactory = None
     try:
         factory = factory_provider.provide()
-        assert factory is not None
         [processor.process() for processor in factory.get_processor(argv) if processor]
 
-    except ModuleNotFoundError:
-        print("please, check if have you installed all the deps")
-    except (NotImplementedError, UnsupportedConfigMapError, CalledProcessError):
-        print("please, check MAP_YAML_PATH env var contents")
-    except SomeError as e:
+    except Exception as e:
         print(e)
-    except (ValueError, TypeError, IndexError):
         traceback.print_exc()
         factory.help_processor().process()

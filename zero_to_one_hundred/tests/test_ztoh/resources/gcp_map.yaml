@@ -3,3 +3,4 @@ repo:
   path: "./0to100"
   map_md: "toc.md"
   legend_type: "gcp"
+  sorted: "abc" # oder alph
