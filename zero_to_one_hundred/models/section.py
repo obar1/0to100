@@ -46,7 +46,7 @@ class Section(MarkdownRenderer):
             + self.dir_readme_md
             + ")"
             + self.get_done_as_md
-            + self.get_format_as_md
+            + self.get_matching_icon_as_md
         )
 
     @property
@@ -215,31 +215,11 @@ class Section(MarkdownRenderer):
         return "courses" in self.http_url and "app.datacamp.com" in self.http_url
 
     @property
-    def get_format_as_md(self):
-        a = []
-        match self.config_map.get_repo_legend_type:
-            case AConfigMap.SUPPORTED_EXTRA_MAP.gcp.name:
-                a = [
-                    ":cyclone:" if self.is_gcp_quest else None,
-                    ":floppy_disk:" if self.is_gcp_lab else None,
-                    ":whale:" if self.is_gcp_template else None,
-                    ":snake:" if self.is_gcp_game else None,
-                    ":pushpin:",
-                ]
-            case AConfigMap.SUPPORTED_EXTRA_MAP.datacamp.name:
-                a = [
-                    ":cyclone:" if self.is_datacamp_project else None,
-                    ":floppy_disk:" if self.is_datacamp_tutorial else None,
-                    ":whale:" if self.is_datacamp_course else None,
-                    ":pushpin:",
-                ]
-            case _:
-                a = []
-        try:
-            res = next(item for item in a if item is not None)
-        except StopIteration:
-            return ""
-        return res
+    def get_matching_icon_as_md(self):
+        icons = self.config_map.get_legend_icons
+        import re
+        res=  [i.icon for i in icons if re.search(i.regex, self.http_url )]
+        return ' '.join(res)
 
     def __eq__(self, other):
         if other is self:

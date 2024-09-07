@@ -89,7 +89,7 @@ def test_gcp_get_format_as_md(get_gcp_config_map, persist_fs, process_fs):
     actual = Section.build_from_dir(
         persist_fs, process_fs, get_gcp_config_map, http_url
     )
-    assert actual.get_format_as_md == """:snake:"""
+    assert actual.get_matching_icon_as_md == """:snake:"""
 
 
 def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):

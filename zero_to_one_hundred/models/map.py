@@ -48,26 +48,9 @@ class Map(MarkdownRenderer):
             | :footprints: | :green_heart: |
             """
             txt += lf_char
-
-            match self.config_map.get_repo_legend_type:
-                case AConfigMap.SUPPORTED_EXTRA_MAP.gcp.name:
-                    txt += """
-                    > extra
-                    >
-                    | quest | lab | template | game | course |
-                    |---|---|---|----|---|
-                    | :cyclone: | :floppy_disk: | :whale: | :snake: | :pushpin: |""".strip()
-                case AConfigMap.SUPPORTED_EXTRA_MAP.datacamp.name:
-                    txt += """
-                    > extra
-                    >
-                    | projects | tutorial | course |
-                    |---|---|---|
-                    | :cyclone: | :floppy_disk: | :whale: |""".strip()
-                case _:
-                    txt += lf_char
+            txt += self.config_map.get_legend_icons_as_md
             return txt
-
+            
         txt = f"""{f"# map {self.readme_md}, {len(self.sections)}"}
 
 {get_legend_as_md(self)}
