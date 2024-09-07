@@ -55,7 +55,7 @@ class Section(MarkdownRenderer):
 
     @property
     def get_done_as_md(self):
-        return " :green_heart:" if self.is_done else " :footprints:"
+        return "`done`" if self.is_done else "`wip`"
 
     @property
     def get_dir_name(self):

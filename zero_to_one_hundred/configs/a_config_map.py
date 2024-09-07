@@ -1,6 +1,7 @@
 # pylint: disable=W0246
 import os
 from abc import ABC
+from dataclasses import dataclass
 from enum import Enum
 
 from zero_to_one_hundred.exceptions.errors import SomeError
@@ -10,9 +11,11 @@ from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 class AConfigMap(ABC):
     MAP_YAML_PATH = "MAP_YAML_PATH"
 
-    class SUPPORTED_EXTRA_MAP(Enum):
-        gcp = 1
-        datacamp = 2
+    @dataclass
+    class LegendIcons:
+        name: str
+        icon: str
+        regex:str
 
     def __init__(self, persist_fs: APersistFS):
         self.map_yaml_path = os.getenv(AConfigMap.MAP_YAML_PATH)
@@ -32,3 +35,26 @@ class AConfigMap(ABC):
     @property
     def get_type(self):
         return self.load["type"]
+
+    @property
+    def get_legend_icons(self):
+        legend =  self.load.get("legend")
+        if legend:
+            return [
+        AConfigMap.LegendIcons(name=icon_data['name'], icon=icon_data['icon'], regex=icon_data['regex'])
+        for icon_data in legend.get('icons', [])
+        if isinstance(icon_data, dict)]
+        return []
+
+
+    @property
+    def get_legend_type(self) -> str | None:
+        return None if self.load.get("legend") is None else self.load.get("legend").get("type")
+
+
+    @property
+    def get_legend_icons_as_md(self):
+        icons = self.get_legend_icons
+        res = [f"`{i.name}` {i.icon}" for i in icons]
+        return  "**legend_icons**\n" + "\n".join(res)
+

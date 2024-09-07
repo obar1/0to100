@@ -28,10 +28,10 @@ def test_asMarkDown(
 
 | footprints | completed | 
 |---|---|
-| :footprints: | :green_heart: |
+| `wip` | `done` |
 
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) :footprints:
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:
+1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
+1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
 """
     assert str_relaxed(current) == str_relaxed(expected)
 
@@ -58,11 +58,11 @@ def test_asMarkDown_0(
 
 | footprints | completed | 
 |---|---|
-| :footprints: | :green_heart: |
+| `wip` | `done` |
 
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:
-1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) :footprints:
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) :footprints:
+1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
+1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip`
+1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
 
 """
     assert str_relaxed(current) == str_relaxed(expected)
@@ -90,11 +90,11 @@ def test_asMarkDown_1(
 
 | footprints | completed | 
 |---|---|
-| :footprints: | :green_heart: |
+| `wip` | `done` |
 
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) :footprints:
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) :footprints:
-1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) :footprints:
+1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
+1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
+1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip`
 
 
 """

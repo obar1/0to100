@@ -42,10 +42,6 @@ class Map(MarkdownRenderer):
         def get_legend_as_md(self):
             txt: str = """
             ## legend:
-
-            | footprints | completed | 
-            |---|---|
-            | :footprints: | :green_heart: |
             """
             txt += lf_char
             txt += self.config_map.get_legend_icons_as_md
