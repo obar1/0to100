@@ -1,4 +1,5 @@
 import json
+import logging
 from shutil import copyfile
 
 import fitz
@@ -6,6 +7,8 @@ import fitz
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
 PREFIX_RELATIVE_FOLDER = "./"
+
+# pylint: disable=E1205,W1201
 
 
 class SBPersistFS(ZTOHPersistFS):
@@ -15,7 +18,7 @@ class SBPersistFS(ZTOHPersistFS):
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):
-        print(f"copy_file_to {file_path} {path_to}")
+        logging.info(f"copy_file_to {file_path} {path_to}")
         return copyfile(file_path, path_to)
 
     @classmethod
@@ -34,14 +37,16 @@ class SBPersistFS(ZTOHPersistFS):
         dirs are supposed to be like
         download_engine_books_path/books title (isbn)
         """
-        print(f"get_epub_path  {download_engine_books_path} {isbn} {epub_suffix}")
+        logging.info(
+            f"get_epub_path  {download_engine_books_path} {isbn} {epub_suffix}"
+        )
         dirs = cls.list_dirs(download_engine_books_path)
         dir_isbn = [d for d in dirs if "(" + isbn + ")" in d]
         return download_engine_books_path + "/" + dir_isbn[0] + "/" + isbn + epub_suffix
 
     @classmethod
     def write_fake_epub(cls, path_epub):
-        print(f"write_fake_epub {path_epub}")
+        logging.info(f"write_fake_epub {path_epub}")
 
         HTML = f"""
         <p style="font-family: sans-serif;color: blue">{path_epub}/p>
@@ -69,7 +74,7 @@ class SBPersistFS(ZTOHPersistFS):
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
         """
-        print(f"write_pdf {fn}")
+        logging.info(f"write_pdf {fn}")
 
         doc = fitz.open(fn)
 
@@ -118,7 +123,7 @@ class SBPersistFS(ZTOHPersistFS):
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/split-document/split.py
         """
-        print(f"write_pdf {fn} {split_pdf_pages}")
+        logging.info(f"write_pdf {fn} {split_pdf_pages}")
         fn1 = fn[:-4]
         src = fitz.open(fn)
         last_page = len(src)
@@ -132,20 +137,20 @@ class SBPersistFS(ZTOHPersistFS):
 
     @classmethod
     def write_json(cls, path_json: str, txt: dict):
-        print(f"write_json {path_json} {txt}")
+        logging.info(f"write_json {path_json} {txt}")
         ZTOHPersistFS.write_file_json(path_json, txt)
 
     @classmethod
     def read_pages_curr(cls, fn: str) -> int:
-        print(f"read_pages_curr {fn}")
+        logging.info(f"read_pages_curr {fn}")
         with open(fn, "r", encoding="utf-8") as f:
             json_data = json.loads(f.read())
-            print(json_data)
+            logging.info(json_data)
             return int(json_data["page_curr"])
 
     @classmethod
     def read_pages_tot(cls, fn: str) -> int:
-        print(f"read_pages_tot {fn}")
+        logging.info(f"read_pages_tot {fn}")
         src = fitz.open(fn)
-        print(src)
+        logging.info(src)
         return len(src)

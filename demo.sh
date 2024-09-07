@@ -2,7 +2,7 @@
 # simple demo - it use param from cmd line to run the actual section
 
 function setup {
-    set -x
+    # set -x
     export MAP_YAML_PATH=map.yaml
     
     rm -rf safaribooks/
