@@ -32,6 +32,11 @@ function 0to100 {
     setup0to100
     
     ./main.py help
+#    - name: Course
+#    - name: Game
+#    - name: Lab
+#    - name: Quest
+#    - name: Template
 content=$(cat << 'EOF'
 https://www.cloudskillsboost.google/games/4424/labs/28651
 https://www.cloudskillsboost.google/course_templates/3
