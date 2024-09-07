@@ -1,4 +1,5 @@
 import json
+import logging
 from shutil import copyfile
 
 import fitz
@@ -6,6 +7,8 @@ import fitz
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
 PREFIX_RELATIVE_FOLDER = "./"
+
+# pylint: disable=E1205,W1201
 
 
 class SBPersistFS(ZTOHPersistFS):
@@ -99,7 +102,7 @@ class SBPersistFS(ZTOHPersistFS):
             pout = pdf[pinput.number]  # read corresp. output page
             for l in links:  # iterate though the links
                 if l["kind"] == fitz.LINK_NAMED:  # we do not handle named links
-                    logging.info("named link page", pinput.number, l)
+                    print("named link page", pinput.number, l)
                     link_skip += 1  # count them
                     continue
                 pout.insert_link(l)  # simply output the others
@@ -108,7 +111,7 @@ class SBPersistFS(ZTOHPersistFS):
         pdf.save(path_pdf, garbage=4, deflate=True)
         # say how many named links we skipped
         if link_cnti > 0:
-            logging.info(
+            print(
                 "Skipped %i named links of a total of %i in input."
                 % (link_skip, link_cnti)
             )
