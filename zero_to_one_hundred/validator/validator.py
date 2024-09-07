@@ -1,3 +1,4 @@
+import logging
 import traceback
 
 from zero_to_one_hundred.exceptions.errors import NotURLFormatError
@@ -11,5 +12,5 @@ class Validator:
 
     @classmethod
     def print_DDD(cls, e: Exception):
-        print(traceback.format_exc())
-        print(f"DDD issue with {e}")
+        logging.info(traceback.format_exc())
+        logging.info(f"DDD issue with {e}")

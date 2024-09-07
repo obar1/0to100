@@ -15,7 +15,7 @@ class SBPersistFS(ZTOHPersistFS):
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):
-        print(f"copy_file_to {file_path} {path_to}")
+        logging.info(f"copy_file_to {file_path} {path_to}")
         return copyfile(file_path, path_to)
 
     @classmethod
@@ -34,14 +34,16 @@ class SBPersistFS(ZTOHPersistFS):
         dirs are supposed to be like
         download_engine_books_path/books title (isbn)
         """
-        print(f"get_epub_path  {download_engine_books_path} {isbn} {epub_suffix}")
+        logging.info(
+            f"get_epub_path  {download_engine_books_path} {isbn} {epub_suffix}"
+        )
         dirs = cls.list_dirs(download_engine_books_path)
         dir_isbn = [d for d in dirs if "(" + isbn + ")" in d]
         return download_engine_books_path + "/" + dir_isbn[0] + "/" + isbn + epub_suffix
 
     @classmethod
     def write_fake_epub(cls, path_epub):
-        print(f"write_fake_epub {path_epub}")
+        logging.info(f"write_fake_epub {path_epub}")
 
         HTML = f"""
         <p style="font-family: sans-serif;color: blue">{path_epub}/p>
@@ -69,7 +71,7 @@ class SBPersistFS(ZTOHPersistFS):
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/convert-document/convert.py
         """
-        print(f"write_pdf {fn}")
+        logging.info(f"write_pdf {fn}")
 
         doc = fitz.open(fn)
 
@@ -97,7 +99,7 @@ class SBPersistFS(ZTOHPersistFS):
             pout = pdf[pinput.number]  # read corresp. output page
             for l in links:  # iterate though the links
                 if l["kind"] == fitz.LINK_NAMED:  # we do not handle named links
-                    print("named link page", pinput.number, l)
+                    logging.info("named link page", pinput.number, l)
                     link_skip += 1  # count them
                     continue
                 pout.insert_link(l)  # simply output the others
@@ -106,7 +108,7 @@ class SBPersistFS(ZTOHPersistFS):
         pdf.save(path_pdf, garbage=4, deflate=True)
         # say how many named links we skipped
         if link_cnti > 0:
-            print(
+            logging.info(
                 "Skipped %i named links of a total of %i in input."
                 % (link_skip, link_cnti)
             )
@@ -118,7 +120,7 @@ class SBPersistFS(ZTOHPersistFS):
         sample from
         https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/split-document/split.py
         """
-        print(f"write_pdf {fn} {split_pdf_pages}")
+        logging.info(f"write_pdf {fn} {split_pdf_pages}")
         fn1 = fn[:-4]
         src = fitz.open(fn)
         last_page = len(src)
@@ -132,20 +134,20 @@ class SBPersistFS(ZTOHPersistFS):
 
     @classmethod
     def write_json(cls, path_json: str, txt: dict):
-        print(f"write_json {path_json} {txt}")
+        logging.info(f"write_json {path_json} {txt}")
         ZTOHPersistFS.write_file_json(path_json, txt)
 
     @classmethod
     def read_pages_curr(cls, fn: str) -> int:
-        print(f"read_pages_curr {fn}")
+        logging.info(f"read_pages_curr {fn}")
         with open(fn, "r", encoding="utf-8") as f:
             json_data = json.loads(f.read())
-            print(json_data)
+            logging.info(json_data)
             return int(json_data["page_curr"])
 
     @classmethod
     def read_pages_tot(cls, fn: str) -> int:
-        print(f"read_pages_tot {fn}")
+        logging.info(f"read_pages_tot {fn}")
         src = fitz.open(fn)
-        print(src)
+        logging.info(src)
         return len(src)

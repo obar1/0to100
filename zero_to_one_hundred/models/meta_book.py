@@ -1,3 +1,4 @@
+import logging
 import re
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
@@ -69,7 +70,7 @@ class MetaBook:
             self.process_fs.write_epub(self.config_map, self.path_epub, self.isbn)
             self.persist_fs.copy_file_to(self.get_epub_path, self.path_epub)
         else:
-            print(
+            logging.info(
                 f"DDD skipping get_download_books {self.config_map.get_download_books}"
             )
 

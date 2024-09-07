@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
@@ -39,18 +40,18 @@ class Toc(MarkdownRenderer):
             for curr_dir in dirs
             if curr_dir is not None
         ]
-        print(res)
+        logging.info(res)
         return res
 
     def asMarkDown(self):
         def flatten_meta_book(meta_book: MetaBook):
-            print(f"flatten_meta_book {meta_book}")
+            logging.info(f"flatten_meta_book {meta_book}")
             txt = "|".join(
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',
                     f"![`img`]({meta_book.path_img_as_md})",
                     f"[`xyz`]({meta_book.contents_path_as_md})",
-                    f"{meta_book.metadata.asMarkDown()}",
+                    f"{meta_book.metadata.as_mark_down()}",
                     f"{meta_book.metadata.status}",
                 ]
             )
