@@ -32,11 +32,6 @@ function 0to100 {
     setup0to100
     
     ./main.py help
-#    - name: Course
-#    - name: Game
-#    - name: Lab
-#    - name: Quest
-#    - name: Template
 content=$(cat << 'EOF'
 https://www.cloudskillsboost.google/games/4424/labs/28651
 https://www.cloudskillsboost.google/course_templates/3
@@ -45,10 +40,8 @@ https://storage.googleapis.com/cloud-training/cls-html5-courses/T-BQRS-I/M1/inde
 
 EOF
 )
-while IFS= read -r line || [[ -n "$line" ]]; do
-    echo "Processing: $line"
-
-  ./main.py create_section "$line"
+while IFS= read -r section || [[ -n "$section" ]]; do
+  ./main.py create_section "$section"
 done <<< "$content"
 
 

@@ -1,6 +1,6 @@
 # pylint: disable= R0904
+import re
 
-from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
@@ -86,9 +86,7 @@ class Section(MarkdownRenderer):
         )
 
     def get_readme_md_time(self):
-        return self.persist_fs.get_biz_ts(
-            self.dir_readme_md
-        )
+        return self.persist_fs.get_biz_ts(self.dir_readme_md)
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
@@ -217,9 +215,9 @@ class Section(MarkdownRenderer):
     @property
     def get_matching_icon_as_md(self):
         icons = self.config_map.get_legend_icons
-        import re
-        res=  [i.icon for i in icons if re.search(i.regex, self.http_url )]
-        return ' '.join(res)
+
+        res = [i.icon for i in icons if re.search(i.regex, self.http_url)]
+        return " ".join(res)
 
     def __eq__(self, other):
         if other is self:

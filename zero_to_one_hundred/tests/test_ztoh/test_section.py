@@ -96,7 +96,6 @@ def test_gcp_get_format_as_md(get_gcp_config_map, persist_fs, process_fs):
 def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
     current = actual.asMarkDown()
-    assert (
-        str_relaxed(current)
-        == str_relaxed("1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`")
+    assert str_relaxed(current) == str_relaxed(
+        "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`"
     )

@@ -1,6 +1,5 @@
 from typing import List
 
-from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.models.section import Section
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
@@ -26,14 +25,13 @@ class Map(MarkdownRenderer):
         return f"Map {str(self.sections)}"
 
     def get_sections(self):
-
-        res :List[Section] = self.sections    
+        res: List[Section] = self.sections
         if self.config_map.get_repo_sorted == "abc":
-            print('*** abc')
-            res= sorted(self.sections, key=lambda s: s.dir_name)
+            print("*** abc")
+            res = sorted(self.sections, key=lambda s: s.dir_name)
         if self.config_map.get_repo_sorted == "00:00:00":
-            print('*** 00:00:00')
-            res =  sorted(self.sections, key=lambda s: s.get_readme_md_time())
+            print("*** 00:00:00")
+            res = sorted(self.sections, key=lambda s: s.get_readme_md_time())
         return res
 
     def asMarkDown(self) -> str:
@@ -46,7 +44,7 @@ class Map(MarkdownRenderer):
             txt += lf_char
             txt += self.config_map.get_legend_icons_as_md
             return txt
-            
+
         txt = f"""{f"# map {self.readme_md}, {len(self.sections)}"}
 
 {get_legend_as_md(self)}
