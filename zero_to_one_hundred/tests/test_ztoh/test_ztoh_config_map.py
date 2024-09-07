@@ -26,7 +26,7 @@ def test_gcp_config_map(get_gcp_config_map: ZTOHConfigMap):
     assert actual.get_repo_map_md == "toc.md"
     assert actual.get_legend_type == "gcp"
     assert actual.get_legend_icons == [
-        ZTOHConfigMap.LegendIcons("Quest", ":cyclone:", "quest"),
+        ZTOHConfigMap.LegendIcons("Path", ":cyclone:", "path"),
         ZTOHConfigMap.LegendIcons("Lab", ":floppy_disk:", "lab"),
         ZTOHConfigMap.LegendIcons("Template", ":whale:", "template"),
         ZTOHConfigMap.LegendIcons("Game", ":snake:", "game"),

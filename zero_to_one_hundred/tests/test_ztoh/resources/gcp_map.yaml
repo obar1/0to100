@@ -5,9 +5,9 @@ repo:
 legend:
   type: "gcp"
   icons:
-    - name: Quest
+    - name: Path
       icon: ":cyclone:"
-      regex: "quest"
+      regex: "path"
     - name: Lab
       icon: ":floppy_disk:"
       regex: "lab"
