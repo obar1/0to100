@@ -46,7 +46,7 @@ class Section(MarkdownRenderer):
             + self.dir_readme_md
             + ")"
             + self.get_done_as_md
-            + self.get_legend_as_md
+            + self.get_matching_icon_as_md
         )
 
     @property
@@ -215,9 +215,12 @@ class Section(MarkdownRenderer):
         return "courses" in self.http_url and "app.datacamp.com" in self.http_url
 
     @property
-    def get_legend_as_md(self):
-        res = "\n".join(self.config_map.get_legend_icons)
-        return res
+    def get_matching_icon_as_md(self):
+        icons = self.config_map.get_legend_icons
+        for i in icons:
+            if self.http_url in i.regex:
+                return i.icon
+        return "n/a"
 
     def __eq__(self, other):
         if other is self:

@@ -41,3 +41,9 @@ class ZTOHConfigMap(AConfigMap):
         for icon_data in legend.get('icons', [])
         if isinstance(icon_data, dict)]
         return []
+
+    @property
+    def get_legend_icons_as_md(self):
+        icons = self.get_legend_icons
+        res = [f"`{i.name}` {i.icon}" for i in icons]
+        return  "\n".join(res)

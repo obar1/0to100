@@ -1,5 +1,6 @@
 #!/bin/bash
 # simple demo - it use param from cmd line to run the actual section
+# v0.1
 
 function setup {
     set -x
@@ -32,16 +33,26 @@ function 0to100 {
     setup0to100
     
     ./main.py help
-    
-    url=https://cloud.google.com/docs/
-    ./main.py create_section "$url"
-    
-    url=https://docs.getdbt.com/docs/introduction
-    ./main.py create_section "$url"
-    
-    url=https://cloud.google.com/docs/
-    ./main.py done_section "$url"
-    
+#    - name: Course
+#    - name: Game
+#    - name: Lab
+#    - name: Quest
+#    - name: Template
+content=$(cat << 'EOF'
+https://www.cloudskillsboost.google/games/4424/labs/28651
+https://www.cloudskillsboost.google/course_templates/3
+https://www.cloudskillsboost.google/games/4422
+https://storage.googleapis.com/cloud-training/cls-html5-courses/T-BQRS-I/M1/index.html
+
+EOF
+)
+while IFS= read -r line || [[ -n "$line" ]]; do
+    echo "Processing: $line"
+
+  ./main.py create_section "$line"
+done <<< "$content"
+
+
     ls -1R 0to100
 }
 

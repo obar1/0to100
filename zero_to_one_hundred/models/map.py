@@ -48,6 +48,8 @@ class Map(MarkdownRenderer):
             | :footprints: | :green_heart: |
             """
             txt += lf_char
+            txt += self.config_map.get_legend_icons_as_md
+            return txt
             
         txt = f"""{f"# map {self.readme_md}, {len(self.sections)}"}
 
