@@ -3,6 +3,7 @@
 import traceback
 from typing import List
 
+from zero_to_one_hundred.exceptions.errors import SomeError
 from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 
@@ -19,7 +20,12 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     try:
         factory = factory_provider.provide()
         [processor.process() for processor in factory.get_processor(argv) if processor]
-
+    except SomeError as se:
+        print(se)
+        return
+    except FileNotFoundError as se:
+        print(se)
+        return
     except Exception as e:
         print(e)
         traceback.print_exc()
