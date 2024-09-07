@@ -25,7 +25,7 @@ def test_asMarkDown(
     expected = """
 # map toc.md, 2
 ## legend:
-**legend_icons**
+
 1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
 """
@@ -51,7 +51,6 @@ def test_asMarkDown_0(
     expected = """
 # map toc.md, 3
 ## legend:
-**legend_icons**
 
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
 1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip`
@@ -80,7 +79,6 @@ def test_asMarkDown_1(
     expected = """
 # map toc.md, 3
 ## legend:
-**legend_icons**
 
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
 1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
