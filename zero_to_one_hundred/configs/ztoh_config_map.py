@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
@@ -5,6 +6,13 @@ ZTOH_MAP = "ztoh-map"
 
 
 class ZTOHConfigMap(AConfigMap):
+
+    @dataclass
+    class LegendIcons:
+        name: str
+        icon: str
+        regex:str 
+        
     def __init__(self, persist_fs: ZTOHPersistFS):
         super().__init__(persist_fs)
 
@@ -21,5 +29,15 @@ class ZTOHConfigMap(AConfigMap):
         return self.load["repo"].get("sorted")
 
     @property
-    def get_repo_legend_type(self) -> str | None:
-        return self.load["repo"].get("legend_type")
+    def get_legend_type(self) -> str | None:
+        return None if self.load.get("legend") is None else self.load.get("legend").get("type")
+
+    @property
+    def get_legend_icons(self):
+        legend =  self.load.get("legend")
+        if legend:
+            return [
+        ZTOHConfigMap.LegendIcons(name=icon_data['name'], icon=icon_data['icon'], regex=icon_data['regex'])
+        for icon_data in legend.get('icons', [])
+        if isinstance(icon_data, dict)]
+        return []

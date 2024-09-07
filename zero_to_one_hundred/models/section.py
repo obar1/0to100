@@ -217,7 +217,7 @@ class Section(MarkdownRenderer):
     @property
     def get_format_as_md(self):
         a = []
-        match self.config_map.get_repo_legend_type:
+        match self.config_map.get_legend_type:
             case AConfigMap.SUPPORTED_EXTRA_MAP.gcp.name:
                 a = [
                     ":cyclone:" if self.is_gcp_quest else None,
