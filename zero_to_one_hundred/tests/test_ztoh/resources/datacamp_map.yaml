@@ -2,4 +2,15 @@ type: ztoh-map
 repo:
   path: "./0to100"
   map_md: "toc.md"
-  legend_type: "datacamp"
+legend:
+  type: "datacamp"
+  icons:
+    - name: Project
+      icon: ":cyclone:"
+      regex: "project"
+    - name: Tutorial
+      icon: ":floppy_disk:"
+      regex: "tutorial"
+    - name: Course
+      icon: ":whale:"
+      regex: "course"

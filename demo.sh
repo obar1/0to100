@@ -32,16 +32,20 @@ function 0to100 {
     setup0to100
     
     ./main.py help
-    
-    url=https://cloud.google.com/docs/
-    ./main.py create_section "$url"
-    
-    url=https://docs.getdbt.com/docs/introduction
-    ./main.py create_section "$url"
-    
-    url=https://cloud.google.com/docs/
-    ./main.py done_section "$url"
-    
+content=$(cat << 'EOF'
+https://www.cloudskillsboost.google/paths/16
+https://www.cloudskillsboost.google/games/4424/labs/28651
+https://www.cloudskillsboost.google/course_templates/3
+https://www.cloudskillsboost.google/games/4422
+https://storage.googleapis.com/cloud-training/cls-html5-courses/T-BQRS-I/M1/index.html
+
+EOF
+)
+while IFS= read -r section || [[ -n "$section" ]]; do
+  ./main.py create_section "$section"
+done <<< "$content"
+
+
     ls -1R 0to100
 }
 
