@@ -3,6 +3,7 @@ import os
 from pyfakefs.fake_filesystem_unittest import Patcher
 
 from zero_to_one_hundred.models.section import Section
+from zero_to_one_hundred.tests.conftest import str_relaxed
 
 
 def test_init(get_config_map, persist_fs, process_fs, http_url_1):
@@ -96,6 +97,6 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
     current = actual.asMarkDown()
     assert (
-        current
-        == "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`"
+        str_relaxed(current)
+        == str_relaxed("1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`")
     )

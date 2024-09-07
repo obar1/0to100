@@ -56,5 +56,7 @@ class AConfigMap(ABC):
     def get_legend_icons_as_md(self):
         icons = self.get_legend_icons
         res = [f"`{i.name}` {i.icon}" for i in icons]
+        if res is []:
+            return ""
         return  "**legend_icons**\n" + "\n".join(res)
 
