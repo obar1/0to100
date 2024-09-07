@@ -217,10 +217,9 @@ class Section(MarkdownRenderer):
     @property
     def get_matching_icon_as_md(self):
         icons = self.config_map.get_legend_icons
-        for i in icons:
-            if self.http_url in i.regex:
-                return i.icon
-        return "n/a"
+        import re
+        res=  [i.icon for i in icons if re.search(i.regex, self.http_url )]
+        return ' '.join(res)
 
     def __eq__(self, other):
         if other is self:
