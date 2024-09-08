@@ -59,6 +59,16 @@ class Toc(MarkdownRenderer):
 
             return "|" + txt + "|"
 
+        lf_char = "\n"
+
+        def get_legend_as_md(self):
+            txt: str = """
+## legend:
+"""
+            txt += lf_char
+            txt += self.config_map.get_legend_icons_as_md
+            return txt
+
         flattened_meta_book = [flatten_meta_book(mb) for mb in self.meta_books]
         backslash_n_char = "\n"
 
@@ -68,6 +78,8 @@ class Toc(MarkdownRenderer):
 # TOC
 ## `{len(self.meta_books)}` metabook
 ### {self.process_fs.get_now()}
+{get_legend_as_md(self)}
+
 |  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` | `icons`
 |---	|---	|---	|---		|---	|---	|
 {backslash_n_char.join(flattened_meta_book)}

@@ -58,6 +58,10 @@ def test_as_mark_down(
 # TOC
 ## `0` metabook
 ### 2099/01/01 - 00:00:00
+## legend
+legendicons
+Book
+cyclone
 |  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` | `icons` |
 |---        |---    |---    |---    |---    |---    |
 
