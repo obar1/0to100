@@ -177,7 +177,7 @@ class Section(MarkdownRenderer):
             if len(not_null) > 1:  # take first one header found
                 res = not_null[1]
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
             res = "FIXME: "
         return res
 

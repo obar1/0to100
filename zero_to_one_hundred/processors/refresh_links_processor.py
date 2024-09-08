@@ -37,4 +37,4 @@ class RefreshLinksProcessor(AProcessor):
             try:
                 s.refresh_links()
             except Exception as e:
-                Validator.print_DDD(e)
+                Validator.print_e(e)
