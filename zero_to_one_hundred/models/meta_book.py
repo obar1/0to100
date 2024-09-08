@@ -88,27 +88,27 @@ class MetaBook:
             self.persist_fs.make_dirs(self.config_map.get_download_engine_books_path)
             self.persist_fs.make_dirs(self.contents_path)
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
         try:
             self.write_img()
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
         try:
             self.write_epub()
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
         try:
             self.write_metadata()
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
         try:
             self.write_pdf(self.path_epub)
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
         try:
             self.write_splitter_pdf(self.path_pdf, self.config_map.get_split_pdf_pages)
         except Exception as e:
-            Validator.print_DDD(e)
+            Validator.print_e(e)
 
     @classmethod
     def get_isbn(cls, http_url):
@@ -135,3 +135,10 @@ class MetaBook:
         use relative path and convert " " to %20
         """
         return a_path.replace(" ", "%20")
+
+    @property
+    def get_matching_icon_as_md(self):
+        icons = self.config_map.get_legend_icons
+
+        res = [i.icon for i in icons if re.search(i.regex, self.http_url)]
+        return " ".join(res)

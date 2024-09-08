@@ -18,4 +18,6 @@ class ZTOHFactoryProvider(AFactoryProvider):
         config_map_type = config_map.get_type
         if config_map_type == ZTOH_MAP:
             return ZTOHFactory(config_map, self.persist_fs, self.process_fs)
-        raise NotImplementedError(f"NotImplementedError {config_map_type}")
+        raise NotImplementedError(
+            f"NotImplementedError {config_map_type}, check the files contents of {config_map.map_yaml_path}"
+        )

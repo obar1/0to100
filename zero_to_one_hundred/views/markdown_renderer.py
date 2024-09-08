@@ -7,7 +7,7 @@ class MarkdownRenderer(ABC):
     """
 
     @abstractmethod
-    def asMarkDown(self) -> str:
+    def as_mark_down(self) -> str:
         pass
 
     @staticmethod

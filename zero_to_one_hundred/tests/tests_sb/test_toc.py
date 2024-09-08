@@ -30,7 +30,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
 
 
 @pytest.mark.usefixtures("mock_time")
-def test_asMarkDown(
+def test_as_mark_down(
     get_config_map, persist_fs, process_fs, http_oreilly_1, http_oreilly_2
 ):
     metabooks = [
@@ -53,12 +53,17 @@ def test_asMarkDown(
         process_fs,
         [],
     )
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     expected = """
 # TOC
 ## `0` metabook
 ### 2099/01/01 - 00:00:00
-|  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` |
-|---        |---    |---    |---    |---    |
+## legend
+legendicons
+Book
+cyclone
+|  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` | `icons` |
+|---        |---    |---    |---    |---    |---    |
+
   """
     assert str_relaxed("".join(current)) == str_relaxed("".join(expected))

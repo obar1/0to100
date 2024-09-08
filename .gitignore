@@ -19,7 +19,7 @@ venv/
 978*/
 map.md
 repo/
-toc.md
+toc*.md
 *.yaml
 safaribooks/
 

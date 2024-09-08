@@ -43,7 +43,7 @@ class Toc(MarkdownRenderer):
         logging.info(res)
         return res
 
-    def asMarkDown(self):
+    def as_mark_down(self):
         def flatten_meta_book(meta_book: MetaBook):
             logging.info(f"flatten_meta_book {meta_book}")
             txt = "|".join(
@@ -53,10 +53,21 @@ class Toc(MarkdownRenderer):
                     f"[`xyz`]({meta_book.contents_path_as_md})",
                     f"{meta_book.metadata.as_mark_down()}",
                     f"{meta_book.metadata.status}",
+                    f"{meta_book.get_matching_icon_as_md}",
                 ]
             )
 
             return "|" + txt + "|"
+
+        lf_char = "\n"
+
+        def get_legend_as_md(self):
+            txt: str = """
+## legend:
+"""
+            txt += lf_char
+            txt += self.config_map.get_legend_icons_as_md
+            return txt
 
         flattened_meta_book = [flatten_meta_book(mb) for mb in self.meta_books]
         backslash_n_char = "\n"
@@ -67,13 +78,15 @@ class Toc(MarkdownRenderer):
 # TOC
 ## `{len(self.meta_books)}` metabook
 ### {self.process_fs.get_now()}
-|  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` |
-|---	|---	|---	|---		|---	|
+{get_legend_as_md(self)}
+
+|  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` | `icons`
+|---	|---	|---	|---		|---	|---	|
 {backslash_n_char.join(flattened_meta_book)}
         """
         )
         return md
 
     def write(self):
-        md = self.asMarkDown()
+        md = self.as_mark_down()
         return self.persist_fs.write_file(self.readme_md, md)

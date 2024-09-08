@@ -30,7 +30,7 @@ def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
     assert actual == "n/a"
 
 
-def test_asMarkDown(
+def test_as_mark_down(
     get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1
 ):
     actual = Metadata(
@@ -41,7 +41,7 @@ def test_asMarkDown(
         http_oreilly_1,
     )
 
-    assert str_relaxed(actual.asMarkDown()) == str_relaxed(
+    assert str_relaxed(actual.as_mark_down()) == str_relaxed(
         """
     {
         "isbn":"9780135956977",<br/>
@@ -55,7 +55,7 @@ def test_asMarkDown(
     data = '{ "abc": "123", "def": "456"}'
     actual.metadata = json.loads(data)
 
-    assert str_relaxed(actual.asMarkDown()) == str_relaxed(
+    assert str_relaxed(actual.as_mark_down()) == str_relaxed(
         """
     {
         "abc": "123",<br/>
@@ -76,8 +76,8 @@ def test_asMarkDown(
     }
     """
     actual.metadata = json.loads(data)
-    print(actual.asMarkDown())
-    assert str_relaxed(actual.asMarkDown()) == str_relaxed(
+    print(actual.as_mark_down())
+    assert str_relaxed(actual.as_mark_down()) == str_relaxed(
         """
     {
         "abc": "123",  <br/>

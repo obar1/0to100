@@ -6,3 +6,9 @@ configs:
   oreilly_username: "username"
   oreilly_userpassword: "userpassword"
   split_pdf_pages: 100
+legend:
+  type: "sb"
+  icons:
+    - name: Book
+      icon: ":cyclone:"
+      regex: "978"

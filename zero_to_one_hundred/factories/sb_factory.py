@@ -1,3 +1,4 @@
+import argparse
 from enum import Enum
 
 from zero_to_one_hundred.configs.sb_config_map import SBConfigMap
@@ -27,9 +28,21 @@ class SBFactory(AFactory):
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        cmd = args[1]
+        parser = argparse.ArgumentParser(description="Run 0to100_sb.")
+        valid_cmds = list(p.name for p in self.SUPPORTED_PROCESSOR)
+        parser.add_argument(
+            "cmd",
+            type=str,
+            help=f'command,  must be {" ".join(valid_cmds)}',
+            choices=valid_cmds,
+        )
+        parser.add_argument("p1", type=str, help="arg p1", nargs="?", default=None)
+
+        args = parser.parse_args(args[1:])
+        cmd = args.cmd
+        p1 = args.p1
         if cmd == SBFactory.SUPPORTED_PROCESSOR.snatch_book.name:
-            http_url = args[2]
+            http_url = p1
             yield self.snatch_book_processor(http_url)
             yield self.refresh_toc_processor()
         elif cmd == SBFactory.SUPPORTED_PROCESSOR.refresh_toc.name:

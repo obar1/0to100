@@ -93,9 +93,9 @@ def test_gcp_get_format_as_md(get_gcp_config_map, persist_fs, process_fs):
     assert actual.get_matching_icon_as_md == """:snake:"""
 
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
+def test_as_mark_down(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     assert str_relaxed(current) == str_relaxed(
         "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`"
     )

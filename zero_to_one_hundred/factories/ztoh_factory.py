@@ -1,3 +1,4 @@
+import argparse
 from enum import Enum
 
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
@@ -34,12 +35,25 @@ class ZTOHFactory(AFactory):
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        cmd = args[1]
+        parser = argparse.ArgumentParser(description="Run 0to100.")
+        valid_cmds = list(p.name for p in self.SUPPORTED_PROCESSOR)
+        parser.add_argument(
+            "cmd",
+            type=str,
+            help=f'command,  must be {" ".join(valid_cmds)}',
+            choices=valid_cmds,
+        )
+        parser.add_argument("p1", type=str, help="arg p1", nargs="?", default=None)
+
+        args = parser.parse_args(args[1:])
+        cmd = args.cmd
+        p1 = args.p1
+
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
-            yield self.create_section_processor(args[2])
+            yield self.create_section_processor(p1)
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.done_section.name:
-            yield self.done_section_processor(args[2])
+            yield self.done_section_processor(p1)
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_map.name:
             yield self.refresh_map_processor()

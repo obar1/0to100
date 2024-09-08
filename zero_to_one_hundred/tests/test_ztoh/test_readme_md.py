@@ -12,7 +12,7 @@ def test_refresh_links(get_config_map, persist_fs, process_fs, http_url_1):
     )
 
 
-def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
+def test_as_mark_down(get_config_map, persist_fs, process_fs, http_url_1):
     actual = ReadMeMD(
         get_config_map,
         persist_fs,
@@ -20,7 +20,7 @@ def test_asMarkDown(get_config_map, persist_fs, process_fs, http_url_1):
         Section.from_http_url_to_dir,
         http_url_1,
     )
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     assert (
         current
         == "ReadMeMD ./0to100/https§§§cloud.google.com§abc/readme.md, https§§§cloud.google.com§abc https://cloud.google.com/abc"

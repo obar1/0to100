@@ -26,7 +26,7 @@ class ReadMeMD(MarkdownRenderer):
     def __repr__(self):
         return f"ReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
 
-    def asMarkDown(self):
+    def as_mark_down(self):
         return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
     def write(self, txt=None):
