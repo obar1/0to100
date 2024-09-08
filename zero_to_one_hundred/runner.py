@@ -28,6 +28,9 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     except FileNotFoundError as e:
         Validator.print_e(e)
         return
+    except NotImplementedError as e:
+        Validator.print_e(e)
+        return
     except Exception as e:
         Validator.print_e(e)
         factory.help_processor().process()

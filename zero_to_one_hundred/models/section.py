@@ -38,7 +38,7 @@ class Section(MarkdownRenderer):
     def __repr__(self):
         return f"Section {self.http_url}  {self.dir_readme_md} {self.is_done} {self.dir_name}"
 
-    def asMarkDown(self):
+    def as_mark_down(self):
         return (
             "1. "
             + self.get_id_name

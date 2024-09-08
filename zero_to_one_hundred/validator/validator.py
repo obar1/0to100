@@ -16,5 +16,5 @@ class Validator:
 
     @classmethod
     def print_e(cls, e: Exception):
-        logging.info(traceback.format_exc())
-        logging.info(f"DDD issue with {e}")
+        logging.exception(traceback.format_exc())
+        logging.exception(f"#DDD issue with {e}")

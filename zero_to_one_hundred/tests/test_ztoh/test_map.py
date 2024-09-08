@@ -10,7 +10,7 @@ from zero_to_one_hundred.tests.conftest import str_relaxed
 # pylint: disable=W0102
 
 
-def test_asMarkDown(
+def test_as_mark_down(
     get_config_map: ZTOHConfigMap,
     persist_fs,
     process_fs,
@@ -21,7 +21,7 @@ def test_asMarkDown(
         for http_url in http_urls
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     expected = """
 # map toc.md, 2
 ## legend:
@@ -32,7 +32,7 @@ def test_asMarkDown(
     assert str_relaxed(current) == str_relaxed(expected)
 
 
-def test_asMarkDown_0(
+def test_as_mark_down_0(
     get_config_map_sorted_0: ZTOHConfigMap,
     persist_fs,
     process_fs,
@@ -47,7 +47,7 @@ def test_asMarkDown_0(
         for http_url in http_urls
     ]
     actual = Map(get_config_map_sorted_0, persist_fs, sections=sections)
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     expected = """
 # map toc.md, 3
 ## legend:
@@ -60,7 +60,7 @@ def test_asMarkDown_0(
     assert str_relaxed(current) == str_relaxed(expected)
 
 
-def test_asMarkDown_1(
+def test_as_mark_down_1(
     get_config_map_sorted_1: ZTOHConfigMap,
     persist_fs,
     process_fs,
@@ -75,7 +75,7 @@ def test_asMarkDown_1(
         for http_url in http_urls
     ]
     actual = Map(get_config_map_sorted_1, persist_fs, sections=sections)
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     expected = """
 # map toc.md, 3
 ## legend:
@@ -100,7 +100,7 @@ def test_write(
         for http_url in http_urls
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
-    txt = actual.asMarkDown()
+    txt = actual.as_mark_down()
     with Patcher(allow_root_user=False) as patcher:
         res = actual.write(txt)
         assert res > 0

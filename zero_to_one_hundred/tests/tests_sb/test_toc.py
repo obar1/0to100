@@ -30,7 +30,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
 
 
 @pytest.mark.usefixtures("mock_time")
-def test_asMarkDown(
+def test_as_mark_down(
     get_config_map, persist_fs, process_fs, http_oreilly_1, http_oreilly_2
 ):
     metabooks = [
@@ -53,7 +53,7 @@ def test_asMarkDown(
         process_fs,
         [],
     )
-    current = actual.asMarkDown()
+    current = actual.as_mark_down()
     expected = """
 # TOC
 ## `0` metabook

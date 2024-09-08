@@ -30,7 +30,7 @@ class Metadata(MarkdownRenderer):
         self.metadata: dict = self.read()
 
     def __repr__(self):
-        return f"MetaBook {self.isbn} {self.http_url} {self.asMarkDown()}"
+        return f"MetaBook {self.isbn} {self.http_url} {self.as_mark_down()}"
 
     @staticmethod
     def get_page_perc(metadata_dict: dict):
@@ -79,7 +79,7 @@ class Metadata(MarkdownRenderer):
         sorted_dict = dict(sorted(metadata_dict.items()))
         return sorted_dict
 
-    def asMarkDown(self) -> str:
+    def as_mark_down(self) -> str:
         # handle nasty URL in MD
         m: dict = self.get_metadata()
         url = m.get("url")

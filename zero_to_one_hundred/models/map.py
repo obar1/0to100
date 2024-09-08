@@ -35,7 +35,7 @@ class Map(MarkdownRenderer):
             res = sorted(self.sections, key=lambda s: s.get_readme_md_time())
         return res
 
-    def asMarkDown(self) -> str:
+    def as_mark_down(self) -> str:
         lf_char = "\n"
 
         def get_legend_as_md(self):
@@ -50,7 +50,7 @@ class Map(MarkdownRenderer):
 
 {get_legend_as_md(self)}
 
-{lf_char.join((section.asMarkDown() for section in self.get_sections()))}
+{lf_char.join((section.as_mark_down() for section in self.get_sections()))}
 """
         return txt.replace("  ", "")
 

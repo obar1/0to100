@@ -43,7 +43,7 @@ class Toc(MarkdownRenderer):
         logging.info(res)
         return res
 
-    def asMarkDown(self):
+    def as_mark_down(self):
         def flatten_meta_book(meta_book: MetaBook):
             logging.info(f"flatten_meta_book {meta_book}")
             txt = "|".join(
@@ -75,5 +75,5 @@ class Toc(MarkdownRenderer):
         return md
 
     def write(self):
-        md = self.asMarkDown()
+        md = self.as_mark_down()
         return self.persist_fs.write_file(self.readme_md, md)
