@@ -136,7 +136,6 @@ class MetaBook:
         """
         return a_path.replace(" ", "%20")
 
-
     @property
     def get_matching_icon_as_md(self):
         icons = self.config_map.get_legend_icons

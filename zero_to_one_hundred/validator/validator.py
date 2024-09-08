@@ -8,9 +8,8 @@ from zero_to_one_hundred.exceptions.errors import NotURLFormatError
 
 class Validator:
     @classmethod
-
     def is_valid_http(cls, url: str):
-        pattern =  r'^[^https?:\/\/].*'
+        pattern = r"^[^https?:\/\/].*"
         if re.match(pattern, url) is not None:
             raise NotURLFormatError(f"{url} not valid")
 

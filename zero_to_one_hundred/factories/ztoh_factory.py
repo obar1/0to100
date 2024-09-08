@@ -1,6 +1,5 @@
 import argparse
 from enum import Enum
-from pickle import FALSE
 
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
 from zero_to_one_hundred.factories.a_factory import AFactory
@@ -37,9 +36,14 @@ class ZTOHFactory(AFactory):
 
     def get_processor(self, args):
         parser = argparse.ArgumentParser(description="Run 0to100.")
-        valid_cmds = list([p.name for p in self.SUPPORTED_PROCESSOR])
-        parser.add_argument('cmd', type=str, help=f'command,  must be {" ".join(valid_cmds)}' , choices=valid_cmds)
-        parser.add_argument('p1', type=str, help='arg p1', nargs='?', default=None)
+        valid_cmds = list(p.name for p in self.SUPPORTED_PROCESSOR)
+        parser.add_argument(
+            "cmd",
+            type=str,
+            help=f'command,  must be {" ".join(valid_cmds)}',
+            choices=valid_cmds,
+        )
+        parser.add_argument("p1", type=str, help="arg p1", nargs="?", default=None)
 
         args = parser.parse_args(args[1:])
         cmd = args.cmd

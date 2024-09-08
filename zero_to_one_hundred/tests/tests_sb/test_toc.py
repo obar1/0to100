@@ -58,7 +58,8 @@ def test_as_mark_down(
 # TOC
 ## `0` metabook
 ### 2099/01/01 - 00:00:00
-|  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` |
-|---        |---    |---    |---    |---    |
+|  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` | `icons` |
+|---        |---    |---    |---    |---    |---    |
+
   """
     assert str_relaxed("".join(current)) == str_relaxed("".join(expected))

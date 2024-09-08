@@ -1,11 +1,11 @@
 # pylint: disable=W0106,R1710
 from typing import List
+from typing import Union, TypeVar
 
 from zero_to_one_hundred.exceptions.errors import SomeError
 from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 from zero_to_one_hundred.validator.validator import Validator
-from typing import Union, TypeVar
 
 
 def run_core(argv: List[str], factory_provider: AFactoryProvider):
@@ -17,7 +17,7 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
 
     """
 
-    T = TypeVar('T', bound=AFactory)
+    T = TypeVar("T", bound=AFactory)
     factory: Union[AFactory, T]
     try:
         factory = factory_provider.provide()

@@ -53,7 +53,7 @@ class Toc(MarkdownRenderer):
                     f"[`xyz`]({meta_book.contents_path_as_md})",
                     f"{meta_book.metadata.as_mark_down()}",
                     f"{meta_book.metadata.status}",
-                    f"{meta_book.get_matching_icon_as_md}"
+                    f"{meta_book.get_matching_icon_as_md}",
                 ]
             )
 

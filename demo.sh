@@ -47,6 +47,7 @@ done <<< "$content"
 
 
     ls -1R 0to100
+    cp toc.md toc_0to100.md
 }
 
 function 0to100_sb {
@@ -66,6 +67,8 @@ function 0to100_sb {
     ./main_sb.py refresh_toc
     
     ls -1R 978*
+    cp toc.md toc_0to100_sb.md
+
 }
 
 setup
