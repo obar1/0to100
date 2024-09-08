@@ -53,6 +53,7 @@ class Toc(MarkdownRenderer):
                     f"[`xyz`]({meta_book.contents_path_as_md})",
                     f"{meta_book.metadata.as_mark_down()}",
                     f"{meta_book.metadata.status}",
+                    f"{meta_book.get_matching_icon_as_md}"
                 ]
             )
 
@@ -67,8 +68,8 @@ class Toc(MarkdownRenderer):
 # TOC
 ## `{len(self.meta_books)}` metabook
 ### {self.process_fs.get_now()}
-|  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` |
-|---	|---	|---	|---		|---	|
+|  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` | `icons`
+|---	|---	|---	|---		|---	|---	|
 {backslash_n_char.join(flattened_meta_book)}
         """
         )

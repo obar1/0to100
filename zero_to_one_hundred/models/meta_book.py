@@ -135,3 +135,11 @@ class MetaBook:
         use relative path and convert " " to %20
         """
         return a_path.replace(" ", "%20")
+
+
+    @property
+    def get_matching_icon_as_md(self):
+        icons = self.config_map.get_legend_icons
+
+        res = [i.icon for i in icons if re.search(i.regex, self.http_url)]
+        return " ".join(res)
