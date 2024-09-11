@@ -14,6 +14,3 @@ class AFactoryProvider(ABC):
     @abstractmethod
     def provide(self) -> None | AFactory:
         pass
-    
-    def factory(args):
-        pass
