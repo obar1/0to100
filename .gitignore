@@ -17,6 +17,7 @@ venv/
 # test related
 0to100**/
 978*/
+0*/
 map.md
 repo/
 toc*.md

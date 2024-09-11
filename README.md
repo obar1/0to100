@@ -16,7 +16,7 @@ Given a 'url', it creates the entry in a markdown map and a folder and links the
 just open this repo in your GitHub Codespace and run the demo as:
 
 ```bash
-bash demo.sh 0to100
+bash demo.sh 0to100_zt
 ```
 
 ![](termtosvg_0oihyn7a.svg)
@@ -79,7 +79,7 @@ export MAP_YAML_PATH=map.yaml
 
 ```bash
 chmod +x *.py
-./main.py help
+./main.py zt help
 ```
 
 ![](50a86373-910b-4a12-85ef-251b6d4f08f0.png)
@@ -90,10 +90,10 @@ chmod +x *.py
 
 ```bash
 url=https://cloud.google.com/docs
-./main.py create_section $url
+./main.py zt create_section $url
 
 url=https://cloud.google.com/help
-./main.py create_section $url
+./main.py zt create_section $url
 #...etc
 ```
 
@@ -152,7 +152,7 @@ vim map.yaml
 
 ```bash
 chmod +x *.py
-./main_sb.py help
+./main.py sb help
 ```
 
 ![](63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
@@ -163,7 +163,7 @@ chmod +x *.py
 
 ```bash
 url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
-./main_sb.py snatch_book $url
+./main.py sb snatch_book $url
 ```
 
 and you have a `toc.md` for free to use as your index (bookmark it)

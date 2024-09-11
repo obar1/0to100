@@ -45,7 +45,7 @@ class ZTOHFactory(AFactory):
         )
         parser.add_argument("p1", type=str, help="arg p1", nargs="?", default=None)
 
-        args = parser.parse_args(args[1:])
+        args = parser.parse_args(args[2:])
         cmd = args.cmd
         p1 = args.p1
 

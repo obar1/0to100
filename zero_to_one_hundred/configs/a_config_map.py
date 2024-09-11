@@ -20,7 +20,7 @@ class AConfigMap(ABC):
         self.map_yaml_path = os.getenv(AConfigMap.MAP_YAML_PATH)
         if self.map_yaml_path is None:
             raise SomeError(
-                f"map_yaml_path {self.map_yaml_path} is not valid, please set it in the env"
+                f"map_yaml_path {self.map_yaml_path} is not valid,\nplease set it in the env ex:\n`export MAP_YAML_PATH=map.yaml`"
             )
         self.persist_fs = persist_fs
 

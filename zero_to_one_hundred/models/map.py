@@ -39,8 +39,7 @@ class Map(MarkdownRenderer):
         lf_char = "\n"
 
         def get_legend_as_md(self):
-            txt: str = """
-            ## legend:
+            txt: str = """## legend:
             """
             txt += lf_char
             txt += self.config_map.get_legend_icons_as_md
