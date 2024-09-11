@@ -55,7 +55,7 @@ class Section(MarkdownRenderer):
 
     @property
     def get_done_as_md(self):
-        return "`done`" if self.is_done else "`wip`"
+        return " `done` " if self.is_done else " `wip` "
 
     @property
     def get_dir_name(self):

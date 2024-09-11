@@ -28,19 +28,16 @@ class ZTOHPersistFS(APersistFS):
         path = abs_repo_path + os.sep + path + os.sep + ".done"
         logging.info(f"path {path}")
         exists = os.path.exists(path)
-        logging.info(f"exists {exists}")
         if exists:
             return True
         return False
 
     @classmethod
     def get_biz_ts(cls, path):
-        # logging.info(f"path {path}")
+        logging.info(f"path {path}")
         exists = os.path.exists(path)
-        # logging.info(f"exists {exists}")
 
         if exists:
             res = os.path.getmtime(path)
-            # logging.info(f"time {path} {res}")
             return res
         return time.time()
