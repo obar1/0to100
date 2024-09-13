@@ -16,8 +16,14 @@ class AFactory:
         help = 3
 
     extended_help = """
-    zt = zeto to 100
+    zt = zero to 100
+    ./main.py zt help
+
     sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
     """
 
     def __init__(self, persist_fs: APersistFS):
