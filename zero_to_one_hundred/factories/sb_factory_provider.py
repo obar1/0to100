@@ -19,4 +19,6 @@ class SBFactoryProvider(AFactoryProvider):
         config_map_type = config_map.get_type
         if config_map_type == SAFARI_BOOKS_MAP:
             return SBFactory(config_map, self.persist_fs, self.process_fs)
-        raise UnsupportedConfigMapError(config_map_type)
+        raise NotImplementedError(
+            f"Expected {config_map_type}, check the files contents of {config_map}"
+        )

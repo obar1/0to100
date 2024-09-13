@@ -12,10 +12,10 @@ with open("README.md", "r") as fh:
 
 setup(
     name="0to100",
-    version="0.4.3",
+    version="0.5.3",
     author="obar1",
     author_email="obar1+gh@pm.me",
-    description="Simple python tool to learn everything and keep all local.",
+    description="Simple python tool to learn everything and keep it local.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/obar1/0to100",

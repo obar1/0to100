@@ -1,21 +1,32 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from enum import Enum
 from typing import Generator
 
+from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.processors.a_processor import AProcessor
+from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.unsupported_processor import UnsupportedProcessor
+from zero_to_one_hundred.repository.a_persist_fs import APersistFS
+from zero_to_one_hundred.validator.validator import Validator
 
 
-class AFactory(ABC):
+class AFactory:
     """AFactory class."""
 
     class SUPPORTED_PROCESSOR(Enum):
-        help = 1
+        zt = 1
+        sb = 2
+        help = 3
 
-    @abstractmethod
+    def __init__(self, persist_fs: APersistFS):
+        self.persist_fs = persist_fs
+
     def get_processor(self, args) -> Generator[AProcessor, None, None]:
-        pass
+        yield self.help_processor()
+
+    def help_processor(self):
+        return HelpProcessor(None, self.persist_fs, self.SUPPORTED_PROCESSOR)
 
     @staticmethod
-    def unsupported_processor(cmd):
-        return UnsupportedProcessor(cmd)
+    def unsupported_processor(cmd, supp):
+        return UnsupportedProcessor(cmd, supp)

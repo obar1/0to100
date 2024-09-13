@@ -10,6 +10,7 @@ from zero_to_one_hundred.processors.snatch_book_processor import (
 )
 from zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS
 from zero_to_one_hundred.repository.sb_process_fs import SBProcessFS
+from zero_to_one_hundred.validator.validator import Validator
 
 
 class SBFactory(AFactory):
@@ -28,19 +29,7 @@ class SBFactory(AFactory):
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        parser = argparse.ArgumentParser(description="Run 0to100_sb.")
-        valid_cmds = list(p.name for p in self.SUPPORTED_PROCESSOR)
-        parser.add_argument(
-            "cmd",
-            type=str,
-            help=f'command,  must be {" ".join(valid_cmds)}',
-            choices=valid_cmds,
-        )
-        parser.add_argument("p1", type=str, help="arg p1", nargs="?", default=None)
-
-        args = parser.parse_args(args[2:])
-        cmd = args.cmd
-        p1 = args.p1
+        cmd, p1 = Validator.validate_args(args)
         if cmd == SBFactory.SUPPORTED_PROCESSOR.snatch_book.name:
             http_url = p1
             yield self.snatch_book_processor(http_url)
@@ -59,6 +48,3 @@ class SBFactory(AFactory):
 
     def refresh_toc_processor(self):
         return RefreshTocProcessor(self.config_map, self.persist_fs, self.process_fs)
-
-    def help_processor(self):
-        return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)

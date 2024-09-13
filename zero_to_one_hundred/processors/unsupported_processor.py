@@ -9,9 +9,11 @@ class UnsupportedProcessor(AProcessor):
     """UnsupportedProcessor:
     std UnsupportedProcessor"""
 
-    def __init__(self, cmd):
+    def __init__(self, cmd, supp):
         self.cmd = cmd
+        self.supp = supp
 
     def process(self):
-        logging.info(f"DDD Unsupported Processor {self.cmd}")
-        raise UnsupportedOptionError("DDD Unsupported Processor {self.cmd}")
+        raise UnsupportedOptionError(
+            f"Unsupported Processor {self.cmd}, supported {[x.name for x in self.supp]}"
+        )

@@ -15,5 +15,6 @@ class HelpProcessor(AProcessor):
 
     def process(self):
         logging.info(self.persist_fs.get_pkg_info())
-        logging.info(f"{repr(self.config_map)}")
-        logging.info([p.name for p in self.supported_processor])
+        if self.config_map:
+            logging.info(f"config_map: {repr(self.config_map)}")
+        logging.info(f"supported: {[p.name for p in self.supported_processor]}")
