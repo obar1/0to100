@@ -29,7 +29,7 @@ class AFactory:
     def __init__(self, persist_fs: APersistFS):
         self.persist_fs = persist_fs
 
-    def get_processor(self) -> Generator[AProcessor, None, None]:
+    def get_processor(self,args) -> Generator[AProcessor, None, None]:
         yield self.help_processor()
 
     def help_processor(self):
