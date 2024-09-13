@@ -1,5 +1,4 @@
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOH_MAP, ZTOHConfigMap
-from zero_to_one_hundred.tests.conftest import str_relaxed
 
 
 # pylint: disable=W0621,W0613

@@ -1,5 +1,4 @@
 from zero_to_one_hundred.configs.sb_config_map import SAFARI_BOOKS_MAP, SBConfigMap
-from zero_to_one_hundred.tests.conftest import str_relaxed
 
 
 # pylint: disable=W0621,W0613
