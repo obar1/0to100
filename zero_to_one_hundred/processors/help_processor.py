@@ -6,11 +6,17 @@ from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 
 class HelpProcessor(AProcessor):
-    def __init__(self, config_map: AConfigMap, persist_fs: APersistFS, supported_processor, extended_help):
+    def __init__(
+        self,
+        config_map: AConfigMap,
+        persist_fs: APersistFS,
+        supported_processor,
+        extended_help,
+    ):
         self.config_map = config_map
         self.persist_fs = persist_fs
         self.supported_processor = supported_processor
-        self.extended_help= extended_help
+        self.extended_help = extended_help
 
     def process(self):
         logging.info(self.persist_fs.get_pkg_info())

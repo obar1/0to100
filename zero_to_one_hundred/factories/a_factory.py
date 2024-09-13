@@ -33,7 +33,9 @@ class AFactory:
         yield self.help_processor()
 
     def help_processor(self):
-        return HelpProcessor(None, self.persist_fs, self.SUPPORTED_PROCESSOR, self.extended_help)
+        return HelpProcessor(
+            None, self.persist_fs, self.SUPPORTED_PROCESSOR, self.extended_help
+        )
 
     @staticmethod
     def unsupported_processor(cmd, supp):
