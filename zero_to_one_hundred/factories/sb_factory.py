@@ -19,6 +19,14 @@ class SBFactory(AFactory):
         refresh_toc = 2
         help = 3
 
+    extended_help = """
+    snatch_book = snatch a book from safari
+    ./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
+    
+    refresh_toc = refresh the toc with al the books info
+    ./main.py sb refresh_toc
+    """
+
     def __init__(
         self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS
     ):

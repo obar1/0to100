@@ -15,6 +15,11 @@ class AFactory:
         sb = 2
         help = 3
 
+    extended_help = """
+    zt = zeto to 100
+    sb = sb to 100
+    """
+
     def __init__(self, persist_fs: APersistFS):
         self.persist_fs = persist_fs
 
@@ -22,7 +27,7 @@ class AFactory:
         yield self.help_processor()
 
     def help_processor(self):
-        return HelpProcessor(None, self.persist_fs, self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(None, self.persist_fs, self.SUPPORTED_PROCESSOR, self.extended_help)
 
     @staticmethod
     def unsupported_processor(cmd, supp):

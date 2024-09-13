@@ -1,3 +1,5 @@
+from typing import Type
+
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOH_MAP, ZTOHConfigMap
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
