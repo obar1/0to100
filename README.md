@@ -37,7 +37,19 @@ bash demo.sh sb
 commands:
 
 ```
-['create_section', 'done_section', 'refresh_map', 'refresh_links', 'help']
+create_section = create a new section
+section=https://www.cloudskillsboost.google/paths/16
+./main.py zt create_section "$section"
+
+done_section = tag a section as done
+section=https://www.cloudskillsboost.google/paths/16
+./main.py zt done_section "$section"
+
+refresh_map = refresh the section map
+./main.py zt refresh_map
+
+refresh_links = refresh links to sections in the readme.md(s)
+./main.py zt refresh_links
 ```
 
 > tip
@@ -90,7 +102,11 @@ same as above but it can use some external lib to grab epub from oreilly
 current commands:
 
 ```
-['snatch_book', 'refresh_toc',  'help']
+snatch_book = snatch a book from safari
+./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
+
+refresh_toc = refresh the toc with al the books info
+./main.py sb refresh_toc
 ```
 
 ### setup and usage:
