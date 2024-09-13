@@ -12,6 +12,7 @@ class UnsupportedProcessor(AProcessor):
         self.supp = supp
 
     def process(self):
+        res = " ".join([s.name for s in self.supp])
         raise UnsupportedOptionError(
-            f"Unsupported Processor {self.cmd}, supported {[x.name for x in self.supp]}"
+            f"Unsupported Processor {self.cmd}, supported {res}"
         )
