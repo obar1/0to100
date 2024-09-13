@@ -22,8 +22,8 @@ class SBFactory(AFactory):
     def __init__(
         self, config_map: SBConfigMap, persist_fs: SBPersistFS, process_fs: SBProcessFS
     ):
+        super().__init__(persist_fs=persist_fs)
         self.config_map = config_map
-        self.persist_fs = persist_fs
         self.process_fs = process_fs
 
     def get_processor(self, args):
@@ -37,7 +37,7 @@ class SBFactory(AFactory):
         elif cmd == SBFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:
-            yield self.unsupported_processor(cmd)
+            yield self.unsupported_processor(cmd, self.SUPPORTED_PROCESSOR)
 
     def snatch_book_processor(self, http_url):
         return SnatchBookProcessor(

@@ -29,8 +29,8 @@ class ZTOHFactory(AFactory):
         persist_fs: ZTOHPersistFS,
         process_fs: ZTOHProcessFS,
     ):
+        super().__init__(persist_fs=persist_fs)
         self.config_map = config_map
-        self.persist_fs = persist_fs
         self.process_fs = process_fs
 
     def get_processor(self, args):
@@ -49,7 +49,7 @@ class ZTOHFactory(AFactory):
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:
-            yield self.unsupported_processor(cmd, ZTOHFactory.SUPPORTED_PROCESSOR)
+            yield self.unsupported_processor(cmd, self.SUPPORTED_PROCESSOR)
 
     def create_section_processor(self, http_url):
         return CreateSectionProcessor(
