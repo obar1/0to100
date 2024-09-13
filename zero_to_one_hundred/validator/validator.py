@@ -1,8 +1,7 @@
 import argparse
 import logging
-import traceback
 import re
-
+import traceback
 
 from zero_to_one_hundred.exceptions.errors import NotURLFormatError
 

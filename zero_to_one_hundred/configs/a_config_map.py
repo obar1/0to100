@@ -1,6 +1,5 @@
 # pylint: disable=W0246
 import os
-from abc import ABC
 from dataclasses import dataclass
 
 from zero_to_one_hundred.exceptions.errors import SomeError
