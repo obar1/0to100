@@ -1,13 +1,12 @@
 # pylint: disable=W0246
 import os
-from abc import ABC
 from dataclasses import dataclass
 
 from zero_to_one_hundred.exceptions.errors import SomeError
 from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 
-class AConfigMap(ABC):
+class AConfigMap:
     MAP_YAML_PATH = "MAP_YAML_PATH"
 
     @dataclass
@@ -20,14 +19,12 @@ class AConfigMap(ABC):
         self.map_yaml_path = os.getenv(AConfigMap.MAP_YAML_PATH)
         if self.map_yaml_path is None:
             raise SomeError(
-                f"map_yaml_path {self.map_yaml_path} is not valid,\nplease set it in the env ex:\n`export MAP_YAML_PATH=map.yaml`"
+                f"map_yaml_path {self.map_yaml_path} is not valid,\nplease set it in the env ex:\nexport MAP_YAML_PATH=map.yaml"
             )
         self.persist_fs = persist_fs
 
     def __repr__(self):
-        return (
-            f"{AConfigMap.MAP_YAML_PATH} from {self.map_yaml_path} type {self.get_type}"
-        )
+        return f"{AConfigMap.MAP_YAML_PATH} from {self.map_yaml_path} type {self.get_type}\nraw data:\n{self.load}"
 
     @property
     def load(self):

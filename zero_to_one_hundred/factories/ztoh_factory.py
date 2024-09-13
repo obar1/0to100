@@ -1,4 +1,3 @@
-import argparse
 from enum import Enum
 
 from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
@@ -7,11 +6,11 @@ from zero_to_one_hundred.processors.create_section_processor import (
     CreateSectionProcessor,
 )
 from zero_to_one_hundred.processors.done_section_processor import DoneSectionProcessor
-from zero_to_one_hundred.processors.help_processor import HelpProcessor
 from zero_to_one_hundred.processors.refresh_links_processor import RefreshLinksProcessor
 from zero_to_one_hundred.processors.refresh_map_processor import RefreshMapProcessor
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
+from zero_to_one_hundred.validator.validator import Validator
 
 
 class ZTOHFactory(AFactory):
@@ -24,31 +23,34 @@ class ZTOHFactory(AFactory):
         refresh_links = 4
         help = 5
 
+    extended_help = """
+    create_section = create a new section
+    section=https://www.cloudskillsboost.google/paths/16
+    ./main.py zt create_section "$section"
+
+    done_section = tag a section as done
+    section=https://www.cloudskillsboost.google/paths/16
+    ./main.py zt done_section "$section"
+    
+    refresh_map = refresh the section map
+    ./main.py zt refresh_map
+    
+    refresh_links = refresh links to sections in the readme.md(s)
+    ./main.py zt refresh_links
+    """
+
     def __init__(
         self,
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
         process_fs: ZTOHProcessFS,
     ):
+        super().__init__(persist_fs=persist_fs)
         self.config_map = config_map
-        self.persist_fs = persist_fs
         self.process_fs = process_fs
 
     def get_processor(self, args):
-        parser = argparse.ArgumentParser(description="Run 0to100.")
-        valid_cmds = list(p.name for p in self.SUPPORTED_PROCESSOR)
-        parser.add_argument(
-            "cmd",
-            type=str,
-            help=f'command,  must be {" ".join(valid_cmds)}',
-            choices=valid_cmds,
-        )
-        parser.add_argument("p1", type=str, help="arg p1", nargs="?", default=None)
-
-        args = parser.parse_args(args[2:])
-        cmd = args.cmd
-        p1 = args.p1
-
+        cmd, p1 = Validator.validate_args(args)
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(p1)
             yield self.refresh_map_processor()
@@ -63,7 +65,7 @@ class ZTOHFactory(AFactory):
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:
-            yield self.unsupported_processor(cmd)
+            yield self.unsupported_processor(cmd, self.SUPPORTED_PROCESSOR)
 
     def create_section_processor(self, http_url):
         return CreateSectionProcessor(
@@ -80,6 +82,3 @@ class ZTOHFactory(AFactory):
 
     def refresh_links_processor(self):
         return RefreshLinksProcessor(self.config_map, self.persist_fs, self.process_fs)
-
-    def help_processor(self):
-        return HelpProcessor(self.config_map, self.persist_fs, self.SUPPORTED_PROCESSOR)

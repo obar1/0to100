@@ -5,7 +5,7 @@ test:
 	python -m pytest zero_to_one_hundred
 
 testint:
-	bash demo.sh 0to100_zt && bash demo.sh 0to100_sb
+	bash demo.sh zt && bash demo.sh sb
 
 format:
 	black zero_to_one_hundred

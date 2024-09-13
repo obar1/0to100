@@ -5,7 +5,7 @@ configs:
   download_books: false
   oreilly_username: "username"
   oreilly_userpassword: "userpassword"
-  split_pdf_pages: 100
+  split_pdf_pages: 0
 legend:
   type: "sb"
   icons:

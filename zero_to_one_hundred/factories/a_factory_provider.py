@@ -1,16 +1,12 @@
-from abc import ABC, abstractmethod
-
 from zero_to_one_hundred.factories.a_factory import AFactory
-from zero_to_one_hundred.repository.a_persist_fs import APersistFS
 
 
-class AFactoryProvider(ABC):
+class AFactoryProvider:
     """AFactoryProvider."""
 
-    @abstractmethod
-    def __init__(self, persist_fs: APersistFS, process_fs):
-        pass
+    def __init__(self, persist_fs=None, process_fs=None):
+        self.persist_fs = persist_fs
+        self.process_fs = process_fs
 
-    @abstractmethod
     def provide(self) -> None | AFactory:
-        pass
+        return AFactory(persist_fs=self.persist_fs)

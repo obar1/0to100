@@ -5,7 +5,7 @@
 | [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=obar1_0to100)](https://sonarcloud.io/summary/new_code?id=obar1_0to100) | [![Makefile CI](https://github.com/obar1/0to100/actions/workflows/makefile.yml/badge.svg)](https://github.com/obar1/0to100/actions/workflows/makefile.yml) | 
 
 We read training material from the web and learn from it by doing, but how do we keep that a bit organized? I came up with an idea: this small tool.
-Given a 'url', it creates the entry in a markdown map and a folder and links them; in this way, you can easily jump between different sections inside your preferred ide. As you expand the map with new contents, you build some reference material, keep it local all the time, and searchable all the time on your daily coding.
+Given a 'url', it creates the entry in a markdown map and a folder and links them; in this way, you can easily jump between different sections inside your preferred ide. As you expand the map with new contents, you build some reference material, keep it local all the time, and searchable all the time on your daily coding and use it to fee your local `llm` :).
 
 ## quick demo
 
@@ -16,27 +16,40 @@ Given a 'url', it creates the entry in a markdown map and a folder and links the
 just open this repo in your GitHub Codespace and run the demo as:
 
 ```bash
-bash demo.sh 0to100_zt
+bash demo.sh zt
 ```
 
-![](termtosvg_0oihyn7a.svg)
+![](2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
+[here](./toc_zt.md)
 
 ```bash
-bash demo.sh 0to100_sb
+bash demo.sh sb
 ```
 
-![](termtosvg_9evceaqa.svg)
-
+![](z05502bb-4b90-422f-9624-568d9f02cd01.png)
+[here](./toc_sb.md)
 
 
 ## oto100
 
-0 to 100 ... learn anything from webresources (and not)
+0 to 100 ... learn anything from the web 
 
-current commands:
+commands:
 
 ```
-['create_section', 'done_section', 'refresh_map', 'refresh_links', 'help']
+create_section = create a new section
+section=https://www.cloudskillsboost.google/paths/16
+./main.py zt create_section "$section"
+
+done_section = tag a section as done
+section=https://www.cloudskillsboost.google/paths/16
+./main.py zt done_section "$section"
+
+refresh_map = refresh the section map
+./main.py zt refresh_map
+
+refresh_links = refresh links to sections in the readme.md(s)
+./main.py zt refresh_links
 ```
 
 > tip
@@ -57,9 +70,9 @@ ex
 
 https://www.cloudskillsboost.google/doc
 ```
-expand the last link to point to the section for the doc - handy as anchor tecnique 
+expand the last link to point to the section for the doc - handy as anchor technique 
 
-### 1st time usage:
+### setup and usage:
 
 ```bash
 # env
@@ -73,31 +86,12 @@ cat map.yaml
 export MAP_YAML_PATH=map.yaml
 # tip:  add it to .bash_rc etc or some shell script
 
-```
-
-![](ab67dd2b-7c12-4cdf-a7a5-f773c2b67919.png)
-
-```bash
 chmod +x *.py
+# run main
 ./main.py zt help
 ```
 
-![](50a86373-910b-4a12-85ef-251b6d4f08f0.png)
-
-### daily usage:
-
-- create new section
-
-```bash
-url=https://cloud.google.com/docs
-./main.py zt create_section $url
-
-url=https://cloud.google.com/help
-./main.py zt create_section $url
-#...etc
-```
-
-![](9b873c30-eccb-4c17-9d36-1c302060f5c3.png)
+ 
 
 ## oto100 safari books :construction:
 
@@ -108,10 +102,14 @@ same as above but it can use some external lib to grab epub from oreilly
 current commands:
 
 ```
-['snatch_book', 'refresh_toc',  'help']
+snatch_book = snatch a book from safari
+./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
+
+refresh_toc = refresh the toc with al the books info
+./main.py sb refresh_toc
 ```
 
-### 0th time usage:
+### setup and usage:
 
 > use what you prefer to  grab epub/pdf from oreilly 
 check this 
@@ -119,8 +117,6 @@ https://github.com/lorenzodifuccia/safaribooks
 or just save as pdf section  by section with this 
 https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaellmclnh
 
-
-### 1st time usage:
 
 ```bash
 # env
@@ -157,7 +153,6 @@ chmod +x *.py
 
 ![](63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
 
-### daily usage:
 
 - create new meta-book
 
@@ -170,24 +165,22 @@ and you have a `toc.md` for free to use as your index (bookmark it)
 
 > as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call that **learning by doing** 🖖🏻
 
-example:
-![](2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
-![](z05502bb-4b90-422f-9624-568d9f02cd01.png)
+
 
 ### tools
 > when you start to have a a few 0to100 based folders
->
+
 
 [gist to sync multiple 0to100 based repos](https://gist.github.com/obar1/771b1992368262737d9f25fcf17ce1c1)
 [gist venv auto activate for 0to100 folders](https://gist.github.com/obar1/212e4c778548f8bcdc6e9c1b05856f3f)
 
 ## online example 
 
-- 0to100
+- zt
 
 https://github.com/obar1/zero2hero
 
-- 0to100sb
+- sb
 > mostly private contents,   `sorry but I don't want to get suited :P`
 
 https://github.com/obar1/0to100.oreilly
