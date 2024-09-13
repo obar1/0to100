@@ -29,7 +29,7 @@ if __name__ == "__main__":
     except (ValueError,IndexError, TypeError):
         from zero_to_one_hundred.repository.a_persist_fs import APersistFS as persist_fs
         from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
-        run_core(sys.argv, AFactoryProvider(persist_fs=persist_fs))
+        run_core(sys.argv, AFactoryProvider(persist_fs))
     except Exception as e:
         Validator.print_e(e)
   
