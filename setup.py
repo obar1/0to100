@@ -12,7 +12,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="0to100",
-    version="0.5.3",
+    version="0.5.4",
     author="obar1",
     packages=find_packages(),
     author_email="obar1+gh@pm.me",

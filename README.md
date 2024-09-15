@@ -16,11 +16,11 @@ Given a 'url', it creates the entry in a markdown map and a folder and links the
 just open this repo in your GitHub Codespace and run the demo as:
 
 ```bash
-bash demo.sh zt
+bash demo.sh zo
 ```
 
 ![](2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
-[here](./toc_zt.md)
+[here](./toc_zo.md)
 
 ```bash
 bash demo.sh sb
@@ -39,17 +39,17 @@ commands:
 ```
 create_section = create a new section
 section=https://www.cloudskillsboost.google/paths/16
-./main.py zt create_section "$section"
+./main.py zo create_section "$section"
 
 done_section = tag a section as done
 section=https://www.cloudskillsboost.google/paths/16
-./main.py zt done_section "$section"
+./main.py zo done_section "$section"
 
 refresh_map = refresh the section map
-./main.py zt refresh_map
+./main.py zo refresh_map
 
 refresh_links = refresh links to sections in the readme.md(s)
-./main.py zt refresh_links
+./main.py zo refresh_links
 ```
 
 > tip
@@ -88,7 +88,7 @@ export MAP_YAML_PATH=map.yaml
 
 chmod +x *.py
 # run main
-./main.py zt help
+./main.py zo help
 ```
 
  
@@ -176,7 +176,7 @@ and you have a `toc.md` for free to use as your index (bookmark it)
 
 ## online example 
 
-- zt
+- zo
 
 https://github.com/obar1/zero2hero
 

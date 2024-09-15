@@ -15,7 +15,7 @@ if __name__ == "__main__":
     try:
         arg1= sys.argv[1]
         match arg1:
-            case 'zt':
+            case 'zo':
                 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS as persist_fs
                 from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS as process_fs
                 from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider

@@ -1,3 +1,5 @@
+.PHONY: install test testint format lint refactor pr
+
 install:
 	pip install --upgrade pip && pip install -r requirements-dev.txt
 
@@ -5,7 +7,7 @@ test:
 	python -m pytest zero_to_one_hundred
 
 testint:
-	bash demo.sh zt && bash demo.sh sb
+	bash demo.sh zo && bash demo.sh sb
 
 format:
 	black zero_to_one_hundred

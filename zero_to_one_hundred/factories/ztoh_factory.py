@@ -26,17 +26,17 @@ class ZTOHFactory(AFactory):
     extended_help = """
     create_section = create a new section
     section=https://www.cloudskillsboost.google/paths/16
-    ./main.py zt create_section "$section"
+    ./main.py zo create_section "$section"
 
     done_section = tag a section as done
     section=https://www.cloudskillsboost.google/paths/16
-    ./main.py zt done_section "$section"
+    ./main.py zo done_section "$section"
     
     refresh_map = refresh the section map
-    ./main.py zt refresh_map
+    ./main.py zo refresh_map
     
     refresh_links = refresh links to sections in the readme.md(s)
-    ./main.py zt refresh_links
+    ./main.py zo refresh_links
     """
 
     def __init__(

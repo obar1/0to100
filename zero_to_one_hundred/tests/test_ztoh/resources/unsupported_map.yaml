@@ -1,4 +1,0 @@
-type: not-a-map
-configs:
-  path: "./repo"
-  some_field: true
