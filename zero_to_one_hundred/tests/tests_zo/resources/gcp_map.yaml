@@ -1,0 +1,24 @@
+type: ztoh-map
+repo:
+  path: "./0to100"
+  map_md: "toc.md"
+legend:
+  type: "gcp"
+  icons:
+    - name: Path
+      icon: ":cyclone:"
+      regex: "path"
+    - name: Lab
+      icon: ":floppy_disk:"
+      regex: "lab"
+    - name: Template
+      icon: ":whale:"
+      regex: "template"
+    - name: Game
+      icon: ":snake:"
+      regex: "game"
+    - name: Course
+      icon: ":pushpin:"
+      regex: "course"
+
+sorted: "abc" # oder alph
