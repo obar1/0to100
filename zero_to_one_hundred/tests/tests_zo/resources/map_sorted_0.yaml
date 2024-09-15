@@ -1,5 +1,5 @@
-type: ztoh-map
+type: zero-to-one-hundred-map
 repo:
   path: "./0to100"
-  map_md: "toc.md"
-  sorted: "abc" # oder alph
+  idx_id: "toc.md"
+  idx_sort: "abc" # order by alpha

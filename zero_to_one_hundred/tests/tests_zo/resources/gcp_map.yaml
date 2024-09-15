@@ -1,9 +1,9 @@
-type: ztoh-map
+type: zero-to-one-hundred-map
 repo:
   path: "./0to100"
-  map_md: "toc.md"
+  idx_id: "toc.md"
+  idx_sort: "00:00:00" # order by modified date
 legend:
-  type: "gcp"
   icons:
     - name: Path
       icon: ":cyclone:"

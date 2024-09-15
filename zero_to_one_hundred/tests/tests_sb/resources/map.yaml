@@ -9,11 +9,11 @@ oreilly_secrets:
 legend:
   icons:
     - name: Book
-      icon: ":cyclone:"
+      icon: ":book:"
       regex: "978"
     - name: Event
-      icon: ":cyclone:"
+      icon: ":floppy_disk:"
       regex: "event"
     - name: Course
-      icon: ":cyclone:"
+      icon: ":whale:"
       regex: "course"
