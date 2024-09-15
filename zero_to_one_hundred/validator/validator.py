@@ -23,11 +23,10 @@ class Validator:
         parser = argparse.ArgumentParser()
         parser.add_argument("cmd", type=str, nargs="?", default=None)
         parser.add_argument("p1", type=str, nargs="?", default=None)
-        try:
-            args = parser.parse_args(args[2:])  # skip fn
-            cmd = args.cmd
-            p1 = args.p1
-            return cmd, p1
-        except Exception:
-            pass
-        return None, None
+        parser.add_argument("p2", type=str, nargs="?", default=None)
+
+        args = parser.parse_args(args)  # skip fn
+        cmd = args.cmd
+        p1 = args.p1
+        p2 = args.p2
+        return cmd, p1, p2

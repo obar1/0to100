@@ -1,0 +1,5 @@
+type: zero-to-one-hundred-map
+repo:
+  path: "./0to100"
+  idx_id: "toc.md"
+  idx_sort: "00:00:00" # order by modified date

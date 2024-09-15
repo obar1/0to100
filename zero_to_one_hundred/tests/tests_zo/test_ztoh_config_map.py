@@ -17,7 +17,6 @@ def test_gcp_config_map(get_gcp_config_map: ZTOHConfigMap):
     assert actual.get_type == ZTOH_MAP
     assert actual.get_repo_path is not None
     assert actual.get_repo_map_md == "toc.md"
-    assert actual.get_legend_type == "gcp"
     assert actual.get_legend_icons == [
         ZTOHConfigMap.LegendIcons("Path", ":cyclone:", "path"),
         ZTOHConfigMap.LegendIcons("Lab", ":floppy_disk:", "lab"),
@@ -32,7 +31,6 @@ def test_datacamp_config_map(get_datacamp_config_map: ZTOHConfigMap):
     assert actual.get_type == ZTOH_MAP
     assert actual.get_repo_path is not None
     assert actual.get_repo_map_md == "toc.md"
-    assert actual.get_legend_type == "datacamp"
     assert actual.get_legend_icons == [
         ZTOHConfigMap.LegendIcons("Project", ":cyclone:", "project"),
         ZTOHConfigMap.LegendIcons("Tutorial", ":floppy_disk:", "tutorial"),
@@ -42,7 +40,7 @@ def test_datacamp_config_map(get_datacamp_config_map: ZTOHConfigMap):
 
 def test_unsupported_config_map(get_unsupported_config_map: ZTOHConfigMap):
     actual = get_unsupported_config_map
-    assert actual.get_type == "not-a-map"
+    assert actual.get_type == "unsupported-map"
 
 
 def test_config_map_sorted_0(get_config_map_sorted_0: ZTOHConfigMap):

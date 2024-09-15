@@ -11,13 +11,13 @@ class AFactory:
     """AFactory class."""
 
     class SUPPORTED_PROCESSOR(Enum):
-        zt = 1
+        zo = 1
         sb = 2
         help = 3
 
     extended_help = """
-    zt = zero to 100
-    ./main.py zt help
+    zo = zero to 100
+    ./main.py zo help
 
     sb = sb to 100
     ./main.py sb help
@@ -29,7 +29,7 @@ class AFactory:
     def __init__(self, persist_fs: APersistFS):
         self.persist_fs = persist_fs
 
-    def get_processor(self,args) -> Generator[AProcessor, None, None]:
+    def get_processor(self, args) -> Generator[AProcessor, None, None]:
         yield self.help_processor()
 
     def help_processor(self):

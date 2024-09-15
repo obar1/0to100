@@ -9,8 +9,8 @@ function setup {
 
     chmod +x main.py
 }
-function setup_zt {
-    cp ./zero_to_one_hundred/tests/test_ztoh/resources/gcp_map.yaml map.yaml
+function setup_zo {
+    cp ./zero_to_one_hundred/tests/tests_zo/resources/gcp_map.yaml map.yaml
 }
 
 function setup_sb {
@@ -21,11 +21,11 @@ function setup_sb {
     pip install --quiet -r safaribooks/requirements.txt
 }
 
-function zt {
+function zo {
     # 0to100
-    setup_zt
+    setup_zo
 
-    ./main.py zt help
+    ./main.py zo help
     content=$(
         cat <<'EOF'
 https://www.cloudskillsboost.google/0
@@ -37,15 +37,15 @@ https://storage.googleapis.com/cloud-training/cls-html5-courses/T-BQRS-I/M1/inde
 EOF
     )
     while IFS= read -r section || [[ -n "$section" ]]; do
-        ./main.py zt create_section "$section"
+        ./main.py zo create_section "$section"
     done <<<"$content"
 
     echo "# a_custom_header 0" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
 
-    ./main.py zt done_section "https://www.cloudskillsboost.google/0"
+    ./main.py zo done_section "https://www.cloudskillsboost.google/0"
 
     ls -1R 0to100
-    cp toc.md toc_zt.md
+    cp toc.md toc_zo.md
 }
 
 function sb {
@@ -72,7 +72,7 @@ function sb {
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-    echo "No arguments were passed: use sb or zt"
+    echo "No arguments were passed: use sb or zo"
 else
     setup
     $1

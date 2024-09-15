@@ -1,7 +1,7 @@
 from zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
 
-ZTOH_MAP = "ztoh-map"
+ZTOH_MAP = "zero-to-one-hundred-map"
 
 
 class ZTOHConfigMap(AConfigMap):
@@ -14,8 +14,8 @@ class ZTOHConfigMap(AConfigMap):
 
     @property
     def get_repo_map_md(self):
-        return self.load["repo"]["map_md"]
+        return self.load["repo"]["idx_id"]
 
     @property
     def get_repo_sorted(self) -> bool:
-        return self.load["repo"].get("sorted")
+        return self.load["repo"].get("idx_sort")
