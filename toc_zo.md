@@ -1,17 +1,17 @@
-# map toc.md, 6
+
+# TOC
+## `2` metabook
+### 2024/09/15-16:18:16
 
 ## legend:
 
 **legend_icons**
-`Path` :cyclone:
-`Lab` :floppy_disk:
-`Template` :whale:
-`Game` :snake:
-`Course` :pushpin:
+`Book` :book:
+`Event` :floppy_disk:
+`Course` :whale:
 
-1. # <https§§§www.cloudskillsboost.google§paths§16> [`here`](./0to100/https§§§www.cloudskillsboost.google§paths§16/readme.md) `wip` :cyclone:
-1. # <https§§§www.cloudskillsboost.google§games§4424§labs§28651> [`here`](./0to100/https§§§www.cloudskillsboost.google§games§4424§labs§28651/readme.md) `wip` :floppy_disk: :snake:
-1. # <https§§§www.cloudskillsboost.google§course_templates§3> [`here`](./0to100/https§§§www.cloudskillsboost.google§course_templates§3/readme.md) `wip` :whale: :pushpin:
-1. # <https§§§www.cloudskillsboost.google§games§4422> [`here`](./0to100/https§§§www.cloudskillsboost.google§games§4422/readme.md) `wip` :snake:
-1. # <https§§§storage.googleapis.com§cloud-training§cls-html5-courses§T-BQRS-I§M1§index.html> [`here`](./0to100/https§§§storage.googleapis.com§cloud-training§cls-html5-courses§T-BQRS-I§M1§index.html/readme.md) `wip` :pushpin:
-1. # a_custom_header 0 [`here`](./0to100/https§§§www.cloudskillsboost.google§0/readme.md) `done` 
+|  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` | `icons`
+|---	|---	|---	|---		|---	|---	|
+|<span style="color:blue">**9780134661742**</span>|![`img`](./9780134661742/9780134661742.png)|[`xyz`](./9780134661742/)|{'isbn': '9780134661742',<br/> 'pages_perc': 'n/a',<br/> 'title': 'Clean Code Fundamentals',<br/> 'url': '> https://learning.oreilly.com/library/9780134661742 <'}|<span style="color:yellow">**WIP**</span>|:book:|
+|<span style="color:blue">**9781119895947**</span>|![`img`](./9781119895947/9781119895947.png)|[`xyz`](./9781119895947/)|{'isbn': '9781119895947',<br/> 'page_curr': '100',<br/> 'page_tot': '100',<br/> 'pages_perc': '100.0%',<br/> 'url': '> https://www.oreilly.com/library/view/rewire-your-brain/9781119895947 <'}|<span style="color:green">**DONE**</span>|:book:|
+        
