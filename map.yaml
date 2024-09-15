@@ -1,14 +1,19 @@
 type: safari-books-map
-configs:
-  download_engine_path: "safaribooks/safaribooks.py"
-  download_engine_books_path: "safaribooks/Books"
-  download_books: false
-  oreilly_username: "username"
-  oreilly_userpassword: "userpassword"
-  split_pdf_pages: 0
+download_engine_path: "safaribooks/safaribooks.py"
+download_engine_books_path: "safaribooks/Books"
+download_books: false
+split_pdf_pages: 0
+oreilly_secrets:
+  username: "username"
+  password: "userpassword"
 legend:
-  type: "sb"
   icons:
     - name: Book
-      icon: ":cyclone:"
+      icon: ":book:"
       regex: "978"
+    - name: Event
+      icon: ":floppy_disk:"
+      regex: "event"
+    - name: Course
+      icon: ":whale:"
+      regex: "course"
