@@ -1,20 +1,38 @@
-.PHONY: install test testint format lint refactor pr
-
-install:
-	pip install --upgrade pip && pip install -r requirements-dev.txt
-
+.PHONY: setup clean test lint type-check format check-all
+# Variables
+PYTHON := python3
+VENV := venv
+BIN := $(VENV)/bin
+SRC_DIR := zero_to_one_hundred
+TEST_DIR := zero_to_one_hundred/tests
+help:
+	@echo "Available commands:"
+	@echo "  make setup         - Create virtual environment and install dependencies"
+	@echo "  make clean        - Remove virtual environment and cache files"
+	@echo " "
+	@echo "  make test         - Run all tests"
+	@echo " "
+	@echo "  make lint         - Run pylint"
+	@echo "  make type-check   - Run mypy type checking"
+	@echo "  make format       - Format code with black"
+	@echo "  make refactor     - Run all checks"
+setup:
+	$(PYTHON) -m venv $(VENV)
+	$(BIN)/pip install --upgrade pip
+	$(BIN)/pip install -r requirements.txt
+clean:
+	rm -rf $(VENV)
+	rm -rf .pytest_cache
+	rm -rf .coverage
+	rm -rf .mypy_cache
+	rm -rf **/__pycache__
 test:
-	python -m pytest zero_to_one_hundred
-
-testint:
-	bash demo.sh zo && bash demo.sh sb
-
-format:
-	black zero_to_one_hundred
-
+	PYTHONPATH=. $(BIN)/pytest $(TEST_DIR) -v
 lint:
-	pylint --disable=C0116,C0115,W0702,C0114,C0301,C0103,C0209,R0913,R0902,R0903,E1101,W0612,W0718,R0801,W0150,W0613,W1203 zero_to_one_hundred
-
-refactor: format lint
-
-pr: format lint test testint install
+	$(BIN)/pylint $(SRC_DIR)
+type-check:
+	$(BIN)/mypy $(SRC_DIR) 
+format:
+	$(BIN)/black $(SRC_DIR) $(TEST_DIR)
+	find . -maxdepth 2 -type f -name "*.ipynb" | xargs -I {} bash -c "$(BIN)/black '{}'"
+refactor: format lint type-check test 
