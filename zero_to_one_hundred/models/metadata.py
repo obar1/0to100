@@ -83,7 +83,10 @@ class Metadata(MarkdownRenderer):
         # handle nasty URL in MD
         m: dict = self.get_metadata()
         url = m.get("url")
-        url = url.removeprefix("> ").removesuffix(" <")
+        if url:
+            url = url.removeprefix("> ")
+        if url:
+            url = url.removesuffix(" <")
         url = "> " + url + " <"
         m["url"] = url
         return MarkdownRenderer.text_lf_as_br(str(m))

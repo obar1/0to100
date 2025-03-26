@@ -1,6 +1,7 @@
 # pylint: disable=W0106,R1710
 from typing import List
 from typing import Union, TypeVar
+from typing import TypeVar
 
 from zero_to_one_hundred.factories.a_factory import AFactory
 from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
@@ -15,6 +16,8 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
 
     """
 
-    T = TypeVar("T", bound=AFactory)
-    factory: Union[AFactory, T] = factory_provider.provide()
-    [processor.process() for processor in factory.get_processor(argv) if processor]
+    factory = factory_provider.provide()
+    if factory:
+        for processor in factory.get_processor(argv):
+            if processor:
+                processor.process()

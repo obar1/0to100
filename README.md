@@ -76,9 +76,13 @@ expand the last link to point to the section for the doc - handy as anchor techn
 
 ```bash
 # env
-python -m venv .venv
-. .venv/bin/activate
-pip install .
+
+make setup
+source venv/bin/activate
+pre-commit install # optional
+
+# each time new code is ready for PRs :P
+make refactor
 
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests/resources/map.yaml .

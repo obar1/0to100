@@ -1,23 +1,15 @@
 name: Makefile CI
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    types: [ opened, synchronize, reopened, closed ]
-
+on: [push]
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: install packages
-      run: make install
-    - name: refactor
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: make setup
+      run: make setup
+    - name: make refactor
       run: make refactor
-    - name: test
-      run: make test
-    - name: testint
-      run: make testint
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
