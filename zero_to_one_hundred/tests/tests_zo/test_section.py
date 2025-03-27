@@ -2,7 +2,7 @@ import os
 
 from pyfakefs.fake_filesystem_unittest import Patcher
 
-from zero_to_one_hundred.models.section import Section
+from zero_to_one_hundred.src.zero_to_one_hundred.models.section import Section
 from zero_to_one_hundred.tests.conftest import str_relaxed
 
 

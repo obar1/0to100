@@ -1,4 +1,6 @@
-from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory import (
+    ZTOHFactory,
+)
 
 
 # pylint: disable=W0621

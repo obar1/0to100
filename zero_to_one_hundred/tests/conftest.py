@@ -41,7 +41,7 @@ def http_url_4():
 @pytest.fixture(scope="session")
 def mock_time():
     with patch(
-        "zero_to_one_hundred.repository.ztoh_process_fs.ZTOHProcessFS.get_now",
+        "zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs.ZTOHProcessFS.get_now",
         return_value=20990101000000,
     ):  # Example timestamp
         yield

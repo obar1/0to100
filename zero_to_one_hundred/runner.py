@@ -3,8 +3,10 @@ from typing import List
 from typing import Union, TypeVar
 from typing import TypeVar
 
-from zero_to_one_hundred.factories.a_factory import AFactory
-from zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.a_factory import AFactory
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.a_factory_provider import (
+    AFactoryProvider,
+)
 
 
 def run_core(argv: List[str], factory_provider: AFactoryProvider):

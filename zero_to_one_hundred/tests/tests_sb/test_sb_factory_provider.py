@@ -1,4 +1,6 @@
-from zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.sb_factory_provider import (
+    SBFactoryProvider,
+)
 
 
 # pylint: disable=W0621

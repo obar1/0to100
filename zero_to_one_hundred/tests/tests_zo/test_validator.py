@@ -2,8 +2,10 @@
 
 import pytest
 
-from zero_to_one_hundred.exceptions.errors import NotURLFormatError
-from zero_to_one_hundred.validator.validator import Validator
+from zero_to_one_hundred.src.zero_to_one_hundred.exceptions.errors import (
+    NotURLFormatError,
+)
+from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
 def test_is_valid_http_pass0():
