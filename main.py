@@ -19,7 +19,7 @@ if __name__ == "__main__":
             case 'zo':
                 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS as persist_fs
                 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS as process_fs
-                run_core(args[1:], ZTOHFactoryProvider(persist_fs, ))
+                run_core(args[1:], ZTOHFactoryProvider(persist_fs, process_fs))
             case 'sb':
                 from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_persist_fs import SBPersistFS as persist_fs
                 from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_process_fs import SBProcessFS as process_fs
