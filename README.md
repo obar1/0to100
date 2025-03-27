@@ -95,8 +95,6 @@ chmod +x *.py
 ./main.py zo help
 ```
 
- 
-
 ## oto100 safari books :construction:
 
 0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
