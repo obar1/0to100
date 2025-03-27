@@ -4,9 +4,6 @@
 import logging
 import sys
 
-from zero_to_one_hundred.src.zero_to_one_hundred.src.zero_to_one_hundred.exceptions.errors import UnsupportedOptionError
-from zero_to_one_hundred.src.zero_to_one_hundred.runner import run_core
-from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)

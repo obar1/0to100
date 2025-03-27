@@ -121,11 +121,6 @@ https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaell
 
 
 ```bash
-# env
-python -m venv venv
-. venv/bin/activate
-pip install .
-
 # copy sample yaml conf
 cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
 cat map.yaml
