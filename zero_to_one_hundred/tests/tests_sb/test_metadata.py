@@ -1,7 +1,7 @@
 import json
 
-from zero_to_one_hundred.models.meta_book import MetaBook
-from zero_to_one_hundred.models.metadata import Metadata
+from zero_to_one_hundred.src.zero_to_one_hundred.models.meta_book import MetaBook
+from zero_to_one_hundred.src.zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.tests.conftest import str_relaxed
 
 

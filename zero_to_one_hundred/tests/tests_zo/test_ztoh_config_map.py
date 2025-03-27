@@ -1,4 +1,7 @@
-from zero_to_one_hundred.configs.ztoh_config_map import ZTOH_MAP, ZTOHConfigMap
+from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import (
+    ZTOH_MAP,
+    ZTOHConfigMap,
+)
 
 
 # pylint: disable=W0621,W0613

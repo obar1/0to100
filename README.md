@@ -124,8 +124,8 @@ https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaell
 
 ```bash
 # env
-python -m venv .venv
-. .venv/bin/activate
+python -m venv venv
+. venv/bin/activate
 pip install .
 
 # copy sample yaml conf

@@ -5,12 +5,22 @@ from unittest import mock
 
 import pytest
 
-from zero_to_one_hundred.configs.a_config_map import AConfigMap
-from zero_to_one_hundred.configs.ztoh_config_map import ZTOHConfigMap
-from zero_to_one_hundred.factories.ztoh_factory import ZTOHFactory
-from zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider
-from zero_to_one_hundred.repository.ztoh_persist_fs import ZTOHPersistFS
-from zero_to_one_hundred.repository.ztoh_process_fs import ZTOHProcessFS
+from zero_to_one_hundred.src.zero_to_one_hundred.configs.a_config_map import AConfigMap
+from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import (
+    ZTOHConfigMap,
+)
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory import (
+    ZTOHFactory,
+)
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory_provider import (
+    ZTOHFactoryProvider,
+)
+from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
+    ZTOHPersistFS,
+)
+from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
+    ZTOHProcessFS,
+)
 
 get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 
