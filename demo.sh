@@ -2,7 +2,7 @@
 # simple demo - it use param from cmd line to run the actual section
 
 function setup {
-    set -x
+    # set -x
     export MAP_YAML_PATH=map.yaml
 
     pip install .
@@ -43,6 +43,8 @@ EOF
     echo "# a_custom_header 0" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
 
     ./main.py zo done_section "https://www.cloudskillsboost.google/0"
+
+    ./main.py zo refresh_links
 
     ls -1R 0to100
     cp toc.md toc_zo.md

@@ -99,3 +99,29 @@ def test_as_mark_down(get_config_map, persist_fs, process_fs, http_url_1):
     assert str_relaxed(current) == str_relaxed(
         "1.  [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`"
     )
+
+
+def test_look_for_orphan_image_missing(
+    get_config_map, persist_fs, process_fs, http_url_1
+):
+    http_url = "https://app.datacamp.com/learn/tutorials/git-push-pull"
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
+    lines = """
+    ![alt text](image.png) is here
+    txt
+    ![alt text](image1.png) is here
+    txt2
+    """
+    png_files = ["image1.png", "image2.png"]
+    excepted = ["image2.png"]
+    assert actual.look_for_orphan_images(lines, png_files) == excepted
+
+    lines = """
+    ![alt text](image1.png) is here
+    txt
+    ![alt text](image2.png) is here
+    txt2
+    """
+    png_files = ["image1.png"]
+    excepted = []
+    assert actual.look_for_orphan_images(lines, png_files) == excepted
