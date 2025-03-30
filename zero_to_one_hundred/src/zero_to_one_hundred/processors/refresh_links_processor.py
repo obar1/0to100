@@ -44,5 +44,6 @@ class RefreshLinksProcessor(AProcessor):
         for s in sections:
             try:
                 s.refresh_links()
+                s.delete_orphan_images()
             except Exception as e:
                 Validator.print_e(e)

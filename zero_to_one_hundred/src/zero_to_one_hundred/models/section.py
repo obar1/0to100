@@ -1,4 +1,6 @@
 # pylint: disable= R0904
+import logging
+import os
 import re
 
 from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import (
@@ -69,6 +71,39 @@ class Section(MarkdownRenderer):
     def get_dir_name(self):
         return self.dir_name
 
+    def find_header(self):
+        """
+        take default header created by code or take first one # header found added by user
+        """
+
+        def get_header(line):
+            if str(line).strip("\n").startswith("# "):
+                return line
+            return None
+
+        readme_md: ReadMeMD = ReadMeMD(
+            self.config_map,
+            self.persist_fs,
+            self.process_fs,
+            Section.from_http_url_to_dir,
+            self.http_url,
+        )
+        res = ""
+        lines_converted = []
+        try:
+            for line in readme_md.read():
+                lines_converted.append(get_header(line))
+            headers = lines_converted
+            not_null = list(filter(lambda x: x is not None, headers))
+            if len(not_null) == 1:  # take default header
+                res = not_null[0]
+            if len(not_null) > 1:  # take first one header found
+                res = not_null[1]
+        except Exception as e:
+            Validator.print_e(e)
+            res = "FIXME: "
+        return res
+
     @property
     def get_id_name(self):
         return self.find_header().strip("\n")
@@ -125,25 +160,25 @@ class Section(MarkdownRenderer):
     def is_valid_dir(cls, curr_dir: str):
         return curr_dir.count("http") > 0
 
-    def refresh_links(self):
-        def convert(line):
-            """convert to [https://](https:§§§...readme) or leave as it is"""
-            res = line
-            if str(line).strip("\n").startswith("https://"):
-                res = (
-                    "["
-                    + str(line).strip("\n")
-                    + "](../"
-                    + Section(
-                        self.config_map,
-                        self.persist_fs,
-                        self.process_fs,
-                        str(line).strip("\n"),
-                    ).dir_readme_md
-                    + ")\n"
-                )
-            return res
+    def convert(self, line):
+        """convert to [https://](https:§§§...readme) or leave as it is"""
+        res = line
+        if str(line).strip("\n").startswith("https://"):
+            res = (
+                "["
+                + str(line).strip("\n")
+                + "](../"
+                + Section(
+                    self.config_map,
+                    self.persist_fs,
+                    self.process_fs,
+                    str(line).strip("\n"),
+                ).dir_readme_md
+                + ")\n"
+            )
+        return res
 
+    def refresh_links(self):
         readme_md: ReadMeMD = ReadMeMD(
             self.config_map,
             self.persist_fs,
@@ -153,19 +188,23 @@ class Section(MarkdownRenderer):
         )
         lines_converted = []
         for line in readme_md.read():
-            lines_converted.append(convert(line))
+            lines_converted.append(self.convert(line))
         readme_md.write(txt=lines_converted)
 
-    def find_header(self):
-        """
-        take default header created by code or take first one # header found added by user
-        """
+    def look_for_orphan_images(self, lines, png_files):
+        pattern = r"!\[[^\]]*\]\([^)]+\.png\)"
+        matches = re.findall(pattern, "".join(lines))
+        referenced_images = [
+            str(m).removeprefix("![alt text](").removesuffix(")") for m in matches
+        ]
 
-        def get_header(line):
-            if str(line).strip("\n").startswith("# "):
-                return line
-            return None
+        orphan_images = []
+        for png_file in png_files:
+            if png_file not in referenced_images:
+                orphan_images.append(png_file)
+        return orphan_images
 
+    def delete_orphan_images(self):
         readme_md: ReadMeMD = ReadMeMD(
             self.config_map,
             self.persist_fs,
@@ -173,21 +212,16 @@ class Section(MarkdownRenderer):
             Section.from_http_url_to_dir,
             self.http_url,
         )
-        res = ""
-        lines_converted = []
-        try:
-            for line in readme_md.read():
-                lines_converted.append(get_header(line))
-            headers = lines_converted
-            not_null = list(filter(lambda x: x is not None, headers))
-            if len(not_null) == 1:  # take default header
-                res = not_null[0]
-            if len(not_null) > 1:  # take first one header found
-                res = not_null[1]
-        except Exception as e:
-            Validator.print_e(e)
-            res = "FIXME: "
-        return res
+        readme_md_dir = self.config_map.get_repo_path + "/" + self.dir_name
+        get_png_files = [
+            f for f in os.listdir(readme_md_dir) if f.lower().endswith(".png")
+        ]
+        lines = readme_md.read()
+        if len(get_png_files) > 0:
+            png_files_to_delete = self.look_for_orphan_images(lines, get_png_files)
+            for f in png_files_to_delete:
+                logging.warn(f"delete_orphan_images {f}")
+                os.remove(readme_md_dir + "/" + f)
 
     @property
     def is_gcp_quest(self):

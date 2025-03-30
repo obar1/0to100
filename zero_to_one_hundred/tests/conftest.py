@@ -3,6 +3,10 @@ from unittest.mock import patch
 
 import pytest
 
+import warnings
+
+warnings.simplefilter("ignore", category=DeprecationWarning)
+
 
 def str_relaxed(s1):
     remove = string.whitespace + string.punctuation
