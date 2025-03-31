@@ -44,7 +44,18 @@ EOF
 
     ./main.py zo done_section "https://www.cloudskillsboost.google/0"
 
+    touch 0to100/https§§§www.cloudskillsboost.google§0/image.png
+    touch 0to100/https§§§www.cloudskillsboost.google§0/image-1.png
+    touch 0to100/https§§§www.cloudskillsboost.google§0/image-2.png
+    touch 0to100/https§§§www.cloudskillsboost.google§0/image-3.png
+
+    echo "some text" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "![alt text](image.png)">>0to100/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "![some text](image-1.png)" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "![](image-2.png)" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
+
     ./main.py zo refresh_section_contents
+    # image-3.png got deleted 
 
     ls -1R 0to100
     cp toc.md toc_zo.md
