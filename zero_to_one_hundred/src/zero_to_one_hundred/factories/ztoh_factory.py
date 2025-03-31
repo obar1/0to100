@@ -10,8 +10,8 @@ from zero_to_one_hundred.src.zero_to_one_hundred.processors.create_section_proce
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.done_section_processor import (
     DoneSectionProcessor,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_links_processor import (
-    RefreshLinksProcessor,
+from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_section_contents_processor import (
+    RefreshSectionContentsProcessor,
 )
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_map_processor import (
     RefreshMapProcessor,
@@ -32,7 +32,7 @@ class ZTOHFactory(AFactory):
         create_section = 1
         done_section = 2
         refresh_map = 3
-        refresh_links = 4
+        refresh_section_contents = 4
         help = 5
 
     extended_help = """
@@ -47,8 +47,8 @@ class ZTOHFactory(AFactory):
     refresh_map = refresh the section map
     ./main.py zo refresh_map
     
-    refresh_links = refresh links to sections in the readme.md(s)
-    ./main.py zo refresh_links
+    refresh_section_contents = refresh links to sections in the readme.md(s)
+    ./main.py zo refresh_section_contents
     """
 
     def __init__(
@@ -71,8 +71,8 @@ class ZTOHFactory(AFactory):
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_map.name:
             yield self.refresh_map_processor()
-        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_links.name:
-            yield self.refresh_links_processor()
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_section_contents.name:
+            yield self.refresh_section_contents_processor()
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
@@ -92,5 +92,7 @@ class ZTOHFactory(AFactory):
     def refresh_map_processor(self):
         return RefreshMapProcessor(self.config_map, self.persist_fs, self.process_fs)
 
-    def refresh_links_processor(self):
-        return RefreshLinksProcessor(self.config_map, self.persist_fs, self.process_fs)
+    def refresh_section_contents_processor(self):
+        return RefreshSectionContentsProcessor(
+            self.config_map, self.persist_fs, self.process_fs
+        )

@@ -17,11 +17,8 @@ from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs impo
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
-class RefreshLinksProcessor(AProcessor):
-    """RefreshLinksProcessor:
-    in each md there are links to https://
-    when some of them are added as new_section
-    replace them with the location of the new_section ..."""
+class RefreshSectionContentsProcessor(AProcessor):
+    """RefreshSectionContentsProcessor"""
 
     def __init__(
         self,
@@ -43,7 +40,7 @@ class RefreshLinksProcessor(AProcessor):
         )
         for s in sections:
             try:
-                s.refresh_links()
+                s.look_for_materialized_https()
                 s.delete_orphan_images()
             except Exception as e:
                 Validator.print_e(e)
