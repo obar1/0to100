@@ -48,11 +48,11 @@ section=https://www.cloudskillsboost.google/paths/16
 refresh_map = refresh the section map
 ./main.py zo refresh_map
 
-refresh_links = refresh links to sections in the readme.md(s)
-./main.py zo refresh_links
+refresh_section_contents = refresh links to sections in the readme.md(s) and delete orphaned image(s)
+./main.py zo refresh_section_contents
 ```
 
-> tip
+
 in `create_section` you can override the default toc title adding another `#` hint below the one header created automatically in the section folder
 ex
 ```markdown
@@ -61,8 +61,8 @@ ex
 
 # catalog
 ```
-> tip
-in `refresh_links` you can expand links from other sections automatically 
+
+in `refresh_section_contents` you can expand links from other sections automatically 
 ex
 ```markdown
 # <https§§§www.cloudskillsboost.google§catalog>
@@ -71,6 +71,28 @@ ex
 https://www.cloudskillsboost.google/doc
 ```
 expand the last link to point to the section for the doc - handy as anchor technique 
+
+and it will delete img in the folder that have no reference in md readme anymore
+
+```mermaid
+graph TD
+    
+direction TB
+A["Take Screenshot"] --> B["Add Context Text"]
+B --> C{"Complete?"}
+C -->|"No"| D["Continue Video"]
+D --> A
+C -->|"Yes"| E["End Documentation"]
+
+direction TB
+E["Review Content"] --> F{"Needs Update?"}
+F -->|"Yes"| G["Update Image/Text"]
+G --> H["Replace with Snippet"]
+H --> I["Final Review"]
+F -->|"No"| Complete([Complete])
+I --> Complete
+   
+```
 
 ### setup and usage:
 
@@ -113,7 +135,7 @@ refresh_toc = refresh the toc with al the books info
 
 ### setup and usage:
 
-> use what you prefer to  grab epub/pdf from oreilly 
+> use what you prefer to  grab epub/pdf from O'Reilly 
 check this 
 https://github.com/lorenzodifuccia/safaribooks 
 or just save as pdf section  by section with this 

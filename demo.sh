@@ -44,7 +44,7 @@ EOF
 
     ./main.py zo done_section "https://www.cloudskillsboost.google/0"
 
-    ./main.py zo refresh_links
+    ./main.py zo refresh_section_contents
 
     ls -1R 0to100
     cp toc.md toc_zo.md

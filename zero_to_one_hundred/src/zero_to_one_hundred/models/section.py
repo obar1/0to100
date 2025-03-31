@@ -160,7 +160,7 @@ class Section(MarkdownRenderer):
     def is_valid_dir(cls, curr_dir: str):
         return curr_dir.count("http") > 0
 
-    def convert(self, line):
+    def materialize_https(self, line):
         """convert to [https://](https:§§§...readme) or leave as it is"""
         res = line
         if str(line).strip("\n").startswith("https://"):
@@ -178,7 +178,7 @@ class Section(MarkdownRenderer):
             )
         return res
 
-    def refresh_links(self):
+    def look_for_materialized_https(self):
         readme_md: ReadMeMD = ReadMeMD(
             self.config_map,
             self.persist_fs,
@@ -188,11 +188,11 @@ class Section(MarkdownRenderer):
         )
         lines_converted = []
         for line in readme_md.read():
-            lines_converted.append(self.convert(line))
+            lines_converted.append(self.materialize_https(line))
         readme_md.write(txt=lines_converted)
 
     def look_for_orphan_images(self, lines, png_files):
-        pattern = r"!\[[^\]]*\]\([^)]+\.png\)"
+        pattern = r"!\[[^\]]*\]\(([^)]+)\)"
         matches = re.findall(pattern, "".join(lines))
         referenced_images = [
             str(m).removeprefix("![alt text](").removesuffix(")") for m in matches

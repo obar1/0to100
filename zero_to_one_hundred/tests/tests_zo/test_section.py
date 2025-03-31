@@ -101,7 +101,7 @@ def test_as_mark_down(get_config_map, persist_fs, process_fs, http_url_1):
     )
 
 
-def test_look_for_orphan_image_missing(
+def test_look_for_orphan_images_cases(
     get_config_map, persist_fs, process_fs, http_url_1
 ):
     http_url = "https://app.datacamp.com/learn/tutorials/git-push-pull"
@@ -123,5 +123,25 @@ def test_look_for_orphan_image_missing(
     txt2
     """
     png_files = ["image1.png"]
+    excepted = []
+    assert actual.look_for_orphan_images(lines, png_files) == excepted
+
+    lines = """
+    ![alt text](image1.png) is here
+    txt
+    ![](image2.png) is here
+    txt2
+    """
+    png_files = ["image1.png", "image2.png"]
+    excepted = []
+    assert actual.look_for_orphan_images(lines, png_files) == excepted
+
+    lines = """
+    ![alt text](image1.png) is here
+    txt
+    ![alt text](12312324a.png) is here
+    txt2
+    """
+    png_files = ["image1.png", "12312324a.png"]
     excepted = []
     assert actual.look_for_orphan_images(lines, png_files) == excepted
