@@ -17,6 +17,18 @@ def test_init(get_config_map, persist_fs, process_fs, http_url_1):
     res = actual.get_readme_md_time()
     assert res is not None
 
+    # Test case for URL with hash character
+    http_url_with_hash = "https://www.udemy.com/course/master-data-engineering-using-gcp-data-analytics/learn/lecture/34497408#content"
+    actual_with_hash = Section(get_config_map, persist_fs, process_fs, http_url_with_hash)
+    assert actual_with_hash.http_url == http_url_with_hash
+    assert actual_with_hash.dir_name == "https§§§www.udemy.com§course§master-data-engineering-using-gcp-data-analytics§learn§lecture§34497408§content"
+    assert (
+        actual_with_hash.dir_readme_md
+        == get_config_map.get_repo_path + "/" + "https§§§www.udemy.com§course§master-data-engineering-using-gcp-data-analytics§learn§lecture§34497408§content/readme.md"
+    )
+    res_with_hash = actual_with_hash.get_readme_md_time()
+    assert res_with_hash is not None
+
 
 def test_write(get_config_map, persist_fs, process_fs, http_url_1):
     actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
@@ -40,6 +52,16 @@ def test_build_from_dir(get_config_map, persist_fs, process_fs):
             persist_fs, process_fs, get_config_map, simple_http()
         ).dir_name
         == simple_dir()
+    )
+
+    # Test case for URL with hash character
+    http_url_with_hash = "https://www.udemy.com/course/master-data-engineering-using-gcp-data-analytics/learn/lecture/34497408#content"
+    dir_name_with_hash = "https§§§www.udemy.com§course§master-data-engineering-using-gcp-data-analytics§learn§lecture§34497408§content"
+    assert (
+        Section.build_from_dir(
+            persist_fs, process_fs, get_config_map, dir_name_with_hash
+        ).http_url
+        == http_url_with_hash
     )
 
 

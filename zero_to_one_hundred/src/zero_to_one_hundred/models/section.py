@@ -118,6 +118,7 @@ class Section(MarkdownRenderer):
             .replace("?", "§")
             .replace("*", "§")
             .replace("\\", "§")
+            .replace("#", "§")
         )
 
     def write(self, txt: str):
@@ -133,7 +134,7 @@ class Section(MarkdownRenderer):
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
-        return dir_name.replace("§", "/").replace("https///", "https://")
+        return dir_name.replace("§", "/").replace("https///", "https://").replace("§", "#")
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
