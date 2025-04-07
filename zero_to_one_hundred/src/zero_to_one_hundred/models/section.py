@@ -134,7 +134,8 @@ class Section(MarkdownRenderer):
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
-        return dir_name.replace("§", "/").replace("https///", "https://").replace("§", "#")
+        """try to restore http for what it is possible"""
+        return dir_name.replace("§", "/").replace("https///", "https://")
 
     @classmethod
     def done_section_status(cls, persist_fs, repo_path, dir_name):
