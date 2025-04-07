@@ -118,6 +118,7 @@ class Section(MarkdownRenderer):
             .replace("?", "§")
             .replace("*", "§")
             .replace("\\", "§")
+            .replace("#", "§")
         )
 
     def write(self, txt: str):
@@ -133,6 +134,7 @@ class Section(MarkdownRenderer):
 
     @classmethod
     def from_http_url_to_dir_to(cls, dir_name):
+        """try to restore http for what it is possible"""
         return dir_name.replace("§", "/").replace("https///", "https://")
 
     @classmethod
