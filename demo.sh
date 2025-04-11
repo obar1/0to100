@@ -10,7 +10,7 @@ function setup {
     chmod +x main.py
 }
 function setup_zo {
-    cp ./zero_to_one_hundred/tests/tests_zo/resources/gcp_map.yaml map.yaml
+    cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map.yaml
 }
 
 function setup_sb {

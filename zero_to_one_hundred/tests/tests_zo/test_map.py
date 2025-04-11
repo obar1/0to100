@@ -27,9 +27,14 @@ def test_as_mark_down(
     current = actual.as_mark_down()
     expected = """
 # map toc.md, 2
+
 ## legend:
 
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
+**legend_icons**
+`youtube` <img src='https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg' alt='YouTube Logo' width='64'>
+`udemy` <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Udemy_logo.svg/1920px-Udemy_logo.svg.png' alt='Udemy' width='64'>
+
+1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip` 
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
 """
     assert str_relaxed(current) == str_relaxed(expected)

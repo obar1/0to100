@@ -72,54 +72,52 @@ def test_build_from_dir(get_config_map, persist_fs, process_fs):
     )
 
 
-def test_section_is_quest(get_gcp_config_map, persist_fs, process_fs):
+def test_section_is_quest(get_config_map, persist_fs, process_fs):
     http_url = "https://www.cloudskillsboost.google/quests/257"
-    actual = Section(get_gcp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_gcp_quest
 
 
-def test_section_is_lab(get_gcp_config_map, persist_fs, process_fs):
+def test_section_is_lab(get_config_map, persist_fs, process_fs):
     http_url = "https://www.cloudskillsboost.google/course_sessions/3062553/labs"
-    actual = Section(get_gcp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_gcp_lab
 
 
-def test_section_is_template(get_gcp_config_map, persist_fs, process_fs):
+def test_section_is_template(get_config_map, persist_fs, process_fs):
     http_url = "https://www.cloudskillsboost.google/course_templates/536"
-    actual = Section(get_gcp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_gcp_template
 
 
-def test_section_is_gamee(get_gcp_config_map, persist_fs, process_fs):
+def test_section_is_gamee(get_config_map, persist_fs, process_fs):
     http_url = "https://www.cloudskillsboost.google/games/4423"
-    actual = Section(get_gcp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_gcp_game
 
 
-def test_is_datacamp_project(get_datacamp_config_map, persist_fs, process_fs):
+def test_is_datacamp_project(get_config_map, persist_fs, process_fs):
     http_url = "https://app.datacamp.com/learn/projects/1833"
-    actual = Section(get_datacamp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_datacamp_project
 
 
-def test_is_datacamp_tutorial(get_datacamp_config_map, persist_fs, process_fs):
+def test_is_datacamp_tutorial(get_config_map, persist_fs, process_fs):
     http_url = "https://app.datacamp.com/learn/tutorials/git-push-pull"
-    actual = Section(get_datacamp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_datacamp_tutorial
 
 
-def test_is_datacamp_course(get_datacamp_config_map, persist_fs, process_fs):
+def test_is_datacamp_course(get_config_map, persist_fs, process_fs):
     http_url = "https://app.datacamp.com/learn/courses/writing-efficient-python-code"
-    actual = Section(get_datacamp_config_map, persist_fs, process_fs, http_url)
+    actual = Section(get_config_map, persist_fs, process_fs, http_url)
     assert actual.is_datacamp_course
 
 
-def test_gcp_get_format_as_md(get_gcp_config_map, persist_fs, process_fs):
+def test_gcp_get_format_as_md(get_config_map, persist_fs, process_fs):
     http_url = "https://www.cloudskillsboost.google/games/4423"
-    actual = Section.build_from_dir(
-        persist_fs, process_fs, get_gcp_config_map, http_url
-    )
-    assert actual.get_matching_icon_as_md == """:snake:"""
+    actual = Section.build_from_dir(persist_fs, process_fs, get_config_map, http_url)
+    assert actual.get_matching_icon_as_md == """"""
 
 
 def test_as_mark_down(get_config_map, persist_fs, process_fs, http_url_1):

@@ -29,5 +29,5 @@ pip-wheel-metadata/
 logs/
 
 # daily use
-map.yaml
-toc.md
+./map.yaml
+./toc.md 
