@@ -31,7 +31,7 @@ function zo {
 https://www.cloudskillsboost.google/paths/16
 https://www.cloudskillsboost.google/games/4424/labs/28651
 https://www.cloudskillsboost.google/course_templates/3
-https://storage.googleapis.com/cloud-training/cls-html5-courses/T-BQRS-I/M1/index.html
+https://www.udemy.com/course/python-for-beginners-hands-on/
 https://www.youtube.com/watch?v=W_AdDqdwW90
 EOF
     )

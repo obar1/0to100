@@ -180,7 +180,7 @@ url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/0201
 ./main.py sb snatch_book $url
 ```
 
-and you have a `toc.md` for free to use as your index (bookmark it)
+and you have a `toc` for free to use as your index (bookmark it)
 
 > as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call that **learning by doing** 🖖🏻
 
