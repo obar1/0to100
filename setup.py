@@ -12,7 +12,6 @@ with open("README.md", "r") as fh:
 
 setup(
     name="0to100",
-    version="0.5.5",
     author="obar1",
     packages=find_packages(),
     author_email="obar1+gh@pm.me",

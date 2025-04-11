@@ -1,17 +1,19 @@
-type: zero-to-one-hundred-map
-repo:
-  path: "./0to100"
-  idx_id: "toc.md"
-  idx_sort: "00:00:00" # order by modified date
+type: safari-books-map
+download_engine_path: "safaribooks/safaribooks.py"
+download_engine_books_path: "safaribooks/Books"
+download_books: false
+split_pdf_pages: 0
+oreilly_secrets:
+  username: "username"
+  password: "userpassword"
 legend:
   icons:
-    - name: cloudskillsboost
-      icon: ':cloud:'
-      regex: "cloudskillsboost"
-    - name: youtube
-      icon: "<img src='https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg' alt='YouTube Logo' width='64'>"
-      regex: "youtube"
-    - name: udemy
-      icon: "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Udemy_logo.svg/1920px-Udemy_logo.svg.png' alt='Udemy' width='64'>"
-      regex: "udemy"
-
+    - name: Book
+      icon: ":book:"
+      regex: "978"
+    - name: Event
+      icon: ":floppy_disk:"
+      regex: "event"
+    - name: Course
+      icon: ":whale:"
+      regex: "course"
