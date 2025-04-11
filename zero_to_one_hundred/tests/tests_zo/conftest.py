@@ -92,8 +92,6 @@ def env_unsupported_map_yaml(get_unsupported_map_yaml_path):
 
 @pytest.fixture
 def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
-    env_map_yaml
-    get_map_yaml_path
     return ZTOHConfigMap(persist_fs)
 
 
@@ -101,8 +99,6 @@ def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
 def get_config_map_sorted_0(
     env_map_sorted_0_yaml, get_map_sorted_0_yaml_path, persist_fs
 ):
-    env_map_sorted_0_yaml
-    get_map_sorted_0_yaml_path
     return ZTOHConfigMap(persist_fs)
 
 
@@ -110,8 +106,6 @@ def get_config_map_sorted_0(
 def get_config_map_sorted_1(
     env_map_sorted_1_yaml, get_map_sorted_1_yaml_path, persist_fs
 ):
-    env_map_sorted_1_yaml
-    get_map_sorted_1_yaml_path
     return ZTOHConfigMap(persist_fs)
 
 
@@ -119,8 +113,6 @@ def get_config_map_sorted_1(
 def get_unsupported_config_map(
     env_unsupported_map_yaml, get_unsupported_map_yaml_path, persist_fs
 ):
-    env_unsupported_map_yaml
-    get_unsupported_map_yaml_path
     return ZTOHConfigMap(persist_fs)
 
 
@@ -131,5 +123,4 @@ def get_factory(env_map_yaml, persist_fs, process_fs):
 
 @pytest.fixture
 def get_factory_provider(env_map_yaml, persist_fs, process_fs):
-    env_map_yaml
     return ZTOHFactoryProvider(persist_fs, process_fs)
