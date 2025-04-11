@@ -28,12 +28,11 @@ function zo {
     ./main.py zo help
     content=$(
         cat <<'EOF'
-https://www.cloudskillsboost.google/0
 https://www.cloudskillsboost.google/paths/16
 https://www.cloudskillsboost.google/games/4424/labs/28651
 https://www.cloudskillsboost.google/course_templates/3
-https://www.cloudskillsboost.google/games/4422
 https://storage.googleapis.com/cloud-training/cls-html5-courses/T-BQRS-I/M1/index.html
+https://www.youtube.com/watch?v=W_AdDqdwW90
 EOF
     )
     while IFS= read -r section || [[ -n "$section" ]]; do

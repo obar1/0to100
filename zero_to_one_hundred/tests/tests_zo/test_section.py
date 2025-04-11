@@ -117,7 +117,7 @@ def test_is_datacamp_course(get_config_map, persist_fs, process_fs):
 def test_gcp_get_format_as_md(get_config_map, persist_fs, process_fs):
     http_url = "https://www.cloudskillsboost.google/games/4423"
     actual = Section.build_from_dir(persist_fs, process_fs, get_config_map, http_url)
-    assert actual.get_matching_icon_as_md == """"""
+    assert actual.get_matching_icon_as_md == ":cloud:"
 
 
 def test_as_mark_down(get_config_map, persist_fs, process_fs, http_url_1):
