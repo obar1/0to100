@@ -184,22 +184,3 @@ and you have a `toc.md` for free to use as your index (bookmark it)
 
 > as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call that **learning by doing** 🖖🏻
 
-
-
-### tools
-> when you start to have a a few 0to100 based folders
-
-
-[gist to sync multiple 0to100 based repos](https://gist.github.com/obar1/771b1992368262737d9f25fcf17ce1c1)
-[gist venv auto activate for 0to100 folders](https://gist.github.com/obar1/212e4c778548f8bcdc6e9c1b05856f3f)
-
-## online example 
-
-- zo
-
-https://github.com/obar1/zero2hero
-
-- sb
-> mostly private contents,   `sorry but I don't want to get suited :P`
-
-https://github.com/obar1/0to100.oreilly

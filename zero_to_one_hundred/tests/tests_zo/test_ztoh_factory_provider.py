@@ -16,6 +16,6 @@ def test_pass(get_config_map, persist_fs, process_fs):
     assert isinstance(actual.provide(), ZTOHFactory)
 
 
-def test_provide__unsupported(env_unsupported_map_yaml, persist_fs, process_fs):
+def test_provide_unsupported(env_unsupported_map_yaml, persist_fs, process_fs):
     with pytest.raises(NotImplementedError):
         ZTOHFactoryProvider(persist_fs, process_fs).provide()
