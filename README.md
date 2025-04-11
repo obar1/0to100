@@ -19,7 +19,7 @@ just open this repo in your GitHub Codespace and run the demo as:
 bash demo.sh zo
 ``` 
 
-![](2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
+![](assets\2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
 
 [here](./toc_zo.md)
 
@@ -27,7 +27,7 @@ bash demo.sh zo
 bash demo.sh sb
 ```
 
-![](z05502bb-4b90-422f-9624-568d9f02cd01.png)
+![](assets\z05502bb-4b90-422f-9624-568d9f02cd01.png)
 
 [here](./toc_sb.md)
 
@@ -152,7 +152,7 @@ export MAP_YAML_PATH=map.yaml
 # tip:  add it to .bash_rc etc or some shell script
 ```
 
-![](a4b09e11-9f1f-4098-a4e2-77d6df85226a.png)
+![](assets\a4b09e11-9f1f-4098-a4e2-77d6df85226a.png)
 
 ```bash
 vim map.yaml
@@ -161,18 +161,18 @@ vim map.yaml
 
 > add your membership details :) and it will work
 
-![](c81254c5-058e-419a-b9c3-e967be2e5302.png)
+![](assets\c81254c5-058e-419a-b9c3-e967be2e5302.png)
 
 > ex with mine :)
 
-![](f5ac382b-dafe-4ba7-ba82-a3cabc01553e.png)
+![](assets\f5ac382b-dafe-4ba7-ba82-a3cabc01553e.png)
 
 ```bash
 chmod +x *.py
 ./main.py sb help
 ```
 
-![](63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
+![](assets\63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
 
 
 - create new meta-book
