@@ -110,16 +110,12 @@ class Section(MarkdownRenderer):
 
     @classmethod
     def from_http_url_to_dir(cls, http_url):
-        return (
-            http_url.replace("/", "§")
-            .replace("<", "§")
-            .replace(">", "§")
-            .replace(":", "§")
-            .replace("?", "§")
-            .replace("*", "§")
-            .replace("\\", "§")
-            .replace("#", "§")
+        chars_to_replace = r"/<>?:*\#="
+        replacement_char = "§"
+        translation_table = str.maketrans(
+            chars_to_replace, replacement_char * len(chars_to_replace)
         )
+        return http_url.translate(translation_table)
 
     def write(self, txt: str):
         return self.persist_fs.make_dirs(txt)
