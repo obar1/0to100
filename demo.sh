@@ -67,12 +67,12 @@ function sb {
 
     ./main.py sb snatch_book https://learning.oreilly.com/course/clean-code-fundamentals/9780134661742
     echo 'add any metadata you like'
-    echo '{"title": "Clean Code Fundamentals"}' >"$REPO_PATH"/9780134661742/9780134661742.json
+    echo '{"title": "Clean Code Fundamentals","page_curr": "99", "page_tot": "100"}' >"$REPO_PATH"/9780134661742/9780134661742.json
     ./main.py sb refresh_toc
 
     ./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
     echo 'pretend book was read fully and get % calc for free :P'
-    echo '{"page_curr": "10", "page_tot": "100", "url":"https://www.oreilly.com/library/view/rewire-your-brain/9781119895947"}' >"$REPO_PATH"/9781119895947/9781119895947.json
+    echo '{"page_curr": "100", "page_tot": "100", "url":"https://www.oreilly.com/library/view/rewire-your-brain/9781119895947"}' >"$REPO_PATH"/9781119895947/9781119895947.json
     ./main.py sb refresh_toc
 
 }

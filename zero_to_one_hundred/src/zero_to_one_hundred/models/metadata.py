@@ -18,8 +18,8 @@ from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import 
 class Metadata(MarkdownRenderer):
     ONE_HUN_PER_TXT = "100.0%"
 
-    DONE_TXT_AS_MD = '<span style="color:green">**DONE**</span>'
-    WIP_TXT_AS_MD = '<span style="color:yellow">**WIP**</span>'
+    DONE_TXT_AS_MD = '<span style="color:green">**done**</span>'
+    WIP_TXT_AS_MD = '<span style="color:orange">*wip*</span>'
 
     def __init__(
         self,
@@ -34,7 +34,7 @@ class Metadata(MarkdownRenderer):
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.isbn = get_isbn(http_url)
-        self.contents_path = persist_fs.abs_path(f"{self.isbn}")
+        self.contents_path = f"{self.config_map.get_toc_path}/{self.isbn}"
         self.path_json = f"{self.contents_path}/{self.isbn}.json"
         self.metadata: dict = self.read()
 
