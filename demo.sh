@@ -1,6 +1,8 @@
 #!/bin/bash
 # simple demo - it use param from cmd line to run the actual section
 
+REPO_PATH="./0to100"
+
 function setup {
     # set -x
     export MAP_YAML_PATH=map.yaml
@@ -15,10 +17,6 @@ function setup_zo {
 
 function setup_sb {
     cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map.yaml
-
-    # safari books from lorenzodifuccia
-    git clone https://github.com/lorenzodifuccia/safaribooks.git
-    pip install --quiet -r safaribooks/requirements.txt
 }
 
 function zo {
@@ -39,25 +37,23 @@ EOF
         ./main.py zo create_section "$section"
     done <<<"$content"
 
-    echo "# a_custom_header 0" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "# A CUSTOM HEADER 0" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
 
     ./main.py zo done_section "https://www.cloudskillsboost.google/0"
 
-    touch 0to100/https§§§www.cloudskillsboost.google§0/image.png
-    touch 0to100/https§§§www.cloudskillsboost.google§0/image-1.png
-    touch 0to100/https§§§www.cloudskillsboost.google§0/image-2.png
-    touch 0to100/https§§§www.cloudskillsboost.google§0/image-3.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image-1.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image-2.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image-3.png
 
-    echo "some text" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
-    echo "![alt text](image.png)">>0to100/https§§§www.cloudskillsboost.google§0/readme.md
-    echo "![some text](image-1.png)" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
-    echo "![](image-2.png)" >>0to100/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "some text" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "![alt text](image.png)">>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "![some text](image-1.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "![](image-2.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
 
     ./main.py zo refresh_section_contents
     # image-3.png got deleted 
 
-    ls -1R 0to100
-    cp toc.md toc_zo.md
 }
 
 function sb {
@@ -68,16 +64,13 @@ function sb {
 
     ./main.py sb snatch_book https://learning.oreilly.com/course/clean-code-fundamentals/9780134661742
     echo 'add any metadata you like'
-    echo '{"title": "Clean Code Fundamentals"}' >9780134661742/9780134661742.json
+    echo '{"title": "Clean Code Fundamentals"}' >"$REPO_PATH"/9780134661742/9780134661742.json
     ./main.py sb refresh_toc
 
     ./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
     echo 'pretend book was read fully and get % calc for free :P'
-    echo '{"page_curr": "100", "page_tot": "100", "url":"https://www.oreilly.com/library/view/rewire-your-brain/9781119895947"}' >9781119895947/9781119895947.json
+    echo '{"page_curr": "10", "page_tot": "100", "url":"https://www.oreilly.com/library/view/rewire-your-brain/9781119895947"}' >"$REPO_PATH"/9781119895947/9781119895947.json
     ./main.py sb refresh_toc
-
-    ls -1R 978*
-    cp toc.md toc_sb.md
 
 }
 

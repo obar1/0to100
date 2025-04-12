@@ -26,7 +26,7 @@ class Toc(MarkdownRenderer):
         meta_books: List[MetaBook],
     ):
         self.config_map = config_map
-        self.readme_md = "toc.md"
+        self.readme_md = self.config_map.get_toc_fn_md
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.meta_books = meta_books

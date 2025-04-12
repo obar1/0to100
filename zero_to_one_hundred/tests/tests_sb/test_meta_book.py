@@ -11,8 +11,6 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
     )
     assert str(actual.isbn).endswith("9780135956977")
     assert str(actual.contents_path).endswith("9780135956977")
-    assert str(actual.path_pdf).endswith("9780135956977/9780135956977.pdf")
-    assert str(actual.path_epub).endswith("9780135956977/9780135956977.epub")
     assert str(actual.path_img).endswith("9780135956977/9780135956977.png")
 
 

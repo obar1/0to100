@@ -19,6 +19,8 @@ from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_process_fs import
     SBProcessFS,
 )
 
+get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
+
 
 @pytest.fixture
 def persist_fs():
@@ -53,9 +55,6 @@ def pages_tot():
 @pytest.fixture
 def page_curr():
     yield 99
-
-
-get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 
 
 @pytest.fixture
