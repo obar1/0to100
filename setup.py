@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="0to100",
+    name="zero_to_one_hundred",
     author="obar1",
     packages=find_packages(),
     author_email="obar1+gh@pm.me",

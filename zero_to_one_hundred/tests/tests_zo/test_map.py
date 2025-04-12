@@ -26,7 +26,7 @@ def test_as_mark_down(
     actual = Map(get_config_map, persist_fs, sections=sections)
     current = actual.as_mark_down()
     expected = """
-# map toc.md, 2
+# map toc_zo.md, 2
 
 ## legend:
 
@@ -58,7 +58,7 @@ def test_as_mark_down_0(
     actual = Map(get_config_map_sorted_0, persist_fs, sections=sections)
     current = actual.as_mark_down()
     expected = """
-# map toc.md, 3
+# map toc_zo.md, 3
 ## legend:
 
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
@@ -86,7 +86,7 @@ def test_as_mark_down_1(
     actual = Map(get_config_map_sorted_1, persist_fs, sections=sections)
     current = actual.as_mark_down()
     expected = """
-# map toc.md, 3
+# map toc_zo.md, 3
 ## legend:
 
 1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`

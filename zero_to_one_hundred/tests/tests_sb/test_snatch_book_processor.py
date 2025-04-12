@@ -14,7 +14,4 @@ def test_process(get_factory, http_oreilly_1):
         [None, "snatch_book", http_oreilly_1]
     )
     for p in actual:
-        try:
-            p.process()
-        except CalledProcessError:
-            pass
+        p.process()

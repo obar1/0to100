@@ -38,7 +38,7 @@ class CreateSectionProcessor(AProcessor):
         - add def readme_md in new_section
         - add new sections to map at the end
         """
-        section: Section = Section(
+        section = Section(
             self.config_map,
             self.persist_fs,
             self.process_fs,
@@ -47,7 +47,7 @@ class CreateSectionProcessor(AProcessor):
         )
         txt = self.config_map.get_repo_path + "/" + section.dir_name
         section.write(txt)
-        readme_md: ReadMeMD = ReadMeMD(
+        readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
             self.process_fs,

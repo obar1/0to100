@@ -21,14 +21,14 @@ class RefreshTocProcessor(AProcessor):
 
     def process(self):
         """Scan the repo and for each meta_book add it to  the map, save the toc file."""
-        dirs = self.persist_fs.list_dirs(self.config_map.get_books_path)
+        dirs = self.persist_fs.list_dirs(self.config_map.get_toc_path)
         valid_ebook_folders = [
             ebook_folder
             for ebook_folder in dirs
             if MetaBook.is_valid_ebook_path(ebook_folder)
         ]
-        meta_books: List[MetaBook] = Toc.build_from_dirs(
+        meta_books = Toc.build_from_dirs(
             self.config_map, self.persist_fs, self.process_fs, valid_ebook_folders
         )
-        toc: Toc = Toc(self.config_map, self.persist_fs, self.process_fs, meta_books)
+        toc = Toc(self.config_map, self.persist_fs, self.process_fs, meta_books)
         toc.write()

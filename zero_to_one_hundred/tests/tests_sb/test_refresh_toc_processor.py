@@ -9,8 +9,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_toc_processo
     "zero_to_one_hundred.src.zero_to_one_hundred.factories.sb_factory.SBFactory.get_processor"
 )
 def test_process(get_factory_provider):
-    actual: RefreshTocProcessor = get_factory_provider.get_processor(
-        [None, "refresh_toc"]
-    )
+    actual = get_factory_provider.get_processor([None, "refresh_toc"])
     for p in actual:
         p.process()

@@ -11,7 +11,7 @@ def test_config_map(get_config_map: ZTOHConfigMap):
     actual = get_config_map
     assert actual.get_type == ZTOH_MAP
     assert actual.get_repo_path is not None
-    assert actual.get_repo_map_md == "toc.md"
+    assert actual.get_repo_map_md == "toc_zo.md"
     assert actual.get_legend_type is None
 
 
@@ -25,7 +25,7 @@ def test_config_map_sorted_0(get_config_map_sorted_0: ZTOHConfigMap):
     assert actual.get_type == ZTOH_MAP
     assert actual.get_repo_path is not None
     assert actual.get_repo_sorted == "abc"
-    assert actual.get_repo_map_md == "toc.md"
+    assert actual.get_repo_map_md == "toc_zo.md"
     assert actual.get_legend_type is None
 
 
@@ -34,5 +34,5 @@ def test_config_map_sorted_1(get_config_map_sorted_1: ZTOHConfigMap):
     assert actual.get_type == ZTOH_MAP
     assert actual.get_repo_path is not None
     assert actual.get_repo_sorted == "00:00:00"
-    assert actual.get_repo_map_md == "toc.md"
+    assert actual.get_repo_map_md == "toc_zo.md"
     assert actual.get_legend_type is None

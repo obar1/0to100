@@ -26,7 +26,7 @@ class Toc(MarkdownRenderer):
         meta_books: List[MetaBook],
     ):
         self.config_map = config_map
-        self.readme_md = "toc.md"
+        self.readme_md = self.config_map.get_toc_fn_md
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.meta_books = meta_books
@@ -55,8 +55,8 @@ class Toc(MarkdownRenderer):
             txt = "|".join(
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',
-                    f"![`img`]({meta_book.path_img_as_md})",
-                    f"[`xyz`]({meta_book.contents_path_as_md})",
+                    f"![`img`]({meta_book.path_img})",
+                    f"[`xyz`]({meta_book.contents_path})",
                     f"{meta_book.metadata.as_mark_down()}",
                     f"{meta_book.metadata.status}",
                     f"{meta_book.get_matching_icon_as_md}",
@@ -68,7 +68,7 @@ class Toc(MarkdownRenderer):
         lf_char = "\n"
 
         def get_legend_as_md(self):
-            txt: str = """
+            txt = """
 ## legend:
 """
             txt += lf_char

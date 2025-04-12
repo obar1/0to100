@@ -33,7 +33,7 @@ class RefreshMetadataProcessor(AProcessor):
         self.config_map = config_map
 
     def process(self):
-        metadata: Metadata = Metadata(
+        metadata = Metadata(
             self.config_map,
             self.persist_fs,
             self.process_fs,

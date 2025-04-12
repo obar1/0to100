@@ -9,34 +9,19 @@ SAFARI_BOOKS_MAP = "safari-books-map"
 
 
 class SBConfigMap(AConfigMap):
+    """
+    toc:
+        path: "./0to100"
+        fn_md: "toc_sb.md"
+    """
+
     def __init__(self, persist_fs: SBPersistFS):
         super().__init__(persist_fs)
 
     @property
-    def get_books_path(self):
-        """use relative folder to simplify the usage in browser"""
-        return "."
+    def get_toc_path(self):
+        return self.load["toc"]["path"]
 
     @property
-    def get_download_engine_path(self):
-        return self.load["download_engine_path"]
-
-    @property
-    def get_download_engine_books_path(self):
-        return self.load["download_engine_books_path"]
-
-    @property
-    def get_oreilly_username(self):
-        return self.load["oreilly_secrets"]["username"]
-
-    @property
-    def get_oreilly_userpassword(self):
-        return self.load["oreilly_secrets"]["password"]
-
-    @property
-    def get_split_pdf_pages(self):
-        return int(self.load["split_pdf_pages"])
-
-    @property
-    def get_download_books(self):
-        return bool(self.load["download_books"])
+    def get_toc_fn_md(self):
+        return self.load["toc"]["fn_md"]

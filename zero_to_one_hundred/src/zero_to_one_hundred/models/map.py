@@ -32,7 +32,7 @@ class Map(MarkdownRenderer):
         return f"Map {str(self.sections)}"
 
     def get_sections(self):
-        res: List[Section] = self.sections
+        res = self.sections
         if self.config_map.get_repo_sorted == "abc":
             logging.info("*** abc")
             res = sorted(self.sections, key=lambda s: s.dir_name)
@@ -45,7 +45,7 @@ class Map(MarkdownRenderer):
         lf_char = "\n"
 
         def get_legend_as_md(self):
-            txt: str = """## legend:
+            txt = """## legend:
             """
             txt += lf_char
             txt += self.config_map.get_legend_icons_as_md

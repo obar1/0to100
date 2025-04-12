@@ -23,7 +23,6 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_is
 def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
     actual = Metadata.get_page_perc({"page_curr": 99, "page_tot": 999})
     assert actual == "9.9%"
-
     actual = Metadata.get_page_perc({"page_curr": 0, "page_tot": 999})
     assert actual == "0.0%"
     actual = Metadata.get_page_perc({"page_curr": 1, "page_tot": 0})

@@ -35,7 +35,7 @@ class DoneSectionProcessor(AProcessor):
         """
         - done existing new_section
         """
-        section: Section = Section(
+        section = Section(
             self.config_map,
             self.persist_fs,
             self.process_fs,

@@ -15,8 +15,6 @@ venv/
 .idea/**
 
 # demo
-0to100**/
-978*/
 safaribooks/
 
 # pip install
@@ -25,9 +23,8 @@ build
 *.egg-info
 pip-wheel-metadata/
 
-# logs
-logs/
-
 # daily use
 map.yaml
+map_*.yaml
+
 toc.md 

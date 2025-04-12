@@ -25,7 +25,9 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
         process_fs,
         [mb],
     )
-    assert str(actual.readme_md).endswith("toc.md")
+    assert str(actual.readme_md).endswith("md")
+    assert "toc" in str(actual.readme_md)
+
     assert len(actual.meta_books) == 1
 
 
@@ -55,17 +57,19 @@ def test_as_mark_down(
     )
     current = actual.as_mark_down()
     expected = """
-# TOC
-## `0` metabook
-### 2099/01/01 - 00:00:00
-## legend
-legendicons
-Book :book:
-Event :floppy_disk:
-Course :whale:
 
-|  ISBN     |     img  |       `meta-contents`     |  `json-contents`      | `status` | `icons` |
-|---        |---    |---    |---    |---    |---    |
+ # TOC
+ ## `0` metabook
+ ### 20990101000000
+
+ ## legend:
+
+ **legend_icons**
+ `Book` :book:
+
+ |  ISBN     |   img |  `meta-contents`      |  `json-contents`      | `status` | `icons`
+ |---        |---    |---    |---            |---    |---    |
+
 
   """
     assert str_relaxed("".join(current)) == str_relaxed("".join(expected))
