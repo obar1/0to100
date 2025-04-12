@@ -31,13 +31,8 @@ class MetaBook:
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.isbn = MetaBook.get_isbn(http_url)
-        relative_path = f"{self.config_map.get_toc_path}/{self.isbn}"
-        self.contents_path = persist_fs.abs_path(relative_path)
+        self.contents_path = f"{self.config_map.get_toc_path}/{self.isbn}"
         self.path_img = f"{self.contents_path}/{self.isbn}.png"
-        self.contents_path_as_md = self.path_as_md(f"./{relative_path}/")
-        self.path_img_as_md = self.path_as_md(
-            f"./{self.contents_path_as_md}/{self.isbn}/{self.isbn}.png"
-        )
         self.metadata = Metadata(
             self.config_map,
             self.persist_fs,
@@ -81,18 +76,18 @@ class MetaBook:
     def write(self):
         try:
             self.persist_fs.make_dirs(self.contents_path)
-
             self.write_img()
-
             self.write_metadata()
-
         except Exception as e:
             Validator.print_e(e)
 
     @classmethod
-    def get_isbn(cls, http_url):
-        http_url = http_url.strip("/")
-        return http_url[http_url.rfind("/") + 1 :]
+    def get_isbn(cls, http_url) -> str | None:
+        isbn10_pattern = (
+            r"(?<![0-9])[0-9]{1,5}[-\s]?[0-9]{1,7}[-\s]?[0-9]{1,6}[-\s]?[0-9X](?![0-9])"
+        )
+        isbns = re.findall(isbn10_pattern, http_url)
+        return isbns[0] if len(isbns) > 0 else None
 
     def path_as_md(self, a_path):
         """

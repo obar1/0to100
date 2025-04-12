@@ -73,7 +73,7 @@ class APersistFS(ABC):
         return os.rmdir(path)
 
     @classmethod
-    def abs_path(cls, path):
+    def abs_path(cls, path) -> str:
         return os.path.abspath(path)
 
     @classmethod

@@ -3,15 +3,20 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.meta_book import MetaBoo
 
 # pylint: disable=W0613
 def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
+    """
+    test with
+    "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
+
+    """
     actual = MetaBook(
         get_config_map,
         persist_fs,
         process_fs,
         http_oreilly_1,
     )
-    assert str(actual.isbn).endswith("9780135956977")
-    assert str(actual.contents_path).endswith("9780135956977")
-    assert str(actual.path_img).endswith("9780135956977/9780135956977.png")
+    assert actual.isbn == "9780135956977"
+    assert actual.contents_path == "./0to100/9780135956977"
+    assert actual.path_img == "./0to100/9780135956977/9780135956977.png"
 
 
 def test_build_from_dir(get_config_map, persist_fs, process_fs):

@@ -55,8 +55,8 @@ class Toc(MarkdownRenderer):
             txt = "|".join(
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',
-                    f"![`img`]({meta_book.path_img_as_md})",
-                    f"[`xyz`]({meta_book.contents_path_as_md})",
+                    f"![`img`]({meta_book.path_img})",
+                    f"[`xyz`]({meta_book.contents_path})",
                     f"{meta_book.metadata.as_mark_down()}",
                     f"{meta_book.metadata.status}",
                     f"{meta_book.get_matching_icon_as_md}",
