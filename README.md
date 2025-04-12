@@ -96,7 +96,7 @@ I --> Complete
 ```
 
 
-## oto100 safari books :construction:
+## oto100 safari books
 
 0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
 
@@ -129,8 +129,8 @@ chmod +x main.py
 
 ```sh
 . venv/bin/activate
-MAP_YAML_PATH=map_zo.yaml && ./main.py zo help
+export MAP_YAML_PATH=map_zo.yaml && ./main.py zo help
 # or depending what you want to do
-MAP_YAML_PATH=map_sb.yaml && ./main.py sb help
+export MAP_YAML_PATH=map_sb.yaml && ./main.py sb help
 ```
 > check more usage samples in [demo](./demo.sh)
