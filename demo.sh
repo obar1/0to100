@@ -12,10 +12,12 @@ function setup {
     chmod +x main.py
 }
 function setup_zo {
+    rm -rf $REPO_PATH
     cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map.yaml
 }
 
 function setup_sb {
+    rm -rf $REPO_PATH
     cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map.yaml
 }
 
@@ -26,6 +28,7 @@ function zo {
     ./main.py zo help
     content=$(
         cat <<'EOF'
+https://www.cloudskillsboost.google/123
 https://www.cloudskillsboost.google/paths/16
 https://www.cloudskillsboost.google/games/4424/labs/28651
 https://www.cloudskillsboost.google/course_templates/3
@@ -37,19 +40,19 @@ EOF
         ./main.py zo create_section "$section"
     done <<<"$content"
 
-    echo "# A CUSTOM HEADER 0" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "# a_custom_header 0" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
 
-    ./main.py zo done_section "https://www.cloudskillsboost.google/0"
+    ./main.py zo done_section "https://www.cloudskillsboost.google/123"
 
-    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image.png
-    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image-1.png
-    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image-2.png
-    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§0/image-3.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-1.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-2.png
+    touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-3.png
 
-    echo "some text" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
-    echo "![alt text](image.png)">>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
-    echo "![some text](image-1.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
-    echo "![](image-2.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§0/readme.md
+    echo "some text" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+    echo "![alt text](image.png)">>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+    echo "![some text](image-1.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+    echo "![](image-2.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
 
     ./main.py zo refresh_section_contents
     # image-3.png got deleted 
