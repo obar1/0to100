@@ -7,7 +7,7 @@ function setup {
     # set -x
     export MAP_YAML_PATH=map.yaml
 
-    pip install .
+    make setup
 
     chmod +x main.py
 }

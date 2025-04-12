@@ -38,22 +38,21 @@ bash demo.sh sb
 
 commands:
 
-```
-create_section = create a new section
+```sh
+# create_section = create a new section
 section=https://www.cloudskillsboost.google/paths/16
 ./main.py zo create_section "$section"
 
-done_section = tag a section as done
+# done_section = tag a section as done, so in the map it will visible
 section=https://www.cloudskillsboost.google/paths/16
 ./main.py zo done_section "$section"
 
-refresh_map = refresh the section map
+# refresh_map = refresh the section map
 ./main.py zo refresh_map
 
-refresh_section_contents = refresh links to sections in the readme.md(s) and delete orphaned image(s)
+# refresh_section_contents = refresh links to sections in the readme.md(s) and delete orphaned image(s)
 ./main.py zo refresh_section_contents
 ```
-
 
 in `create_section` you can override the default toc title adding another `#` hint below the one header created automatically in the section folder
 ex
@@ -74,7 +73,7 @@ https://www.cloudskillsboost.google/doc
 ```
 expand the last link to point to the section for the doc - handy as anchor technique 
 
-and it will delete img in the folder that have no reference in md readme anymore
+in `refresh_section_contents` img in the folder that have no reference in md readme anymore will be deleted
 
 ```mermaid
 graph TD
@@ -96,28 +95,6 @@ I --> Complete
    
 ```
 
-### setup and usage:
-
-```bash
-# env
-
-make setup
-source venv/bin/activate
-pre-commit install # optional
-
-# each time new code is ready for PRs :P
-make refactor
-
-# copy sample yaml conf
-cp ./zero_to_one_hundred/tests/resources/map.yaml .
-cat map.yaml
-export MAP_YAML_PATH=map.yaml
-# tip:  add it to .bash_rc etc or some shell script
-
-chmod +x *.py
-# run main
-./main.py zo help
-```
 
 ## oto100 safari books :construction:
 
@@ -127,62 +104,33 @@ same as above but it can use some external lib to grab epub from oreilly
 
 current commands:
 
-```
-snatch_book = snatch a book from safari
+```sh
+# snatch_book = snatch a book from safari
 ./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
 
-refresh_toc = refresh the toc with al the books info
+# refresh_toc = refresh the toc with al the books info
 ./main.py sb refresh_toc
 ```
 
-### setup and usage:
 
-> use what you prefer to  grab epub/pdf from O'Reilly 
-check this 
-https://github.com/lorenzodifuccia/safaribooks 
-or just save as pdf section  by section with this 
-https://chromewebstore.google.com/detail/reader-view/ecabifbgmdmgdllomnfinbmaellmclnh
+### simple local setup:
 
+```sh
+make setup
 
-```bash
-# copy sample yaml conf
-cp ./zero_to_one_hundred/tests_sb/resources/map.yaml .
-cat map.yaml
-export MAP_YAML_PATH=map.yaml
-# tip:  add it to .bash_rc etc or some shell script
+cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map_zo.yaml
+cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map_sb.yaml
+# edit them
+code .
+chmod +x main.py
 ```
 
-![](assets\a4b09e11-9f1f-4098-a4e2-77d6df85226a.png)
+### daily usage
 
-```bash
-vim map.yaml
-# add your membership details :)
+```sh
+. venv/bin/activate
+MAP_YAML_PATH=map_zo.yaml && ./main.py zo help
+# or depending what you want to do
+MAP_YAML_PATH=map_sb.yaml && ./main.py sb help
 ```
-
-> add your membership details :) and it will work
-
-![](assets\c81254c5-058e-419a-b9c3-e967be2e5302.png)
-
-> ex with mine :)
-
-![](assets\f5ac382b-dafe-4ba7-ba82-a3cabc01553e.png)
-
-```bash
-chmod +x *.py
-./main.py sb help
-```
-
-![](assets\63fd79b5-ad41-45fd-a2dc-367f317bcc0c.png)
-
-
-- create new meta-book
-
-```bash
-url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
-./main.py sb snatch_book $url
-```
-
-and you have a `toc` for free to use as your index (bookmark it)
-
-> as I use myself Lorenzo's great utility `safaribooks` I added some code to convert the downloaded epub contents into a related pdf and split that in chunks so I can easily use it on ipad or better remarkable for studying and later sync back in a repo for hands-on code... they call that **learning by doing** 🖖🏻
-
+> check more usage samples in [demo](./demo.sh)
