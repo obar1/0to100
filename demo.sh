@@ -6,18 +6,14 @@ REPO_PATH="./0to100"
 function setup {
     # set -x
     export MAP_YAML_PATH=map.yaml
-
     make setup
-
     chmod +x main.py
 }
 function setup_zo {
-    rm -rf $REPO_PATH
     cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map.yaml
 }
 
 function setup_sb {
-    rm -rf $REPO_PATH
     cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map.yaml
 }
 
