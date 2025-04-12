@@ -81,7 +81,7 @@ class Section(MarkdownRenderer):
                 return line
             return None
 
-        readme_md: ReadMeMD = ReadMeMD(
+        readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
             self.process_fs,
@@ -181,7 +181,7 @@ class Section(MarkdownRenderer):
         return res
 
     def look_for_materialized_https(self):
-        readme_md: ReadMeMD = ReadMeMD(
+        readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
             self.process_fs,
@@ -207,7 +207,7 @@ class Section(MarkdownRenderer):
         return orphan_images
 
     def delete_orphan_images(self):
-        readme_md: ReadMeMD = ReadMeMD(
+        readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
             self.process_fs,

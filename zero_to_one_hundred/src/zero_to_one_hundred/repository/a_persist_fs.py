@@ -78,9 +78,9 @@ class APersistFS(ABC):
 
     @classmethod
     def get_pkg_info(cls):
-        res: str = "--"
+        res = "--"
         try:
-            res = " ".join(cls.read_file("0to100.egg-info/PKG-INFO")[:4])
+            res = " ".join(cls.read_file("zero_to_one_hundred.egg-info/PKG-INFO")[:4])
         except:
             pass  # we dont care
         return res

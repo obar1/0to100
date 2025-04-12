@@ -32,7 +32,7 @@ class RefreshSectionContentsProcessor(AProcessor):
 
     def process(self):
         """Scan sections an update links."""
-        sections: List[Section] = Map.build_from_dirs(
+        sections = Map.build_from_dirs(
             self.persist_fs,
             self.process_fs,
             self.config_map,

@@ -68,7 +68,7 @@ class Toc(MarkdownRenderer):
         lf_char = "\n"
 
         def get_legend_as_md(self):
-            txt: str = """
+            txt = """
 ## legend:
 """
             txt += lf_char

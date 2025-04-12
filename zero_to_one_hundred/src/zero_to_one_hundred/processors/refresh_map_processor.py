@@ -30,7 +30,7 @@ class RefreshMapProcessor(AProcessor):
 
     def process(self):
         """Scan the repo and for each new_section add it to  the map,  save the map file."""
-        map: Map = Map(
+        map = Map(
             self.config_map,
             self.persist_fs,
             Map.build_from_dirs(
