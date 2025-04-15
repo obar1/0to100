@@ -19,7 +19,7 @@ just open this repo in your GitHub Codespace and run the demo as:
 bash demo.sh zo
 ``` 
 
-![](assets\2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
+![](assets/2dc4491c-fa27-4c5e-bd0c-71951b3ef0e5.png)
 
 [here](./toc_zo.md)
 
@@ -27,7 +27,7 @@ bash demo.sh zo
 bash demo.sh sb
 ```
 
-![](assets\z05502bb-4b90-422f-9624-568d9f02cd01.png)
+![](assets/z05502bb-4b90-422f-9624-568d9f02cd01.png)
 
 [here](./toc_sb.md)
 
