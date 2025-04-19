@@ -25,8 +25,7 @@ help:
 	@echo "  make refactor     - Run all checks"
 setup:
 	$(PYTHON) -m venv $(VENV)
-	$(BIN)/pip install --upgrade pip
-	$(BIN)/pip install -r requirements.txt
+	$(BIN)/pip install .
 clean:
 	rm -rf $(VENV)
 	rm -rf .pytest_cache

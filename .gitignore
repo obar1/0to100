@@ -23,8 +23,3 @@ build
 *.egg-info
 pip-wheel-metadata/
 
-# daily use
-map.yaml
-map_*.yaml
-
-toc.md 
