@@ -21,7 +21,8 @@ class AFactory:
     class SUPPORTED_PROCESSOR(Enum):
         zo = 1
         sb = 2
-        help = 3
+        yt = 3  # Updated 'yt' to 3
+        help = 4  # Updated 'help' to 4
 
     extended_help = """
     zo = zero to 100
@@ -30,6 +31,9 @@ class AFactory:
     sb = sb to 100
     ./main.py sb help
     
+    yt = yt to 100
+    ./main.py yt help
+
     help = this :)
     ./main.py help
     """

@@ -33,6 +33,7 @@ pyfakefs==5.8.0
 Pygments==2.19.1
 pylint==3.3.6
 pytest==8.3.5
+pytube==15.0.0
 PyYAML==6.0.2
 stack-data==0.6.3
 tokenize_rt==6.1.0

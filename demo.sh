@@ -5,9 +5,11 @@ REPO_PATH="./0to100"
 
 function setup {
     # set -x
-    export MAP_YAML_PATH=map.yaml
-    make setup
-    chmod +x main.py
+    if [ ! -d "venv" ]; then
+        export MAP_YAML_PATH=map.yaml
+        make setup
+        chmod +x main.py
+    fi
 }
 function setup_zo {
     cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map.yaml
@@ -15,6 +17,10 @@ function setup_zo {
 
 function setup_sb {
     cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map.yaml
+}
+
+function setup_yt {
+    cp ./zero_to_one_hundred/tests/tests_yt/resources/map.yaml map.yaml
 }
 
 function zo {
@@ -73,10 +79,28 @@ function sb {
 
 }
 
+function yt {
+    # 0to100 safari books
+    setup_sb
+
+    ./main.py yt help
+
+    content=$(
+        cat <<'EOF'
+https://www.youtube.com/watch?v=aTCeAtzzekw
+https://www.youtube.com/watch?v=-Y44YzIODw0
+EOF
+    )
+    while IFS= read -r section || [[ -n "$section" ]]; do
+        ./main.py yt snatch_yt  "$section"
+    done <<<"$content"
+}
+
+
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-    echo "No arguments were passed: use sb or zo"
+    echo "No arguments were passed: use sb zo or yt"
 else
     setup
     $1
