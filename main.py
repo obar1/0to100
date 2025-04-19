@@ -6,12 +6,13 @@ import sys
 from typing import List
 
 from zero_to_one_hundred.src.zero_to_one_hundred.exceptions.errors import UnsupportedOptionError
+from zero_to_one_hundred.src.zero_to_one_hundred.factories.a_factory_provider import AFactoryProvider
 from zero_to_one_hundred.src.zero_to_one_hundred.factories.sb_factory_provider import SBFactoryProvider
 from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory_provider import ZTOHFactoryProvider
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
-def run_core(argv: List[str], factory_provider):
+def run_core(argv: List[str], factory_provider: AFactoryProvider):
     """given params and factory provider it runs the core logic
 
     Args:
