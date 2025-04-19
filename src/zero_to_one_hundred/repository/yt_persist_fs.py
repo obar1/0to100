@@ -1,6 +1,7 @@
 class YTPersistFS:
     def __init__(self):
         # ...existing initialization logic...
+        pass
 
     def save(self, data):
         # Logic to persist data for YT

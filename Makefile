@@ -3,8 +3,8 @@
 PYTHON := python3
 VENV := venv
 BIN := $(VENV)/bin
-SRC_DIR := zero_to_one_hundred
-TEST_DIR := zero_to_one_hundred/tests
+SRC_DIR := src
+TEST_DIR := tests
 help:
 	@echo "\033[0;36m"
 	@echo '  _____                     _          _  ___   ___  '

@@ -10,6 +10,6 @@ jobs:
       run: make setup
     - name: make refactor
       run: make refactor
-    - name: List files in the repository
-      run: |
-        ls ${{ github.workspace }}
+    - name: demo
+      if: github.ref == 'refs/heads/main'
+      run: bash demo.sh zo
