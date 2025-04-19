@@ -1,3 +1,5 @@
+# pylint: disable= R0904,R0917
+
 from zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )

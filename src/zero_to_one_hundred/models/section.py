@@ -1,4 +1,4 @@
-# pylint: disable= R0904
+# pylint: disable= R0904,R0917
 import logging
 import os
 import re
@@ -218,7 +218,7 @@ class Section(MarkdownRenderer):
         if len(get_png_files) > 0:
             png_files_to_delete = self.look_for_orphan_images(lines, get_png_files)
             for f in png_files_to_delete:
-                logging.warn(f"delete_orphan_images {f}")
+                logging.warning(f"delete_orphan_images {f}")
                 os.remove(readme_md_dir + "/" + f)
 
     @property

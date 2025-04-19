@@ -2,12 +2,12 @@ import os
 
 from pyfakefs.fake_filesystem_unittest import Patcher
 
+from tests.conftest import str_relaxed
 from zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
 from zero_to_one_hundred.models.map import Map
 from zero_to_one_hundred.models.section import Section
-from zero_to_one_hundred.tests.conftest import str_relaxed
 
 
 # pylint: disable=W0102

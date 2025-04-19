@@ -1,3 +1,5 @@
+# pylint: disable= R0904,R0917
+
 import json
 
 from zero_to_one_hundred.configs.sb_config_map import (
