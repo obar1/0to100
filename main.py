@@ -11,7 +11,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory_provider
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
-def run_core(argv: List[str], factory_provider: AFactoryProvider):
+def run_core(argv: List[str], factory_provider):
     """given params and factory provider it runs the core logic
 
     Args:
