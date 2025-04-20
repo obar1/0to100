@@ -47,6 +47,3 @@ class ReadMeMD(MarkdownRenderer):
         data = self.persist_fs.read_file(self.readme_md)
         lines = "FIXME:" if data is None else data
         return lines
-
-    def get_latest_ts(self):
-        pass

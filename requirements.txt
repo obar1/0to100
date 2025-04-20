@@ -42,3 +42,4 @@ types-PyYAML==6.0.12.20250402
 typing_extensions==4.13.2
 virtualenv==20.30.0
 wcwidth==0.2.13
+yt-dlp==2025.3.31
