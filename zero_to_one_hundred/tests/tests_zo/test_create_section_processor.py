@@ -14,3 +14,4 @@ def test_process(get_config_map, get_factory, http_url_1):
     )
     for p in actual:
         p.process()
+        p.assert_called_once()

@@ -14,3 +14,4 @@ def test_process(get_factory):
     )
     for p in actual:
         p.process()
+        p.assert_called_once()
