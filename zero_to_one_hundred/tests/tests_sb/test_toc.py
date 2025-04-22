@@ -5,24 +5,21 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.toc import Toc
 from zero_to_one_hundred.tests.conftest import str_relaxed
 
 
-def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
+def test_init(get_config_map, persist_fs, http_oreilly_1):
     actual = Toc(
         get_config_map,
         persist_fs,
-        process_fs,
         [],
     )
     assert len(actual.meta_books) == 0
     mb = MetaBook(
         get_config_map,
         persist_fs,
-        process_fs,
         http_oreilly_1,
     )
     actual = Toc(
         get_config_map,
         persist_fs,
-        process_fs,
         [mb],
     )
     assert str(actual.readme_md).endswith("md")
@@ -31,28 +28,22 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
     assert len(actual.meta_books) == 1
 
 
-@pytest.mark.usefixtures("mock_time")
-def test_as_mark_down(
-    get_config_map, persist_fs, process_fs, http_oreilly_1, http_oreilly_2
-):
+def test_as_mark_down(get_config_map, persist_fs, http_oreilly_1, http_oreilly_2):
     metabooks = [
         MetaBook(
             get_config_map,
             persist_fs,
-            process_fs,
             http_oreilly_1,
         ),
         MetaBook(
             get_config_map,
             persist_fs,
-            process_fs,
             http_oreilly_2,
         ),
     ]
     actual = Toc(
         get_config_map,
         persist_fs,
-        process_fs,
         [],
     )
     current = actual.as_mark_down()
@@ -60,8 +51,6 @@ def test_as_mark_down(
 
  # TOC
  ## `0` metabook
- ### 20990101000000
-
  ## legend:
 
  **legend_icons**

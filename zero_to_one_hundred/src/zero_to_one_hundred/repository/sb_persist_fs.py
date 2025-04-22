@@ -1,5 +1,7 @@
 import json
 import logging
+import shlex
+import subprocess
 
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
@@ -37,3 +39,9 @@ class SBPersistFS(ZTOHPersistFS):
             json_data = json.loads(f.read())
             logging.info(json_data)
             return int(json_data["page_curr"])
+
+    @classmethod
+    def write_img(cls, path_img, http_url_img):
+        logging.info(f"write_img  {path_img} {http_url_img}")
+        cmd = f'curl -o  "{path_img}"  {http_url_img}'
+        subprocess.run(shlex.split(cmd), check=True)

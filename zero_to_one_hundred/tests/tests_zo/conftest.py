@@ -18,9 +18,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory_provider
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
-)
 
 get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 
@@ -28,11 +25,6 @@ get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 @pytest.fixture(scope="session")
 def persist_fs():
     yield ZTOHPersistFS()
-
-
-@pytest.fixture(scope="session")
-def process_fs():
-    yield ZTOHProcessFS()
 
 
 @pytest.fixture
@@ -117,10 +109,18 @@ def get_unsupported_config_map(
 
 
 @pytest.fixture
-def get_factory(env_map_yaml, persist_fs, process_fs):
-    return ZTOHFactory(env_map_yaml, persist_fs, process_fs)
+def get_factory(env_map_yaml, persist_fs):
+    return ZTOHFactory(env_map_yaml, persist_fs)
 
 
 @pytest.fixture
-def get_factory_provider(env_map_yaml, persist_fs, process_fs):
-    return ZTOHFactoryProvider(persist_fs, process_fs)
+def get_factory_provider(env_map_yaml, persist_fs):
+    return ZTOHFactoryProvider(persist_fs)
+
+
+@pytest.fixture
+def fs():
+    patcher = Patcher()
+    patcher.setUp()
+    yield patcher.fs  # Provide the fake filesystem
+    patcher.tearDown()

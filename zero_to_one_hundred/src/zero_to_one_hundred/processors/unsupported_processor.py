@@ -1,7 +1,6 @@
 from zero_to_one_hundred.src.zero_to_one_hundred.exceptions.errors import (
     UnsupportedOptionError,
 )
-
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.a_processor import (
     AProcessor,
 )

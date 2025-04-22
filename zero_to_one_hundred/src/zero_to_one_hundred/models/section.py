@@ -10,9 +10,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.readme_md import ReadMeM
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
-)
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
@@ -31,13 +28,11 @@ class Section(MarkdownRenderer):
         self,
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
         http_url: str,
         is_done: bool = False,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
         self.http_url = http_url
         self.dir_name = Section.from_http_url_to_dir(http_url)
         self.dir_readme_md = (
@@ -84,7 +79,6 @@ class Section(MarkdownRenderer):
         readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             Section.from_http_url_to_dir,
             self.http_url,
         )
@@ -101,7 +95,6 @@ class Section(MarkdownRenderer):
                 res = not_null[1]
         except Exception as e:
             Validator.print_e(e)
-            res = "FIXME: "
         return res
 
     @property
@@ -138,18 +131,15 @@ class Section(MarkdownRenderer):
         return persist_fs.done_section_status(repo_path, dir_name)
 
     @classmethod
-    def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
-        return Section(config_map, persist_fs, process_fs, http_url)
+    def build_from_http(cls, config_map, http_url, persist_fs):
+        return Section(config_map, persist_fs, http_url)
 
     @classmethod
-    def build_from_dir(
-        cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
-    ):
+    def build_from_dir(cls, persist_fs, config_map: ZTOHConfigMap, dir_name):
         http_url = cls.from_http_url_to_dir_to(dir_name)
         return Section(
             config_map,
             persist_fs,
-            process_fs,
             http_url,
             cls.done_section_status(persist_fs, config_map.get_repo_path, dir_name),
         )
@@ -169,7 +159,6 @@ class Section(MarkdownRenderer):
                 + Section(
                     self.config_map,
                     self.persist_fs,
-                    self.process_fs,
                     str(line).strip("\n"),
                 ).dir_readme_md
                 + ")\n"
@@ -177,17 +166,10 @@ class Section(MarkdownRenderer):
         return res
 
     def look_for_materialized_https(self):
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            self.process_fs,
-            Section.from_http_url_to_dir,
-            self.http_url,
-        )
         lines_converted = []
-        for line in readme_md.read():
+        for line in self.persist_fs.read_file(self.dir_readme_md):
             lines_converted.append(self.materialize_https(line))
-        readme_md.write(txt=lines_converted)
+        self.persist_fs.write_file(filename=self.dir_readme_md, txt=lines_converted)
 
     def look_for_orphan_images(self, lines, png_files):
         pattern = r"!\[[^\]]*\]\(([^)]+)\)"
@@ -203,54 +185,16 @@ class Section(MarkdownRenderer):
         return orphan_images
 
     def delete_orphan_images(self):
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            self.process_fs,
-            Section.from_http_url_to_dir,
-            self.http_url,
-        )
         readme_md_dir = self.config_map.get_repo_path + "/" + self.dir_name
         get_png_files = [
             f for f in os.listdir(readme_md_dir) if f.lower().endswith(".png")
         ]
-        lines = readme_md.read()
+        lines = self.persist_fs.read_file(self.dir_readme_md)
         if len(get_png_files) > 0:
             png_files_to_delete = self.look_for_orphan_images(lines, get_png_files)
             for f in png_files_to_delete:
-                logging.warn(f"delete_orphan_images {f}")
+                logging.warning(f"delete_orphan_images {f}")
                 os.remove(readme_md_dir + "/" + f)
-
-    @property
-    def is_gcp_quest(self):
-        return "quests" in self.http_url and "cloudskillsboost.google" in self.http_url
-
-    @property
-    def is_gcp_lab(self):
-        return "labs" in self.http_url and "cloudskillsboost.google" in self.http_url
-
-    @property
-    def is_gcp_template(self):
-        return (
-            "course_templates" in self.http_url
-            and "cloudskillsboost.google" in self.http_url
-        )
-
-    @property
-    def is_gcp_game(self):
-        return "games" in self.http_url and "cloudskillsboost.google" in self.http_url
-
-    @property
-    def is_datacamp_project(self):
-        return "projects" in self.http_url and "app.datacamp.com" in self.http_url
-
-    @property
-    def is_datacamp_tutorial(self):
-        return "tutorials" in self.http_url and "app.datacamp.com" in self.http_url
-
-    @property
-    def is_datacamp_course(self):
-        return "courses" in self.http_url and "app.datacamp.com" in self.http_url
 
     @property
     def get_matching_icon_as_md(self):
@@ -268,7 +212,7 @@ class Section(MarkdownRenderer):
             return NotImplemented
 
         return (
-            other.http_oreilly_1 == self.http_url
+            other.http_url == self.http_url
             and other.dir_name == self.dir_name
             and other.dir_readme_md == self.dir_readme_md
             and other.is_done == self.is_done

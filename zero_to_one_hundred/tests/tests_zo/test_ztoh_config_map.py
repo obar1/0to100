@@ -3,7 +3,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import 
     ZTOHConfigMap,
 )
 
-
 # pylint: disable=W0621,W0613
 
 

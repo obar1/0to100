@@ -15,3 +15,4 @@ def test_process(get_factory, http_oreilly_1):
     )
     for p in actual:
         p.process()
+        p.assert_called_once()

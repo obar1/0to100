@@ -1,8 +1,8 @@
 repos:
--   repo: local
-    hooks:
-    -   id: make-refactor
-        name: Run make-refactor
-        entry: make refactor VERBOSE=1
-        language: system
-        pass_filenames: false
+- repo: local
+  hooks:
+  - id: make-refactor
+    name: Call make-refactor
+    entry: make refactor VERBOSE=1
+    language: system
+    pass_filenames: true

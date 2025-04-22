@@ -10,17 +10,14 @@ from zero_to_one_hundred.src.zero_to_one_hundred.processors.create_section_proce
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.done_section_processor import (
     DoneSectionProcessor,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_section_contents_processor import (
-    RefreshSectionContentsProcessor,
-)
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_map_processor import (
     RefreshMapProcessor,
 )
+from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_section_contents_processor import (
+    RefreshSectionContentsProcessor,
+)
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
-)
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
 )
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
@@ -55,11 +52,9 @@ class ZTOHFactory(AFactory):
         self,
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
     ):
         super().__init__(persist_fs=persist_fs)
         self.config_map = config_map
-        self.process_fs = process_fs
 
     def get_processor(self, args):
         cmd, p1, _ = Validator.validate_args(args)
@@ -80,19 +75,13 @@ class ZTOHFactory(AFactory):
             yield self.unsupported_processor(cmd, self.SUPPORTED_PROCESSOR)
 
     def create_section_processor(self, http_url):
-        return CreateSectionProcessor(
-            self.config_map, self.persist_fs, self.process_fs, http_url
-        )
+        return CreateSectionProcessor(self.config_map, self.persist_fs, http_url)
 
     def done_section_processor(self, http_url):
-        return DoneSectionProcessor(
-            self.config_map, self.persist_fs, self.process_fs, http_url
-        )
+        return DoneSectionProcessor(self.config_map, self.persist_fs, http_url)
 
     def refresh_map_processor(self):
-        return RefreshMapProcessor(self.config_map, self.persist_fs, self.process_fs)
+        return RefreshMapProcessor(self.config_map, self.persist_fs)
 
     def refresh_section_contents_processor(self):
-        return RefreshSectionContentsProcessor(
-            self.config_map, self.persist_fs, self.process_fs
-        )
+        return RefreshSectionContentsProcessor(self.config_map, self.persist_fs)

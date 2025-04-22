@@ -6,7 +6,7 @@ class AProcessor(ABC):
     AProcessor"""
 
     @abstractmethod
-    def __init__(self, config_map, persist_fs, process_fs, **kwargs):
+    def __init__(self, config_map, persist_fs, **kwargs):
         pass
 
     @abstractmethod

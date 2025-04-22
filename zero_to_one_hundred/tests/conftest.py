@@ -1,9 +1,8 @@
 import string
+import warnings
 from unittest.mock import patch
 
 import pytest
-
-import warnings
 
 warnings.simplefilter("ignore", category=DeprecationWarning)
 
@@ -43,9 +42,5 @@ def http_url_4():
 
 
 @pytest.fixture(scope="session")
-def mock_time():
-    with patch(
-        "zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs.ZTOHProcessFS.get_now",
-        return_value=20990101000000,
-    ):  # Example timestamp
-        yield
+def http_url_yt():
+    yield "https://www.youtube.com/watch?v=x7X9w_GIm1s"

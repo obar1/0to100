@@ -12,3 +12,4 @@ def test_process(get_factory_provider):
     actual = get_factory_provider.get_processor([None, "refresh_toc"])
     for p in actual:
         p.process()
+        p.assert_called_once()

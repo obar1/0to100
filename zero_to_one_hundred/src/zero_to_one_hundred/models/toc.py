@@ -22,27 +22,23 @@ class Toc(MarkdownRenderer):
         self,
         config_map: SBConfigMap,
         persist_fs: SBPersistFS,
-        process_fs,
         meta_books: List[MetaBook],
     ):
         self.config_map = config_map
         self.readme_md = self.config_map.get_toc_fn_md
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
         self.meta_books = meta_books
 
     def __repr__(self):
         return f"Toc {self.readme_md}, {str(self.meta_books)}"
 
     @classmethod
-    def build_from_dirs(
-        cls, config_map, persist_fs, process_fs, dirs: List[str]
-    ) -> List[MetaBook]:
+    def build_from_dirs(cls, config_map, persist_fs, dirs: List[str]) -> List[MetaBook]:
         """from a list of dirs created return the a MetaBook
         m> org http is lost
         """
         res = [
-            MetaBook.build_from_dir(config_map, persist_fs, process_fs, curr_dir)
+            MetaBook.build_from_dir(config_map, persist_fs, curr_dir)
             for curr_dir in dirs
             if curr_dir is not None
         ]
@@ -83,7 +79,6 @@ class Toc(MarkdownRenderer):
             f"""
 # TOC
 ## `{len(self.meta_books)}` metabook
-### {self.process_fs.get_now()}
 {get_legend_as_md(self)}
 
 |  ISBN 	|   img	|  `meta-contents`  	|  `json-contents` 	| `status` | `icons`

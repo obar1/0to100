@@ -1,13 +1,17 @@
 #!/bin/bash
 # simple demo - it use param from cmd line to run the actual section
 
+# set -x
 REPO_PATH="./0to100"
 
 function setup {
     # set -x
     export MAP_YAML_PATH=map.yaml
-    make setup
-    chmod +x main.py
+    if [ ! -d "venv" ]; then
+
+        make setup
+        chmod +x main.py
+    fi
 }
 function setup_zo {
     cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map.yaml
@@ -20,16 +24,12 @@ function setup_sb {
 function zo {
     # 0to100
     setup_zo
-
     ./main.py zo help
     content=$(
         cat <<'EOF'
 https://www.cloudskillsboost.google/123
-https://www.cloudskillsboost.google/paths=16
-https://www.cloudskillsboost.google/games/4424/labs/28651
-https://www.cloudskillsboost.google/course_templates/3
 https://www.udemy.com/course/python-for-beginners-hands-on/
-https://www.youtube.com/watch?v=W_AdDqdwW90
+https://www.youtube.com/watch?v=x7X9w_GIm1s
 EOF
     )
     while IFS= read -r section || [[ -n "$section" ]]; do
@@ -76,7 +76,8 @@ function sb {
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-    echo "No arguments were passed: use sb or zo"
+    echo "use zo or sb"
+
 else
     setup
     $1

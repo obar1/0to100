@@ -8,9 +8,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.metadata import Metadata
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_persist_fs import (
     SBPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_process_fs import (
-    SBProcessFS,
-)
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
@@ -23,20 +20,17 @@ class MetaBook:
         self,
         config_map: SBConfigMap,
         persist_fs: SBPersistFS,
-        process_fs: SBProcessFS,
         http_url: str,
     ):
         self.config_map = config_map
         self.http_url = http_url
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
         self.isbn = MetaBook.get_isbn(http_url)
         self.contents_path = f"{self.config_map.get_toc_path}/{self.isbn}"
         self.path_img = f"{self.contents_path}/{self.isbn}.png"
         self.metadata = Metadata(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             MetaBook.get_isbn,
             self.http_url,
         )
@@ -49,18 +43,16 @@ class MetaBook:
         cls,
         config_map: SBConfigMap,
         persist_fs: SBPersistFS,
-        process_fs: SBProcessFS,
         dir_name,
     ):
         return MetaBook(
             config_map,
             persist_fs,
-            process_fs,
             http_url=cls.HTTP_OREILLY_LIBRARY + "/" + dir_name,
         )
 
     def write_img(self):
-        self.process_fs.write_img(
+        self.persist_fs.write_img(
             self.path_img, f"{self.HTTP_OREILLY_COVER}/{self.isbn}/"
         )
 
@@ -88,12 +80,6 @@ class MetaBook:
         )
         isbns = re.findall(isbn10_pattern, http_url)
         return isbns[0] if len(isbns) > 0 else None
-
-    def path_as_md(self, a_path):
-        """
-        use relative path and convert " " to %20
-        """
-        return a_path.replace(" ", "%20")
 
     @property
     def get_matching_icon_as_md(self):

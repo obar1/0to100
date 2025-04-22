@@ -15,9 +15,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.factories.sb_factory_provider i
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_persist_fs import (
     SBPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_process_fs import (
-    SBProcessFS,
-)
 
 get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 
@@ -25,11 +22,6 @@ get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 @pytest.fixture
 def persist_fs():
     yield SBPersistFS()
-
-
-@pytest.fixture
-def process_fs():
-    yield SBProcessFS()
 
 
 @pytest.fixture
@@ -88,10 +80,10 @@ def get_config_map(env_map_yaml, get_map_yaml_path, persist_fs):
 
 
 @pytest.fixture
-def get_factory_provider(persist_fs, process_fs):
-    return SBFactoryProvider(persist_fs, process_fs)
+def get_factory_provider(persist_fs):
+    return SBFactoryProvider(persist_fs)
 
 
 @pytest.fixture
-def get_factory(env_map_yaml, persist_fs, process_fs):
-    return SBFactory(env_map_yaml, persist_fs, process_fs)
+def get_factory(env_map_yaml, persist_fs):
+    return SBFactory(env_map_yaml, persist_fs)

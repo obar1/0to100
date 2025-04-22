@@ -23,8 +23,10 @@ build
 *.egg-info
 pip-wheel-metadata/
 
-# daily use
+# map
 map.yaml
-map_*.yaml
 
-toc.md 
+# yt related
+*.mp4
+*.vtt
+*.html

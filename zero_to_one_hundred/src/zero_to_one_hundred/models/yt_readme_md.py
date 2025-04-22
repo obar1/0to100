@@ -9,9 +9,9 @@ from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import 
 )
 
 
-class ReadMeMD(MarkdownRenderer):
-    """ReadMeMD:
-    a readme md with http and ref"""
+class YTReadMeMD(MarkdownRenderer):
+    """YTReadMeMD:
+    yt readme with extra features"""
 
     def __init__(
         self,
@@ -24,18 +24,21 @@ class ReadMeMD(MarkdownRenderer):
         self.persist_fs = persist_fs
         self.http_url = http_url
         self.dir_name = from_http_url_to_dir(http_url)
+        self.full_dir_name = config_map.get_repo_path + "/" + self.dir_name
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
 
     def __repr__(self):
-        return f"ReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
+        return f"YTReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
 
     def as_mark_down(self):
-        return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
+        return f"YTReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
     def write(self):
         txt = []
         txt.append(f"""# <{self.dir_name}>\n> <{self.http_url}>\n""")
-        return self.persist_fs.write_file(self.readme_md, txt)
+        return self.persist_fs.snatch_yt_video(
+            self.http_url, self.full_dir_name, self.readme_md, txt
+        )
 
     def read(self):
         data = self.persist_fs.read_file(self.readme_md)
