@@ -11,7 +11,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_persist_fs import
 )
 
 
-
 class SBFactoryProvider(AFactoryProvider):
     """SBFactoryProvider"""
 

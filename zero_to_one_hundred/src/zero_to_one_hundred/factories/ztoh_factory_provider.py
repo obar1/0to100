@@ -13,7 +13,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs impo
 )
 
 
-
 class ZTOHFactoryProvider(AFactoryProvider):
     """0to100 FactoryProvider."""
 

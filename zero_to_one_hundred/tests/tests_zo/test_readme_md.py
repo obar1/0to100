@@ -1,4 +1,3 @@
-
 from zero_to_one_hundred.src.zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.src.zero_to_one_hundred.models.section import Section
 
@@ -15,4 +14,3 @@ def test_as_mark_down(get_config_map, persist_fs, http_url_1):
         current
         == "ReadMeMD ./0to100/https§§§cloud.google.com§abc/readme.md, https§§§cloud.google.com§abc https://cloud.google.com/abc"
     )
-

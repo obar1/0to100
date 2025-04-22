@@ -76,19 +76,13 @@ class ZTOHFactory(AFactory):
             yield self.unsupported_processor(cmd, self.SUPPORTED_PROCESSOR)
 
     def create_section_processor(self, http_url):
-        return CreateSectionProcessor(
-            self.config_map, self.persist_fs, http_url
-        )
+        return CreateSectionProcessor(self.config_map, self.persist_fs, http_url)
 
     def done_section_processor(self, http_url):
-        return DoneSectionProcessor(
-            self.config_map, self.persist_fs, http_url
-        )
+        return DoneSectionProcessor(self.config_map, self.persist_fs, http_url)
 
     def refresh_map_processor(self):
         return RefreshMapProcessor(self.config_map, self.persist_fs)
 
     def refresh_section_contents_processor(self):
-        return RefreshSectionContentsProcessor(
-            self.config_map, self.persist_fs
-        )
+        return RefreshSectionContentsProcessor(self.config_map, self.persist_fs)

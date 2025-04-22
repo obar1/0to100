@@ -13,10 +13,11 @@ class ZTOHPersistFS(APersistFS):
     """ZTOHPersistFS:
     deal with FS
     """
+
     @staticmethod
     def get_now():
         return datetime.now().strftime("%Y/%m/%d")
-    
+
     @classmethod
     def done_section(cls, path):
         path = cls.abs_path(path)

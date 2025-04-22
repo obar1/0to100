@@ -28,9 +28,7 @@ def test_init(get_config_map, persist_fs, http_oreilly_1):
     assert len(actual.meta_books) == 1
 
 
-def test_as_mark_down(
-    get_config_map, persist_fs, http_oreilly_1, http_oreilly_2
-):
+def test_as_mark_down(get_config_map, persist_fs, http_oreilly_1, http_oreilly_2):
     metabooks = [
         MetaBook(
             get_config_map,

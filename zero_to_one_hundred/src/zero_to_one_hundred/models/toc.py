@@ -33,9 +33,7 @@ class Toc(MarkdownRenderer):
         return f"Toc {self.readme_md}, {str(self.meta_books)}"
 
     @classmethod
-    def build_from_dirs(
-        cls, config_map, persist_fs, dirs: List[str]
-    ) -> List[MetaBook]:
+    def build_from_dirs(cls, config_map, persist_fs, dirs: List[str]) -> List[MetaBook]:
         """from a list of dirs created return the a MetaBook
         m> org http is lost
         """

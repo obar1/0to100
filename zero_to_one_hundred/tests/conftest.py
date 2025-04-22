@@ -45,5 +45,3 @@ def http_url_4():
 @pytest.fixture(scope="session")
 def http_url_yt():
     yield "https://www.youtube.com/watch?v=-Y44YzIODw0"
-
-

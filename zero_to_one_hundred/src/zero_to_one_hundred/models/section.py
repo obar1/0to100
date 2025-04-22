@@ -136,9 +136,7 @@ class Section(MarkdownRenderer):
         return Section(config_map, persist_fs, http_url)
 
     @classmethod
-    def build_from_dir(
-        cls, persist_fs, config_map: ZTOHConfigMap, dir_name
-    ):
+    def build_from_dir(cls, persist_fs, config_map: ZTOHConfigMap, dir_name):
         http_url = cls.from_http_url_to_dir_to(dir_name)
         return Section(
             config_map,

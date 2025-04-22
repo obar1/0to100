@@ -29,8 +29,6 @@ def persist_fs():
     yield ZTOHPersistFS()
 
 
-
-
 @pytest.fixture
 def get_map_yaml_path():
     yield get_resource_path + "/map.yaml"

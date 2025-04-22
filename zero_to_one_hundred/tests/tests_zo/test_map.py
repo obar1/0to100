@@ -19,8 +19,7 @@ def test_as_mark_down(
     http_urls=["https://cloud.google.com/zzz", "https://cloud.google.com/abc"],
 ):
     sections = [
-        Section(get_config_map, persist_fs, http_url, False)
-        for http_url in http_urls
+        Section(get_config_map, persist_fs, http_url, False) for http_url in http_urls
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
     current = actual.as_mark_down()
@@ -101,8 +100,7 @@ def test_write(
     http_urls=["https://cloud.google.com/abc", "https://cloud.google.com/zzz"],
 ):
     sections = [
-        Section(get_config_map, persist_fs, http_url, False)
-        for http_url in http_urls
+        Section(get_config_map, persist_fs, http_url, False) for http_url in http_urls
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
     txt = actual.as_mark_down()

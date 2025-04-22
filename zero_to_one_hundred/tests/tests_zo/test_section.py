@@ -19,9 +19,7 @@ def test_init(get_config_map, persist_fs, http_url_1):
 
     # Test case for URL with hash character
     http_url_with_hash = "https://www.udemy.com/course/master-data-engineering-using-gcp-data-analytics/learn/lecture/34497408#content"
-    actual_with_hash = Section(
-        get_config_map, persist_fs, http_url_with_hash
-    )
+    actual_with_hash = Section(get_config_map, persist_fs, http_url_with_hash)
     assert actual_with_hash.http_url == http_url_with_hash
     assert (
         actual_with_hash.dir_name
@@ -37,9 +35,6 @@ def test_init(get_config_map, persist_fs, http_url_1):
     assert res_with_hash is not None
 
 
-
-
-
 def test_build_from_dir(get_config_map, persist_fs):
     def simple_http():
         return "https://cloud.google.com/docs/<>:?*"
@@ -48,9 +43,7 @@ def test_build_from_dir(get_config_map, persist_fs):
         return "https§§§cloud.google.com§docs§§§§§§"
 
     assert (
-        Section.build_from_dir(
-            persist_fs, get_config_map, simple_http()
-        ).dir_name
+        Section.build_from_dir(persist_fs, get_config_map, simple_http()).dir_name
         == simple_dir()
     )
 
@@ -58,9 +51,7 @@ def test_build_from_dir(get_config_map, persist_fs):
     http_url_with_hash = "https://www.udemy.com/course/master-data-engineering-using-gcp-data-analytics/learn/lecture/34497408/content"
     dir_name_with_hash = "https§§§www.udemy.com§course§master-data-engineering-using-gcp-data-analytics§learn§lecture§34497408§content"
     assert (
-        Section.build_from_dir(
-            persist_fs, get_config_map, dir_name_with_hash
-        ).http_url
+        Section.build_from_dir(persist_fs, get_config_map, dir_name_with_hash).http_url
         == http_url_with_hash
     )
 
@@ -121,9 +112,7 @@ def test_as_mark_down(get_config_map, persist_fs, http_url_1):
     )
 
 
-def test_look_for_orphan_images_cases(
-    get_config_map, persist_fs, http_url_1
-):
+def test_look_for_orphan_images_cases(get_config_map, persist_fs, http_url_1):
     http_url = "https://app.datacamp.com/learn/tutorials/git-push-pull"
     actual = Section(get_config_map, persist_fs, http_url)
     lines = """

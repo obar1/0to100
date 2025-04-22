@@ -28,7 +28,5 @@ class SnatchBookProcessor(AProcessor):
         self.config_map = config_map
 
     def process(self):
-        meta_book = MetaBook(
-            self.config_map, self.persist_fs, self.http_url
-        )
+        meta_book = MetaBook(self.config_map, self.persist_fs, self.http_url)
         meta_book.write()

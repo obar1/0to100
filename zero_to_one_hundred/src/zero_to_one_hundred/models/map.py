@@ -65,9 +65,7 @@ class Map(MarkdownRenderer):
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod
-    def build_from_dirs(
-        cls, persist_fs, config_map, dirs: List[str]
-    ) -> List[Section]:
+    def build_from_dirs(cls, persist_fs, config_map, dirs: List[str]) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [
             Section.build_from_dir(persist_fs, config_map, curr_dir)

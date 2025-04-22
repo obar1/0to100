@@ -33,8 +33,7 @@ class SBFactory(AFactory):
     ./main.py sb refresh_toc
     """
 
-    def __init__(
-        self, config_map: SBConfigMap, persist_fs: SBPersistFS):
+    def __init__(self, config_map: SBConfigMap, persist_fs: SBPersistFS):
         super().__init__(persist_fs=persist_fs)
         self.config_map = config_map
 
@@ -52,8 +51,7 @@ class SBFactory(AFactory):
             yield self.unsupported_processor(cmd, self.SUPPORTED_PROCESSOR)
 
     def snatch_book_processor(self, http_url):
-        return SnatchBookProcessor(
-            self.config_map, self.persist_fs, http_url)
+        return SnatchBookProcessor(self.config_map, self.persist_fs, http_url)
 
     def refresh_toc_processor(self):
         return RefreshTocProcessor(self.config_map, self.persist_fs)
