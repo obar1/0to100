@@ -46,6 +46,12 @@ class ZTOHPersistFS(APersistFS):
             return res
         return time.time()
 
+    def path_as_md(self, a_path):
+        """
+        use relative path and convert " " to %20
+        """
+        return a_path.replace(" ", "%20")
+
     @classmethod
     def snatch_yt_video(cls, video_url, full_dir_name, readme_html, readme_md):
 
@@ -108,96 +114,16 @@ class ZTOHPersistFS(APersistFS):
                     "subtitles": subtitles,
                 }
 
-        @staticmethod
-        def generate_index_html(video, full_dir_name):
-            """Generate or update the index.html file with video list, players, tags, and subtitles."""
-            html_content = """
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>YouTube Video Downloads</title>
-                    <script src="https://cdn.tailwindcss.com"></script>
-                    <style>
-                        .subtitles { 
-                            max-height: 200px; 
-                            overflow-y: auto; 
-                            background-color: #f8f8f8; 
-                            padding: 1rem; 
-                            border-radius: 0.5rem; 
-                            white-space: pre-wrap;
-                        }
-                        .tag { 
-                            display: inline-block; 
-                            background-color: #e5e7eb; 
-                            padding: 0.25rem 0.5rem; 
-                            border-radius: 0.25rem; 
-                            margin-right: 0.5rem; 
-                            margin-bottom: 0.5rem; 
-                        }
-                    </style>
-                </head>
-                <body class="bg-gray-100 font-sans">
-                    <div class="container mx-auto p-4">
-                        <h1 class="text-3xl font-bold mb-6 text-center">Downloaded YouTube Videos</h1>
-                        <div class="grid gap-6">
-            """
-
-            escaped_title = html.escape(video["title"])
-            video_path = os.path.join(
-                "videos", os.path.basename(video["filename"])
-            ).replace("\\", "/")
-            tags = video.get("tags", ["No tags available"])
-            subtitles = html.escape(video.get("subtitles", "No subtitles available"))
-            subtitle_track = os.path.join(
-                "videos", f"{sanitize_filename(video['title'])}.en.vtt"
-            ).replace("\\", "/")
-
-            # Generate tags HTML
-            tags_html = "".join(
-                f'<span class="tag">{html.escape(tag)}</span>' for tag in tags
-            )
-
-            html_content += f"""
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold mb-2">{escaped_title}</h2>
-                    <video controls class="w-full max-w-2xl mx-auto rounded" style="aspect-ratio: 16/9;">
-                        <source src="{video_path}" type="video/mp4">
-                        <track kind="subtitles" src="{subtitle_track}" srclang="en" label="English" default>
-                        Your browser does not support the video tag, or the video file may be inaccessible. Ensure the file exists at '{video_path}' and is in a compatible MP4 format (H.264/AAC).
-                    </video>
-                    <div class="mt-4">
-                        <h3 class="text-lg font-medium mb-2">Tags</h3>
-                        <div class="mb-4">{tags_html}</div>
-                        <h3 class="text-lg font-medium mb-2">Subtitles</h3>
-                        <div class="subtitles">{subtitles}</div>
-                    </div>
-                    <a href="{video_path}" class="text-blue-500 hover:underline mt-2 inline-block" download>Download Video</a>
-                </div>
-        """
-
-            html_content += """
-                </div>
-            </div>
-        </body>
-        </html>
-            """
-
-            with open(full_dir_name, "w") as f:
-                f.write(html_content)
-
         cls.make_dirs(full_dir_name)
 
         video_info = download_youtube_video(video_url, full_dir_name)
 
-        generate_index_html(video_info, readme_html)
-
         txt = f"""
 # <{full_dir_name}>
 <{video_url}>
+"""
+        txt += f"\n# {video_info.get('title')}\n"
+        txt += f"[{video_info.get('filename')}]({cls.path_as_md(video_info.get('filename'))})\n"
+        txt += f"tags `{video_info.get('tags')}`\n"
 
-[html yt dump](./readme.html)
-
-        """
         cls.write_file(readme_md, txt)

@@ -81,12 +81,6 @@ class MetaBook:
         isbns = re.findall(isbn10_pattern, http_url)
         return isbns[0] if len(isbns) > 0 else None
 
-    def path_as_md(self, a_path):
-        """
-        use relative path and convert " " to %20
-        """
-        return a_path.replace(" ", "%20")
-
     @property
     def get_matching_icon_as_md(self):
         icons = self.config_map.get_legend_icons

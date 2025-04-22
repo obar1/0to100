@@ -67,7 +67,15 @@ the text `catalog for the gcloud products` will be shown in the toc
 in `create_section` if a youtube url is used the section created looks a bit more yt-custom than the general one :)
 > so you can reply the video any time!
 
-![alt text](assets/6c184672-b325-49b7-a008-9b4216722cc8.png)
+```
+# <./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s>
+<https://www.youtube.com/watch?v=x7X9w_GIm1s>
+
+# Python in 100 Seconds
+[Python in 100 Seconds.mp4](./Python%20in%20100%20Seconds.mp4)
+tags `['webdev', 'app development', 'lesson', 'tutorial']`
+```
+
 
 > this might not work if you run the demo in a github codespace, but it will works locally
 

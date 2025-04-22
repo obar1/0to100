@@ -1,6 +1,7 @@
 #!/bin/bash
 # simple demo - it use param from cmd line to run the actual section
 
+# set -x
 REPO_PATH="./0to100"
 
 function setup {
