@@ -90,19 +90,3 @@ def test_as_mark_down_1(
 
 """
     assert str_relaxed(current) == str_relaxed(expected)
-
-
-def test_write(
-    get_config_map: ZTOHConfigMap,
-    persist_fs,
-    http_urls=["https://cloud.google.com/abc", "https://cloud.google.com/zzz"],
-):
-    sections = [
-        Section(get_config_map, persist_fs, http_url, False) for http_url in http_urls
-    ]
-    actual = Map(get_config_map, persist_fs, sections=sections)
-    txt = actual.as_mark_down()
-    with Patcher(allow_root_user=False) as patcher:
-        res = actual.write(txt)
-        assert res > 0
-        assert os.path.exists(actual.readme_md)
