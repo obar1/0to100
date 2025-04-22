@@ -25,6 +25,7 @@ help:
 	@echo "  make refactor      - Run all checks"
 setup:
 	$(PYTHON) -m venv $(VENV)
+	$(BIN)/pip install -r requirements.txt
 	$(BIN)/pip install .
 clean:
 	rm -rf $(VENV)

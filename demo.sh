@@ -27,11 +27,6 @@ function zo {
     ./main.py zo help
     content=$(
         cat <<'EOF'
-https://www.cloudskillsboost.google/123
-https://www.cloudskillsboost.google/paths=16
-https://www.cloudskillsboost.google/games/4424/labs/28651
-https://www.cloudskillsboost.google/course_templates/3
-https://www.udemy.com/course/python-for-beginners-hands-on/
 https://www.youtube.com/watch?v=-Y44YzIODw0
 
 EOF
