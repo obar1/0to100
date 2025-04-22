@@ -59,9 +59,8 @@ class Map(MarkdownRenderer):
 """
         return txt.replace("  ", "")
 
-    def write(self, txt: str = ""):
-        if txt is None:
-            txt = self.as_mark_down()
+    def write(self):
+        txt = self.as_mark_down()
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod

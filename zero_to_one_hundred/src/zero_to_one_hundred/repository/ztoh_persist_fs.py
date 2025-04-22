@@ -8,6 +8,7 @@ from yt_dlp import YoutubeDL
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.a_persist_fs import (
     APersistFS,
 )
+from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
 class ZTOHPersistFS(APersistFS):
@@ -46,18 +47,15 @@ class ZTOHPersistFS(APersistFS):
             return res
         return time.time()
 
-    def path_as_md(self, a_path):
+    @classmethod
+    def path_as_md(cls, a_path):
         """
         use relative path and convert " " to %20
         """
         return a_path.replace(" ", "%20")
 
     @classmethod
-    def snatch_yt_video(cls, video_url, full_dir_name, readme_html, readme_md):
-
-        @staticmethod
-        def sanitize_filename(txt):
-            return txt
+    def snatch_yt_video(cls, video_url, full_dir_name, readme_md, txt):
 
         @staticmethod
         def download_youtube_video(url, output_path):
@@ -85,7 +83,7 @@ class ZTOHPersistFS(APersistFS):
                 info = ydl.extract_info(url, download=True)
                 video_title = info.get("title", "Untitled Video")
                 raw_filename = ydl.prepare_filename(info).split(os.sep)[-1]
-                video_filename = sanitize_filename(raw_filename)
+                video_filename = raw_filename
 
                 # Get tags
                 tags = info.get("tags", []) or []
@@ -96,7 +94,7 @@ class ZTOHPersistFS(APersistFS):
                 subtitles = None
                 subtitle_file = os.path.join(
                     output_path,
-                    f"{sanitize_filename(info.get('title', 'video'))}.en.vtt",
+                    f"{(info.get('title', 'video'))}.en.vtt",
                 )
                 if os.path.exists(subtitle_file):
                     with open(subtitle_file, "r", encoding="utf-8") as f:
@@ -114,16 +112,21 @@ class ZTOHPersistFS(APersistFS):
                     "subtitles": subtitles,
                 }
 
-        cls.make_dirs(full_dir_name)
+        try:
+            cls.make_dirs(full_dir_name)
 
-        video_info = download_youtube_video(video_url, full_dir_name)
+            video_info = download_youtube_video(video_url, full_dir_name)
 
-        txt = f"""
-# <{full_dir_name}>
-<{video_url}>
-"""
-        txt += f"\n# {video_info.get('title')}\n"
-        txt += f"[{video_info.get('filename')}]({cls.path_as_md(video_info.get('filename'))})\n"
-        txt += f"tags `{video_info.get('tags')}`\n"
+            txt.append(f"# {video_info.get('title')}")
+            txt.append("\n")
+            txt.append(
+                f"[{video_info.get('filename')}]({cls.path_as_md(video_info.get('filename'))})"
+            )
+            txt.append("\n")
 
+            txt.append(f"tags `{video_info.get('tags')}`")
+            txt.append("\n")
+
+        except Exception as e:
+            Validator.print_e(e)
         cls.write_file(readme_md, txt)

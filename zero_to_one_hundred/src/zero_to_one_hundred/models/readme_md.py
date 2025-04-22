@@ -33,9 +33,8 @@ class ReadMeMD(MarkdownRenderer):
         return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
     def write(self, txt=None):
-        if txt is None:
-            txt = []
-            txt.append(f"""# <{self.dir_name}>\n> <{self.http_url}>\n""")
+        txt = []
+        txt.append(f"""# <{self.dir_name}>\n> <{self.http_url}>\n""")
         return self.persist_fs.write_file(self.readme_md, txt)
 
     def read(self):
