@@ -4,7 +4,6 @@ import os
 from unittest import mock
 
 import pytest
-from pyfakefs.fake_filesystem_unittest import Patcher
 
 from zero_to_one_hundred.src.zero_to_one_hundred.configs.a_config_map import AConfigMap
 from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import (

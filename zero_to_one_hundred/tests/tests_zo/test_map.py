@@ -1,6 +1,5 @@
 import os
 
-from pyfakefs.fake_filesystem_unittest import Patcher
 
 from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,

@@ -27,8 +27,9 @@ function zo {
     ./main.py zo help
     content=$(
         cat <<'EOF'
+https://www.cloudskillsboost.google/123
+https://www.udemy.com/course/python-for-beginners-hands-on/
 https://www.youtube.com/watch?v=-Y44YzIODw0
-
 EOF
     )
     while IFS= read -r section || [[ -n "$section" ]]; do
