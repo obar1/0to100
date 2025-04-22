@@ -5,6 +5,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import 
 )
 from zero_to_one_hundred.src.zero_to_one_hundred.models.readme_md import ReadMeMD
 from zero_to_one_hundred.src.zero_to_one_hundred.models.section import Section
+from zero_to_one_hundred.src.zero_to_one_hundred.models.yt_readme_md import YTReadMeMD
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.a_processor import (
     AProcessor,
 )
@@ -12,6 +13,8 @@ from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs impo
     ZTOHPersistFS,
 )
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
+
+YOUTUBE_HTTPS = "https://www.youtube."
 
 
 class CreateSectionProcessor(AProcessor):
@@ -30,7 +33,14 @@ class CreateSectionProcessor(AProcessor):
         self.config_map = config_map
 
     @staticmethod
-    def get_readme_md(section: Section) -> Union[ReadMeMD]:
+    def get_readme_md(section: Section) -> Union[ReadMeMD, YTReadMeMD]:
+        if YOUTUBE_HTTPS in section.http_url.lower():
+            return YTReadMeMD(
+                section.config_map,
+                section.persist_fs,
+                Section.from_http_url_to_dir,
+                section.http_url,
+            )
         return ReadMeMD(
             section.config_map,
             section.persist_fs,
