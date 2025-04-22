@@ -23,9 +23,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.readme_md import ReadMeM
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
-)
+
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
@@ -48,11 +46,10 @@ class MetaYTVideo(Section):
         self,
         config_map: ZTOHConfigMap,
         persist_fs: YTPersistFS,
-        process_fs: ZTOHProcessFS,
         yt_url: str,
         is_done: bool = False,
     ):
-        super().__init__(config_map, persist_fs, process_fs, yt_url, is_done)
+        super().__init__(config_map, persist_fs, yt_url, is_done)
 
     def __repr__(self):
         return f"MetaYTVideo {self.yt_url} {self.dir_readme_md} {self.is_done} {self.dir_name}"

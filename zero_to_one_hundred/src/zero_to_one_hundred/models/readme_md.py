@@ -4,9 +4,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import 
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
-)
+
 from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
 )
@@ -20,13 +18,11 @@ class ReadMeMD(MarkdownRenderer):
         self,
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
         from_http_url_to_dir,
         http_url: str,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
         self.http_url = http_url
         self.dir_name = from_http_url_to_dir(http_url)
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"

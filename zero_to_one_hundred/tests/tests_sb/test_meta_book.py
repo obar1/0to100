@@ -2,7 +2,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.meta_book import MetaBoo
 
 
 # pylint: disable=W0613
-def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
+def test_init(get_config_map, persist_fs, http_oreilly_1):
     """
     test with
     "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
@@ -11,7 +11,6 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
     actual = MetaBook(
         get_config_map,
         persist_fs,
-        process_fs,
         http_oreilly_1,
     )
     assert actual.isbn == "9780135956977"
@@ -19,12 +18,11 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1):
     assert actual.path_img == "./0to100/9780135956977/9780135956977.png"
 
 
-def test_build_from_dir(get_config_map, persist_fs, process_fs):
+def test_build_from_dir(get_config_map, persist_fs):
     assert (
         MetaBook.build_from_dir(
             get_config_map,
             persist_fs,
-            process_fs,
             "./books/9780135956977",
         ).isbn
         == "9780135956977"

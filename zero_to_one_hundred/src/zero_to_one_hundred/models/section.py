@@ -10,9 +10,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.models.readme_md import ReadMeM
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
-)
+
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
@@ -31,13 +29,11 @@ class Section(MarkdownRenderer):
         self,
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
         http_url: str,
         is_done: bool = False,
     ):
         self.config_map = config_map
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
         self.http_url = http_url
         self.dir_name = Section.from_http_url_to_dir(http_url)
         self.dir_readme_md = (
@@ -84,7 +80,6 @@ class Section(MarkdownRenderer):
         readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             Section.from_http_url_to_dir,
             self.http_url,
         )
@@ -101,7 +96,6 @@ class Section(MarkdownRenderer):
                 res = not_null[1]
         except Exception as e:
             Validator.print_e(e)
-            res = "FIXME: "
         return res
 
     @property
@@ -138,18 +132,17 @@ class Section(MarkdownRenderer):
         return persist_fs.done_section_status(repo_path, dir_name)
 
     @classmethod
-    def build_from_http(cls, config_map, http_url, persist_fs, process_fs):
-        return Section(config_map, persist_fs, process_fs, http_url)
+    def build_from_http(cls, config_map, http_url, persist_fs):
+        return Section(config_map, persist_fs, http_url)
 
     @classmethod
     def build_from_dir(
-        cls, persist_fs, process_fs, config_map: ZTOHConfigMap, dir_name
+        cls, persist_fs, config_map: ZTOHConfigMap, dir_name
     ):
         http_url = cls.from_http_url_to_dir_to(dir_name)
         return Section(
             config_map,
             persist_fs,
-            process_fs,
             http_url,
             cls.done_section_status(persist_fs, config_map.get_repo_path, dir_name),
         )
@@ -169,7 +162,6 @@ class Section(MarkdownRenderer):
                 + Section(
                     self.config_map,
                     self.persist_fs,
-                    self.process_fs,
                     str(line).strip("\n"),
                 ).dir_readme_md
                 + ")\n"
@@ -180,7 +172,6 @@ class Section(MarkdownRenderer):
         readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             Section.from_http_url_to_dir,
             self.http_url,
         )
@@ -206,7 +197,6 @@ class Section(MarkdownRenderer):
         readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             Section.from_http_url_to_dir,
             self.http_url,
         )

@@ -14,10 +14,9 @@ class RefreshTocProcessor(AProcessor):
     """RefreshMapProcessor:
     refresh meta_books in map"""
 
-    def __init__(self, config_map: SBConfigMap, persist_fs, process_fs):
+    def __init__(self, config_map: SBConfigMap, persist_fs):
         self.config_map = config_map
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
 
     def process(self):
         """Scan the repo and for each meta_book add it to  the map, save the toc file."""
@@ -28,7 +27,7 @@ class RefreshTocProcessor(AProcessor):
             if MetaBook.is_valid_ebook_path(ebook_folder)
         ]
         meta_books = Toc.build_from_dirs(
-            self.config_map, self.persist_fs, self.process_fs, valid_ebook_folders
+            self.config_map, self.persist_fs, valid_ebook_folders
         )
-        toc = Toc(self.config_map, self.persist_fs, self.process_fs, meta_books)
+        toc = Toc(self.config_map, self.persist_fs, meta_books)
         toc.write()

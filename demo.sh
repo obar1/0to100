@@ -80,7 +80,7 @@ function sb {
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-    ./main.py help
+    echo "use zo or sb"
 
 else
     setup

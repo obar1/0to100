@@ -3,11 +3,11 @@ repos:
     hooks:
       - id: no-todo-fixme
         name: Check for TODO and FIXME
-        entry: grep -n -E 'TODO:|FIXME:' --include=\*.py
+        entry: grep -n -E 'TODO:|FIXME:' --include=*.py
         language: system
-        types: [python]
+        types: [ python ]
         pass_filenames: true
-    -   id: make-refactor
+      - id: make-refactor
         name: Call make-refactor
         entry: make refactor VERBOSE=1
         language: system

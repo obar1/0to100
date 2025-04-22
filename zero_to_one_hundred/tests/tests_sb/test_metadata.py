@@ -8,11 +8,10 @@ from zero_to_one_hundred.tests.conftest import str_relaxed
 # pylint: disable=C0303
 
 
-def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1):
+def test_init(get_config_map, persist_fs, http_oreilly_1, oreilly_isbn_1):
     actual = Metadata(
         get_config_map,
         persist_fs,
-        process_fs,
         MetaBook.get_isbn,
         http_oreilly_1,
     )
@@ -20,7 +19,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_is
     assert str(actual.http_url) == http_oreilly_1
 
 
-def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
+def test_get_page_perc(get_config_map, persist_fs, http_oreilly_1):
     actual = Metadata.get_page_perc({"page_curr": 99, "page_tot": 999})
     assert actual == "9.9%"
     actual = Metadata.get_page_perc({"page_curr": 0, "page_tot": 999})
@@ -30,12 +29,11 @@ def test_get_page_perc(get_config_map, persist_fs, process_fs, http_oreilly_1):
 
 
 def test_as_mark_down(
-    get_config_map, persist_fs, process_fs, http_oreilly_1, oreilly_isbn_1
+    get_config_map, persist_fs, http_oreilly_1, oreilly_isbn_1
 ):
     actual = Metadata(
         get_config_map,
         persist_fs,
-        process_fs,
         MetaBook.get_isbn,
         http_oreilly_1,
     )

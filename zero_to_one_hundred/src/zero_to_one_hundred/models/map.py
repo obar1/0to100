@@ -59,18 +59,18 @@ class Map(MarkdownRenderer):
 """
         return txt.replace("  ", "")
 
-    def write(self, txt: str=None):
+    def write(self, txt: str = None):
         if txt is None:
             txt = self.as_mark_down()
         return self.persist_fs.write_file(self.readme_md, txt)
 
     @classmethod
     def build_from_dirs(
-        cls, persist_fs, process_fs, config_map, dirs: List[str]
+        cls, persist_fs, config_map, dirs: List[str]
     ) -> List[Section]:
         """from a list of dirs created with Section() return the org Section()"""
         return [
-            Section.build_from_dir(persist_fs, process_fs, config_map, curr_dir)
+            Section.build_from_dir(persist_fs, config_map, curr_dir)
             for curr_dir in dirs
             if Section.is_valid_dir(curr_dir)
         ]

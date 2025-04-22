@@ -9,9 +9,7 @@ from zero_to_one_hundred.src.zero_to_one_hundred.processors.a_processor import (
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_process_fs import (
-    ZTOHProcessFS,
-)
+
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
@@ -23,13 +21,11 @@ class CreateSectionProcessor(AProcessor):
         self,
         config_map: ZTOHConfigMap,
         persist_fs: ZTOHPersistFS,
-        process_fs: ZTOHProcessFS,
         http_url: str,
     ):
         Validator.is_valid_http(http_url)
         self.http_url = http_url
         self.persist_fs = persist_fs
-        self.process_fs = process_fs
         self.config_map = config_map
 
     def process(self):
@@ -41,7 +37,6 @@ class CreateSectionProcessor(AProcessor):
         section = Section(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             self.http_url,
             is_done=False,
         )
@@ -50,7 +45,6 @@ class CreateSectionProcessor(AProcessor):
         readme_md = ReadMeMD(
             self.config_map,
             self.persist_fs,
-            self.process_fs,
             Section.from_http_url_to_dir,
             section.http_url,
         )
