@@ -43,4 +43,3 @@ typing_extensions==4.13.2
 virtualenv==20.30.0
 wcwidth==0.2.13
 yt-dlp==2025.3.31
-zero_to_one_hundred @ file:///home/xsazcd/git/obar1/0to100.git
