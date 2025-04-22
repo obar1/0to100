@@ -166,16 +166,10 @@ class Section(MarkdownRenderer):
         return res
 
     def look_for_materialized_https(self):
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            Section.from_http_url_to_dir,
-            self.http_url,
-        )
         lines_converted = []
-        for line in readme_md.read():
+        for line in self.persist_fs.read_file(self.dir_readme_md):
             lines_converted.append(self.materialize_https(line))
-        readme_md.write(txt=lines_converted)
+        self.persist_fs.write_file(filename=self.dir_readme_md, txt=lines_converted)
 
     def look_for_orphan_images(self, lines, png_files):
         pattern = r"!\[[^\]]*\]\(([^)]+)\)"
@@ -191,53 +185,16 @@ class Section(MarkdownRenderer):
         return orphan_images
 
     def delete_orphan_images(self):
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            Section.from_http_url_to_dir,
-            self.http_url,
-        )
         readme_md_dir = self.config_map.get_repo_path + "/" + self.dir_name
         get_png_files = [
             f for f in os.listdir(readme_md_dir) if f.lower().endswith(".png")
         ]
-        lines = readme_md.read()
+        lines = self.persist_fs.read_file(self.dir_readme_md)
         if len(get_png_files) > 0:
             png_files_to_delete = self.look_for_orphan_images(lines, get_png_files)
             for f in png_files_to_delete:
-                logging.warn(f"delete_orphan_images {f}")
+                logging.warning(f"delete_orphan_images {f}")
                 os.remove(readme_md_dir + "/" + f)
-
-    @property
-    def is_gcp_quest(self):
-        return "quests" in self.http_url and "cloudskillsboost.google" in self.http_url
-
-    @property
-    def is_gcp_lab(self):
-        return "labs" in self.http_url and "cloudskillsboost.google" in self.http_url
-
-    @property
-    def is_gcp_template(self):
-        return (
-            "course_templates" in self.http_url
-            and "cloudskillsboost.google" in self.http_url
-        )
-
-    @property
-    def is_gcp_game(self):
-        return "games" in self.http_url and "cloudskillsboost.google" in self.http_url
-
-    @property
-    def is_datacamp_project(self):
-        return "projects" in self.http_url and "app.datacamp.com" in self.http_url
-
-    @property
-    def is_datacamp_tutorial(self):
-        return "tutorials" in self.http_url and "app.datacamp.com" in self.http_url
-
-    @property
-    def is_datacamp_course(self):
-        return "courses" in self.http_url and "app.datacamp.com" in self.http_url
 
     @property
     def get_matching_icon_as_md(self):
@@ -255,7 +212,7 @@ class Section(MarkdownRenderer):
             return NotImplemented
 
         return (
-            other.http_oreilly_1 == self.http_url
+            other.http_url == self.http_url
             and other.dir_name == self.dir_name
             and other.dir_readme_md == self.dir_readme_md
             and other.is_done == self.is_done
