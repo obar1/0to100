@@ -1,4 +1,5 @@
 import json
+import logging
 
 from zero_to_one_hundred.src.zero_to_one_hundred.configs.sb_config_map import (
     SBConfigMap,
@@ -59,7 +60,7 @@ class Metadata(MarkdownRenderer):
             lines = {} if json_data is None else json_data
             return json.loads("".join(lines))
         except Exception as e:
-            Validator.print_e(e)
+            logging.warning(f"no {self.path_json} not found")
             return {}
 
     @property
