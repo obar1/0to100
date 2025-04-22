@@ -32,7 +32,7 @@ bash demo.sh sb
 [here](./toc_sb.md)
 
 
-## oto100
+### oto100
 
 0 to 100 ... learn anything from the web 
 
@@ -53,16 +53,24 @@ section=https://www.cloudskillsboost.google/paths/16
 # refresh_section_contents = refresh links to sections in the readme.md(s) and delete orphaned image(s)
 ./main.py zo refresh_section_contents
 ```
-
+#### create_section
 in `create_section` you can override the default toc title adding another `#` hint below the one header created automatically in the section folder
 ex
 ```markdown
 # <https§§§www.cloudskillsboost.google§catalog>
 > <https://www.cloudskillsboost.google/catalog>
 
-# catalog
+# catalog for the gcloud products
 ```
+the text `catalog for the gcloud products` will be shown in the toc
 
+in `create_section` if a youtube url is used the section created looks a bit more custom than the general one
+ex
+TODO: add image
+
+
+
+#### refresh_section_contents
 in `refresh_section_contents` you can expand links from other sections automatically 
 ex
 ```markdown
@@ -96,7 +104,7 @@ I --> Complete
 ```
 
 
-## oto100 safari books
+### oto100 (safari) books
 
 0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
 
@@ -113,7 +121,7 @@ current commands:
 ```
 
 
-### simple local setup:
+## simple local setup:
 
 ```sh
 make setup
@@ -125,7 +133,7 @@ code .
 chmod +x main.py
 ```
 
-### daily usage
+## daily usage
 
 ```sh
 . venv/bin/activate

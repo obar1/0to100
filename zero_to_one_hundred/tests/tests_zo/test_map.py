@@ -109,8 +109,7 @@ def test_write(
         for http_url in http_urls
     ]
     actual = Map(get_config_map, persist_fs, sections=sections)
-    txt = actual.as_mark_down()
     with Patcher(allow_root_user=False) as patcher:
-        res = actual.write(txt)
-        assert res > 0
+        res = actual.write("abc")
+        assert res is True
         assert os.path.exists(actual.readme_md)

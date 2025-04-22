@@ -2,6 +2,7 @@
 
 import os
 from unittest import mock
+from pyfakefs.fake_filesystem_unittest import Patcher
 
 import pytest
 
@@ -124,3 +125,11 @@ def get_factory(env_map_yaml, persist_fs, process_fs):
 @pytest.fixture
 def get_factory_provider(env_map_yaml, persist_fs, process_fs):
     return ZTOHFactoryProvider(persist_fs, process_fs)
+
+
+@pytest.fixture
+def fs():
+    patcher = Patcher()
+    patcher.setUp()
+    yield patcher.fs  # Provide the fake filesystem
+    patcher.tearDown()

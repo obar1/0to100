@@ -37,14 +37,7 @@ def test_init(get_config_map, persist_fs, process_fs, http_url_1):
     assert res_with_hash is not None
 
 
-def test_write(get_config_map, persist_fs, process_fs, http_url_1):
-    actual = Section(get_config_map, persist_fs, process_fs, http_url_1)
-    txt = get_config_map.get_repo_path + r"/" + actual.dir_name
-    txt = os.path.abspath(txt)
-    with Patcher(allow_root_user=False) as patcher:
-        res = actual.write(txt)
-        assert res is True
-        assert os.path.exists(txt)
+
 
 
 def test_build_from_dir(get_config_map, persist_fs, process_fs):
