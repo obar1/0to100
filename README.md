@@ -66,9 +66,9 @@ the text `catalog for the gcloud products` will be shown in the toc
 
 in `create_section` if a youtube url is used the section created looks a bit more custom than the general one
 ex
-TODO: add image
 
 
+> this might not work if you run the demo in a github codespace, but it will works locally
 
 #### refresh_section_contents
 in `refresh_section_contents` you can expand links from other sections automatically 

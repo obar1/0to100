@@ -24,7 +24,11 @@ class YTReadMeMD(MarkdownRenderer):
         self.persist_fs = persist_fs
         self.http_url = http_url
         self.dir_name = from_http_url_to_dir(http_url)
+        self.full_dir_name = config_map.get_repo_path + "/" + self.dir_name
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
+        self.readme_html = (
+            config_map.get_repo_path + "/" + self.dir_name + "/readme.html"
+        )
 
     def __repr__(self):
         return f"YTReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
@@ -34,7 +38,7 @@ class YTReadMeMD(MarkdownRenderer):
 
     def write(self):
         return self.persist_fs.snatch_yt_video(
-            self.http_url, self.dir_name, self.readme_md
+            self.http_url, self.full_dir_name, self.readme_html, self.readme_md
         )
 
     def read(self):

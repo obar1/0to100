@@ -47,13 +47,11 @@ class ZTOHPersistFS(APersistFS):
         return time.time()
 
     @classmethod
-    def snatch_yt_video(cls, video_url, dir_name, dir_readme_md):
+    def snatch_yt_video(cls, video_url, full_dir_name, readme_html, readme_md):
 
         @staticmethod
         def sanitize_filename(txt):
             return txt
-
-        INDEX_HTML = ""
 
         @staticmethod
         def download_youtube_video(url, output_path):
@@ -111,7 +109,7 @@ class ZTOHPersistFS(APersistFS):
                 }
 
         @staticmethod
-        def generate_index_html(video):
+        def generate_index_html(video, full_dir_name):
             """Generate or update the index.html file with video list, players, tags, and subtitles."""
             html_content = """
                 <!DOCTYPE html>
@@ -186,12 +184,19 @@ class ZTOHPersistFS(APersistFS):
         </html>
             """
 
-            with open(INDEX_HTML, "w") as f:
+            with open(full_dir_name, "w") as f:
                 f.write(html_content)
-            print(f"Updated {INDEX_HTML} with {len(video)} videos.")
 
-        cls.make_dirs(dir_name)
+        cls.make_dirs(full_dir_name)
 
-        video_info = download_youtube_video(video_url, dir_readme_md)
+        video_info = download_youtube_video(video_url, full_dir_name)
 
-        generate_index_html(video_info)
+        generate_index_html(video_info, readme_html)
+
+        txt = f"""
+# <{full_dir_name}>
+<{video_url}>
+[html yt dump](./readme.html)
+
+        """
+        cls.write_file(readme_md, txt)

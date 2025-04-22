@@ -23,7 +23,6 @@ function setup_sb {
 function zo {
     # 0to100
     setup_zo
-# FIXME: add back all
     ./main.py zo help
     content=$(
         cat <<'EOF'
