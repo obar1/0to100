@@ -10,16 +10,15 @@ from zero_to_one_hundred.src.zero_to_one_hundred.processors.create_section_proce
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.done_section_processor import (
     DoneSectionProcessor,
 )
-from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_section_contents_processor import (
-    RefreshSectionContentsProcessor,
-)
 from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_map_processor import (
     RefreshMapProcessor,
+)
+from zero_to_one_hundred.src.zero_to_one_hundred.processors.refresh_section_contents_processor import (
+    RefreshSectionContentsProcessor,
 )
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 

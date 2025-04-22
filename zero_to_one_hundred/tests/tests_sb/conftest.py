@@ -16,7 +16,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.repository.sb_persist_fs import
     SBPersistFS,
 )
 
-
 get_resource_path = os.path.dirname(os.path.abspath(__file__)) + r"/resources"
 
 

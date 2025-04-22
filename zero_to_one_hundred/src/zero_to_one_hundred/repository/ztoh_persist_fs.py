@@ -1,8 +1,8 @@
 # pylint: disable=W0108
-from datetime import datetime
 import logging
 import os
 import time
+from datetime import datetime
 
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.a_persist_fs import (
     APersistFS,

@@ -1,3 +1,5 @@
+from typing import Union
+
 from zero_to_one_hundred.src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
@@ -9,7 +11,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.processors.a_processor import (
 from zero_to_one_hundred.src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
-
 from zero_to_one_hundred.src.zero_to_one_hundred.validator.validator import Validator
 
 
@@ -28,6 +29,15 @@ class CreateSectionProcessor(AProcessor):
         self.persist_fs = persist_fs
         self.config_map = config_map
 
+    @staticmethod
+    def get_readme_md(section: Section) -> Union[ReadMeMD]:
+        return ReadMeMD(
+            section.config_map,
+            section.persist_fs,
+            Section.from_http_url_to_dir,
+            section.http_url,
+        )
+
     def process(self):
         """
         - add new new_section
@@ -42,10 +52,5 @@ class CreateSectionProcessor(AProcessor):
         )
         txt = self.config_map.get_repo_path + "/" + section.dir_name
         section.write(txt)
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            Section.from_http_url_to_dir,
-            section.http_url,
-        )
+        readme_md = CreateSectionProcessor.get_readme_md(section)
         readme_md.write()

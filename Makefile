@@ -15,14 +15,14 @@ help:
 	@echo "\033[0m"
 	@echo ""
 	@echo "\033[1;32m▶ LOCAL COMMANDS:\033[0m"
-	@echo "  make setup        - Create virtual environment and install dependencies"
-	@echo "  make clean        - Remove virtual environment and cache files"
+	@echo "  make setup         - Create virtual environment and install dependencies"
+	@echo "  make clean         - Remove virtual environment and cache files"
 	@echo " "
-	@echo "  make format       - Run format code"
-	@echo "  make lint         - Run linter"
-	@echo "  make type-check   - Run type checking"
-	@echo "  make test         - Run all tests"
-	@echo "  make refactor     - Run all checks"
+	@echo "  make format        - Run format code"
+	@echo "  make lint          - Run linter"
+	@echo "  make type-check    - Run type checking"
+	@echo "  make test          - Run all tests"
+	@echo "  make refactor      - Run all checks"
 setup:
 	$(PYTHON) -m venv $(VENV)
 	$(BIN)/pip install .
@@ -40,5 +40,4 @@ type-check:
 	$(BIN)/mypy $(SRC_DIR)
 format:
 	$(BIN)/black $(SRC_DIR) $(TEST_DIR)
-	find . -maxdepth 2 -type f -name "*.ipynb" | xargs -I {} bash -c "$(BIN)/black '{}'"
 refactor: format lint type-check test 

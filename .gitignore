@@ -23,3 +23,5 @@ build
 *.egg-info
 pip-wheel-metadata/
 
+# map
+./map.yaml

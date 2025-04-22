@@ -9,9 +9,9 @@ from zero_to_one_hundred.src.zero_to_one_hundred.views.markdown_renderer import 
 )
 
 
-class ReadMeMD(MarkdownRenderer):
-    """ReadMeMD:
-    a readme md with http and ref"""
+class YTReadMeMD(MarkdownRenderer):
+    """YTReadMeMD:
+    yt readme with extra features"""
 
     def __init__(
         self,
@@ -27,10 +27,10 @@ class ReadMeMD(MarkdownRenderer):
         self.readme_md = config_map.get_repo_path + "/" + self.dir_name + "/readme.md"
 
     def __repr__(self):
-        return f"ReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
+        return f"YTReadMeMD {self.readme_md} {self.http_url} {self.dir_name}"
 
     def as_mark_down(self):
-        return f"ReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
+        return f"YTReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
     def write(self, txt=None):
         if txt is None:

@@ -7,7 +7,6 @@ from zero_to_one_hundred.src.zero_to_one_hundred.factories.ztoh_factory_provider
     ZTOHFactoryProvider,
 )
 
-
 # pylint: disable=W0621,W0613
 
 

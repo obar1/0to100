@@ -1,6 +1,5 @@
 from zero_to_one_hundred.src.zero_to_one_hundred.factories.sb_factory import SBFactory
 
-
 # pylint: disable=W0621
 
 
