@@ -33,7 +33,7 @@ class YTReadMeMD(MarkdownRenderer):
     def as_mark_down(self):
         return f"YTReadMeMD {self.readme_md}, {self.dir_name} {self.http_url}"
 
-    def write(self, txt=None):
+    def write(self):
         txt = []
         txt.append(f"""# <{self.dir_name}>\n> <{self.http_url}>\n""")
         return self.persist_fs.snatch_yt_video(
