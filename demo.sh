@@ -28,7 +28,7 @@ function zo {
         cat <<'EOF'
 https://www.cloudskillsboost.google/123
 https://www.udemy.com/course/python-for-beginners-hands-on/
-https://www.youtube.com/watch?v=-Y44YzIODw0
+https://www.youtube.com/watch?v=x7X9w_GIm1s
 EOF
     )
     while IFS= read -r section || [[ -n "$section" ]]; do
