@@ -1,6 +1,7 @@
 # pylint: disable=W0246
 import os
 from dataclasses import dataclass
+from typing import Union
 
 from src.zero_to_one_hundred.exceptions.errors import SomeError
 from src.zero_to_one_hundred.repository.a_persist_fs import (
@@ -52,7 +53,7 @@ class AConfigMap:
         return []
 
     @property
-    def get_legend_type(self) -> str | None:
+    def get_legend_type(self) -> Union[str, None]:
         return (
             None
             if self.load.get("legend") is None
