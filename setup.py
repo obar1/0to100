@@ -27,5 +27,5 @@ setup(
         "License :: OSI Approved :: GNU AFFERO",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.9",
+    python_requires=">=3.12",
 )
