@@ -3,7 +3,7 @@ import json
 import logging
 import os
 from abc import ABC
-from typing import List
+from typing import List, Union
 
 import yaml
 
@@ -57,7 +57,7 @@ class APersistFS(ABC):
             return False
 
     @classmethod
-    def read_file(cls, filename) -> List[str] | None:
+    def read_file(cls, filename) -> Union[List[str], None]:  # Replace | with Union
         # logging.info(f"read_file {filename}")
         lines = None
         try:
