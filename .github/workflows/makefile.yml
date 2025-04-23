@@ -1,15 +1,33 @@
 name: Makefile CI
-on: [push]
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    - name: make setup
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Run Setup
       run: make setup
-    - name: make refactor
-      run: make refactor
-    - name: List files in the repository
-      run: |
-        ls ${{ github.workspace }}
+
+    - name: Run tests
+      run: make test
+
+    - name: Run linting
+      run: make lint
+
+    - name: Run type checking
+      run: make type-check
+
+    - name: Run format check
+      run: make format

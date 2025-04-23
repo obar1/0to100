@@ -14,7 +14,8 @@ with open("README.md", "r") as fh:
 setup(
     name="zero_to_one_hundred",
     author="obar1",
-    packages=find_packages(),
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     author_email="obar1+gh@pm.me",
     description="Simple python tool to learn everything and keep it local.",
     long_description=long_description,
@@ -26,5 +27,5 @@ setup(
         "License :: OSI Approved :: GNU AFFERO",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.12",
 )
