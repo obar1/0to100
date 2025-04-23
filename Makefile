@@ -1,10 +1,10 @@
 .PHONY: setup clean test lint type-check format refactor
 # Variables
 PYTHON := python3
-VENV := venv
+VENV := .venv
 BIN := $(VENV)/bin
-SRC_DIR := zero_to_one_hundred
-TEST_DIR := zero_to_one_hundred/tests
+SRC_DIR := src
+TEST_DIR := tests
 help:
 	@echo "\033[0;36m"
 	@echo '  _____                     _          _  ___   ___  '
@@ -24,9 +24,10 @@ help:
 	@echo "  make test          - Run all tests"
 	@echo "  make refactor      - Run all checks"
 setup:
-	$(PYTHON) -m venv $(VENV)
-	$(BIN)/pip install -r requirements.txt
-	$(BIN)/pip install .
+	$(PYTHON) -m pip install --upgrade uv
+	uv venv 
+	uv pip install .
+
 clean:
 	rm -rf $(VENV)
 	rm -rf .pytest_cache
@@ -41,4 +42,4 @@ type-check:
 	$(BIN)/mypy $(SRC_DIR)
 format:
 	$(BIN)/black $(SRC_DIR) $(TEST_DIR)
-refactor: format lint type-check test 
+refactor: format lint type-check test

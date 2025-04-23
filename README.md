@@ -135,8 +135,8 @@ current commands:
 ```sh
 make setup
 
-cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map_zo.yaml
-cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map_sb.yaml
+cp ./tests/tests_zo/resources/map.yaml map_zo.yaml
+cp ./tests/tests_sb/resources/map.yaml map_sb.yaml
 # edit them
 code .
 chmod +x main.py
@@ -145,7 +145,7 @@ chmod +x main.py
 ## daily usage
 
 ```sh
-. venv/bin/activate
+. .venv/bin/activate
 export MAP_YAML_PATH=map_zo.yaml && ./main.py zo help
 # or depending what you want to do
 export MAP_YAML_PATH=map_sb.yaml && ./main.py sb help

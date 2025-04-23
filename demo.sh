@@ -2,23 +2,27 @@
 # simple demo - it use param from cmd line to run the actual section
 
 # set -x
+
+
+# repo path 
 REPO_PATH="./0to100"
 
 function setup {
     # set -x
     export MAP_YAML_PATH=map.yaml
-    if [ ! -d "venv" ]; then
+    if [ ! -d ".venv" ]; then
 
         make setup
         chmod +x main.py
     fi
+    . .venv/bin/activate
 }
 function setup_zo {
-    cp ./zero_to_one_hundred/tests/tests_zo/resources/map.yaml map.yaml
+    cp ./tests/tests_zo/resources/map.yaml map.yaml
 }
 
 function setup_sb {
-    cp ./zero_to_one_hundred/tests/tests_sb/resources/map.yaml map.yaml
+    cp ./tests/tests_sb/resources/map.yaml map.yaml
 }
 
 function zo {
