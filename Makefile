@@ -1,5 +1,6 @@
 .PHONY: setup clean test lint type-check format refactor
 # Variables
+PYTHON := python3
 VENV := .venv
 SRC_DIR := src
 TEST_DIR := tests
