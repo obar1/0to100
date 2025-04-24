@@ -1,5 +1,3 @@
-from typing import List
-
 from src.zero_to_one_hundred.configs.sb_config_map import (
     SBConfigMap,
 )

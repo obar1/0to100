@@ -1,0 +1,21 @@
+[project]
+name = "zero-to-one_hundred"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.10"
+description="Simple python tool to learn everything and keep it local."
+author_email="obar1+gh@pm.me"
+dependencies = [
+    "black>=25.1.0",
+    "mypy>=1.15.0",
+    "pyyaml>=6.0.2",
+    "ruff>=0.11.6",
+    "types-pyyaml>=6.0.12.20250402",
+    "yt-dlp>=2025.3.31",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pyyaml>=6.0.2",
+]
