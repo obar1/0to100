@@ -20,14 +20,5 @@ jobs:
     - name: Run Setup
       run: make setup
 
-    - name: Run tests
-      run: make test
-
-    - name: Run linting
-      run: make lint
-
-    - name: Run type checking
-      run: make type-check
-
-    - name: Run format check
-      run: make format
+    - name: Run Refactor
+      run: make refactor

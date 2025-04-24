@@ -2,7 +2,6 @@
 # Variables
 PYTHON := python3
 VENV := .venv
-BIN := $(VENV)/bin
 SRC_DIR := src
 TEST_DIR := tests
 help:
@@ -23,11 +22,8 @@ help:
 	@echo "  make type-check    - Run type checking"
 	@echo "  make test          - Run all tests"
 	@echo "  make refactor      - Run all checks"
-setup:
+setup: clean
 	$(PYTHON) -m pip install --upgrade uv
-	uv venv 
-	uv pip install .
-
 clean:
 	rm -rf $(VENV)
 	rm -rf .pytest_cache
@@ -35,11 +31,11 @@ clean:
 	rm -rf .mypy_cache
 	rm -rf **/__pycache__
 test:
-	PYTHONPATH=. $(BIN)/pytest $(TEST_DIR) -vv
+	uv run pytest $(TEST_DIR) -vv
 lint:
-	$(BIN)/pylint $(SRC_DIR)
+	uv run ruff check $(SRC_DIR) --fix
 type-check:
-	$(BIN)/mypy $(SRC_DIR)
+	uv run mypy $(SRC_DIR)
 format:
-	$(BIN)/black $(SRC_DIR) $(TEST_DIR)
+	uv run ruff format $(SRC_DIR) $(TEST_DIR)
 refactor: format lint type-check test

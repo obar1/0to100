@@ -7,7 +7,6 @@ from src.zero_to_one_hundred.configs.sb_config_map import (
 from src.zero_to_one_hundred.repository.sb_persist_fs import (
     SBPersistFS,
 )
-from src.zero_to_one_hundred.validator.validator import Validator
 from src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
 )
@@ -58,7 +57,7 @@ class Metadata(MarkdownRenderer):
             json_data = self.persist_fs.read_file(self.path_json)
             lines = {} if json_data is None else json_data
             return json.loads("".join(lines))
-        except Exception as e:
+        except Exception:
             logging.warning(f"no {self.path_json} not found")
             return {}
 

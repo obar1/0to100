@@ -1,10 +1,7 @@
-from typing import List
-
 from src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
 from src.zero_to_one_hundred.models.map import Map
-from src.zero_to_one_hundred.models.section import Section
 from src.zero_to_one_hundred.processors.a_processor import (
     AProcessor,
 )

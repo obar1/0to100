@@ -1,5 +1,4 @@
 # pylint: disable=W0108
-import html
 import logging
 import os
 import time
@@ -56,7 +55,6 @@ class ZTOHPersistFS(APersistFS):
 
     @classmethod
     def snatch_yt_video(cls, video_url, full_dir_name, readme_md, txt):
-
         @staticmethod
         def download_youtube_video(url, output_path):
             """Download a YouTube video as MP4 and return video info including tags and subtitles."""
