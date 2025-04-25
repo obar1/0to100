@@ -1,7 +1,7 @@
 #!/bin/bash
 # simple demo - it use param from cmd line to run the actual section
 
-set -x
+# set -x
 
 
 # repo path 
