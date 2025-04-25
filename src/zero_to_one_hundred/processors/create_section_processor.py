@@ -4,7 +4,7 @@ from src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
 from src.zero_to_one_hundred.models.readme_md import ReadMeMD
-from src.zero_to_one_hundred.models.section import Section
+from src.zero_to_one_hundred.models.section import YOUTUBE_HTTPS, Section
 from src.zero_to_one_hundred.models.yt_readme_md import YTReadMeMD
 from src.zero_to_one_hundred.processors.a_processor import (
     AProcessor,
@@ -13,8 +13,6 @@ from src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
 from src.zero_to_one_hundred.validator.validator import Validator
-
-YOUTUBE_HTTPS = "https://www.youtube."
 
 
 class CreateSectionProcessor(AProcessor):

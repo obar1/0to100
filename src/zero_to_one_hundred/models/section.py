@@ -6,7 +6,6 @@ import re
 from src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
-from src.zero_to_one_hundred.models.readme_md import ReadMeMD
 from src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
@@ -14,6 +13,8 @@ from src.zero_to_one_hundred.validator.validator import Validator
 from src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
 )
+
+YOUTUBE_HTTPS = "https://www.youtube."
 
 
 class Section(MarkdownRenderer):
@@ -66,40 +67,20 @@ class Section(MarkdownRenderer):
     def get_dir_name(self):
         return self.dir_name
 
-    def find_header(self):
-        """
-        take default header created by code or take first one # header found added by user
-        """
-
-        def get_header(line):
-            if str(line).strip("\n").startswith("# "):
-                return line
-            return None
-
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            Section.from_http_url_to_dir,
-            self.http_url,
-        )
-        res = ""
-        lines_converted = []
-        try:
-            for line in readme_md.read():
-                lines_converted.append(get_header(line))
-            headers = lines_converted
-            not_null = list(filter(lambda x: x is not None, headers))
-            if len(not_null) == 1:  # take default header
-                res = not_null[0]
-            if len(not_null) > 1:  # take first one header found
-                res = not_null[1]
-        except Exception as e:
-            Validator.print_e(e)
-        return res
-
     @property
     def get_id_name(self):
-        return self.find_header().strip("\n")
+        try:
+            with open(self.dir_readme_md, "r") as file:
+                lines = file.readlines()
+                header_count = 0
+                for line in lines:
+                    if line.strip().startswith("#"):
+                        header_count += 1
+                        if header_count == 2:
+                            return line.strip()
+        except Exception as e:
+            Validator.print_e(e)
+            return "TODO: Add an Header"  # Return None if second header not found
 
     @classmethod
     def from_http_url_to_dir(cls, http_url):
