@@ -75,12 +75,3 @@ class APersistFS(ABC):
     @classmethod
     def abs_path(cls, path) -> str:
         return os.path.abspath(path)
-
-    @classmethod
-    def get_pkg_info(cls):
-        res = "--"
-        try:
-            res = " ".join(cls.read_file("zero_to_one_hundred.egg-info/PKG-INFO")[:4])
-        except Exception:
-            logging.info("PKG-INFO issues")
-        return res
