@@ -1,0 +1,254 @@
++ REPO_PATH=./0to100
++ '[' 1 -eq 0 ']'
++ setup
++ export MAP_YAML_PATH=map.yaml
++ MAP_YAML_PATH=map.yaml
++ '[' '!' -d .venv ']'
++ . .venv/bin/activate
+++ '[' -z '' ']'
+++ '[' -n x ']'
+++ SCRIPT_PATH=.venv/bin/activate
+++ '[' .venv/bin/activate = demo.sh ']'
+++ deactivate nondestructive
+++ unset -f pydoc
+++ '[' -z '' ']'
+++ '[' -z '' ']'
+++ hash -r
+++ '[' -z '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ VIRTUAL_ENV=/home/xsazcd/git/obar1/0to100.git/.venv
+++ '[' linux-gnu = cygwin ']'
+++ '[' linux-gnu = msys ']'
+++ export VIRTUAL_ENV
+++ '[' -z '' ']'
+++ unset SCRIPT_PATH
+++ _OLD_VIRTUAL_PATH='/home/xsazcd/git/obar1/0to100.git/.venv/bin:/home/xsazcd/.local/bin:/home/xsazcd/.cargo/bin:/home/xsazcd/google-cloud-sdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Users/mario/scoop/apps/python/current/Scripts:/mnt/c/Users/mario/scoop/apps/python/current:/mnt/c/Users/mario/scoop/shims:/mnt/c/Users/mario/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mario/AppData/Local/Microsoft/WinGet/Packages/JernejSimoncic.Wget_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/mario/AppData/Local/Programs/Ollama:/mnt/c/Users/mario/AppData/Roaming/Python/Python312/Scripts:/mnt/c/Program Files/JetBrains/JetBrains Gateway 2024.2.1/bin:/mnt/c/Users/mario/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mario/AppData/Local/Muse Hub/lib:/mnt/c/Users/mario/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/mario/AppData/Local/Programs/Microsoft VS Code Insiders/bin:/snap/bin'
+++ PATH='/home/xsazcd/git/obar1/0to100.git/.venv/bin:/home/xsazcd/git/obar1/0to100.git/.venv/bin:/home/xsazcd/.local/bin:/home/xsazcd/.cargo/bin:/home/xsazcd/google-cloud-sdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Users/mario/scoop/apps/python/current/Scripts:/mnt/c/Users/mario/scoop/apps/python/current:/mnt/c/Users/mario/scoop/shims:/mnt/c/Users/mario/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mario/AppData/Local/Microsoft/WinGet/Packages/JernejSimoncic.Wget_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/mario/AppData/Local/Programs/Ollama:/mnt/c/Users/mario/AppData/Roaming/Python/Python312/Scripts:/mnt/c/Program Files/JetBrains/JetBrains Gateway 2024.2.1/bin:/mnt/c/Users/mario/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mario/AppData/Local/Muse Hub/lib:/mnt/c/Users/mario/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/mario/AppData/Local/Programs/Microsoft VS Code Insiders/bin:/snap/bin'
+++ export PATH
+++ '[' xzero-to-one-hundred '!=' x ']'
+++ VIRTUAL_ENV_PROMPT='(zero-to-one-hundred) '
+++ export VIRTUAL_ENV_PROMPT
+++ '[' -z '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(zero-to-one-hundred) '
+++ export PS1
+++ alias pydoc
+++ true
+++ hash -r
++ zo
++ setup_zo
++ cp ./tests/tests_zo/resources/map.yaml map.yaml
++ uv run ./main.py zo help
+2025-04-25 21:39:22,665 - INFO - supported: ['create_section', 'done_section', 'refresh_map', 'refresh_section_contents', 'help']
+2025-04-25 21:39:22,665 - INFO - extended help: 
+    create_section = create a new section
+    section=https://www.cloudskillsboost.google/paths/16
+    ./main.py zo create_section "$section"
+
+    done_section = tag a section as done
+    section=https://www.cloudskillsboost.google/paths/16
+    ./main.py zo done_section "$section"
+    
+    refresh_map = refresh the section map
+    ./main.py zo refresh_map
+    
+    refresh_section_contents = refresh links to sections in the readme.md(s)
+    ./main.py zo refresh_section_contents
+    
+++ cat
++ content='https://www.cloudskillsboost.google/123
+https://www.udemy.com/course/python-for-beginners-hands-on/
+https://www.youtube.com/watch?v=x7X9w_GIm1s'
++ IFS=
++ read -r section
++ uv run ./main.py zo create_section https://www.cloudskillsboost.google/123
+2025-04-25 21:39:22,799 - INFO - make_dirs ./0to100/https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:22,802 - INFO - write_file ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:22,803 - INFO - list_dirs ./0to100
+2025-04-25 21:39:22,804 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:22,805 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:22,810 - INFO - *** 00:00:00
+2025-04-25 21:39:22,810 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:22,810 - INFO - supported: ['zo', 'sb', 'help']
+2025-04-25 21:39:22,810 - INFO - extended help: 
+    zo = zero to 100
+    ./main.py zo help
+
+    sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
+    
++ IFS=
++ read -r section
++ uv run ./main.py zo create_section https://www.udemy.com/course/python-for-beginners-hands-on/
+2025-04-25 21:39:22,945 - INFO - make_dirs ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:22,948 - INFO - write_file ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:22,949 - INFO - list_dirs ./0to100
+2025-04-25 21:39:22,950 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:22,950 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:22,953 - INFO - done_section_status https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:22,953 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/.done
+2025-04-25 21:39:22,958 - INFO - *** 00:00:00
+2025-04-25 21:39:22,958 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:22,958 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:22,958 - INFO - supported: ['zo', 'sb', 'help']
+2025-04-25 21:39:22,958 - INFO - extended help: 
+    zo = zero to 100
+    ./main.py zo help
+
+    sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
+    
++ IFS=
++ read -r section
++ uv run ./main.py zo create_section 'https://www.youtube.com/watch?v=x7X9w_GIm1s'
+2025-04-25 21:39:23,099 - INFO - make_dirs ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:23,103 - INFO - make_dirs ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+[youtube] Extracting URL: https://www.youtube.com/watch?v=x7X9w_GIm1s
+[youtube] x7X9w_GIm1s: Downloading webpage
+[youtube] x7X9w_GIm1s: Downloading tv client config
+[youtube] x7X9w_GIm1s: Downloading player 22f02d3d-main
+[youtube] x7X9w_GIm1s: Downloading tv player API JSON
+[youtube] x7X9w_GIm1s: Downloading ios player API JSON
+[youtube] x7X9w_GIm1s: Downloading m3u8 information
+[info] x7X9w_GIm1s: Downloading subtitles: en
+[info] x7X9w_GIm1s: Downloading 1 format(s): 137+140
+[info] Writing video subtitles to: ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.en.vtt
+[download] Destination: ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.en.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at  Unknown B/s (00:00:00)[download]    7.00KiB at    5.09MiB/s (00:00:00)[download]   15.00KiB at    1.89MiB/s (00:00:00)[download]   23.59KiB at  483.62KiB/s (00:00:00)[download] 100% of   23.59KiB in 00:00:00 at 75.55KiB/s
+[download] Destination: ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.f137.mp4
+[download]   0.0% of    8.46MiB at  Unknown B/s ETA Unknown[download]   0.0% of    8.46MiB at  Unknown B/s ETA Unknown[download]   0.1% of    8.46MiB at  Unknown B/s ETA Unknown[download]   0.2% of    8.46MiB at   11.48MiB/s ETA 00:00  [download]   0.4% of    8.46MiB at    6.70MiB/s ETA 00:01[download]   0.7% of    8.46MiB at    1.22MiB/s ETA 00:06[download]   1.5% of    8.46MiB at    1.16MiB/s ETA 00:07[download]   2.9% of    8.46MiB at    1.62MiB/s ETA 00:05[download]   5.9% of    8.46MiB at    2.37MiB/s ETA 00:03[download]  11.8% of    8.46MiB at    3.79MiB/s ETA 00:01[download]  23.6% of    8.46MiB at    5.57MiB/s ETA 00:01[download]  47.3% of    8.46MiB at    7.94MiB/s ETA 00:00[download]  94.6% of    8.46MiB at    8.85MiB/s ETA 00:00[download] 100.0% of    8.46MiB at    9.18MiB/s ETA 00:00[download] 100% of    8.46MiB in 00:00:01 at 6.65MiB/s   
+[download] Destination: ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.f140.m4a
+[download]   0.0% of    2.21MiB at  201.51KiB/s ETA 00:11[download]   0.1% of    2.21MiB at  557.65KiB/s ETA 00:04[download]   0.3% of    2.21MiB at    1.22MiB/s ETA 00:01[download]   0.7% of    2.21MiB at    2.50MiB/s ETA 00:00[download]   1.4% of    2.21MiB at    4.85MiB/s ETA 00:00[download]   2.8% of    2.21MiB at    1.66MiB/s ETA 00:01[download]   5.6% of    2.21MiB at    1.67MiB/s ETA 00:01[download]  11.2% of    2.21MiB at    2.34MiB/s ETA 00:00[download]  22.5% of    2.21MiB at    3.07MiB/s ETA 00:00[download]  45.1% of    2.21MiB at    4.58MiB/s ETA 00:00[download]  90.3% of    2.21MiB at    6.89MiB/s ETA 00:00[download] 100.0% of    2.21MiB at    7.44MiB/s ETA 00:00[download] 100% of    2.21MiB in 00:00:00 at 3.74MiB/s   
+[Merger] Merging formats into "./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.mp4"
+Deleting original file ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.f140.m4a (pass -k to keep)
+Deleting original file ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.f137.mp4 (pass -k to keep)
+[VideoConvertor] Not converting media file "./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/Python in 100 Seconds.mp4"; already is in target format mp4
+2025-04-25 21:39:30,646 - INFO - Downloading: Python in 100 Seconds
+2025-04-25 21:39:30,646 - INFO - Download completed! Video saved to ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:30,646 - INFO - write_file ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/readme.md
+2025-04-25 21:39:30,648 - INFO - list_dirs ./0to100
+2025-04-25 21:39:30,649 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:30,649 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:30,651 - INFO - done_section_status https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:30,651 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/.done
+2025-04-25 21:39:30,653 - INFO - done_section_status https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:30,653 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/.done
+2025-04-25 21:39:30,659 - INFO - *** 00:00:00
+2025-04-25 21:39:30,659 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:30,659 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:30,659 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/readme.md
+2025-04-25 21:39:30,659 - INFO - supported: ['zo', 'sb', 'help']
+2025-04-25 21:39:30,659 - INFO - extended help: 
+    zo = zero to 100
+    ./main.py zo help
+
+    sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
+    
++ IFS=
++ read -r section
++ [[ -n '' ]]
++ echo '# a_custom_header 0'
++ uv run ./main.py zo done_section https://www.cloudskillsboost.google/123
+2025-04-25 21:39:30,813 - INFO - done_section /home/xsazcd/git/obar1/0to100.git/0to100/https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:30,813 - INFO - path /home/xsazcd/git/obar1/0to100.git/0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:30,814 - INFO - created /home/xsazcd/git/obar1/0to100.git/0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:30,815 - INFO - list_dirs ./0to100
+2025-04-25 21:39:30,816 - INFO - done_section_status https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:30,816 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/.done
+2025-04-25 21:39:30,818 - INFO - done_section_status https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:30,818 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/.done
+2025-04-25 21:39:30,821 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:30,821 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:30,827 - INFO - *** 00:00:00
+2025-04-25 21:39:30,827 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:30,827 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/readme.md
+2025-04-25 21:39:30,827 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:30,827 - INFO - supported: ['zo', 'sb', 'help']
+2025-04-25 21:39:30,827 - INFO - extended help: 
+    zo = zero to 100
+    ./main.py zo help
+
+    sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
+    
++ touch ./0to100/https§§§www.cloudskillsboost.google§123/image.png
++ touch ./0to100/https§§§www.cloudskillsboost.google§123/image-1.png
++ touch ./0to100/https§§§www.cloudskillsboost.google§123/image-2.png
++ touch ./0to100/https§§§www.cloudskillsboost.google§123/image-3.png
++ echo 'some text'
++ echo '![alt text](image.png)'
++ echo '![some text](image-1.png)'
++ echo '![](image-2.png)'
++ uv run ./main.py zo refresh_section_contents
+2025-04-25 21:39:30,960 - INFO - list_dirs ./0to100
+2025-04-25 21:39:30,961 - INFO - done_section_status https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:30,961 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/.done
+2025-04-25 21:39:30,964 - INFO - done_section_status https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:30,964 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/.done
+2025-04-25 21:39:30,966 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:30,966 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:30,967 - INFO - write_file ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:30,969 - INFO - write_file ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/readme.md
+2025-04-25 21:39:30,970 - INFO - write_file ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:30,971 - WARNING - delete_orphan_images image-3.png
+2025-04-25 21:39:30,973 - INFO - list_dirs ./0to100
+2025-04-25 21:39:30,974 - INFO - done_section_status https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:30,974 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/.done
+2025-04-25 21:39:30,976 - INFO - done_section_status https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:30,976 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/.done
+2025-04-25 21:39:30,978 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:30,978 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:30,984 - INFO - *** 00:00:00
+2025-04-25 21:39:30,984 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:30,984 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/readme.md
+2025-04-25 21:39:30,984 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:30,984 - INFO - supported: ['zo', 'sb', 'help']
+2025-04-25 21:39:30,984 - INFO - extended help: 
+    zo = zero to 100
+    ./main.py zo help
+
+    sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
+    
++ uv run ./main.py zo refresh_map
+2025-04-25 21:39:31,123 - INFO - list_dirs ./0to100
+2025-04-25 21:39:31,124 - INFO - done_section_status https§§§www.udemy.com§course§python-for-beginners-hands-on§
+2025-04-25 21:39:31,124 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/.done
+2025-04-25 21:39:31,126 - INFO - done_section_status https§§§www.youtube.com§watch§v§x7X9w_GIm1s
+2025-04-25 21:39:31,126 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/.done
+2025-04-25 21:39:31,128 - INFO - done_section_status https§§§www.cloudskillsboost.google§123
+2025-04-25 21:39:31,128 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/.done
+2025-04-25 21:39:31,134 - INFO - *** 00:00:00
+2025-04-25 21:39:31,135 - INFO - path ./0to100/https§§§www.udemy.com§course§python-for-beginners-hands-on§/readme.md
+2025-04-25 21:39:31,135 - INFO - path ./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s/readme.md
+2025-04-25 21:39:31,135 - INFO - path ./0to100/https§§§www.cloudskillsboost.google§123/readme.md
+2025-04-25 21:39:31,135 - INFO - supported: ['zo', 'sb', 'help']
+2025-04-25 21:39:31,135 - INFO - extended help: 
+    zo = zero to 100
+    ./main.py zo help
+
+    sb = sb to 100
+    ./main.py sb help
+    
+    help = this :)
+    ./main.py help
+    

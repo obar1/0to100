@@ -1,7 +1,7 @@
 #!/bin/bash
 # simple demo - it use param from cmd line to run the actual section
 
-# set -x
+set -x
 
 
 # repo path 
@@ -28,7 +28,6 @@ function setup_sb {
 function zo {
     # 0to100
     setup_zo
-    uv run ./main.py zo help
     content=$(
         cat <<'EOF'
 https://www.cloudskillsboost.google/123
@@ -63,8 +62,6 @@ EOF
 function sb {
     # 0to100 safari books
     setup_sb
-
-    uv run ./main.py sb help
 
     uv run ./main.py sb snatch_book https://learning.oreilly.com/course/clean-code-fundamentals/9780134661742
     echo 'add any metadata you like'
