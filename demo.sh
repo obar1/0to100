@@ -56,6 +56,7 @@ EOF
 
     uv run ./main.py zo refresh_section_contents
     # image-3.png got deleted 
+    uv run ./main.py zo refresh_map
 
 }
 
