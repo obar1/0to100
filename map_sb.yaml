@@ -1,0 +1,9 @@
+type: safari-books-map
+toc:
+  path: "./0to100"
+  fn_md: "toc_sb.md"
+legend:
+  icons:
+    - name: Book
+      icon: ":book:"
+      regex: "978"
