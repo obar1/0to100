@@ -23,7 +23,6 @@ class HelpProcessor(AProcessor):
         self.extended_help = extended_help
 
     def process(self):
-        logging.info(self.persist_fs.get_pkg_info())
         if self.config_map:
             logging.info(f"config_map: {repr(self.config_map)}")
         logging.info(f"supported: {[s.name for s in self.supported_processor]}")

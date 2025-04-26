@@ -3,7 +3,7 @@ from enum import Enum
 from src.zero_to_one_hundred.configs.sb_config_map import (
     SBConfigMap,
 )
-from src.zero_to_one_hundred.factories.a_factory import AFactory
+from src.zero_to_one_hundred.factories.a_factory import AFactory, UV_RUN_MAIN
 from src.zero_to_one_hundred.processors.refresh_toc_processor import (
     RefreshTocProcessor,
 )
@@ -24,12 +24,12 @@ class SBFactory(AFactory):
         refresh_toc = 2
         help = 3
 
-    extended_help = """
+    extended_help = f"""
     snatch_book = snatch a book from safari
-    ./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
+    {UV_RUN_MAIN} sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
     
     refresh_toc = refresh the toc with al the books info
-    ./main.py sb refresh_toc
+    {UV_RUN_MAIN} sb refresh_toc
     """
 
     def __init__(self, config_map: SBConfigMap, persist_fs: SBPersistFS):

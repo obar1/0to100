@@ -28,8 +28,8 @@ def test_as_mark_down(
 `youtube` <img src='https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg' alt='YouTube Logo' width='64'>
 `udemy` <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Udemy_logo.svg/1920px-Udemy_logo.svg.png' alt='Udemy' width='64'>
 
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip` 
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip` '
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip` '
 """
     assert str_relaxed(current) == str_relaxed(expected)
 
@@ -53,10 +53,9 @@ def test_as_mark_down_0(
 # map toc_zo.md, 3
 ## legend:
 
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
-1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip`
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
-
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip` '
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip` '
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip` '
 """
     assert str_relaxed(current) == str_relaxed(expected)
 
@@ -80,9 +79,9 @@ def test_as_mark_down_1(
 # map toc_zo.md, 3
 ## legend:
 
-1.[`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip`
-1.[`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip`
-1.[`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip`
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§abc/readme.md) `wip` '
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§zzz/readme.md) `wip` '
+'1. TODO: Add an Header [`here`](./0to100/https§§§cloud.google.com§efg/readme.md) `wip` '
 
 
 """

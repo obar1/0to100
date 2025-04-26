@@ -6,7 +6,6 @@ import re
 from src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
-from src.zero_to_one_hundred.models.readme_md import ReadMeMD
 from src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
@@ -14,6 +13,8 @@ from src.zero_to_one_hundred.validator.validator import Validator
 from src.zero_to_one_hundred.views.markdown_renderer import (
     MarkdownRenderer,
 )
+
+YOUTUBE_HTTPS = "https://www.youtube."
 
 
 class Section(MarkdownRenderer):
@@ -44,7 +45,8 @@ class Section(MarkdownRenderer):
         return f"Section {self.http_url}  {self.dir_readme_md} {self.is_done} {self.dir_name}"
 
     def as_mark_down(self):
-        return (
+        res = ""
+        res += (
             "1. "
             + self.get_id_name
             + " [`here`]("
@@ -53,6 +55,7 @@ class Section(MarkdownRenderer):
             + self.get_done_as_md
             + self.get_matching_icon_as_md
         )
+        return res
 
     @property
     def get_http_url(self):
@@ -66,40 +69,29 @@ class Section(MarkdownRenderer):
     def get_dir_name(self):
         return self.dir_name
 
-    def find_header(self):
-        """
-        take default header created by code or take first one # header found added by user
-        """
+    @property
+    def get_id_name(self):
+        """scan the contents, it return the 1st or 2nd occurrence
+        of
+        # some txt
 
-        def get_header(line):
-            if str(line).strip("\n").startswith("# "):
-                return line
-            return None
-
-        readme_md = ReadMeMD(
-            self.config_map,
-            self.persist_fs,
-            Section.from_http_url_to_dir,
-            self.http_url,
-        )
-        res = ""
-        lines_converted = []
+        Returns:
+            str: header
+        """
+        res = "# TODO: Add an Header"
         try:
-            for line in readme_md.read():
-                lines_converted.append(get_header(line))
-            headers = lines_converted
-            not_null = list(filter(lambda x: x is not None, headers))
-            if len(not_null) == 1:  # take default header
-                res = not_null[0]
-            if len(not_null) > 1:  # take first one header found
-                res = not_null[1]
+            with open(self.dir_readme_md, "r") as file:
+                lines = file.readlines()
+
+                count = 0
+                for line in lines:
+                    if line.strip().startswith("# "):
+                        count += 1
+                        if count <= 2:
+                            res = line.strip()
         except Exception as e:
             Validator.print_e(e)
         return res
-
-    @property
-    def get_id_name(self):
-        return self.find_header().strip("\n")
 
     @classmethod
     def from_http_url_to_dir(cls, http_url):

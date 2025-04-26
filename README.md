@@ -32,122 +32,23 @@ bash demo.sh sb
 [here](./toc_sb.md)
 
 
-### oto100
-
-0 to 100 ... learn anything from the web 
-
-commands:
-
-```sh
-# create_section = create a new section
-section=https://www.cloudskillsboost.google/paths/16
-./main.py zo create_section "$section"
-
-# done_section = tag a section as done, so in the map it will visible
-section=https://www.cloudskillsboost.google/paths/16
-./main.py zo done_section "$section"
-
-# refresh_map = refresh the section map
-./main.py zo refresh_map
-
-# refresh_section_contents = refresh links to sections in the readme.md(s) and delete orphaned image(s)
-./main.py zo refresh_section_contents
-```
-#### create_section
-in `create_section` you can override the default toc title adding another `#` hint below the one header created automatically in the section folder
-ex
-```markdown
-# <https§§§www.cloudskillsboost.google§catalog>
-> <https://www.cloudskillsboost.google/catalog>
-
-# catalog for the gcloud products
-```
-the text `catalog for the gcloud products` will be shown in the toc
-
-in `create_section` if a youtube url is used the section created looks a bit more yt-custom than the general one :)
-> so you can reply the video any time!
-
-```
-# <./0to100/https§§§www.youtube.com§watch§v§x7X9w_GIm1s>
-<https://www.youtube.com/watch?v=x7X9w_GIm1s>
-
-# Python in 100 Seconds
-[Python in 100 Seconds.mp4](./Python%20in%20100%20Seconds.mp4)
-tags `['webdev', 'app development', 'lesson', 'tutorial']`
-```
-
-
-> this might not work if you run the demo in a github codespace, but it will works locally
-
-#### refresh_section_contents
-in `refresh_section_contents` you can expand links from other sections automatically 
-ex
-```markdown
-# <https§§§www.cloudskillsboost.google§catalog>
-> <https://www.cloudskillsboost.google/catalog>
-
-https://www.cloudskillsboost.google/doc
-```
-expand the last link to point to the section for the doc - handy as anchor technique 
-
-in `refresh_section_contents` img in the folder that have no reference in md readme anymore will be deleted
-
-```mermaid
-graph TD
-    
-direction TB
-A["Take Screenshot"] --> B["Add Context Text"]
-B --> C{"Complete?"}
-C -->|"No"| D["Continue Video"]
-D --> A
-C -->|"Yes"| E["End Documentation"]
-
-direction TB
-E["Review Content"] --> F{"Needs Update?"}
-F -->|"Yes"| G["Update Image/Text"]
-G --> H["Replace with Snippet"]
-H --> I["Final Review"]
-F -->|"No"| Complete([Complete])
-I --> Complete
-   
-```
-
-
-### oto100 (safari) books
-
-0 to 100 ... learn anything from safari books https://learning.oreilly.com/member/login/
-
-same as above but it can use some external lib to grab epub from oreilly
-
-current commands:
-
-```sh
-# snatch_book = snatch a book from safari
-./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
-
-# refresh_toc = refresh the toc with al the books info
-./main.py sb refresh_toc
-```
-
-
 ## simple local setup:
 
 ```sh
-make setup
-
 cp ./tests/tests_zo/resources/map.yaml map_zo.yaml
 cp ./tests/tests_sb/resources/map.yaml map_sb.yaml
-# edit them
-code .
-chmod +x main.py
+# edit them (optionally)
 ```
 
 ## daily usage
 
 ```sh
-. .venv/bin/activate
-export MAP_YAML_PATH=map_zo.yaml && ./main.py zo help
-# or depending what you want to do
-export MAP_YAML_PATH=map_sb.yaml && ./main.py sb help
+uv run ./main.py help
+
+export MAP_YAML_PATH=map_zo.yaml
+uv run ./main.py zo help
+
+export MAP_YAML_PATH=map_sb.yaml
+uv run ./main.py sb help
 ```
 > check more usage samples in [demo](./demo.sh)
