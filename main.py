@@ -30,6 +30,7 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     if factory:
         for processor in factory.get_processor(argv):
             if processor:
+                logging.info(str(processor.__repr__()))
                 processor.process()
                 
 if __name__ == "__main__":
@@ -48,7 +49,7 @@ if __name__ == "__main__":
                     SBPersistFS as persist_fs
                 run_core(args[1:], SBFactoryProvider(persist_fs))
             case _:
-                raise ValueError
+                raise ValueError(f"args = {args}")
     except (ValueError,IndexError, TypeError,UnsupportedOptionError) as e:
         from src.zero_to_one_hundred.repository.a_persist_fs import \
             APersistFS as persist_fs

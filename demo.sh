@@ -39,20 +39,27 @@ EOF
         uv run ./main.py zo create_section "$section"
     done <<<"$content"
 
-    echo "# a_custom_header 0" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+    echo "# a_custom_header 0" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
+    echo "some txt" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
+    echo "\`\`\`py" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
+    echo "    this is code" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
+    echo "    # with comments" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
+    echo "\`\`\`" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
+    echo "## other sections" >> "$REPO_PATH/https§§§www.cloudskillsboost.google§123/readme.md"
 
     uv run ./main.py zo done_section "https://www.cloudskillsboost.google/123"
 
     touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image.png
     touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-1.png
     touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-2.png
+
+
+    # add some images ref
+    echo -e "![alt text](image.png)\n">>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+    echo -e "![some text](image-1.png)\n" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+    echo -e "![](image-2.png)\n" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
+
     touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-3.png
-
-    echo "some text" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
-    echo "![alt text](image.png)">>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
-    echo "![some text](image-1.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
-    echo "![](image-2.png)" >>"$REPO_PATH"/https§§§www.cloudskillsboost.google§123/readme.md
-
     uv run ./main.py zo refresh_section_contents
     # image-3.png got deleted 
     uv run ./main.py zo refresh_map

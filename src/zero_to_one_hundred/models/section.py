@@ -45,7 +45,8 @@ class Section(MarkdownRenderer):
         return f"Section {self.http_url}  {self.dir_readme_md} {self.is_done} {self.dir_name}"
 
     def as_mark_down(self):
-        return (
+        res = ""
+        res += (
             "1. "
             + self.get_id_name
             + " [`here`]("
@@ -54,6 +55,7 @@ class Section(MarkdownRenderer):
             + self.get_done_as_md
             + self.get_matching_icon_as_md
         )
+        return res
 
     @property
     def get_http_url(self):
@@ -69,18 +71,24 @@ class Section(MarkdownRenderer):
 
     @property
     def get_id_name(self):
-        try:
-            with open(self.dir_readme_md, "r") as file:
-                lines = file.readlines()
-                header_count = 0
-                for line in lines:
-                    if line.strip().startswith("#"):
-                        header_count += 1
-                        if header_count == 2:
-                            return line.strip()
-        except Exception as e:
-            Validator.print_e(e)
-            return "TODO: Add an Header"  # Return None if second header not found
+        """scan the contents, it return the 1st or 2nd occurrence 
+        of
+        # some txt
+
+        Returns:
+            str: header
+        """
+        with open(self.dir_readme_md, "r") as file:
+            lines = file.readlines()
+            res = "# TODO: Add an Header"
+            count=0
+            for line in lines:
+                if line.strip().startswith("# "):
+                    count+=1
+                    if count<=2:
+                        res = line.strip()
+            return res
+ 
 
     @classmethod
     def from_http_url_to_dir(cls, http_url):
