@@ -42,7 +42,6 @@ class Toc(MarkdownRenderer):
             for curr_dir in dirs
             if curr_dir is not None
         ]
-        logging.info(res)
         return res
 
     def as_mark_down(self):

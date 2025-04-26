@@ -1,4 +1,3 @@
-import logging
 from typing import List
 
 from src.zero_to_one_hundred.configs.ztoh_config_map import (
@@ -34,10 +33,8 @@ class Map(MarkdownRenderer):
     def get_sections(self):
         res = self.sections
         if self.config_map.get_repo_sorted == "abc":
-            logging.info("*** abc")
             res = sorted(self.sections, key=lambda s: s.dir_name)
         if self.config_map.get_repo_sorted == "00:00:00":
-            logging.info("*** 00:00:00")
             res = sorted(self.sections, key=lambda s: s.get_readme_md_time())
         return res
 
