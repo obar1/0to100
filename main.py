@@ -16,6 +16,9 @@ from src.zero_to_one_hundred.factories.ztoh_factory_provider import \
 from src.zero_to_one_hundred.validator.validator import \
     Validator
 
+LOG_LEVEL = logging.INFO
+# use if necessary
+# LOG_LEVEL = logging.DEBUG
 
 def run_core(argv: List[str], factory_provider: AFactoryProvider):
     """given params and factory provider it runs the core logic
@@ -30,12 +33,11 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     if factory:
         for processor in factory.get_processor(argv):
             if processor:
-                logging.info(str(processor.__repr__()))
                 processor.process()
                 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=LOG_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%H:%M:%S')    
     try:
         args = sys.argv[1:]
         cmd , p1 , p2 = Validator.validate_args(args)

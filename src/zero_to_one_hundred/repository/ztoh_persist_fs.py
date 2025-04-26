@@ -18,19 +18,19 @@ class ZTOHPersistFS(APersistFS):
     @classmethod
     def done_section(cls, path):
         path = cls.abs_path(path)
-        logging.info(f"done_section {path}")
+        logging.debug(f"done_section {path}")
         path = path + os.sep + ".done"
-        logging.info(f"path {path}")
+        logging.debug(f"path {path}")
         os.makedirs(path, 0o777, True)
         with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
             os.utime("{}/.gitkeep".format(path), None)
-        logging.info(f"created {path}")
+        logging.debug(f"created {path}")
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):
-        logging.info(f"done_section_status {path}")
+        logging.debug(f"done_section_status {path}")
         path = abs_repo_path + os.sep + path + os.sep + ".done"
-        logging.info(f"path {path}")
+        logging.debug(f"path {path}")
         exists = os.path.exists(path)
         if exists:
             return True
@@ -38,7 +38,7 @@ class ZTOHPersistFS(APersistFS):
 
     @classmethod
     def get_biz_ts(cls, path):
-        logging.info(f"path {path}")
+        logging.debug(f"path {path}")
         exists = os.path.exists(path)
 
         if exists:
@@ -100,8 +100,8 @@ class ZTOHPersistFS(APersistFS):
                 else:
                     subtitles = "No subtitles available"
 
-                logging.info(f"Downloading: {video_title}")
-                logging.info(f"Download completed! Video saved to {output_path}")
+                logging.debug(f"Downloading: {video_title}")
+                logging.debug(f"Download completed! Video saved to {output_path}")
                 return {
                     "title": video_title,
                     "filename": video_filename,
