@@ -35,8 +35,6 @@ bash demo.sh sb
 ## simple local setup:
 
 ```sh
-make setup
-
 cp ./tests/tests_zo/resources/map.yaml map_zo.yaml
 cp ./tests/tests_sb/resources/map.yaml map_sb.yaml
 # edit them (optionally)
@@ -52,5 +50,3 @@ export MAP_YAML_PATH=map_zo.yaml && uv run ./main.py zo help
 export MAP_YAML_PATH=map_sb.yaml && uv run ./main.py sb help
 ```
 > check more usage samples in [demo](./demo.sh)
-
-

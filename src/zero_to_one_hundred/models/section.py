@@ -71,24 +71,27 @@ class Section(MarkdownRenderer):
 
     @property
     def get_id_name(self):
-        """scan the contents, it return the 1st or 2nd occurrence 
+        """scan the contents, it return the 1st or 2nd occurrence
         of
         # some txt
 
         Returns:
             str: header
         """
-        with open(self.dir_readme_md, "r") as file:
-            lines = file.readlines()
-            res = "# TODO: Add an Header"
-            count=0
-            for line in lines:
-                if line.strip().startswith("# "):
-                    count+=1
-                    if count<=2:
-                        res = line.strip()
-            return res
- 
+        res = "# TODO: Add an Header"
+        try:
+            with open(self.dir_readme_md, "r") as file:
+                lines = file.readlines()
+
+                count = 0
+                for line in lines:
+                    if line.strip().startswith("# "):
+                        count += 1
+                        if count <= 2:
+                            res = line.strip()
+        except Exception as e:
+            Validator.print_e(e)
+        return res
 
     @classmethod
     def from_http_url_to_dir(cls, http_url):
