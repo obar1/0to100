@@ -27,13 +27,8 @@ build
 *.egg-info
 pip-wheel-metadata/
 
-# map
-map.yaml
-map_zo.yaml
-map_sb.yaml 
 
 # yt related
 *.mp4
 *.vtt
 *.html
-
