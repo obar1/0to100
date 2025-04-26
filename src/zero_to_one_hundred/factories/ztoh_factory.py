@@ -3,7 +3,7 @@ from enum import Enum
 from src.zero_to_one_hundred.configs.ztoh_config_map import (
     ZTOHConfigMap,
 )
-from src.zero_to_one_hundred.factories.a_factory import AFactory
+from src.zero_to_one_hundred.factories.a_factory import AFactory, UV_RUN_MAIN
 from src.zero_to_one_hundred.processors.create_section_processor import (
     CreateSectionProcessor,
 )
@@ -32,20 +32,20 @@ class ZTOHFactory(AFactory):
         refresh_section_contents = 4
         help = 5
 
-    extended_help = """
+    extended_help = f"""
     create_section = create a new section
     section=https://www.cloudskillsboost.google/paths/16
-    ./main.py zo create_section "$section"
+    {UV_RUN_MAIN} zo create_section "$section"
 
     done_section = tag a section as done
     section=https://www.cloudskillsboost.google/paths/16
-    ./main.py zo done_section "$section"
+    {UV_RUN_MAIN} zo done_section "$section"
     
     refresh_map = refresh the section map
-    ./main.py zo refresh_map
+    {UV_RUN_MAIN} zo refresh_map
     
     refresh_section_contents = refresh links to sections in the readme.md(s)
-    ./main.py zo refresh_section_contents
+    {UV_RUN_MAIN} zo refresh_section_contents
     """
 
     def __init__(

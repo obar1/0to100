@@ -14,6 +14,8 @@ from src.zero_to_one_hundred.repository.a_persist_fs import (
     APersistFS,
 )
 
+UV_RUN_MAIN: str = "uv run ./main.py"
+
 
 class AFactory:
     """AFactory class."""
@@ -23,15 +25,15 @@ class AFactory:
         sb = 2
         help = 3
 
-    extended_help = """
+    extended_help = f"""
     zo = zero to 100
-    ./main.py zo help
+    {UV_RUN_MAIN} zo help
 
     sb = sb to 100
-    ./main.py sb help
+    {UV_RUN_MAIN} sb help
     
     help = this :)
-    ./main.py help
+    {UV_RUN_MAIN} help
     """
 
     def __init__(self, persist_fs: APersistFS):

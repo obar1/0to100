@@ -45,8 +45,10 @@ cp ./tests/tests_sb/resources/map.yaml map_sb.yaml
 ```sh
 uv run ./main.py help
 
-export MAP_YAML_PATH=map_zo.yaml && uv run ./main.py zo help
+export MAP_YAML_PATH=map_zo.yaml
+uv run ./main.py zo help
 
-export MAP_YAML_PATH=map_sb.yaml && uv run ./main.py sb help
+export MAP_YAML_PATH=map_sb.yaml
+uv run ./main.py sb help
 ```
 > check more usage samples in [demo](./demo.sh)
