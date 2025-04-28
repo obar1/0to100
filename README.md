@@ -52,3 +52,4 @@ export MAP_YAML_PATH=map_sb.yaml
 uv run ./main.py sb help
 ```
 > check more usage samples in [demo](./demo.sh)
+> check this snippet to change automatically `venv` as you move from folder to folder [gist](https://gist.github.com/obar1/212e4c778548f8bcdc6e9c1b05856f3f)
