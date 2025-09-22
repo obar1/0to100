@@ -40,10 +40,10 @@ class ZTOHFactory(AFactory):
     done_section = tag a section as done
     section=https://www.cloudskillsboost.google/paths/16
     {UV_RUN_MAIN} zo done_section "$section"
-    
+
     refresh_map = refresh the section map
     {UV_RUN_MAIN} zo refresh_map
-    
+
     refresh_section_contents = refresh links to sections in the readme.md(s)
     {UV_RUN_MAIN} zo refresh_section_contents
     """

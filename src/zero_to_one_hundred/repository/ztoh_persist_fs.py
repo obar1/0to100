@@ -1,5 +1,6 @@
 # pylint: disable=W0108
-import logging
+from loguru import logger as logging
+
 import os
 import time
 from yt_dlp import YoutubeDL
@@ -18,19 +19,19 @@ class ZTOHPersistFS(APersistFS):
     @classmethod
     def done_section(cls, path):
         path = cls.abs_path(path)
-        logging.debug(f"done_section {path}")
+        logging.info(f"done_section {path}")
         path = path + os.sep + ".done"
-        logging.debug(f"path {path}")
+        logging.info(f"path {path}")
         os.makedirs(path, 0o777, True)
         with open("{}/.gitkeep".format(path), "a", encoding="utf-8"):
             os.utime("{}/.gitkeep".format(path), None)
-        logging.debug(f"created {path}")
+        logging.info(f"created {path}")
 
     @classmethod
     def done_section_status(cls, abs_repo_path, path):
-        logging.debug(f"done_section_status {path}")
+        logging.info(f"done_section_status {path}")
         path = abs_repo_path + os.sep + path + os.sep + ".done"
-        logging.debug(f"path {path}")
+        logging.info(f"path {path}")
         exists = os.path.exists(path)
         if exists:
             return True
@@ -38,7 +39,7 @@ class ZTOHPersistFS(APersistFS):
 
     @classmethod
     def get_biz_ts(cls, path):
-        logging.debug(f"path {path}")
+        logging.info(f"path {path}")
         exists = os.path.exists(path)
 
         if exists:
@@ -100,8 +101,8 @@ class ZTOHPersistFS(APersistFS):
                 else:
                     subtitles = "No subtitles available"
 
-                logging.debug(f"Downloading: {video_title}")
-                logging.debug(f"Download completed! Video saved to {output_path}")
+                logging.info(f"Downloading: {video_title}")
+                logging.info(f"Download completed! Video saved to {output_path}")
                 return {
                     "title": video_title,
                     "filename": video_filename,

@@ -1,5 +1,6 @@
 # pylint: disable= R0904
-import logging
+from loguru import logger as logging
+
 import os
 import re
 

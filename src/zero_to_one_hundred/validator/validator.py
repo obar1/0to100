@@ -1,5 +1,6 @@
 import argparse
-import logging
+from loguru import logger as logging
+
 import re
 import traceback
 

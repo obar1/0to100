@@ -1,4 +1,5 @@
-import logging
+from loguru import logger as logging
+
 from typing import List
 
 from src.zero_to_one_hundred.configs.sb_config_map import (
@@ -46,7 +47,7 @@ class Toc(MarkdownRenderer):
 
     def as_mark_down(self):
         def flatten_meta_book(meta_book: MetaBook):
-            logging.info(f"flatten_meta_book {meta_book}")
+            logging.debug(f"flatten_meta_book {meta_book}")
             txt = "|".join(
                 [
                     f'<span style="color:blue">**{meta_book.isbn}**</span>',

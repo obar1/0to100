@@ -31,7 +31,7 @@ class AFactory:
 
     sb = sb to 100
     {UV_RUN_MAIN} sb help
-    
+
     help = this :)
     {UV_RUN_MAIN} help
     """

@@ -1,5 +1,6 @@
 import json
-import logging
+from loguru import logger as logging
+
 
 from src.zero_to_one_hundred.configs.sb_config_map import (
     SBConfigMap,
@@ -58,7 +59,7 @@ class Metadata(MarkdownRenderer):
             lines = {} if json_data is None else json_data
             return json.loads("".join(lines))
         except Exception:
-            logging.warning(f"no {self.path_json} not found")
+            logging.debug(f"no {self.path_json} not found")
             return {}
 
     @property

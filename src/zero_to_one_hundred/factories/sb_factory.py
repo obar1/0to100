@@ -27,7 +27,7 @@ class SBFactory(AFactory):
     extended_help = f"""
     snatch_book = snatch a book from safari
     {UV_RUN_MAIN} sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
-    
+
     refresh_toc = refresh the toc with al the books info
     {UV_RUN_MAIN} sb refresh_toc
     """

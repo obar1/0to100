@@ -1,5 +1,6 @@
 import json
-import logging
+from loguru import logger as logging
+
 import shlex
 import subprocess
 
@@ -29,19 +30,19 @@ class SBPersistFS(ZTOHPersistFS):
 
     @classmethod
     def write_json(cls, path_json: str, txt: dict):
-        logging.debug(f"write_json {path_json} {txt}")
+        logging.info(f"write_json {path_json} {txt}")
         ZTOHPersistFS.write_file_json(path_json, txt)
 
     @classmethod
     def read_pages_curr(cls, fn: str) -> int:
-        logging.debug(f"read_pages_curr {fn}")
+        logging.info(f"read_pages_curr {fn}")
         with open(fn, "r", encoding="utf-8") as f:
             json_data = json.loads(f.read())
-            logging.debug(json_data)
+            logging.info(json_data)
             return int(json_data["page_curr"])
 
     @classmethod
     def write_img(cls, path_img, http_url_img):
-        logging.debug(f"write_img  {path_img} {http_url_img}")
+        logging.info(f"write_img  {path_img} {http_url_img}")
         cmd = f'curl -o  "{path_img}"  {http_url_img}'
         subprocess.run(shlex.split(cmd), check=True)
