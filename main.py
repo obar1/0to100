@@ -24,7 +24,7 @@ def run_core(argv: List[str], factory_provider: AFactoryProvider):
     if factory:
         for processor in factory.get_processor(argv):
             if processor:
-                logging.warning(f"processor {processor.__class__} argv {argv}")
+                logging.warning(f"processor {processor.__class__.__name__} argv {argv}")
                 processor.process()
 
 

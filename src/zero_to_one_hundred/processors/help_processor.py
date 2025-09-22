@@ -1,3 +1,4 @@
+from loguru import logger as logging
 from src.zero_to_one_hundred.configs.a_config_map import AConfigMap
 from src.zero_to_one_hundred.processors.a_processor import (
     AProcessor,
@@ -21,4 +22,7 @@ class HelpProcessor(AProcessor):
         self.extended_help = extended_help
 
     def process(self):
-        print(self.__class__.__name__)
+        if self.config_map:
+            logging.warning(f"config_map: {repr(self.config_map)}")
+        logging.warning(f"supported: {[s.name for s in self.supported_processor]}")
+        logging.warning(f"extended help: {self.extended_help}")
