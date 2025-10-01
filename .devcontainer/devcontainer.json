@@ -22,5 +22,5 @@
             ]
         }
     },
-    "postStartCommand": "make setup && nohup ./ka &"
+    "postStartCommand": "nohup ./ka &"
 }
