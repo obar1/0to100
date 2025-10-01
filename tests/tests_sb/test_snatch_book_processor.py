@@ -1,4 +1,3 @@
-from subprocess import CalledProcessError
 from unittest.mock import patch
 
 from src.zero_to_one_hundred.processors.snatch_book_processor import (

@@ -116,11 +116,3 @@ def get_factory(env_map_yaml, persist_fs):
 @pytest.fixture
 def get_factory_provider(env_map_yaml, persist_fs):
     return ZTOHFactoryProvider(persist_fs)
-
-
-@pytest.fixture
-def fs():
-    patcher = Patcher()
-    patcher.setUp()
-    yield patcher.fs  # Provide the fake filesystem
-    patcher.tearDown()
