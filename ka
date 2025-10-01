@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Interval in seconds (e.g., 300 = 5 minutes)
+INTERVAL=300
+
+echo "Keeping Codespace alive. Press [CTRL+C] to stop."
+
+while true; do
+  echo "Ping at $(date)" > /tmp/keepalive.txt
+  sleep $INTERVAL
+done
+
+# use ad
+# nohup ./ka &
+# 
+
