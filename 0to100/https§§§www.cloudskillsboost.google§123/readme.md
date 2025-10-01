@@ -12,4 +12,3 @@ some txt
 ![some text](image-1.png)
 
 ![](image-2.png)
-

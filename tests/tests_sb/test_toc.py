@@ -1,5 +1,3 @@
-import pytest
-
 from src.zero_to_one_hundred.models.meta_book import MetaBook
 from src.zero_to_one_hundred.models.toc import Toc
 from tests.conftest import str_relaxed
@@ -29,18 +27,6 @@ def test_init(get_config_map, persist_fs, http_oreilly_1):
 
 
 def test_as_mark_down(get_config_map, persist_fs, http_oreilly_1, http_oreilly_2):
-    metabooks = [
-        MetaBook(
-            get_config_map,
-            persist_fs,
-            http_oreilly_1,
-        ),
-        MetaBook(
-            get_config_map,
-            persist_fs,
-            http_oreilly_2,
-        ),
-    ]
     actual = Toc(
         get_config_map,
         persist_fs,

@@ -1,0 +1,26 @@
+{
+    "name": "Simple python tool to learn everything and keep it local",
+    "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+    "hostRequirements": {
+        "memory": "16gb"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.jupyter-renderers",
+                "ms-vscode.remote-containers",
+                "ms-vscode-remote.remote-ssh",
+                "ms-vscode-remote.remote-wsl",
+                "ms-azuretools.vscode-containers",
+                "njpwerner.autodocstring",
+                "eamodio.gitlens",
+                "mhutchie.git-graph"
+            ]
+        }
+    },
+    "postStartCommand": "nohup ./ka &"
+}

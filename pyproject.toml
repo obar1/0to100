@@ -1,9 +1,9 @@
 [project]
 name = "zero-to-one_hundred"
-version = "0.1.0"
+version = "0.2.0"
 readme = "README.md"
-requires-python = ">=3.10"
-description = "Simple python tool to learn everything and keep it local."
+requires-python = ">=3.12"
+description = "Simple python tool to learn everything and keep it local"
 author_email = "obar1+gh@pm.me"
 dependencies = [
     "black>=25.1.0",
@@ -16,4 +16,8 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pytest>=8.3.5", "pyyaml>=6.0.2", "pre-commit>=3.7.0"]
+dev = [
+    "pytest>=8.3.5",
+    "pyyaml>=6.0.2",
+    "pre-commit>=3.7.0"
+]

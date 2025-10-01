@@ -4,7 +4,7 @@
 # set -x
 
 
-# repo path 
+# repo path
 REPO_PATH="./0to100"
 
 function setup {
@@ -61,7 +61,7 @@ EOF
 
     touch "$REPO_PATH"/https§§§www.cloudskillsboost.google§123/image-3.png
     uv run ./main.py zo refresh_section_contents
-    # image-3.png got deleted 
+    # image-3.png got deleted
     uv run ./main.py zo refresh_map
 
 }
