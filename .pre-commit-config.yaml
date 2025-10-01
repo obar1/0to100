@@ -1,8 +1,41 @@
+# https://pre-commit.com
+
+default_language_version:
+  python: python3.12
+fail_fast: true
 repos:
-- repo: local
-  hooks:
-  - id: make-refactor
-    name: Call make-refactor
-    entry: make refactor VERBOSE=1
-    language: system
-    pass_filenames: true
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v6.0.0"
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+      - id: check-json
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.13.2"
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+        files: \.ipynb$
+  - repo: local
+    hooks:
+      - id: pytest
+        name: run-pytest
+        language: system
+        entry: uv run pytest -x -v --tb=short --maxfail=3
+        pass_filenames: false
