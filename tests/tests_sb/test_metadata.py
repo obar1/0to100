@@ -62,7 +62,7 @@ def test_as_mark_down(get_config_map, persist_fs, http_oreilly_1, oreilly_isbn_1
     )
 
     # calculate pages
-    data = """ 
+    data = """
     {
         "abc": "123",
         "page_curr": 10,
