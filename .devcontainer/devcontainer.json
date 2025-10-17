@@ -1,9 +1,6 @@
 {
     "name": "Simple python tool to learn everything and keep it local",
     "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
-    "hostRequirements": {
-        "memory": "16gb"
-    },
     "customizations": {
         "vscode": {
             "extensions": [
@@ -22,5 +19,8 @@
             ]
         }
     },
-    "postStartCommand": "nohup ./ka &"
+    "postStartCommand": "nohup ./ka &",
+    "hostRequirements": {
+        "cpus" : 2
+    }
 }
