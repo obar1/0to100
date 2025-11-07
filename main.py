@@ -33,7 +33,7 @@ if __name__ == "__main__":
     logging.add(sys.stderr, level="WARNING")
     try:
         args = sys.argv[1:]
-        cmd, p1, p2 = Validator.validate_args(args)
+        cmd, p1, p2, p3 = Validator.validate_args(args)
         match cmd:
             case "zo":
                 from src.zero_to_one_hundred.repository.ztoh_persist_fs import (
@@ -49,7 +49,8 @@ if __name__ == "__main__":
                 run_core(args[1:], SBFactoryProvider(persist_fs))
             case _:
                 raise ValueError(f"args = {args}")
-    except (ValueError, IndexError, TypeError, UnsupportedOptionError):
+    except (ValueError, IndexError, TypeError, UnsupportedOptionError) as e:
+        logging.error(f"Error: {e}")
         from src.zero_to_one_hundred.repository.a_persist_fs import (
             APersistFS as persist_fs,
         )

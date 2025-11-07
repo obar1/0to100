@@ -13,6 +13,7 @@ dependencies = [
     "types-pyyaml>=6.0.12.20250402",
     "yt-dlp>=2025.3.31",
     "loguru",
+    "pymupdf>=1.22.0",
 ]
 
 [dependency-groups]

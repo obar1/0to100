@@ -7,6 +7,7 @@
 # repo path
 REPO_PATH="./0to100"
 
+
 function setup {
     # set -x
     export MAP_YAML_PATH=map.yaml
@@ -63,6 +64,11 @@ EOF
     uv run ./main.py zo refresh_section_contents
     # image-3.png got deleted
     uv run ./main.py zo refresh_map
+
+
+    # get a pdf
+    wget -O "$REPO_PATH"/Memoirs_of_Sherlock_Holmes.pdf  https://archive.org/download/sherlock-holmes_novels/Memoirs_of_Sherlock_Holmes.pdf
+    uv run ./main.py zo pdf_to_md "$REPO_PATH"/Memoirs_of_Sherlock_Holmes.pdf "$REPO_PATH"/Memoirs_of_Sherlock_Holmes.md
 
 }
 

@@ -27,9 +27,11 @@ class Validator:
         parser.add_argument("cmd", type=str, nargs="?", default=None)
         parser.add_argument("p1", type=str, nargs="?", default=None)
         parser.add_argument("p2", type=str, nargs="?", default=None)
+        parser.add_argument("p3", type=str, nargs="?", default=None)
 
         args = parser.parse_args(args)  # skip fn
         cmd = args.cmd
         p1 = args.p1
         p2 = args.p2
-        return cmd, p1, p2
+        p3 = args.p3
+        return cmd, p1, p2, p3
