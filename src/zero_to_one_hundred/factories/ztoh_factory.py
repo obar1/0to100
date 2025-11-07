@@ -16,6 +16,9 @@ from src.zero_to_one_hundred.processors.refresh_map_processor import (
 from src.zero_to_one_hundred.processors.refresh_section_contents_processor import (
     RefreshSectionContentsProcessor,
 )
+from src.zero_to_one_hundred.processors.pdf_to_md_inline_processor import (
+    PdfToMdInlineProcessor,
+)
 from src.zero_to_one_hundred.repository.ztoh_persist_fs import (
     ZTOHPersistFS,
 )
@@ -30,7 +33,8 @@ class ZTOHFactory(AFactory):
         done_section = 2
         refresh_map = 3
         refresh_section_contents = 4
-        help = 5
+        pdf_to_md = 5
+        help = 6
 
     extended_help = f"""
     create_section = create a new section
@@ -46,6 +50,9 @@ class ZTOHFactory(AFactory):
 
     refresh_section_contents = refresh links to sections in the readme.md(s)
     {UV_RUN_MAIN} zo refresh_section_contents
+
+    pdf_to_md = convert a PDF to a single Markdown file with inline images
+    {UV_RUN_MAIN} zo pdf_to_md "/path/to/input.pdf" "/path/to/output.md"
     """
 
     def __init__(
@@ -57,7 +64,7 @@ class ZTOHFactory(AFactory):
         self.config_map = config_map
 
     def get_processor(self, args):
-        cmd, p1, _ = Validator.validate_args(args)
+        cmd, p1, p2 = Validator.validate_args(args)
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(p1)
             yield self.refresh_map_processor()
@@ -69,6 +76,9 @@ class ZTOHFactory(AFactory):
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.refresh_section_contents.name:
             yield self.refresh_section_contents_processor()
             yield self.refresh_map_processor()
+        elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.pdf_to_md.name:
+            # p1 = input pdf path, p2 = output md path (optional)
+            yield self.pdf_to_md_processor(p1, p2)
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()
         else:
@@ -85,3 +95,8 @@ class ZTOHFactory(AFactory):
 
     def refresh_section_contents_processor(self):
         return RefreshSectionContentsProcessor(self.config_map, self.persist_fs)
+
+    def pdf_to_md_processor(self, pdf_path, md_path=None):
+        return PdfToMdInlineProcessor(
+            self.config_map, self.persist_fs, pdf_path, md_path
+        )
