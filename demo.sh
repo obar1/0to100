@@ -5,7 +5,8 @@
 
 
 # repo path
-REPO_PATH="/workspaces/0to100/0to100"
+REPO_PATH="./0to100"
+
 
 function setup {
     # set -x
