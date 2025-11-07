@@ -64,7 +64,7 @@ class ZTOHFactory(AFactory):
         self.config_map = config_map
 
     def get_processor(self, args):
-        cmd, p1, p2 = Validator.validate_args(args)
+        cmd, p1, p2, p3 = Validator.validate_args(args)
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(p1)
             yield self.refresh_map_processor()
@@ -77,7 +77,6 @@ class ZTOHFactory(AFactory):
             yield self.refresh_section_contents_processor()
             yield self.refresh_map_processor()
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.pdf_to_md.name:
-            # p1 = input pdf path, p2 = output md path (optional)
             yield self.pdf_to_md_processor(p1, p2)
         elif cmd == ZTOHFactory.SUPPORTED_PROCESSOR.help.name:
             yield self.help_processor()

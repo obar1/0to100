@@ -36,3 +36,6 @@ map_sb.yaml
 *.mp4
 *.vtt
 *.html
+
+# dups
+*.pdf.*

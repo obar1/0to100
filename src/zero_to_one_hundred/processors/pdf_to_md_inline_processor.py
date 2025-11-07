@@ -59,7 +59,7 @@ class PdfToMdInlineProcessor(AProcessor):
         persist_fs,
         pdf_path: str,
         md_path: Optional[str] = None,
-        use_html_img: bool = False,
+        use_html_img: bool = True,
     ):
         # minimal validation
         self.pdf_path = str(pdf_path)
