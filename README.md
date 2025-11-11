@@ -40,6 +40,12 @@ cp ./tests/tests_sb/resources/map.yaml map_sb.yaml
 # edit them (optionally)
 ```
 
+> if you see some error like
+```log
+src.zero_to_one_hundred.exceptions.errors.SomeError: map_yaml_path None is not valid,
+```
+likely you forgot to set  map.yaml or you are using an invalid one
+
 ## daily usage
 
 ```sh
@@ -58,21 +64,27 @@ uv run ./main.py sb help
 ## current features
 
 ```sh
+create_section = create a new section
+section=https://www.cloudskillsboost.google/paths/16
+uv run ./main.py zo create_section "$section"
 
-    create_section = create a new section
-    section=https://www.cloudskillsboost.google/paths/16
-    uv run ./main.py zo create_section "$section"
+done_section = tag a section as done
+section=https://www.cloudskillsboost.google/paths/16
+uv run ./main.py zo done_section "$section"
 
-    done_section = tag a section as done
-    section=https://www.cloudskillsboost.google/paths/16
-    uv run ./main.py zo done_section "$section"
+refresh_map = refresh the section map
+uv run ./main.py zo refresh_map
 
-    refresh_map = refresh the section map
-    uv run ./main.py zo refresh_map
+refresh_section_contents = refresh links to sections in the readme.md(s)
+uv run ./main.py zo refresh_section_contents
 
-    refresh_section_contents = refresh links to sections in the readme.md(s)
-    uv run ./main.py zo refresh_section_contents
+pdf_to_md = convert a PDF to a single Markdown file with inline images
+uv run ./main.py zo pdf_to_md "/path/to/input.pdf" "/path/to/output.md"
 
-    pdf_to_md = convert a PDF to a single Markdown file with inline images
-    uv run ./main.py zo pdf_to_md "/path/to/input.pdf" "/path/to/output.md"
+snatch_book = snatch a book from safari
+uv run ./main.py sb snatch_book https://learning.oreilly.com/library/view/rewire-your-brain/9781119895947
+
+refresh_toc = refresh the toc with al the books info
+uv run ./main.py sb refresh_toc
+```
 
