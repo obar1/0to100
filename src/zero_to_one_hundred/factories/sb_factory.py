@@ -37,7 +37,7 @@ class SBFactory(AFactory):
         self.config_map = config_map
 
     def get_processor(self, args):
-        cmd, p1, _ = Validator.validate_args(args)
+        cmd, p1, _, _ = Validator.validate_args(args)
         if cmd == SBFactory.SUPPORTED_PROCESSOR.snatch_book.name:
             http_url = p1
             yield self.snatch_book_processor(http_url)
