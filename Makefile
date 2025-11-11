@@ -7,7 +7,7 @@ help:
 	@echo "Available commands:"
 	@echo "  make setup        - Create virtual environment, install dependencies with uv, and install pre-commit hooks"
 	@echo "  make clean        - Remove virtual environment and cache files"
-	@echo " "
+	@echo "  make info         - Basic info"
 	@echo "  make test         - Run all tests"
 setup:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -22,6 +22,8 @@ clean:
 	rm -rf **/__pycache__
 	rm -rf *.egg-info
 	uv run pre-commit uninstall
+info:
+	clear && cat README.md
 check:
 	uv run pre-commit run --all-files
 gpush:

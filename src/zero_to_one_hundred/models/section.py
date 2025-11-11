@@ -145,15 +145,18 @@ class Section(MarkdownRenderer):
         """convert to [https://](https:§§§...readme) or leave as it is"""
         res = line
         if str(line).strip("\n").startswith("https://"):
+            up_folder = ".."
+            dir_readme_md_abs = Section(
+                self.config_map,
+                self.persist_fs,
+                str(line).strip("\n"),
+            ).dir_readme_md.replace(self.config_map.get_repo_path, "")
             res = (
                 "["
                 + str(line).strip("\n")
-                + "](../"
-                + Section(
-                    self.config_map,
-                    self.persist_fs,
-                    str(line).strip("\n"),
-                ).dir_readme_md
+                + "]("
+                + up_folder
+                + dir_readme_md_abs
                 + ")\n"
             )
         return res
