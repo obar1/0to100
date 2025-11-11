@@ -44,12 +44,35 @@ cp ./tests/tests_sb/resources/map.yaml map_sb.yaml
 
 ```sh
 uv run ./main.py help
-
-export MAP_YAML_PATH=map_zo.yaml
+#     cp ./tests/tests_zo/resources/map.yaml map.yaml
+export MAP_YAML_PATH=map.yaml
 uv run ./main.py zo help
 
-export MAP_YAML_PATH=map_sb.yaml
+#     cp ./tests/tests_sb/resources/map.yaml map.yaml
+export MAP_YAML_PATH=map.yaml
 uv run ./main.py sb help
 ```
 > check more usage samples in [demo](./demo.sh)
 > check this snippet to change automatically `venv` as you move from folder to folder [gist](https://gist.github.com/obar1/212e4c778548f8bcdc6e9c1b05856f3f)
+
+## current features
+
+```sh
+
+    create_section = create a new section
+    section=https://www.cloudskillsboost.google/paths/16
+    uv run ./main.py zo create_section "$section"
+
+    done_section = tag a section as done
+    section=https://www.cloudskillsboost.google/paths/16
+    uv run ./main.py zo done_section "$section"
+
+    refresh_map = refresh the section map
+    uv run ./main.py zo refresh_map
+
+    refresh_section_contents = refresh links to sections in the readme.md(s)
+    uv run ./main.py zo refresh_section_contents
+
+    pdf_to_md = convert a PDF to a single Markdown file with inline images
+    uv run ./main.py zo pdf_to_md "/path/to/input.pdf" "/path/to/output.md"
+

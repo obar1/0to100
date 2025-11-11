@@ -64,7 +64,7 @@ class ZTOHFactory(AFactory):
         self.config_map = config_map
 
     def get_processor(self, args):
-        cmd, p1, p2, p3 = Validator.validate_args(args)
+        cmd, p1, p2, _ = Validator.validate_args(args)
         if cmd == ZTOHFactory.SUPPORTED_PROCESSOR.create_section.name:
             yield self.create_section_processor(p1)
             yield self.refresh_map_processor()

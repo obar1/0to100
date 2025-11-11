@@ -26,14 +26,15 @@ class AFactory:
         help = 3
 
     extended_help = f"""
+
+    help = this :)
+    {UV_RUN_MAIN} help
+
     zo = zero to 100
     {UV_RUN_MAIN} zo help
 
     sb = sb to 100
     {UV_RUN_MAIN} sb help
-
-    help = this :)
-    {UV_RUN_MAIN} help
     """
 
     def __init__(self, persist_fs: APersistFS):
